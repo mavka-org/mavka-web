@@ -1,68 +1,82 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Разделение и группировка кода
+Внутри папки  _components_  мы группируем файлы по модулям
+![picture](https://i.ibb.co/K6G2vyC/m1.png)
+Когда компонент состоит из более чем одного файла, мы кладем этот компонент и его файлы в папку с тем же именем. Например: вы имеете _Form_._css_, содержащий _Form_._jsx_  стили. В
+![picture 2](https://i.ibb.co/T1fY3b4/m2.png)
+этом случае структура будет выглядеть так:
 
-## Available Scripts
+_!!!_
 
-In the project directory, you can run:
+_Тестовые файлы остаются с проверяемым файлом. В приведенном выше случае, тест для_ **_Form.jsx_**  _останется в той же папке и будет называться_ **_Form.spec.jsx_**
 
-### `npm start`
+_!!!_
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Компоненты пользовательского интерфейса
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Помимо разделения компонентов на модули, добавим папку  `UI`  в  `src/components`, чтобы сохранить в ней наши общие компоненты.
 
-### `npm test`
+UI  Components это настолько общие компоненты, что они не принадлежат конкретному модулю. Эти компоненты вы можете выделить в отдельную библиотеку, потому что они не имеют бизнес логики. Примером таких компонентов могут быть: Buttons, Inputs, Checkboxes, Selects, Modals, Data display elements, и т.д.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Именование компонентов
 
-### `npm run build`
+_Когда мы говорим об именовании компонента, это относится к имени, которое мы даем_  **_классу_**  _или_  **_переменной_**_, определяющей компонент:_
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+_class **MyComponent** extends Component {  
+}  
+const **MyComponent** () => {};_
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Имена компонентов должны быть понятны и уникальны для всего приложения, чтобы сделать их легче для поиска и избежать возможных неточностей.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Имена компонентов очень удобны для отладки, когда мы используем инструменты, такие как _React_  _Dev_  _Tools_,  и когда происходят run  time  errors. Ошибки всегда содержат имя компонента, в котором они произошли.
 
-### `npm run eject`
+При именовании компонентов мы следуем паттерну _path-based_-_component_-_naming_, который содержит в названии компонент соответствующий его относительному пути для папки  `components`  или `src`, если вы находитесь вне папки  `components`. Например компонент находящийся в папке  `components/User/List.jsx`  должен быть назван  `UserList`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Если файл находится в папке с таким же именем, то нам не нужно повторять его. То есть  `components/User/Form/Form.jsx`  должен быть назван  `UserForm`, а не  `UserFormForm`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Экраны
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Название говорит само за себя, будем называть им экраны в нашем приложении.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Экран — это место, где вы используете компоненты, для составления их в страницу. В идеале экран не должен хранить никакой логики и должен быть функциональным компонентом.
 
-## Learn More
+Мы сохраняем экраны в отдельной папке, находящейся в  `src`, потому что они будут сгруппированы в соответствии с маршрутом, а не модулем:
+![picture 3](https://i.ibb.co/kMQf0sJ/m3.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Router
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Объясню на примере: Мы хотим, чтобы по ссылке `mavka/znoMatan/` запускался компонент `ZnoMatan`.
 
-### Code Splitting
+Открываем файл `Root.jsx`  и прописываем следующие:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+`import ZnoMatan from PATH to ZnoMatan(e.g. './User/Form');`
 
-### Analyzing the Bundle Size
+`<Route  path="/znoMatan"  component={ZnoMatan} />`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Больше информации тут: [тык](https://medium.com/@timafon/%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-%D0%B8-%D0%B8%D0%BC%D0%B5%D0%BD%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-%D0%B2-react-2a29e96e0e07)
 
-### Making a Progressive Web App
+## Импорт компонентов
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Одним из недостатков этой структуры каталогов является то, что для импорта компонентов требуется импортировать полный путь, например:
 
-### Advanced Configuration
+**import** Login **from** **'components/Login/Login'**'
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Но мы хотели бы написать следующее:
 
-### Deployment
+**import**  Login  **from**  **'****components****/****Login****'**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Решение, с которым мы столкнулись, использует стандартный разрешающий механизм Node.js, что делает его надежным. Нам лишь нужно добавить файл `package.json` в файловую структуру.
 
-### `npm run build` fails to minify
+И внутри `package.json` мы используем основное свойство, чтобы установить нашу точку входа в компонент, например:  
+{ **"****main****"**: **"****Login****.****js****"** }
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+С этим дополнением мы можем импортировать компонент следующим образом:
+
+**import** Login **from** **'components/Login'**
+
+  
+
+## Assets
+
+В assets храним практически любые медиа файлы, от файлов изображений, таких как `jpg` и `gif`, до видео-файлов, таких как `wmv` и `mov`, и, конечно, стандартных файлов документов, таких как `ppt` и `docs`.
+
+**CSS  стили** храним в самой компоненте в `components`
