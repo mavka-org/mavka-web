@@ -1,6 +1,6 @@
-import React from './node_modules/react'
+import React from 'react'
 import style from '../styles/Login.module.css'
-import {Link} from './node_modules/react-router-dom'
+import {Link} from 'react-router-dom'
 export class Login extends React.Component {
 
 
