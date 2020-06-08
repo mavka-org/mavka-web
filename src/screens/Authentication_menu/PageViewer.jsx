@@ -1,8 +1,8 @@
-import React from './node_modules/react'
+import React from 'react'
 import { Login } from './Login/Login.jsx'
 import { Register } from './Register/Register.jsx'
 import style from './styles/PageViewer.module.css'
-import {Route, BrowserRouter,Link,Redirect} from './node_modules/react-router-dom';
+import {Route, BrowserRouter,Link,Redirect} from 'react-router-dom';
 const PageViewer = () =>{
     return(
             <BrowserRouter>
