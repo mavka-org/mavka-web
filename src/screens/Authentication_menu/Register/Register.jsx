@@ -3,21 +3,6 @@ import style from '../styles/Register.module.css'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
-var firebase = require("firebase/app");
-require("firebase/auth");
-var firebaseConfig = {
-    apiKey: "AIzaSyCpJw3Fn2f1zwE74t0vmKAZG6MnR_3ZQfc",
-    authDomain: "mavka-c5c01.firebaseapp.com",
-    databaseURL: "https://mavka-c5c01.firebaseio.com",
-    projectId: "mavka-c5c01",
-    storageBucket: "mavka-c5c01.appspot.com",
-    messagingSenderId: "477171666648",
-    appId: "1:477171666648:web:3f3932e925ad180d2f11ad",
-    measurementId: "G-GDHG2W55Q5"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
 export class Register extends React.Component{
     
@@ -34,11 +19,6 @@ export class Register extends React.Component{
             alert(errorCode + " " + errorMessage);
             return;
         });
-        const response = await axios.post(
-            'https://us-central1-mavka-c5c01.cloudfunctions.net/createUserInDb',
-            { token: ttt},
-            { headers: { 'Content-Type': 'text/plain' } }
-        )
     }
     checkUser() {
         if(firebase.auth().currentUser != null)
@@ -54,18 +34,21 @@ export class Register extends React.Component{
     }
 
     async getData(){
-        var ttt = ""
+        var tok = ""
         if(firebase.auth().currentUser) {
-            ttt = await firebase.auth().currentUser.getIdToken()
+            tok = await firebase.auth().currentUser.getIdToken()
         }
-        alert(ttt)
-        alert(JSON.stringify({ token: ttt }))
+        document.getElementById('sa').value = tok;
+        
         const response = await axios.post(
-            'https://us-central1-mavka-c5c01.cloudfunctions.net/getTestsBySubject',
-            { token: ttt, subject: "Математика" },
+            'https://us-central1-mavka-c5c01.cloudfunctions.net/getTestAnswers',
+            { 
+                token: tok,
+                courseID: "5FHcq0gcaS6FKHECdKxb"
+            },
             { headers: { 'Content-Type': 'text/plain' } }
         )
-        alert(response.data)
+        alert(JSON.stringify(response.data)) // 'success' or error
     }
 
     render(){
