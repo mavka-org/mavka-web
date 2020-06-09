@@ -1,6 +1,7 @@
 import React from './node_modules/react'
 import style from '../styles/Register.module.css'
 import {Link} from './node_modules/react-router-dom'
+
 export class Register extends React.Component{
 
 

@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 import ScreensAbout from "./screens/About";
 import NotFound from "./screens/NotFound";
+import TestScreen from './screens/Test_Screen/Test_Screen';
 
 export default () => (
     <Router>
