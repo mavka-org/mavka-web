@@ -1,5 +1,6 @@
 import React from 'react'
 import style from '../styles/Register.module.css'
+
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
