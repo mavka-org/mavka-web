@@ -32,6 +32,7 @@ const ABCDE = () =>{
                         <p><strong>Відеопояснення</strong></p>
                         <div className={s.video}></div>
                     </div>
+                    
                 </div>
                 
                 <div className={s.answers_frame}>
@@ -87,12 +88,13 @@ const ABCDE = () =>{
                             </div>
                             <p className={s.comment}>Пояснення правильне. "сили, щирості, влади" - однорідні додатки, між якими ставимо коми.</p>
                         </div>
-                    </div>
-                    <div className={s.result_frame}>
+                        <div className={s.result_frame}>
                         <p className={s.result}><strong>Правильно!</strong></p>
                         <p className={s.stats}>80% учнів впоралися з цим завданням</p>
                         <button class={s.btn}>Наступне питання</button>
                     </div>
+                    </div>
+                   
                 </div>
             </div>
             </div>

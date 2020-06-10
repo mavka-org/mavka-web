@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 .background{
     font-family:'Gilroy';
 }
@@ -10,7 +9,7 @@
 
     position: absolute;
     width: 945px;
-    height: 150%;
+    height: 2000%;
     left: calc(50% - 945px/2);
     top: 0px;
     background-color: #FFFFFF;
@@ -33,6 +32,9 @@
     align-items: baseline;
     justify-content: space-between;
 }
+.title{
+    font-size:18px;
+}
 .end{
 width: 157.5px;
 height: 38.5px;
@@ -46,129 +48,96 @@ line-height: 22px;
 font-family:'Gilroy';
 }
 
-
-
-.question_body{
-    display: flex;
-    flex-direction: column;
-    padding: 0px;
-    position: static;
-    width: 100%;
-    height: 100%;
-    background-color: #FFFFFF;
-}
-
-.title{
-    font-size: 20px;
-    line-height: 24px;
-}
-
 .question_frame p{
     font-size: 18px;
-    font-style: italic;
-    line-height: 22px;
-    
 }
 
+.number{
+    margin-right: 21px;
+}
+/* answers */
 
-
-/* answer */
-
-
+.main_answers > p{
+    font-size:18px;
+}
 .answers_frame{
     display: flex;
     flex-direction: column;
-    padding: 0px;
-    align-self: flex-start;
 }
-
-.choose{
-    font-size: 20px;
-    line-height: 24px;
-}
-.answers{
-    display: flex;
-    flex-direction: column;
-    padding: 10px 0px;
-    align-self: flex-start;
-    margin-bottom: 7px;
-    margin-left: 20px;
-   
-}
-
 .answer{
+    width:50;
     display: flex;
     flex-direction: column;
-    
-    min-width: 100%;
-    max-width:100%;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
-    border-radius: 5px;    
-    align-self: center;
-    margin-bottom: 7px;
 }
 
-.answer_text{
-    font-size: 18px;
-    line-height: 22px;
-}
-
-.answer_text_frame{
+.variant{
     display: flex;
     flex-direction: row;
-    padding: 0px;
-    flex: none;
-    align-self: flex-start;
-    align-items: baseline; 
-    font-size: 14px;
-    line-height: 17px;
-    margin-left: 40px
+    font-size: 18px;
 }
-.letter_choice{
-    font-size: 22px;
-    line-height: 27px;
-    margin-right: 21px;
+
+.inp{
+padding: 8px 16px;
+width: 102px;
+height: 33px;
+background: #FFFFFF;
+border: 1px solid #E8E8E8;
+box-sizing: border-box;
+border-radius: 10px;
+align-self: flex-start;
+font-size: 18px;
+line-height: 22px;
+font-family:'Gilroy';
+}
+
+
+.correct_answer{
+    display:flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+.correct_number{
+    margin-top:17px;
 }
 .comment{
-    font-size: 15px;
-    line-height: 19px;
-    margin-left:16px;
-    margin-bottom:16px;
+    font-size: 16px;
 }
 
+/* result */
 
-/* result frame */
 
-
-.result_frame{
-    margin-bottom:15px;
-}
 .result{
-    font-size:22px;
-    line-height: 27px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 30px;
 }
-.btn{
-    padding: 0px;
-    
+.result_frame{
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.correct_message{
+    font-weight: bold;
+    font-size: 20px;
+}
+.correct_result{
+    font-size:18px;
+    margin-top: 14px;
+}
+.btn{    
     width: 282px;
     height: 38.5px;
-    
-    
     background: #000000;
     border-radius: 10px;
-    
-    
+    margin-top:14px;
     color:white;
-    align-self: center;
-    margin: 0px 5px;
     font-size: 18px;
     line-height: 17px;
     font-family: 'Gilroy';
     font-weight: bold;
 }
-
-/* topic frame */
 
 .topic_frame{
     font-size: 20px;
@@ -200,7 +169,6 @@ font-family:'Gilroy';
     height: 275.4px;
     background-color: black;
 }
-
 @media (max-width: 992px) { /* это будет показано при разрешении монитора до 930 пикселей */
     .page{
         display: flex;

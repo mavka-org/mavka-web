@@ -136,7 +136,12 @@ font-family:'Gilroy';
     margin-left:16px;
     margin-bottom:16px;
 }
-
+.number{
+    font-size: 22px;
+    line-height: 27px;
+    margin-left: 40px;
+    margin-top: 12px;
+}
 
 /* result frame */
 
@@ -201,32 +206,71 @@ font-family:'Gilroy';
     background-color: black;
 }
 
-@media (max-width: 992px) { /* это будет показано при разрешении монитора до 930 пикселей */
-    .page{
-        display: flex;
-        flex-direction: column;
-        padding: 105px 0px;
-    
-        position: absolute;
-        width: 95%;
-        height: 150%;
-        left: calc(50% - 95%/2);
-        top: 0px;
-        background-color: #FFFFFF;
-    } /* основное содержимое занимает всё пространство окна */
-  }
 
-  @media (min-width: 993px) { /* это будет показано при разрешении монитора до 930 пикселей */
-    .page{
-        display: flex;
-        flex-direction: column;
-        padding: 105px 0px;
-    
-        position: absolute;
-        width: 950px;
-        height: 150%;
-        left: calc(50% - 950px/2);
-        top: 0px;
-        background-color: #FFFFFF;
-    } /* основное содержимое занимает всё пространство окна */
-  }
+/* table */
+.marker {
+    width: 27px;
+    height: 27px;
+    background-color: #BBC8DA;
+    text-align: center;
+    vertical-align: auto;
+    font-weight: 500;
+}
+
+.marker p {
+    margin: auto;
+
+}
+
+.marker_and_text {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.marker {
+    margin-right: 15px;
+}
+
+/* table */
+.select_answer {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    border-spacing: 2px;
+    border-color: grey;
+
+}
+
+.select_answer label {
+    display: inline-block;
+    width: 27px;
+    height: 27px;
+    line-height: 27px;
+    background: #efefef;
+    vertical-align: middle;
+    align-items: center;
+}
+
+.select_answer label>input[type=radio] {
+    display: none;
+}
+
+.select_answer label>span {
+    background: #fff;
+    border: solid 1px #bbb;
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+
+    vertical-align: middle;
+}
+
+.select_answer input[type=radio]:checked+span {
+    background: rgb(0, 0, 0);
+}
+
+.select_answer span:hover {
+    background: rgba(0, 0, 0, 0.274);
+}
+
