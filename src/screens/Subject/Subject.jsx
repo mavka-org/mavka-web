@@ -1,10 +1,7 @@
 import React from 'react';
 import List from '../../UI/List'
 import firebase from "../../global"
-import { Redirect, Link } from 'react-router-dom';
-    async function sosi(){
-        firebase.auth().signOut();
-    }
+import { Redirect} from 'react-router-dom';
 
 
 export class Subject extends React.Component{
@@ -36,9 +33,7 @@ export class Subject extends React.Component{
         if(this.state.user) {
             return( 
                 <div>
-                    <List/>
-                    <button onClick={async() => await sosi()}></button>
-                    <Link to="/test"><button></button></Link>
+                   
                 </div>
             )
         }
