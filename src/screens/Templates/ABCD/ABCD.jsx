@@ -1,12 +1,19 @@
 import React from 'react'
 import s from './ABCD.module.css'
-const ABCD = () =>{
+import Strong from "../Icon/Strong";
+import PointDown from "../Icon/PointDown";
+import Lamb from "../Icon/Lamb";
+import VideoCamera from "../Icon/VideoCamera";
+import CorrectArrow from "../Icon/CorrectArrow";
+import Incorrect from "../Icon/Incorrect";
+import Party from "../Icon/Party";
+const ABCD = () => {
     return(
         <div className={s.background}>
             <div className={s.page}>
                 <div className={s.question_header}>
                     <div className={s.title_bar}>
-                        <p><strong>Практика</strong></p>
+                        <p><strong><Strong/> Практика</strong></p>
                         <p><strong>українська мова та література </strong> 2018 додаткова сесія</p>
                         <button className={s.end}>Завершити</button>
                     </div>
@@ -21,15 +28,15 @@ const ABCD = () =>{
                         <p>НЕПРАВИЛЬНО обґрунтовано вживання розділових знаків, запропоноване в рядку</p>
                     </div>
                     <div className={s.topic_frame}>
-                        <p><strong>Тема:</strong></p> 
+                        <p><strong><PointDown/> Тема:</strong></p>
                         <p className={s.topic_frame_text}>Орфомеопія</p>
                     </div>
                     <div className={s.comment_frame}>
-                        <p><strong>Коментар</strong></p> 
+                        <p><strong><Lamb /> Коментар</strong></p>
                         <p className={s.comment_frame_text}>Перед тим як читати варіанти відповідей, спросубй самостійно пояснити вживання розподілових знаків, а вже потім порівнюй їх із запропонованими.</p>
                     </div>
                     <div className={s.video_explanation_frame}>
-                        <p><strong>Відеопояснення</strong></p>
+                        <p><strong><VideoCamera /> Відеопояснення</strong></p>
                         <div className={s.video}></div>
                     </div>
                 </div>
@@ -51,7 +58,7 @@ const ABCD = () =>{
                             <div className={s.answer_text_frame}>
                                 <div className={s.letter_choice}>
                                     <div className={s.icon}></div>
-                                    <p><strong>Б:</strong></p>
+                                    <p><strong><CorrectArrow /> Б:</strong></p>
                                 </div>
                                 <p className={s.answer_text}> кома 3 – перед сурядною частиною складного речення</p>
                             </div>
@@ -61,7 +68,7 @@ const ABCD = () =>{
                             <div className={s.answer_text_frame}>
                                 <div className={s.letter_choice}>
                                     <div className={s.icon}></div>
-                                    <p><strong>В:</strong></p>
+                                    <p><strong><Incorrect /> В:</strong></p>
                                 </div>
                                 <p className={s.answer_text}>коми 4 і 5 — при відокремленій прикладці</p>
                             </div>
@@ -79,7 +86,7 @@ const ABCD = () =>{
                         </div>
                     </div>
                     <div className={s.result_frame}>
-                        <p className={s.result}><strong>Правильно!</strong></p>
+                        <p className={s.result}><strong><Party /> Правильно!</strong></p>
                         <p className={s.stats}>80% учнів впоралися з цим завданням</p>
                         <button class={s.btn}>Наступне питання</button>
                     </div>
