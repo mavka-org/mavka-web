@@ -35,7 +35,8 @@ class QuestionNavPanel extends Component {
             buttons.push({
                 pushed: () => {
                     document.getElementById("fakeButton").click(); // это надо, чтобы dropdown пропадал по клику
-                    this.update(i + 1)
+                    this.props.callback(i + 1);
+                    this.update(i + 1);
                 },
                 status: getStatus(),
                 active: i == 0
@@ -75,7 +76,8 @@ class QuestionNavPanel extends Component {
     colorText = status => status.active ? "#000000" : status.status ? "#FFFFFF" : "#000000";
 
     render() {
-        const delta = 6;
+        const delta = 10;
+        let n = this.state.n;
         let current = this.state.current;
         let allButtons = this.state.buttons;
 
@@ -85,20 +87,24 @@ class QuestionNavPanel extends Component {
             width: this.getWidth(7.4),
             marginLeft: this.getWidth(0.22)
         };
-
+        let l = Math.max(current - delta / 2, 1);
+        let r = Math.min(n, l + delta);
+        if (r == n) {
+            l = Math.max(r - delta, 1);
+        }
 
         let middle = allButtons.map((button, index) => {
-            if (Math.abs(index - current + 1) > delta) return null;
+            if (l - 1  > index || r - 1 < index) return null;
             return this.htmlButton(button, index);
         });
 
         let left = allButtons.map((button, index) => {
-            if (Math.abs(index - current + 1) <= delta || index >= current - 1) return null;
+            if (l - 1 <= index) return null;
             return this.htmlButton(button, index);
         });
 
         let right = allButtons.map((button, index) => {
-            if (Math.abs(index - current + 1) <= delta || index <= current - 1) return null;
+            if (r - 1 >= index) return null;
             return this.htmlButton(button, index);
         });
 
@@ -131,7 +137,7 @@ class QuestionNavPanel extends Component {
                         background-color: white;
                         width:` + this.getWidth(2.2) + `px;
                         height:` + this.getHeight(3) + `px;
-                    }   
+                    }
                     `}
                 </style>
                 <button
@@ -140,42 +146,37 @@ class QuestionNavPanel extends Component {
                         visibility: "hidden"
                     }}
                 />
-                {left.length > 0 ? (
-                    <div>
-                        <div>
-
-                            <DropdownButton
-                                key={'left'}
-                                drop={'left'}
-                                title={'⯇'}
-                                id={"my-dropdown"}
-                            >
-                                <div style={styles}>
-                                    {left}
-                                </div>
-                            </DropdownButton>
-                        </div>
+                <div>
+                    <div style={{opacity: left.length > 0 ? 1 : 0.4}}>
+                        <DropdownButton
+                            key={'left'}
+                            drop={'left'}
+                            title={'⯇'}
+                            id={"my-dropdown"}
+                        >
+                            <div style={styles}>
+                                {left}
+                            </div>
+                        </DropdownButton>
                     </div>
-                ) : null}
+                </div>
                 {middle}
-                {right.length > 0 ? (
-                    <div  style={{
-                        marginLeft: this.getWidth(0.22)
-                    }}>
-                        <div>
-                            <DropdownButton
-                                key={'right'}
-                                drop={'right'}
-                                title={'⯈'}
-                                id={"my-dropdown"}
-                            >
-                                <div style={styles}>
-                                    {right}
-                                </div>
-                            </DropdownButton>
-                        </div>
+                <div  style={{
+                    marginLeft: this.getWidth(0.22)
+                }}>
+                    <div style={{opacity: right.length > 0 ? 1 : 0.4}}>
+                        <DropdownButton
+                            key={'right'}
+                            drop={'right'}
+                            title={'⯈'}
+                            id={"my-dropdown"}
+                        >
+                            <div style={styles}>
+                                {right}
+                            </div>
+                        </DropdownButton>
                     </div>
-                ) : null}
+                </div>
             </div>
         );
     }

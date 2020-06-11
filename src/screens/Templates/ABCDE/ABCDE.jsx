@@ -8,47 +8,63 @@ import Party from "../Icon/Party";
 import PointDown from "../Icon/PointDown";
 import Lamb from "../Icon/Lamb";
 import VideoCamera from "../Icon/VideoCamera";
+import Markdown from "markdown-to-jsx";
+
 
 class ABCDE extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            number: props.number,
+            data: props.data,
+            active: props.active,
+        }
+        console.log(props.data);
     }
 
+    componentDidUpdate (prevProps) {
+        if (this.props != prevProps) {
+            this.setState({
+                number: this.props.number,
+                data: this.props.data,
+                active: this.props.active
+            })
+        }
+    }
 
     render() {
+        const data = this.state.data;
         return (
             <div className={s.background}>
                 <div className={s.page}>
                     <div className={s.question_header}>
                         <div className={s.title_bar}>
                             <p><strong><Strong />Практика</strong></p>
-                            <p><strong>українська мова та література </strong> 2018 додаткова сесія</p>
+                            <p><strong>{data.getSubject()}</strong> {data.getYear()} {data.getSession()} сесія</p>
                             <button className={s.end}>Завершити</button>
                         </div>
                     </div>
                     <QuestionNavPanel
-                        list={this.props.number}
+                        list={this.state.number}
                         callback={this.props.callback}
-                        active={this.props.active}
+                        active={this.state.active}
                     />
                     <br/>
                     <div className={s.question_body}>
 
                         <div className={s.question_form}>
                             <div className={s.question_frame}>
-                                <div className={s.title}><strong>Завдання 12</strong></div>
-                                <p>Прочитайте речення (цифра позначає попередній розділовий знак)</p>
-                                <p>Аж тут підвівся Орфей і,(1) ударивши по золотих струнах своєї кіфари,(2) заспівав: то була пісня,(3) що її найдужче любила його мати,(4)прекрасна муза Калліопа, ударивши по золотих струнах своєї кіфари,(5) і,(6) можливо,(7) саме згадка про неї надала Орфеєвому голосу ще більшої сили,(8) щирості,(9) влади.</p>
-                                <p>НЕПРАВИЛЬНО обґрунтовано вживання розділових знаків, запропоноване в рядку</p>
+                                <div className={s.title}><strong>Завдання {this.state.active}</strong></div>
+                                <p><Markdown>{data.getQuestion()}</Markdown></p>
                             </div>
                             <div className={s.topic_frame}>
                                 <p><strong><PointDown/> Тема:</strong></p>
-                                <p className={s.topic_frame_text}>Орфомеопія</p>
+                                <p className={s.topic_frame_text}>{data.getTopic()}</p>
                             </div>
                             <div className={s.comment_frame}>
                                 <p><strong><Lamb/>Коментар</strong></p>
-                                <p className={s.comment_frame_text}>Перед тим як читати варіанти відповідей, спросубй самостійно пояснити вживання розподілових знаків, а вже потім порівнюй їх із запропонованими.</p>
+                                <p className={s.comment_frame_text}><Markdown>{data.getComment()}</Markdown></p>
                             </div>
                             <div className={s.video_explanation_frame}>
                                 <p><strong><VideoCamera/> Відеопояснення</strong></p>
@@ -66,9 +82,9 @@ class ABCDE extends Component {
                                             <div className={s.icon}></div>
                                             <p><strong>А:</strong></p>
                                         </div>
-                                        <p className={s.answer_text}> коми 1 і 2 — при відокремленій обставині</p>
+                                        <p className={s.answer_text}>{data.getQuestions()[0]}</p>
                                     </div>
-                                    <p className={s.comment}>Сполука "ударивши по золотих струнах своєї кіфари" — відокремлена обставина, виражена дієприслівниковим зворотом, пояснення правильне.</p>
+                                    <p className={s.comment}>{data.getExplanations()[0]}</p>
                                 </div>
                                 <div className={s.answer}>
                                     <div className={s.answer_text_frame}>
@@ -76,9 +92,9 @@ class ABCDE extends Component {
                                             <div className={s.icon}></div>
                                             <p><strong><CorrectArrow/> Б:</strong></p>
                                         </div>
-                                        <p className={s.answer_text}> кома 3 – перед сурядною частиною складного речення</p>
+                                        <p className={s.answer_text}>{data.getQuestions()[1]}</p>
                                     </div>
-                                    <p className={s.comment}>Кома 3 стоїть перед підрядною означальною частиною складного речення (...то була пісня, (яка?) що її найдужче любила його мати...), тому пояснення є помилковим.</p>
+                                    <p className={s.comment}>{data.getExplanations()[1]}</p>
                                 </div>
                                 <div className={s.answer}>
                                     <div className={s.answer_text_frame}>
@@ -86,9 +102,9 @@ class ABCDE extends Component {
                                             <div className={s.icon}></div>
                                             <p><strong><Incorrect/> В:</strong></p>
                                         </div>
-                                        <p className={s.answer_text}>коми 4 і 5 — при відокремленій прикладці</p>
+                                        <p className={s.answer_text}>{data.getQuestions()[2]}</p>
                                     </div>
-                                    <p className={s.comment}>Пояснення правильне, "прекрасна муза Калліопа" - прикладка, яка відокремлюється комами, бо стоїть після означуваного слова "мати".</p>
+                                    <p className={s.comment}>{data.getExplanations()[2]}</p>
                                 </div>
                                 <div className={s.answer}>
                                     <div className={s.answer_text_frame}>
@@ -96,9 +112,9 @@ class ABCDE extends Component {
                                             <div className={s.icon}></div>
                                             <p><strong>Г:</strong></p>
                                         </div>
-                                        <p className={s.answer_text}> коми 6 і 7 – при вставному слові</p>
+                                        <p className={s.answer_text}>{data.getQuestions()[3]}</p>
                                     </div>
-                                    <p className={s.comment}>"Можливо" - вставне слово, що виражає невпевненість; оскільки вставні слова завжди виділяємо комами, пояснення правильне.</p>
+                                    <p className={s.comment}>{data.getExplanations()[3]}</p>
                                 </div>
                                 <div className={s.answer}>
                                     <div className={s.answer_text_frame}>
@@ -106,9 +122,9 @@ class ABCDE extends Component {
                                             <div className={s.icon}></div>
                                             <p><strong>Д:</strong></p>
                                         </div>
-                                        <p className={s.answer_text}> кома 8 і 9 – при однорідних членах речення</p>
+                                        <p className={s.answer_text}>{data.getQuestions()[4]}</p>
                                     </div>
-                                    <p className={s.comment}>Пояснення правильне. "сили, щирості, влади" - однорідні додатки, між якими ставимо коми.</p>
+                                    <p className={s.comment}>{data.getExplanations()[4]}</p>
                                 </div>
                                 <div className={s.result_frame}>
                                     <div className={s.result}><strong>Правильно!</strong><Party/></div>

@@ -24,11 +24,25 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+
     <title>React App</title>
+
+    <script type="text/javascript" async
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+      });
+      function f () {
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub])
+      }
+      document.getElementById("root").onclick = f;
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    $ a + b $
+    <div id="abc"></div>
+    <div id="root" onchange="UpdateMath(this.value)"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -40,4 +54,37 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script>
+    const eps = 1e-2;
+    let images = document.getElementsByTagName("img");
+    let n = images.length;
+    function upd (x) {
+      let l = 0, r = Math.min(images[x].naturalWidth, window.innerWidth * 0.5);
+      while (l + eps < r) {
+        let mid = (l + r + eps) / 2.0;
+        let h = mid * images[x].naturalHeight / images[x].naturalWidth;
+        if (h > window.innerHeight * 0.5 || h * mid / (window.innerHeight * window.innerWidth) > 0.2) r = mid - eps;
+        else l = mid;
+      }
+      images[x].style.width = l + "px";
+    }
+    function update () {
+      for (let x in images) {
+        if (typeof images[x] != "object") continue;
+        upd(x);
+      }
+    }
+    for (let x in images) {
+      if (typeof images[x] != "object") continue;
+      if (images[x].naturalWidth != 0) {
+        upd(x);
+      }
+      else {
+        images[x].onload = function () {
+          upd(x);
+        };
+      }
+    }
+    window.onresize = update;
+  </script>
 </html>

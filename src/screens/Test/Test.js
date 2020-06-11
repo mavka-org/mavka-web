@@ -5,7 +5,7 @@ import axios from "axios";
 import ListItem from "../../UI/ListItem";
 import QuestionNavPanel from "../../UI/QuestionNavPanel";
 import ABCDE from "../Templates/ABCDE/ABCDE";
-
+import Services from "../../Services";
 
 export class Test extends React.Component{
 
@@ -16,8 +16,21 @@ export class Test extends React.Component{
             testId: this.props.match.params.testId,
             user: 25,
             questionCount: 36,
-            active: 1
+            active: 1,
+            data: []
         }
+        let current = this;
+        Services.getReferenceById(this.state.testId).then(function (ref) {
+            Services.getData(ref).then(function (data) {
+                let myData = data.map(value => Services.getQuestionClass(value));
+                current.setState({
+                    data: myData
+                });
+                console.log("here");
+                console.log(myData);
+            })
+        })
+
     }
 
     componentDidMount() {
@@ -50,15 +63,27 @@ export class Test extends React.Component{
             return (<div></div>);
         }
         if (this.state.user) {
-            return (
-                <div>
-                    <ABCDE
-                    callback={this.updateQuestion}
-                    active={this.state.active}
-                    number={36}
-                    />
-                </div>
-            )
+            if (this.state.data.length > 0) {
+                const data = this.state.data;
+                let num = this.state.active - 1;
+                if (data[num].getType() == "АБВГД") {
+                    return (
+                        <div>
+                            <ABCDE
+                                callback={this.updateQuestion}
+                                active={this.state.active}
+                                number={this.state.data.length}
+                                data={data[num]}
+                            />
+
+                            {document.getElementById("root").click()}
+                            {document.getElementById("root").click()}
+                        </div>
+
+                    )
+                }
+            }
+            return (<div></div>);
         }
         return(<Redirect to="/login"/>);
     }
