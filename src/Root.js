@@ -7,6 +7,7 @@ import NotFound from "./screens/NotFound";
 import Login from "./screens/Authentication_menu/Login"
 import Home from "./screens/Home";
 import Subject from './screens/Subject'
+import Test from "./screens/Test";
 
 export default () => (
     <Router>
@@ -16,6 +17,7 @@ export default () => (
             <Route path="/login" component={Login}/>
             <Route path="/home" component={Home}/>
             <Route exact path="/subject/:id" component={Subject} />
+            <Route exact path="/subject/:id/test/:testId" component={Test} />
             <Route component={NotFound}/>
         </Switch>
     </Router>
