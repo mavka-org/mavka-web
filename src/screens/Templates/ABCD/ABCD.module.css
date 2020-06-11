@@ -10,9 +10,13 @@
 
 /* body */
 
-.question_body{
+.question_body {
     display: flex;
     flex-direction: row;
+    padding: 0px;
+    width: 945px;
+    height: 100%;
+    background-color: #FFFFFF;
 }
 
 /* qustion_form */
@@ -20,9 +24,18 @@
 .question_form {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 46%;
     margin-top: 20px;
 }
+
+/* video frame */
+
+.video {
+    width: 459px;
+    height: 275.4px;
+    background-color: black;
+}
+
 /* answer frame */
 
 .answers_frame {
@@ -30,12 +43,24 @@
     flex-direction: column;
     padding: 0px;
     align-self: flex-start;
-    width: 50%;
-    margin-left: 59px;
+    width: 48%;
+    margin-left: 4.5%;
 }
-.wrap{
+
+.wrap {
     display: flex;
-    width: 67%;
     flex-direction: column;
     vertical-align: middle;
+    width:62%;
+}
+
+.pass {
+    font-size: 18px;
+    line-height: 22px;
+    color: gray;
+    opacity: 0.8;
+    text-decoration: underline;
+    background-color: #FFFFFF;
+    border: none;
+    margin-top: 16px;
 }

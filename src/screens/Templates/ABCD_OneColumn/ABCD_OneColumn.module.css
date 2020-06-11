@@ -6,7 +6,7 @@
     position: absolute;
     width: 945px;
     left: calc(50% - 945px/2);
-    height: 160%;
+    height: 400%;
     top: 0px;
     background-color: #FFFFFF;
 }
@@ -52,26 +52,23 @@
         padding: 105px 0px;
         position: absolute;
         width: 95%;
-        height: 150%;
+        height: 250%;
         left: calc(50% - 95%/2);
         top: 0px;
         background-color: #FFFFFF;
     }
-    /* основное содержимое занимает всё пространство окна */
 }
 
 @media (min-width: 993px) {
-    /* это будет показано при разрешении монитора до 930 пикселей */
     .page {
         display: flex;
         flex-direction: column;
         padding: 105px 0px;
         position: absolute;
         width: 950px;
-        height: 150%;
+        height: 250%;
         left: calc(50% - 950px/2);
         top: 0px;
         background-color: #FFFFFF;
     }
-    /* основное содержимое занимает всё пространство окна */
 }

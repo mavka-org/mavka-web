@@ -1,93 +1,37 @@
 import React from 'react'
-import s from './Logic_Couples_4_4_OneColumn.module.css'
+import s from './Logic_Couples_4_4_OneColumn.module.css';
+import g from './../Style.module.css';
 import Strong from "../Icon/Strong/Strong";
-import Party from "../Icon/Party/Party";
+import Correct from "../Icon/Correct/Correct";
+import Like from "../Icon/Like/Like";
 import PointDown from "../Icon/PointDown/PointDown";
+import Party from "../Icon/Party/Party";
 import Lamb from "../Icon/Lamb/Lamb";
 import VideoCamera from "../Icon/VideoCamera/VideoCamera";
-import Correct from "../Icon/Correct/Correct";
-import Incorrect from "../Icon/Incorrect/Incorrect";
+import Question from '../Objects/Question/Question.jsx';
+import CoupleAnswer from '../Objects/Answer/Couple_Answer';
 const Logic_Couples_4_4_OneColumn = () => {
     return (
         <div className={s.background}>
-            <div className={s.page}>
-                <div className={s.question_header}>
-                    <div className={s.title_bar}>
-                        <p><strong><Strong/>Практика</strong></p>
-                        <p><strong>українська мова та література </strong> 2018 додаткова сесія</p>
-                        <button className={s.end}>Завершити</button>
+            <div className={[s.page, g.page_].join(' ')}>
+                <div className={g.question_header}>
+                    <div className={g.title_bar}>
+                        <div><strong><Strong />Практика</strong></div>
+                        <div><strong>Математика </strong> 2018 додаткова сесія</div>
+                        <button className={g.end}>Завершити</button>
                     </div>
                 </div>
                 <div className={s.question_body}>
                     <div className={s.question_frame}>
-                        <div className={s.title}><strong>Завдання 12</strong></div>
-                        <p>Прочитайте речення (цифра позначає попередній розділовий знак)</p>
-                        <div className={s.result_frame}>
-                            <p className={s.result}><strong>Правильно!<Party/></strong></p>
-                            <p className={s.stats}>80% учнів впоралися з цим завданням</p>
-                            <button class={s.btn}>Наступне питання</button>
-                        </div>
-                        <div className={s.topic_frame}>
-                            <p><strong><PointDown/>Тема:</strong></p>
-                            <p className={s.topic_frame_text}>Орфомеопія</p>
-                        </div>
-                        <div className={s.comment_frame}>
-                            <p><strong><Lamb/>Коментар</strong></p>
-                            <p className={s.comment_frame_text}>Перед тим як читати варіанти відповідей, спросубй самостійно пояснити вживання розподілових знаків, а вже потім порівнюй їх із запропонованими.</p>
-                        </div>
-                        <div className={s.video_explanation_frame}>
-                            <p><strong><VideoCamera/>Відеопояснення</strong></p>
-                            <div className={s.video}></div>
-                        </div>
-                        
+                        <Question />
                     </div>
                     <div className={s.answers_frame}>
                         <p className={s.choose}><strong>Обери одну відповідь</strong></p>
                         <div className={s.answers}>
-                            <div className={s.answer}>
-                                <div className={s.number}><Correct/><strong>1:</strong></div>
-                                <div className={s.answer_text_frame}>
-                                    <div className={s.letter_choice}>
-                                        <div className={s.icon}></div>
-                                        <p><strong>А:</strong></p>
-                                    </div>
-                                    <p className={s.answer_text}> коми 1 і 2 — при відокремленій обставині</p>
-                                </div>
-                                <p className={s.comment}>Сполука "ударивши по золотих струнах своєї кіфари" — відокремлена обставина, виражена дієприслівниковим зворотом, пояснення правильне.</p>
-                            </div>
-                            <div className={s.answer}>
-                                <div className={s.number}><Correct/><strong>1:</strong></div>
-                                <div className={s.answer_text_frame}>
-                                    <div className={s.letter_choice}>
-                                        <div className={s.icon}></div>
-                                        <p><strong>А:</strong></p>
-                                    </div>
-                                    <p className={s.answer_text}> коми 1 і 2 — при відокремленій обставині</p>
-                                </div>
-                                <p className={s.comment}>Сполука "ударивши по золотих струнах своєї кіфари" — відокремлена обставина, виражена дієприслівниковим зворотом, пояснення правильне.</p>
-                            </div>
-                            <div className={s.answer}>
-                                <div className={s.number}><Incorrect/><strong>1:</strong></div>
-                                <div className={s.answer_text_frame}>
-                                    <div className={s.letter_choice}>
-                                        <div className={s.icon}></div>
-                                        <p><strong>А:</strong></p>
-                                    </div>
-                                    <p className={s.answer_text}> коми 1 і 2 — при відокремленій обставині</p>
-                                </div>
-                                <p className={s.comment}>Сполука "ударивши по золотих струнах своєї кіфари" — відокремлена обставина, виражена дієприслівниковим зворотом, пояснення правильне.</p>
-                            </div>
-                            <div className={s.answer}>
-                                <div className={s.number}><Correct/><strong>1:</strong></div>
-                                <div className={s.answer_text_frame}>
-                                    <div className={s.letter_choice}>
-                                        <div className={s.icon}></div>
-                                        <p><strong>А:</strong></p>
-                                    </div>
-                                    <p className={s.answer_text}> коми 1 і 2 — при відокремленій обставині</p>
-                                </div>
-                                <p className={s.comment}>Сполука "ударивши по золотих струнах своєї кіфари" — відокремлена обставина, виражена дієприслівниковим зворотом, пояснення правильне.</p>
-                            </div>
+                            <CoupleAnswer />
+                            <CoupleAnswer />
+                            <CoupleAnswer />
+                            <CoupleAnswer />
                         </div>
                         <div class={s.table}>
                             <table class={s.select_answer}>
@@ -124,7 +68,7 @@ const Logic_Couples_4_4_OneColumn = () => {
                                             <span class={s.marker}></span>
                                         </label>
                                     </td>
-                                    
+
                                 </tr>
                                 <tr>
                                     <th class={s.r}>2</th>
@@ -152,7 +96,7 @@ const Logic_Couples_4_4_OneColumn = () => {
                                             <span class={s.marker}></span>
                                         </label>
                                     </td>
-                                    
+
                                 </tr>
                                 <tr>
                                     <th class={s.r}>3</th>
@@ -180,7 +124,7 @@ const Logic_Couples_4_4_OneColumn = () => {
                                             <span class={s.marker}></span>
                                         </label>
                                     </td>
-                                    
+
                                 </tr>
                                 <tr>
                                     <th class={s.r}>4</th>
@@ -208,11 +152,30 @@ const Logic_Couples_4_4_OneColumn = () => {
                                             <span class={s.marker}></span>
                                         </label>
                                     </td>
-                                    
+
                                 </tr>
                             </table>
+                            <div className={g.result_frame}>
+                                <div className={g.result}><strong>Правильно! <Party /></strong></div>
+                                <div className={g.stats}>80% учнів впоралися з цим завданням</div>
+                                <div className={s.wrap}>
+                                    <button class={g.btn}>Наступне питання</button>
+                                    <button class={g.pass}>Пропустити</button>
+                                </div>
+                            </div>
+                            <div className={g.topic_frame}>
+                                <p><strong><PointDown /> Тема:</strong></p>
+                                <div className={g.topic_frame_text}>Орфомеопія</div>
+                            </div>
+                            <div className={g.comment_frame}>
+                                <p><strong><Lamb /> Коментар</strong></p>
+                                <div className={g.comment_frame_text}>Перед тим як читати варіанти відповідей, спросубй самостійно пояснити вживання розподілових знаків, а вже потім порівнюй їх із запропонованими.</div>
+                            </div>
+                            <div className={g.video_explanation_frame}>
+                                <p><strong><VideoCamera /> Відеопояснення</strong></p>
+                                <div className={g.video}></div>
+                            </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@
     left: calc(50% - 945px/2);
     top: 0px;
 }
+
 /* body */
 
 .question_body {
@@ -26,6 +27,7 @@
     width: 46%;
     margin-top: 20px;
 }
+
 /* video frame */
 
 .video {
@@ -43,21 +45,22 @@
     align-self: flex-start;
     width: 48%;
     margin-left: 4.5%;
-
 }
 
+.wrap {
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    width:62%;
+}
 
-
-
-
-
-.pass{
+.pass {
     font-size: 18px;
     line-height: 22px;
-    color:gray;
-    opacity:0.8;
+    color: gray;
+    opacity: 0.8;
     text-decoration: underline;
     background-color: #FFFFFF;
-    border:none;
-    margin-top:16px;
+    border: none;
+    margin-top: 16px;
 }
