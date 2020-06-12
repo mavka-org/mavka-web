@@ -9,6 +9,12 @@ import PointDown from "../Icon/PointDown";
 import Lamb from "../Icon/Lamb";
 import VideoCamera from "../Icon/VideoCamera";
 import TestHeader from "../../TestHeader";
+import TestVideo from "../../TestVideo";
+import TestComment from "../../TestComment";
+import TestTopic from "../../TestTopic";
+import TestQuestion from "../../TestQuestion";
+import TestAnswer from "../../TestAnswer";
+import TestResult from "../../TestResult";
 
 
 
@@ -21,6 +27,7 @@ class ABCDE extends Component {
             number: props.number,
             data: props.data,
             active: props.active,
+            answered: props.answered
         }
         console.log(props.data);
     }
@@ -30,13 +37,15 @@ class ABCDE extends Component {
             this.setState({
                 number: this.props.number,
                 data: this.props.data,
-                active: this.props.active
+                active: this.props.active,
+                answered: this.props.answered
             })
         }
     }
 
     render() {
         const data = this.state.data;
+        let hidden = this.state.answered;
         return (
             <div>
                 <TestHeader
@@ -51,85 +60,63 @@ class ABCDE extends Component {
                 />
                 <br/>
                 <div className={s.question_body}>
-
                     <div className={s.question_form}>
-                        <div className={s.question_frame}>
-                            <div className={s.title}><strong>Завдання {this.state.active}</strong></div>
-                            <p dangerouslySetInnerHTML={{__html: data.getQuestion()}}></p>
-                        </div>
-                        <div className={s.topic_frame}>
-                            <p><strong><PointDown/>Тема:</strong></p>
-                            <p className={s.topic_frame_text}>{data.getTopic()}</p>
-                        </div>
-                        <div className={s.comment_frame}>
-                            <p><strong><Lamb/>Коментар</strong></p>
-                            <p dangerouslySetInnerHTML={{__html: data.getComment()}}></p>
-                        </div>
-                        <div className={s.video_explanation_frame}>
-                            <p><strong><VideoCamera/> Відеопояснення</strong></p>
-                            <div className={s.video}></div>
-                        </div>
-
+                        <TestQuestion
+                            question={data.getQuestion()}
+                            active={this.state.active}
+                        />
+                        <TestTopic
+                            topic={data.getTopic()}
+                            hidden={hidden}
+                        />
+                        <TestComment
+                            comment={data.getComment()}
+                            hidden={hidden}
+                        />
+                        <TestVideo
+                            hidden={hidden}
+                        />
                     </div>
 
                     <div className={s.answers_frame}>
                         <p className={s.choose}><strong>Обери одну відповідь</strong></p>
                         <div className={s.answers}>
-                            <div className={s.answer}>
-                                <div className={s.answer_text_frame}>
-                                    <div className={s.letter_choice}>
-                                        <div className={s.icon}></div>
-                                        <p><strong>А:</strong></p>
-                                    </div>
-                                    <p className={s.answer_text}>{data.getQuestions()[0]}</p>
-                                </div>
-                                <p className={s.comment}>{data.getExplanations()[0]}</p>
-                            </div>
-                            <div className={s.answer}>
-                                <div className={s.answer_text_frame}>
-                                    <div className={s.letter_choice}>
-                                        <div className={s.icon}></div>
-                                        <p><strong><CorrectArrow/> Б:</strong></p>
-                                    </div>
-                                    <p className={s.answer_text}>{data.getQuestions()[1]}</p>
-                                </div>
-                                <p className={s.comment}>{data.getExplanations()[1]}</p>
-                            </div>
-                            <div className={s.answer}>
-                                <div className={s.answer_text_frame}>
-                                    <div className={s.letter_choice}>
-                                        <div className={s.icon}></div>
-                                        <p><strong><Incorrect/> В:</strong></p>
-                                    </div>
-                                    <p className={s.answer_text}>{data.getQuestions()[2]}</p>
-                                </div>
-                                <p className={s.comment}>{data.getExplanations()[2]}</p>
-                            </div>
-                            <div className={s.answer}>
-                                <div className={s.answer_text_frame}>
-                                    <div className={s.letter_choice}>
-                                        <div className={s.icon}></div>
-                                        <p><strong>Г:</strong></p>
-                                    </div>
-                                    <p className={s.answer_text}>{data.getQuestions()[3]}</p>
-                                </div>
-                                <p className={s.comment}>{data.getExplanations()[3]}</p>
-                            </div>
-                            <div className={s.answer}>
-                                <div className={s.answer_text_frame}>
-                                    <div className={s.letter_choice}>
-                                        <div className={s.icon}></div>
-                                        <p><strong>Д:</strong></p>
-                                    </div>
-                                    <p className={s.answer_text}>{data.getQuestions()[4]}</p>
-                                </div>
-                                <p className={s.comment}>{data.getExplanations()[4]}</p>
-                            </div>
-                            <div className={s.result_frame}>
-                                <div className={s.result}><strong>Правильно!</strong><Party/></div>
-                                <p className={s.stats}>80% учнів впоралися з цим завданням</p>
-                                <button className={s.btn}>Наступне питання</button>
-                            </div>
+                            <TestAnswer
+                                letter={"A"}
+                                question={data.getQuestions()[0]}
+                                explanation={data.getExplanations()[0]}
+                                hidden={hidden}
+                            />
+                            <TestAnswer
+                                letter={"Б"}
+                                question={data.getQuestions()[1]}
+                                explanation={data.getExplanations()[1]}
+                                hidden={hidden}
+                            />
+                            <TestAnswer
+                                letter={"В"}
+                                question={data.getQuestions()[2]}
+                                explanation={data.getExplanations()[2]}
+                                hidden={hidden}
+                            />
+                            <TestAnswer
+                                letter={"Г"}
+                                question={data.getQuestions()[3]}
+                                explanation={data.getExplanations()[3]}
+                                hidden={hidden}
+                            />
+                            <TestAnswer
+                                letter={"Д"}
+                                question={data.getQuestions()[4]}
+                                explanation={data.getExplanations()[4]}
+                                hidden={hidden}
+                            />
+
+                            <TestResult
+                                answered={this.state.answered}
+                                callback={this.props.changeStatus}
+                                number={this.state.active}
+                            />
                         </div>
 
                     </div>

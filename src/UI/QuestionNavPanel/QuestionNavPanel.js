@@ -22,6 +22,14 @@ class QuestionNavPanel extends Component {
         });
     }
 
+    componentDidUpdate (prevProps) {
+        if (this.props != prevProps) {
+            this.setState({
+                current: this.props.active
+            })
+        }
+    }
+
     random = () => Math.random() > 0.5;
 
     constructor (props) { // сейчас это просто количество вопросов в тесте. Когда функции будут готовы все пропишу
