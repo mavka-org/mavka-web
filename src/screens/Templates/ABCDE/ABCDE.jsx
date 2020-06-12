@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import s from './ABCDE.module.css';
 import g from './../Style.module.css';
-import Strong from "../Icon/Strong";
-import CorrectArrow from "../Icon/CorrectArrow";
-import Incorrect from "../Icon/Incorrect";
 import Party from "../Icon/Party";
-import PointDown from "../Icon/PointDown";
-import Lamb from "../Icon/Lamb";
-import VideoCamera from "../Icon/VideoCamera";
 import Question from '../Objects/Question/Question.jsx';
 import Answer from '../Objects/Answer/Answer.jsx';
-
+import Topic from './../Objects/Topic/Topic.jsx';
+import Header from './../Objects/Header/Header.jsx';
+import Comment from './../Objects/Comment/Comment.jsx';
+import Video from './../Objects/Video/Video.jsx';
+import Next from './../Objects/Next/Next.jsx';
 class ABCDE extends Component {
 
     constructor(props) {
@@ -22,28 +20,13 @@ class ABCDE extends Component {
         return (
             <div className={g.background}>
             <div className={[s.page, g.page_].join(' ')} >
-                <div className={g.question_header}>
-                    <div className={g.title_bar}>
-                        <p><strong><Strong /> Практика</strong></p>
-                        <div><strong>українська мова та література </strong> 2018 додаткова сесія</div>
-                        <button className={g.end}>Завершити</button>
-                    </div>
-                </div>
+                <Header />
                 <div className={s.question_body}>
                     <div className={s.question_form}>
                         <Question />
-                        <div className={g.topic_frame}>
-                            <p><strong><PointDown /> Тема:</strong></p>
-                            <div className={s.topic_frame_text}>Орфомеопія</div>
-                        </div>
-                        <div className={g.comment_frame}>
-                            <p><strong><Lamb /> Коментар</strong></p>
-                            <div className={g.comment_frame_text}>Перед тим як читати варіанти відповідей, спросубй самостійно пояснити вживання розподілових знаків, а вже потім порівнюй їх із запропонованими.</div>
-                        </div>
-                        <div className={g.video_explanation_frame}>
-                            <p><strong><VideoCamera /> Відеопояснення</strong></p>
-                            <div className={g.video}></div>
-                        </div>
+                        <Topic /> 
+                        <Comment />
+                        <Video />
                     </div>
 
                     <div className={s.answers_frame}>
@@ -55,14 +38,7 @@ class ABCDE extends Component {
                             <Answer />
                             <Answer />
                         </div>
-                        <div className={g.result_frame}>
-                            <p className={g.result}><strong><Party /> Правильно!</strong></p>
-                            <p className={g.stats}>80% учнів впоралися з цим завданням</p>
-                            <div className={s.wrap}>
-                                <button class={g.btn}>Наступне питання</button>
-                                <button class={g.pass}>Пропустити</button>
-                            </div>
-                        </div>
+                        <Next />
                     </div>
                 </div>
             </div>

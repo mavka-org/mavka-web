@@ -29,6 +29,9 @@
     line-height: 22px;
     font-family: 'Gilroy';
 }
+.inp:focus{
+    outline:0;
+}
 
 /* answers */
 

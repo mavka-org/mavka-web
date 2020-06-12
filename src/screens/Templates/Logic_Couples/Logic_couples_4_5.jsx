@@ -1,42 +1,25 @@
 import React from 'react'
 import s from './Logic_Couples_4_5.module.css';
 import g from './../Style.module.css';
-import Strong from "../Icon/Strong/Strong";
 import Party from "../Icon/Party/Party";
-import PointDown from "../Icon/PointDown/PointDown";
-import Lamb from "../Icon/Lamb/Lamb";
-import VideoCamera from "../Icon/VideoCamera/VideoCamera";
-import Correct from "../Icon/Correct/Correct";
-import Incorrect from "../Icon/Incorrect/Incorrect";
 import Question from '../Objects/Question/Question.jsx';
 import CoupleAnswer from '../Objects/Answer/Couple_Answer';
-
+import Topic from './../Objects/Topic/Topic.jsx';
+import Header from './../Objects/Header/Header.jsx';
+import Comment from './../Objects/Comment/Comment.jsx';
+import Video from './../Objects/Video/Video.jsx';
+import Next from './../Objects/Next/Next.jsx';
 const Logic_Couples_4_5 = () => {
     return (
         <div className={s.background}>
             <div className={[s.page, g.page_].join(' ')}>
-                <div className={g.question_header}>
-                    <div className={g.title_bar}>
-                        <div><strong><Strong />Практика</strong></div>
-                        <div><strong>Математика </strong> 2018 додаткова сесія</div>
-                        <button className={g.end}>Завершити</button>
-                    </div>
-                </div>
+                <Header />
                 <div className={s.question_body}>
                     <div className={s.question_frame}>
                         <Question />
-                        <div className={g.topic_frame}>
-                            <p><strong><PointDown /> Тема:</strong></p>
-                            <div className={g.topic_frame_text}>Орфомеопія</div>
-                        </div>
-                        <div className={g.comment_frame}>
-                            <p><strong><Lamb /> Коментар</strong></p>
-                            <div className={g.comment_frame_text}>Перед тим як читати варіанти відповідей, спросубй самостійно пояснити вживання розподілових знаків, а вже потім порівнюй їх із запропонованими.</div>
-                        </div>
-                        <div className={g.video_explanation_frame}>
-                            <p><strong><VideoCamera /> Відеопояснення</strong></p>
-                            <div className={g.video}></div>
-                        </div>
+                        <Topic /> 
+                        <Comment />
+                        <Video />
 
                     </div>
                     <div className={s.answers_frame}>
@@ -195,14 +178,7 @@ const Logic_Couples_4_5 = () => {
 
                                 </tr>
                             </table>
-                            <div className={g.result_frame}>
-                                <div className={g.result}><strong>Правильно! <Party /></strong></div>
-                                <div className={g.stats}>80% учнів впоралися з цим завданням</div>
-                                <div className={s.wrap}>
-                                    <button class={g.btn}>Наступне питання</button>
-                                    <button class={g.pass}>Пропустити</button>
-                                </div>
-                            </div>
+                            <Next />
                         </div>
                     </div>
                 </div>
