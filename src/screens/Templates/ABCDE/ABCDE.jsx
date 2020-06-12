@@ -58,7 +58,7 @@ class ABCDE extends Component {
                             <p dangerouslySetInnerHTML={{__html: data.getQuestion()}}></p>
                         </div>
                         <div className={s.topic_frame}>
-                            <p><strong><PointDown/> Тема:</strong></p>
+                            <p><strong><PointDown/>Тема:</strong></p>
                             <p className={s.topic_frame_text}>{data.getTopic()}</p>
                         </div>
                         <div className={s.comment_frame}>
