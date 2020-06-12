@@ -64,6 +64,7 @@ class QuestionNavPanel extends Component {
         <ButtonQNav
             pushed={button.pushed}
             number={index + 1}
+            key={index + 1}
             backColor={this.backColor(button)}
             color={this.colorText(button)}
             height={this.getHeight(button.active ? 4.5 : 3)}

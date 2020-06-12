@@ -6,6 +6,7 @@ import ListItem from "../../UI/ListItem";
 import QuestionNavPanel from "../../UI/QuestionNavPanel";
 import ABCDE from "../Templates/ABCDE/ABCDE";
 import Services from "../../Services";
+import TestWrapper from "../TestWrapper";
 
 export class Test extends React.Component{
 
@@ -68,18 +69,18 @@ export class Test extends React.Component{
                 let num = this.state.active - 1;
                 if (data[num].getType() == "АБВГД") {
                     return (
-                        <div>
-                            <ABCDE
-                                callback={this.updateQuestion}
-                                active={this.state.active}
-                                number={this.state.data.length}
-                                data={data[num]}
-                            />
-
-                            {document.getElementById("root").click()}
-                            {document.getElementById("root").click()}
-                        </div>
-
+                        <TestWrapper>
+                            <div>
+                                <ABCDE
+                                    callback={this.updateQuestion}
+                                    active={this.state.active}
+                                    number={this.state.data.length}
+                                    data={data[num]}
+                                />
+                                {document.getElementById("root").click()}
+                                {document.getElementById("root").click()}
+                            </div>
+                        </TestWrapper>
                     )
                 }
             }

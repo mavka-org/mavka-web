@@ -26,23 +26,24 @@
     -->
 
     <title>React App</title>
-
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script type="text/javascript" async
             src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
       MathJax.Hub.Config({
         tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
       });
-      function f () {
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub])
-      }
-      document.getElementById("root").onclick = f;
     </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    $ a + b $
-    <div id="abc"></div>
-    <div id="root" onchange="UpdateMath(this.value)"></div>
+    <div id="root"></div>
+
+    <script>
+      function f () {
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+      }
+      document.getElementById('root').onclick = f;
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -88,3 +89,4 @@
     window.onresize = update;
   </script>
 </html>
+

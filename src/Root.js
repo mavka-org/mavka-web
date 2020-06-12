@@ -18,6 +18,7 @@ export default () => (
             <Route path="/home" component={Home}/>
             <Route exact path="/subject/:id" component={Subject} />
             <Route exact path="/subject/:id/test/:testId" component={Test} />
+
             <Route component={NotFound}/>
         </Switch>
     </Router>
