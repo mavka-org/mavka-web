@@ -3,16 +3,19 @@ import firebase from "../../global"
 import {Redirect, Link} from 'react-router-dom';
 import axios from "axios";
 import ListItem from "../../UI/ListItem";
+import TestStatus from "../TestStatus";
 
 
 export class Subject extends React.Component{
 
     constructor(props) {
         super(props);
+        this.token = "";
         this.state = {
             subject: this.props.match.params.id,
             user: 25,
-            tests: []
+            tests: [],
+            active: 0
         }
 
     }
@@ -38,6 +41,7 @@ export class Subject extends React.Component{
         let current = this;
 
         let token = resp.getIdToken().then(function (token) {
+            current.token = token;
             //alert(token);
             const response = axios.post(
                 'https://us-central1-mavka-c5c01.cloudfunctions.net/getTestsBySubject',
@@ -53,6 +57,7 @@ export class Subject extends React.Component{
                 let T = value.data;
                 for (let year in T) {
                     for (let t in T[year]) {
+                        console.log(T[year][t].status);
                         tests.push({
                             name: T[year][t].type + " " + year,
                             status: T[year][t].status,
@@ -74,17 +79,28 @@ export class Subject extends React.Component{
         }
         if (this.state.user) {
             const test = this.state.tests;
-            let code = test.map((info) => (
-                <Link to={"/subject/" + this.state.subject + "/test/" + info.id}>
+            let code = test.map((info, index) => (
+                <button
+                    onClick={() => {
+                        this.setState({
+                            active: index
+                        })
+                        this.props.history.push("/subject/" + this.state.subject + "/test/" + info.id)
+                    }}
+                >
                     <ListItem
                         text={info.name}
                         pushed={null}/>
-                </Link>
+                </button>
             ))
             return (
                 <div>
-                    {this.state.subject}
-                    {code}
+                    <div style={{float: "left", width:"50%"}}>
+                        {this.state.subject} <br/>
+                        {code}
+                    </div>
+                    <div>
+                    </div>
                 </div>
             )
         }

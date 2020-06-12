@@ -16,16 +16,19 @@ export class Test extends React.Component{
             subject: this.props.match.params.id,
             testId: this.props.match.params.testId,
             user: 25,
-            questionCount: 36,
             active: 1,
-            data: []
+            data: [],
+            answered: []
         }
         let current = this;
         Services.getReferenceById(this.state.testId).then(function (ref) {
             Services.getData(ref).then(function (data) {
                 let myData = data.map(value => Services.getQuestionClass(value));
+                let status = [];
+                for (let i = 0; i < myData.length; i++) status.push(false);
                 current.setState({
-                    data: myData
+                    data: myData,
+                    answered: status
                 });
                 console.log("here");
                 console.log(myData);
@@ -33,6 +36,8 @@ export class Test extends React.Component{
         })
 
     }
+    
+
 
     componentDidMount() {
         this.getAuthStatus();
@@ -59,6 +64,14 @@ export class Test extends React.Component{
         });
     }
 
+    updateStatus = (id, x) => {
+        const answered = this.state.answered;
+        answered[id - 1] = x;
+        this.setState({
+            answered: answered
+        })
+    }
+
     render() {
         if (this.state.user == 25) {
             return (<div></div>);
@@ -75,7 +88,9 @@ export class Test extends React.Component{
                                     callback={this.updateQuestion}
                                     active={this.state.active}
                                     number={this.state.data.length}
+                                    answered={this.state.answered[num]}
                                     data={data[num]}
+                                    changeStatus={this.updateStatus}
                                 />
                                 {document.getElementById("root").click()}
                                 {document.getElementById("root").click()}
