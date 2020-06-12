@@ -1,0 +1,160 @@
+@font-face {
+    font-family: Gilroy;
+    src: url("https://raw.githubusercontent.com/mavka-org/mavka-web/master/src/fonts/Gilroy-Regular.woff");
+}
+
+@font-face {
+    font-family: Gilroy;
+    src: url("https://raw.githubusercontent.com/mavka-org/mavka-web/master/src/fonts/Gilroy-RegularItalic.woff");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Gilroy;
+    src: url("https://raw.githubusercontent.com/mavka-org/mavka-web/master/src/fonts/Gilroy-Semibold.woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Gilroy;
+    src: url("https://raw.githubusercontent.com/mavka-org/mavka-web/master/src/fonts/Gilroy-SemiboldItalic.wofff");
+    font-weight: bold;
+    font-style: italic;
+}
+
+.page_ {
+    background-color: #FFFFFF;
+    font-family: Gilroy;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.question_header {
+    width: 100%;
+    height: 85.5px;
+    margin-bottom: 29px;
+}
+
+.title_bar {
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.end {
+    width: 157.5px;
+    height: 38.5px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin: 0px 0px;
+    font-family: Gilroy;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+}
+
+.end:focus {
+    outline: 0;
+}
+
+.end:hover {
+    background-color: black;
+    color: white;
+}
+
+/* result */
+
+.result_frame {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 314px;
+    padding: 0px 16px;
+}
+
+.result {
+    font-size: 22px;
+    line-height: 27px;
+    margin-bottom: 14px;
+}
+
+.stats {
+    margin-bottom: 14px;
+    width: 282px;
+}
+
+.wrap {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    vertical-align: middle;
+}
+
+.btn {
+    width: 100%;
+    height: 38.5px;
+    background: #000000;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-family: Gilroy;
+    font-size: 18px;
+    line-height: 22px;
+    transition: 0.2s ease-out;
+    border: none;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.28);
+    align-self: flex-start;
+    margin-bottom: 14px;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.56);
+}
+
+.btn:focus {
+    outline: 0;
+}
+
+.pass {
+    font-size: 18px;
+    line-height: 22px;
+    color: gray;
+    opacity: 0.8;
+    text-decoration: underline;
+    background-color: #FFFFFF;
+    border: none;
+    transition: 0.2s ease-in;
+}
+
+.pass:focus {
+    outline: 0;
+}
+
+.pass:hover {
+    color: black
+}
+
+
+
+/* topic */
+
+.topic_frame {
+    margin-bottom: 30px;
+}
+
+.comment_frame {
+    margin-bottom: 30px;
+}
+
+.video {
+    width: 459px;
+    height: 275.4px;
+    background-color: black;
+    margin-bottom: 30px;
+}

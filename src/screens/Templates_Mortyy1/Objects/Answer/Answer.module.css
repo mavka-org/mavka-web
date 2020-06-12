@@ -1,0 +1,72 @@
+.answer {
+    display: flex;
+    flex-direction: column;
+    padding: 2% 16px;
+    min-width: 96%;
+    max-width: 96%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+    border: 1px white solid;
+    border-radius: 10px;
+    align-self: center;
+    margin-bottom: 7px;
+    transition: 0.2s linear;
+}
+
+.answer_text {
+    font-size: 18px;
+    margin-bottom: 16px;
+    
+}
+
+.answer:focus {
+    outline: 0;
+}
+.answer:hover {
+    border: 1px black solid
+}
+
+.answer_text_frame {
+    display: inline-flex;
+    align-items: baseline;
+    flex-direction: row;
+    padding: 0px;
+    flex: none;
+    align-self: flex-start;
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 21px;
+    
+}
+
+.letter_choice {
+    vertical-align: middle;
+    font-size: 22px;
+    line-height: 27px;
+    margin-right: 21px;
+}
+
+.choose {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.check {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.symbol>svg {
+    padding-bottom: 4px;
+    padding-right: 8px;
+    vertical-align: middle;
+}
+
+.comment {
+    font-size: 15px;
+    line-height: 19px;
+    margin-left: 16px;
+    margin-bottom: 16px;
+}
