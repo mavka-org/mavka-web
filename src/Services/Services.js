@@ -5,6 +5,7 @@ import Markdown from "markdown-to-jsx";
 
 class Question {
     constructor(json){
+        this.number = json["Номер"]
         this.type = json["Формат"];
         this.year = json["Рік"];
         this.number = json["Номер"];
@@ -14,6 +15,20 @@ class Question {
         this.question = json["Питання"];
         this.answer = json["Правильна відповідь"];
         this.comment = json["Коментар"];
+
+        /* ARTEM'S CODE. PLEASE BEWARE IT'S SHITTY */
+        this.match_subquestions = [json["Частинка 1"], json["Частинка 2"], json["Частинка 3"], json["Частинка 4"]];
+        this.match_explanations = [json["Пояснення 1"], json["Пояснення 2"], json["Пояснення 3"], json["Пояснення 4"]];
+        this.match_4letters = [json["Частинка A"], json["Частинка Б"], json["Частинка В"], json["Частинка Г"]];
+        this.match_5letters = [json["Частинка A"], json["Частинка Б"], json["Частинка В"],
+            json["Частинка Г"], json["Частинка Д"]];
+        this.match_answers = [json["Правильна відповідь 1"], json["Правильна відповідь 2"],
+            json["Правильна відповідь 3"], json["Правильна відповідь 4"]];
+        this.double_open_subquestion = [json["Завдання 1"], json["Завдання 2"]];
+        this.double_open_answers = [json["Відповідь 1"], json["Відповідь 2"]];
+        this.double_open_explanations = [json["Пояснення 1"], json["Пояснення 2"]];
+        this.open_answer = json["Відповідь"]
+        /* END HERE */
         var tmpArr = ["Відповідь А", "Відповідь Б", "Відповідь В",
             "Відповідь Г", "Відповідь Д", "Відповідь Е", "Відповідь A",
             "Відповідь B", "Відповідь C", "Відповідь D", "Відповідь E",
@@ -36,6 +51,9 @@ class Question {
     }
     get(){
         return this.explanations;
+    }
+    getNumber () {
+        return this.number;
     }
     getType(){
         return this.type;
@@ -68,6 +86,33 @@ class Question {
     }
     getSession () {
         return this.session;
+    }
+    getMatchSubquestions () {
+        return this.match_subquestions;
+    }
+    getMatchExplanations () {
+        return this.match_explanations;
+    }
+    getMatch4Options () {
+        return this.match_4letters;
+    }
+    getMatch5Options () {
+        return this.match_5letters;
+    }
+    getMatchCorrectAnswers () {
+        return this.match_answers;
+    }
+    getDoubleOpenSubquestion () {
+        return this.double_open_subquestion;
+    }
+    getDoubleOpenAnswers () {
+        return this.double_open_answers;
+    }
+    getDoubleOpenExplanations () {
+        return this.double_open_explanations;
+    }
+    getOpenAnswer () {
+        return this.open_answer; //THIS SHOULDN'T EXIST (change to normal getAnswer())
     }
 }
 

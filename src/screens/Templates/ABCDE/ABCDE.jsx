@@ -46,7 +46,7 @@ class ABCDE extends Component {
                         list={this.state.number}
                         callback={this.props.callback}
                         active={this.state.active}
-                        />
+                    />
                     <div className={s.question_body}>
                         <div className={s.question_form}>
                             <Question

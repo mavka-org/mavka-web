@@ -9,119 +9,9 @@ import Logic_couples_4_5 from "../../Templates/Logic_Couples/Logic_couples_4_5";
 import Double_Open from "../../Templates/Double_Open/Double_Open";
 import Open from "../../Templates/Open/Open";
 import Super_Open from "../../Templates/Super_Open/Super_Open";
+import Services from "../../../Services"
 
-class Question {
-    constructor(json){
-        this.number = json["Номер"]
-        this.type = json["Формат"];
-        this.year = json["Рік"];
-        this.number = json["Номер"];
-        this.session = json["Cecія"];
-        this.subject = json["Предмет"];
-        this.topic = json["Тема"];
-        this.question = json["Питання"];
-        this.answer = json["Правильна відповідь"];
-        this.comment = json["Коментар"];
 
-        /* ARTEM'S CODE. PLEASE BEWARE IT'S SHITTY */
-        this.match_subquestions = [json["Частинка 1"], json["Частинка 2"], json["Частинка 3"], json["Частинка 4"]];
-        this.match_explanations = [json["Пояснення 1"], json["Пояснення 2"], json["Пояснення 3"], json["Пояснення 4"]];
-        this.match_4letters = [json["Частинка A"], json["Частинка Б"], json["Частинка В"], json["Частинка Г"]];
-        this.match_5letters = [json["Частинка A"], json["Частинка Б"], json["Частинка В"],
-            json["Частинка Г"], json["Частинка Д"]];
-        this.match_answers = [json["Правильна відповідь 1"], json["Правильна відповідь 2"],
-            json["Правильна відповідь 3"], json["Правильна відповідь 4"]];
-        this.double_open_subquestion = [json["Завдання 1"], json["Завдання 2"]];
-        this.double_open_answers = [json["Відповідь 1"], json["Відповідь 2"]];
-        this.double_open_explanations = [json["Пояснення 1"], json["Пояснення 2"]];
-        this.open_answer = json["Відповідь"]
-        /* END HERE */
-        var tmpArr = ["Відповідь А", "Відповідь Б", "Відповідь В",
-            "Відповідь Г", "Відповідь Д", "Відповідь Е", "Відповідь A",
-            "Відповідь B", "Відповідь C", "Відповідь D", "Відповідь E",
-            "Відповідь G", "Відповідь F", "Відповідь H"];
-        var currArr = [];
-        for(let i = 0; i < tmpArr.length; i++){
-            if(json[tmpArr[i]] != null){
-                currArr.push(json[tmpArr[i]]);
-            }
-            tmpArr[i] = tmpArr[i].replace("Відповідь", "Пояснення");
-        }
-        this.questions = currArr;
-        currArr = [];
-        for(let i = 0; i < tmpArr.length; i++){
-            if(json[tmpArr[i]] != null){
-                currArr.push(json[tmpArr[i]]);
-            }
-        }
-        this.explanations = currArr;
-    }
-    get(){
-        return this.explanations;
-    }
-    getNumber () {
-        return this.number;
-    }
-    getType(){
-        return this.type;
-    }
-    getYear(){
-        return this.year;
-    }
-    getSubject(){
-        return this.subject;
-    }
-    getTopic(){
-        return this.topic;
-    }
-    getQuestion(){
-        return this.question;
-    }
-    getAnswer(){
-        return this.answer;
-    }
-    getComment(){
-        return this.comment;
-    }
-    getQuestions() {
-        // array of strings
-        return this.questions;
-    }
-    getExplanations(){
-        // array of strings
-        return this.explanations;
-    }
-    getSession () {
-        return this.session;
-    }
-    getMatchSubquestions () {
-        return this.match_subquestions;
-    }
-    getMatchExplanations () {
-        return this.match_explanations;
-    }
-    getMatch4Options () {
-        return this.match_4letters;
-    }
-    getMatch5Options () {
-        return this.match_5letters;
-    }
-    getMatchCorrectAnswers () {
-        return this.match_answers;
-    }
-    getDoubleOpenSubquestion () {
-        return this.double_open_subquestion;
-    }
-    getDoubleOpenAnswers () {
-        return this.double_open_answers;
-    }
-    getDoubleOpenExplanations () {
-        return this.double_open_explanations;
-    }
-    getOpenAnswer () {
-        return this.open_answer; //THIS SHOULDN'T EXIST (change to normal getAnswer())
-    }
-}
 
 export class TestView extends React.Component {
 
@@ -141,7 +31,7 @@ export class TestView extends React.Component {
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                var question = new Question(result)
+                var question = Services.getQuestionClass(result)
                 this.setState({
                     data: question,
                     active: question.getNumber()
