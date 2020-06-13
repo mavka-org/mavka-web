@@ -5,7 +5,7 @@ class Comment extends React.Component {
     render() {
         return (
             <div className={g.video_explanation_frame} style={{
-                /*display: !this.props.hidden ? "none" : "block"*/
+                display: !this.props.hidden ? "none" : "block"
             }}>
                 <p><strong><VideoCamera /> Відеопояснення</strong></p>
                 <div className={g.video}></div>

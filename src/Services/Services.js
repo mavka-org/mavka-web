@@ -2,6 +2,7 @@ import axios from "axios";
 import firebase from "../global"
 import React from "react";
 import Markdown from "markdown-to-jsx";
+import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
 
 class Question {
     constructor(json){
@@ -114,6 +115,11 @@ class Question {
     getOpenAnswer () {
         return this.open_answer; //THIS SHOULDN'T EXIST (change to normal getAnswer())
     }
+    checkCorrect (answerToCheck) {
+        if(this.getType() == "АБВГД"){
+            return answerToCheck == this.answer;
+        }
+    }
 }
 
 class Services {
@@ -161,6 +167,28 @@ class Services {
     }
     static getQuestionClass (json) {
         return new Question(json);
+    }
+    static async updateTestAnswers(token, testID, answers){
+        const response = await axios.post(
+            'https://us-central1-mavka-c5c01.cloudfunctions.net/updCourseAnswers',
+            { 
+                token: token,
+                courseID: testID,
+                answers: answers
+            },
+            { headers: { 'Content-Type': 'text/plain' } }
+        )
+    }
+    static async getTestAnswers(token, testID){
+        const response = await axios.post(
+            'https://us-central1-mavka-c5c01.cloudfunctions.net/getTestAnswers',
+            { 
+                token: token,
+                courseID: testID
+            },
+            { headers: { 'Content-Type': 'text/plain' } }
+        )
+        return response;
     }
 }
 export default Services;

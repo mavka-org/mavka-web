@@ -37,7 +37,9 @@ class Logic_Couples_4_5 extends Component {
     render() {
         const data = this.state.data;
         let hidden = this.state.answered;
-
+        console.log(this.state.number);
+        console.log(this.props.callback);
+        console.log(this.state.active);
         return (
             <div className={s.background}>
                 <div className={[s.page, g.page_].join(' ')}>
@@ -48,7 +50,7 @@ class Logic_Couples_4_5 extends Component {
                         list={this.state.number}
                         callback={this.props.callback}
                         active={this.state.active}
-                        />
+                    />
                     <div className={s.question_body}>
                         <div className={s.question_frame}>
                             <Question
@@ -57,11 +59,15 @@ class Logic_Couples_4_5 extends Component {
                                 />
                             <Topic
                                 topic={data.getTopic()}
+                                hidden={hidden}
                                 />
                             <Comment
                                 comment={data.getComment()}
+                                hidden={hidden}
                                 />
-                            <Video />
+                            <Video 
+                                hidden={hidden}
+                                />
 
                         </div>
                         <div className={s.answers_frame}>
@@ -99,6 +105,7 @@ class Logic_Couples_4_5 extends Component {
                                     letter={"Д"}
                                     question={data.getMatch4Options()[4]}
                                     explanation=""
+                                    hidden={hidden}
                                     />
                             </div>
                             <div class={s.table}>
@@ -247,7 +254,11 @@ class Logic_Couples_4_5 extends Component {
 
                                     </tr>
                                 </table>
-                                <Next />
+                                <Next 
+                                    answered={this.state.answered}
+                                    callback={this.props.changeStatus}
+                                    number={this.state.active}
+                                />
                             </div>
 
                         </div>

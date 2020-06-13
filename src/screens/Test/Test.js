@@ -23,7 +23,9 @@ export class Test extends React.Component{
             active: 1,
             data: [],
             answered: [],
-            n: 0
+            n: 0,
+            answers: {},
+            checkedAnswers: {}
         }
         let current = this;
         Services.getReferenceById(this.state.testId).then(function (ref) {
@@ -36,10 +38,23 @@ export class Test extends React.Component{
                     answered: status,
                     n: myData.length
                 });
+                current.state.user.getIdToken().then((token)=>{
+                    Services.getTestAnswers(token, current.state.testId).then(function (response){
+                        let checkedAnswers = {};
+                        for(let tmp in response.data){
+                            checkedAnswers[tmp] = current.state.data[Number(tmp) - 1].checkCorrect(response.data[tmp]);
+                        }
+                        current.setState({
+                            answers: response.data,
+                            checkedAnswers: checkedAnswers
+                        })
+                    })
+                })
                 console.log("here");
                 console.log(myData);
             })
         })
+        
 
     }
     
@@ -78,6 +93,24 @@ export class Test extends React.Component{
         })
     }
 
+    updateAnswers = (num, answer) => {
+        const answers = this.state.answers;
+        const checkedAnswers = this.state.checkedAnswers;
+        answers[num] = answer;
+
+        console.log(answers);
+        checkedAnswers[num] = this.state.data[Number(num) - 1].checkCorrect(answer);
+        this.state.user.getIdToken().then((token) => {
+            let obj ={};
+            obj[num] = answer;
+            Services.updateTestAnswers(token, this.state.testId, obj);
+        })
+        this.setState({
+            answers: answers,
+            checkedAnswers: checkedAnswers
+        })
+    }
+
     render() {
         if (this.state.user == 25) {
             return (<div></div>);
@@ -90,13 +123,15 @@ export class Test extends React.Component{
                 if (data[num].getType() == "АБВГД") {
                     return (
                             <div>
+                               
                                 <ABCDE
                                     callback={this.updateQuestion}
                                     active={this.state.active}
                                     number={this.state.n}
-                                    answered={this.state.answered[num]}
+                                    answered={(this.state.active in this.state.answers)}
                                     data={data[num]}
                                     changeStatus={this.updateStatus}
+                                    updateAnswers={this.updateAnswers}
                                 />
                                 {document.getElementById("root").click()}
                                 {document.getElementById("root").click()}
@@ -120,6 +155,7 @@ export class Test extends React.Component{
                     )
                 }
                 if (data[num].getType() == "Логічні пари 4/4") {
+                    console.log("Логічні пари 4/4");
                     return (
                             <div>
                                 <Logic_Couples_4_4
@@ -136,6 +172,7 @@ export class Test extends React.Component{
                     )
                 }
                 if (data[num].getType() == "Логічні пари 4/5") {
+                    console.log("Логічні пари 4/5");
                     return (
                             <div>
                                 <Logic_Couples_4_5
