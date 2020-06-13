@@ -53,7 +53,7 @@ class QuestionNavPanel extends Component {
 
 
         this.state = {
-            current: 1,
+            current: this.props.active,
             n: list,
             buttons: buttons,
             windowHeight: window.innerHeight,

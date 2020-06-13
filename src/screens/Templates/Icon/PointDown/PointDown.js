@@ -3,12 +3,5 @@ import pointDown from "../../icons/pointDown.png";
 
 
 export default () => (
-    <span style={{
-        backgroundImage: "url( " + pointDown + ")",
-        backgroundSize: "contain",
-        height: "100%",
-        backgroundPosition: "center",
-        width: "100%",
-        backgroundRepeat: "no-repeat"
-    }}>&nbsp; &nbsp; &nbsp;</span>
+    <img src={pointDown} alt="party" width={"17px"}/>
 )
