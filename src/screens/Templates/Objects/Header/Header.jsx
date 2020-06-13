@@ -3,7 +3,25 @@ import g from './../../Style.module.css';
 import Strong from './../../Icon/Strong/Strong';
 import QuestionNavPanel from "../../../../UI/QuestionNavPanel";
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            active: props.active,
+            checkedAnswers: props.checkedAnswers,
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props != prevProps) {
+            this.setState({
+                active: this.props.active,
+                checkedAnswers: this.props.checkedAnswers,
+            })
+        }
+    }
+
     render() {
+        console.log(this.state.checkedAnswers);
         return (
             <div>
             <div className={g.question_header}>
@@ -15,8 +33,9 @@ class Header extends React.Component {
             </div>
             <QuestionNavPanel
                 list={this.props.list}
-                callback={this.props.callback}
+                updateQuestion={this.props.updateQuestion}
                 active={this.props.active}
+                checkedAnswers={this.state.checkedAnswers}
             />
         </div>
         );
