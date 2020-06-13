@@ -19,8 +19,8 @@ class Question {
         /* ARTEM'S CODE. PLEASE BEWARE IT'S SHITTY */
         this.match_subquestions = [json["Частинка 1"], json["Частинка 2"], json["Частинка 3"], json["Частинка 4"]];
         this.match_explanations = [json["Пояснення 1"], json["Пояснення 2"], json["Пояснення 3"], json["Пояснення 4"]];
-        this.match_4letters = [json["Частинка A"], json["Частинка Б"], json["Частинка В"], json["Частинка Г"]];
-        this.match_5letters = [json["Частинка A"], json["Частинка Б"], json["Частинка В"],
+        this.match_4letters = [json["Частинка А"], json["Частинка Б"], json["Частинка В"], json["Частинка Г"]];
+        this.match_5letters = [json["Частинка А"], json["Частинка Б"], json["Частинка В"],
             json["Частинка Г"], json["Частинка Д"]];
         this.match_answers = [json["Правильна відповідь 1"], json["Правильна відповідь 2"],
             json["Правильна відповідь 3"], json["Правильна відповідь 4"]];

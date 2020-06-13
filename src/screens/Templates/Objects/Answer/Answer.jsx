@@ -5,7 +5,7 @@ import g from './../../Objects/Answer/Answer.module.css';
 class Answer extends React.Component {
     render() {
         return (
-            <div className={g.answer}>
+            <div onclick="alert('xui')" className={g.answer}>
                 <div className={g.answer_text_frame}>
                     <div className={g.letter_choice}>
 
