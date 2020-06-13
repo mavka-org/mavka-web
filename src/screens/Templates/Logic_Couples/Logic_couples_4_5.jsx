@@ -48,7 +48,7 @@ class Logic_Couples_4_5 extends Component {
                         year={data.getYear()}
                         session={data.getSession()}
                         list={this.state.number}
-                        callback={this.props.callback}
+                        updateQuestion={this.props.updateQuestion}
                         active={this.state.active}
                     />
                     <div className={s.question_body}>
