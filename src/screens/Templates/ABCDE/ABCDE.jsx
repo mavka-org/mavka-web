@@ -18,13 +18,15 @@ class ABCDE extends Component {
             number: props.number,
             data: props.data,
             active: props.active,
-            answered: props.answered
+            answered: props.answered,
+            currentAnswer: null
         }
         console.log(props.data);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
+            console.log('sos' + this.props.answered)
             this.setState({
                 number: this.props.number,
                 data: this.props.data,
@@ -32,6 +34,12 @@ class ABCDE extends Component {
                 answered: this.props.answered
             })
         }
+    }
+
+    updateCurrentAnswer = (answer) => {
+        this.setState({
+            currentAnswer: answer
+        })
     }
     render() {
         const data = this.state.data;
@@ -55,48 +63,63 @@ class ABCDE extends Component {
                                 />
                             <Topic
                                 topic={data.getTopic()}
+                                hidden={hidden}
                                 />
                             <Comment
                                 comment={data.getComment()}
+                                hidden={hidden}
                                 />
-                            <Video />
+                            <Video 
+                                hidden={hidden}
+                            />
                         </div>
 
                         <div className={s.answers_frame}>
                             <p className={g.choose}><strong>Обери одну відповідь</strong></p>
                             <div className={s.answers}>
-                                <Answer
+                                <Answer 
                                     letter={"A"}
                                     question={data.getQuestions()[0]}
                                     explanation={data.getExplanations()[0]}
                                     hidden={hidden}
+                                    updateCurrentAnswer={this.updateCurrentAnswer}
                                 />
                                 <Answer
                                     letter={"Б"}
                                     question={data.getQuestions()[1]}
                                     explanation={data.getExplanations()[1]}
                                     hidden={hidden}
+                                    updateCurrentAnswer={this.updateCurrentAnswer}
                                 />
                                 <Answer
                                     letter={"В"}
                                     question={data.getQuestions()[2]}
                                     explanation={data.getExplanations()[2]}
                                     hidden={hidden}
+                                    updateCurrentAnswer={this.updateCurrentAnswer}
                                 />
                                 <Answer
                                     letter={"Г"}
                                     question={data.getQuestions()[3]}
                                     explanation={data.getExplanations()[3]}
                                     hidden={hidden}
+                                    updateCurrentAnswer={this.updateCurrentAnswer}
                                 />
                                 <Answer
                                     letter={"Д"}
                                     question={data.getQuestions()[4]}
                                     explanation={data.getExplanations()[4]}
                                     hidden={hidden}
+                                    updateCurrentAnswer={this.updateCurrentAnswer}
                                 />
                             </div>
-                            <Next />
+                            <Next 
+                                answered={this.state.answered}
+                                callback={this.props.changeStatus}
+                                number={this.state.active}
+                                currentAnswer={this.state.currentAnswer}
+                                updateAnswers={this.props.updateAnswers}
+                            />
                         </div>
                     </div>
                 </div>

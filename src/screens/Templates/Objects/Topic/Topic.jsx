@@ -5,7 +5,7 @@ class Topic extends React.Component {
     render() {
         return (
             <div className={g.topic_frame} style={{
-                /*display: !this.props.hidden ? "none" : "block"*/
+                display: !this.props.hidden ? "none" : "block"
             }}>
                 <p><strong><PointDown /> Тема:</strong></p>
                 <div className={g.topic_frame_text}>{this.props.topic}</div>
