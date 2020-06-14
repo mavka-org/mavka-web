@@ -9,6 +9,7 @@ import Home from "./screens/Home";
 import Subject from './screens/Subject'
 import Test from "./screens/Test";
 import TestView from "./screens/ContentMakers/TestView";
+import MainMenu from "./screens/MainMenu";
 
 export default () => (
     <Router>
@@ -17,7 +18,7 @@ export default () => (
             <Route path="/about" component={ScreensAbout}/>
             <Route path="/login" component={Login}/>
             <Route path="/home" component={Home}/>
-            <Route exact path="/subject/:id" component={Subject} />
+            <Route exact path="/subject/:id" component={MainMenu} />
             <Route exact path="/subject/:id/test/:testId" component={Test} />
             <Route exact path={"/preview/:id"} component={TestView}/>
             <Route component={NotFound}/>

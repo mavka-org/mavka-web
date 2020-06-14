@@ -1,7 +1,6 @@
 import React from 'react';
 import {Redirect, Link} from 'react-router-dom';
 import ABCDE from "../../Templates/ABCDE/ABCDE";
-import TestWrapper from "../../TestWrapper";
 import axios from "axios";
 import ABCD from "../../Templates/ABCD/ABCD";
 import Logic_couples_4_4 from "../../Templates/Logic_Couples/Logic_couples_4_4";

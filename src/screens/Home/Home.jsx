@@ -38,7 +38,6 @@ export class Home extends React.Component{
                 <div>
                     <List/>
                     <button onClick={async() => await sosi()}></button>
-                    <Link to="/test"><button></button></Link>
                 </div>
             )
         }
