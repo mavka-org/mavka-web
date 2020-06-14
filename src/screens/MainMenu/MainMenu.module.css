@@ -1,7 +1,7 @@
 .page {
     display: flex;
     flex-direction: column;
-    padding: 105px 0px;
+    padding: 55px 0px;
     position: absolute;
     width: 945px;
     left: calc(50% - 945px/2);

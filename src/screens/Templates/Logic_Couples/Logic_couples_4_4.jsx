@@ -14,6 +14,7 @@ class Logic_Couples_4_4 extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            checkedAnswers: props.checkedAnswers,
             number: props.number,
             data: props.data,
             active: props.active,
@@ -25,6 +26,7 @@ class Logic_Couples_4_4 extends Component {
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
             this.setState({
+                checkedAnswers: this.props.checkedAnswers,
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
@@ -41,11 +43,12 @@ class Logic_Couples_4_4 extends Component {
             <div className={s.background}>
                 <div className={[s.page, g.page_].join(' ')}>
                     <Header
+                        checkedAnswers={this.state.checkedAnswers}
                         subject={data.getSubject()}
                         year={data.getYear()}
                         session={data.getSession()}
                         list={this.state.number}
-                        callback={this.props.callback}
+                        updateQuestion={this.props.updateQuestion}
                         active={this.state.active}
                         />
                     <div className={s.question_body}>

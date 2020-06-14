@@ -1,5 +1,5 @@
 import React from 'react';
-import g from './../../../../Templates/Style.module.css';
+import g from "../../../Templates/Style.module.css"
 import s from './ZNO.module.css';
 
 class ZNO extends React.Component {
