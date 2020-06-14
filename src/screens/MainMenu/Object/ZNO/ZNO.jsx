@@ -7,10 +7,9 @@ class ZNO extends React.Component {
         return (
             <div className={s.zno_choose}>
                 <div className={s.wrapper}>
-                    <div className={s.description}><div><strong>ЗНО 2019 </strong></div> додаткова сесія</div>
+                    <div className={s.description}>{this.props.testInfo.name}</div>
                     <div className={s.results}>
-                        <div>200 ЗНО </div>
-                        <div> 12 ДПА</div>
+                        {this.props.testInfo.status}
                     </div>
                 </div>
             </div>

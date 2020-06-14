@@ -16,7 +16,8 @@ class MainMenu extends React.Component {
         super(props);
         this.token = "";
         this.state = {
-            subject: SystemFunctions.changeStringBeetwenHomeAndMain(this.props.match.params.id),
+            subjectName: SystemFunctions.changeStringBeetwenHomeAndMain(this.props.match.params.id),
+            subject: this.props.match.params.id,
             user: 25,
             tests: [],
             active: 0
@@ -58,6 +59,8 @@ class MainMenu extends React.Component {
             response.then(function (value) {
                 let tests = []
                 let T = value.data;
+                console.log("!!!!!!!!");
+                console.log(T);
                 for (let year in T) {
                     for (let t in T[year]) {
                         console.log(T[year][t].status);
@@ -86,7 +89,7 @@ class MainMenu extends React.Component {
                     <div className={[s.page, g.page_].join(' ')} >
                         <div className={s.header}>
                             <div className={s.question_title}>
-                                <strong>Тести з<br></br> {this.state.subject}</strong>
+                                <strong>Тести з<br></br> {this.state.subjectName}</strong>
                             </div>
                             <div className={s.exit}>
                                 <Link to={'/home'}>
@@ -139,7 +142,9 @@ class MainMenu extends React.Component {
                                     </div>
                                 </div>
                                 <div className={s.description}>Ти також можеш роздрукувати цей тест тут та автоматично перевірити розв’язання з нашим мобільним додатком (незабаром)</div>
-                                <Topic />
+                                <Topic 
+                                    topic={["ЛОЛ"]}
+                                />
                                 <div className={s.video_explanation_frame}>
                                     <p><strong><VideoCamera /> Відеопояснення</strong></p>
                                     <div className={s.video}></div>
