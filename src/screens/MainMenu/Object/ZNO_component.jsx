@@ -4,15 +4,12 @@ import ZNO from './ZNO/ZNO';
 class ZNO_component extends React.Component {
     render() {
         let testsList = this.props.tests;
-        return (
-            <div>
-                {
-                    testsList.forEach(element => {
-                        <ZNO />
-                    })
-                }
-            </div>
-        );
+        return testsList.map(function(test){
+            return(
+            <ZNO 
+                testInfo={test}
+            />);
+        })
     }
 }
 
