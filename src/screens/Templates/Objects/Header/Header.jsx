@@ -3,22 +3,41 @@ import g from './../../Style.module.css';
 import Strong from './../../Icon/Strong/Strong';
 import QuestionNavPanel from "../../../../UI/QuestionNavPanel";
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            active: props.active,
+            checkedAnswers: props.checkedAnswers,
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props != prevProps) {
+            this.setState({
+                active: this.props.active,
+                checkedAnswers: this.props.checkedAnswers,
+            })
+        }
+    }
+
     render() {
+        console.log(this.state.checkedAnswers);
         return (
             <div>
-            <div className={g.question_header}>
-                <div className={g.title_bar}>
-                    <p><strong><Strong />Практика</strong></p>
-                    <p><strong>{this.props.subject}</strong> {this.props.year} {this.props.session} сесія</p>
-                    <button className={g.end}>Завершити</button>
+                <div className={g.question_header}>
+                    <div className={g.title_bar}>
+                        <p><strong><Strong />Практика</strong></p>
+                        <p><strong>{this.props.subject}</strong> {this.props.year} {this.props.session} сесія</p>
+                        <button className={g.end}>Завершити</button>
+                    </div>
                 </div>
+                <QuestionNavPanel
+                    checkedAnswers={this.state.checkedAnswers}
+                    list={this.props.list}
+                    updateQuestion={this.props.updateQuestion}
+                    active={this.props.active}
+                />
             </div>
-            <QuestionNavPanel
-                list={this.props.list}
-                callback={this.props.callback}
-                active={this.props.active}
-            />
-        </div>
         );
     }
 }

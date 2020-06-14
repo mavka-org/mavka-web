@@ -5,16 +5,6 @@ import styled from "styled-components";
 
 class QuestionNavPanel extends Component {
 
-    update(newCurrent) {
-        let buttons = [...this.state.buttons];
-        buttons[this.state.current - 1].active = false;
-        buttons[newCurrent - 1].active = true;
-        this.setState({
-            buttons: buttons,
-            current: newCurrent
-        });
-    };
-
     updateWindowDimensions() {
         this.setState({
             windowHeight: window.innerHeight,
@@ -24,41 +14,48 @@ class QuestionNavPanel extends Component {
 
     componentDidUpdate (prevProps) {
         if (this.props != prevProps) {
+            let getStatus = (i) => ((i + 1) in this.props.checkedAnswers);
+            let buttons = [...this.state.buttons];
+            for(let i = 0; i < buttons.length; i++) {
+                buttons[i].status = getStatus(i);
+            }
+            buttons[prevProps.active - 1].active = false;
+            buttons[this.props.active - 1].active = true;
             this.setState({
+                checkedAnswers: this.props.checkedAnswers,
+                buttons: buttons,
                 current: this.props.active
             })
         }
     }
 
-    random = () => Math.random() > 0.5;
 
     constructor (props) { // сейчас это просто количество вопросов в тесте. Когда функции будут готовы все пропишу
         super(props);
         let list = props.list;
-
-        let getStatus = () => this.random();
 
         let buttons = [];
         for (let i = 0; i < list; i++) {
             buttons.push({
                 pushed: () => {
                     document.getElementById("fakeButton").click(); // это надо, чтобы dropdown пропадал по клику
-                    this.props.callback(i + 1);
-                    this.update(i + 1);
+                    this.props.updateQuestion(i + 1);
+                    //this.update(i + 1);
                 },
-                status: getStatus(),
+                status: false,
                 active: i == 0
             });
         }
 
-
         this.state = {
+            checkedAnswers: this.props.checkedAnswers,
             current: this.props.active,
             n: list,
             buttons: buttons,
             windowHeight: window.innerHeight,
             windowWidth: window.innerWidth
         };
+
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         window.addEventListener('resize', this.updateWindowDimensions);
     }
