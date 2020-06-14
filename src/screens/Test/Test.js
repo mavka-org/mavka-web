@@ -50,7 +50,7 @@ export class Test extends React.Component{
                         })
                     })
                 })
-                console.log("here");
+                console.log("Data");
                 console.log(myData);
             })
         })
@@ -97,8 +97,6 @@ export class Test extends React.Component{
         const answers = this.state.answers;
         const checkedAnswers = this.state.checkedAnswers;
         answers[num] = answer;
-
-        console.log(answers);
         checkedAnswers[num] = this.state.data[Number(num) - 1].checkCorrect(answer);
         this.state.user.getIdToken().then((token) => {
             let obj ={};
@@ -112,13 +110,14 @@ export class Test extends React.Component{
     }
 
     render() {
+        console.log("Test.js");
+        console.log(this.state.checkedAnswers);
         if (this.state.user == 25) {
             return (<div></div>);
         }
         if (this.state.user) {
             if (this.state.data.length > 0) {
                 const data = this.state.data;
-                console.log(data);
                 let num = this.state.active - 1;
                 if (data[num].getType() == "АБВГД") {
                     return (

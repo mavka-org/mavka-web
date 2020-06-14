@@ -32,8 +32,9 @@ class Header extends React.Component {
                     </div>
                 </div>
                 <QuestionNavPanel
+                    checkedAnswers={this.state.checkedAnswers}
                     list={this.props.list}
-                    callback={this.props.callback}
+                    updateQuestion={this.props.updateQuestion}
                     active={this.props.active}
                 />
             </div>

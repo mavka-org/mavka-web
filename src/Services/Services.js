@@ -128,7 +128,6 @@ class Services {
     static async getData (ref){
         var storage = firebase.storage();
         var listRef = storage.refFromURL(ref);
-        console.log(listRef)
         const list1 = await listRef.listAll().then(function(res) {
             var list = [];
             res.items.forEach(function(itemRef) {
@@ -155,7 +154,6 @@ class Services {
         results2.forEach(resp => {
             answer.push(resp.data)
         });
-        console.log(answer)
         return answer
     }
 

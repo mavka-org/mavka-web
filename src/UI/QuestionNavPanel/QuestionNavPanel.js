@@ -34,8 +34,6 @@ class QuestionNavPanel extends Component {
         super(props);
         let list = props.list;
 
-        let getStatus = (i) => ((i + 1) in this.props.checkedAnswers);
-
         let buttons = [];
         for (let i = 0; i < list; i++) {
             buttons.push({
@@ -44,7 +42,7 @@ class QuestionNavPanel extends Component {
                     this.props.updateQuestion(i + 1);
                     //this.update(i + 1);
                 },
-                status: getStatus(i),
+                status: false,
                 active: i == 0
             });
         }
