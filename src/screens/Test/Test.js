@@ -40,9 +40,12 @@ export class Test extends React.Component{
                 });
                 current.state.user.getIdToken().then((token)=>{
                     Services.getTestAnswers(token, current.state.testId).then(function (response){
+                        console.log("Test.js");
+                        console.log(response);
                         let checkedAnswers = {};
                         for(let tmp in response.data){
-                            checkedAnswers[tmp] = current.state.data[Number(tmp) - 1].checkCorrect(response.data[tmp]);
+                            if(tmp != "status")
+                                checkedAnswers[tmp] = current.state.data[Number(tmp) - 1].checkCorrect(response.data[tmp]);
                         }
                         current.setState({
                             answers: response.data,
