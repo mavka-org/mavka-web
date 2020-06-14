@@ -11,12 +11,15 @@ class CoupleAnswer extends React.Component {
                         <div className={g.check}>
                             <div className={g.symbol}><Incorrect /></div>
                             <div className={g.number}><strong>{this.props.number}:</strong></div>
+                            <div className={g.answer_text}>{this.props.subquestion}</div>
                         </div>
-                        <div className={g.letter} style={{ marginLeft: 30 }}><strong>{this.props.correctLetter}:</strong></div>
+                        <div className={g.check}>
+                            <div className={g.letter} style={{ marginLeft: 30 }}><strong>{this.props.correctLetter}:</strong></div>
+                            <div className={g.answer_text}>{this.props.subanswer}</div>
+                        </div>
                     </div>
-                    <div className={g.answer_text}>{this.props.subquestion}</div>
+
                 </div>
-                <div className={g.answer_text}>{this.props.subanswer}</div>
                 <div className={g.comment}>{this.props.explanation}</div>
             </div>
         );

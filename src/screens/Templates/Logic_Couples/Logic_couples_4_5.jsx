@@ -5,6 +5,7 @@ import g from './../Style.module.css';
 import Party from "../Icon/Party/Party";
 import Question from '../Objects/Question/Question.jsx';
 import CoupleAnswer from '../Objects/Answer/Couple_Answer';
+import CoupleOption from '../Objects/Answer/CoupleOption';
 import Answer from '../Objects/Answer/Answer.jsx';
 import Topic from './../Objects/Topic/Topic.jsx';
 import Header from './../Objects/Header/Header.jsx';
@@ -101,12 +102,7 @@ class Logic_Couples_4_5 extends Component {
                                     subanswer={data.getMatch4Options()[3]}
                                     explanation={data.getMatchExplanations()[3]}
                                     />
-                                <Answer
-                                    letter={"Д"}
-                                    question={data.getMatch4Options()[4]}
-                                    explanation=""
-                                    hidden={hidden}
-                                    />
+                                <CoupleOption letter={'f'} subquestion={'fdf'} />
                             </div>
                             <div class={s.table}>
                                 <table class={s.select_answer}>
@@ -116,6 +112,7 @@ class Logic_Couples_4_5 extends Component {
                                         <th>Б</th>
                                         <th>В</th>
                                         <th>Г</th>
+                                        <th>Д</th>
                                     </tr>
                                     <tr>
                                         <th class={s.r}>1</th>

@@ -27,6 +27,7 @@
     font-family: Gilroy;
     font-size: 18px;
     line-height: 22px;
+    user-select: none;
 }
 
 .question_header {
@@ -66,6 +67,7 @@
 .end:hover {
     background-color: black;
     color: white;
+    cursor: pointer;
 }
 
 /* result */
@@ -115,6 +117,7 @@
 .btn:hover {
     opacity: 0.9;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.56);
+    cursor: pointer;
 }
 
 .btn:focus {
@@ -137,7 +140,8 @@
 }
 
 .pass:hover {
-    color: black
+    color: black;
+    cursor: pointer;
 }
 
 
@@ -157,4 +161,9 @@
     height: 275.4px;
     background-color: black;
     margin-bottom: 30px;
+}
+
+.btnqnav{
+    font-family: Gilroy;
+    font-size: 18px;
 }

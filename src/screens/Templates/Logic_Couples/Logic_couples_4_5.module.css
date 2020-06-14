@@ -34,21 +34,29 @@
 }
 
 
-
+.question_frame{
+    display: flex;
+    flex-direction: column;
+    width:50%;
+}
 
 
 
 /* answer */
 
-
+.answers_frame{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: flex-start;
+}
 
 .answers{
     display: flex;
     flex-direction: column;
-    padding: 10px 0px;
     align-self: flex-start;
     margin-bottom: 7px;
-    margin-left: 20px;
+    width: 100%;
    
 }
 
@@ -118,5 +126,6 @@
 
 .select_answer span:hover {
     background: rgba(0, 0, 0, 0.274);
+    cursor: pointer;
 }
 
