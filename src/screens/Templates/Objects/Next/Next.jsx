@@ -10,7 +10,7 @@ class Next extends React.Component {
                 <div className={g.wrap}>
                 <button className={g.btn} onClick={() => {
                     if(this.props.answered) {
-                        console.log("уже ответил")
+                        this.props.updateQuestion(this.props.number + 1);
                     }
                     else {
                         if(this.props.currentAnswer) {
@@ -20,7 +20,6 @@ class Next extends React.Component {
                             console.log("выбери отвери")
                         }
                     }
-                    this.props.callback(this.props.number, true)
                 }}>{this.props.answered ? "Наступне питання" : "Перевірити"}</button>
                     <button class={g.pass}>Пропустити</button>
                 </div>
