@@ -159,12 +159,15 @@ export class Test extends React.Component{
                     return (
                             <div>
                                 <Logic_Couples_4_4
-                                    callback={this.updateQuestion}
+                                    checkedAnswers={this.state.checkedAnswers}
+                                    updateQuestion={this.updateQuestion}
                                     active={this.state.active}
                                     number={this.state.n}
-                                    answered={this.state.answered[num]}
+                                    answered={(this.state.active in this.state.answers)}
                                     data={data[num]}
                                     changeStatus={this.updateStatus}
+                                    updateAnswers={this.updateAnswers}
+                                    currentAnswer={null}
                                 />
                                 {document.getElementById("root").click()}
                                 {document.getElementById("root").click()}
@@ -176,12 +179,15 @@ export class Test extends React.Component{
                     return (
                             <div>
                                 <Logic_Couples_4_5
+                                    checkedAnswers={this.state.checkedAnswers}
                                     updateQuestion={this.updateQuestion}
                                     active={this.state.active}
                                     number={this.state.n}
-                                    answered={this.state.answered[num]}
+                                    answered={(this.state.active in this.state.answers)}
                                     data={data[num]}
                                     changeStatus={this.updateStatus}
+                                    updateAnswers={this.updateAnswers}
+                                    currentAnswer={null}
                                 />
                                 {document.getElementById("root").click()}
                                 {document.getElementById("root").click()}

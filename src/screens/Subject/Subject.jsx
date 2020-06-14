@@ -3,7 +3,6 @@ import firebase from "../../global"
 import {Redirect, Link} from 'react-router-dom';
 import axios from "axios";
 import ListItem from "../../UI/ListItem";
-import TestStatus from "../TestStatus";
 
 
 export class Subject extends React.Component{
