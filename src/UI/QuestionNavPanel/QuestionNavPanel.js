@@ -92,6 +92,7 @@ class QuestionNavPanel extends Component {
             borderRadius: "5px",
             width: this.getWidth(7.4),
             marginLeft: this.getWidth(0.22)
+            
         };
         let l = Math.max(current - delta / 2, 1);
         let r = Math.min(n, l + delta);
