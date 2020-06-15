@@ -3,11 +3,11 @@ import {Redirect, Link} from 'react-router-dom';
 import ABCDE from "../../Templates/ABCDE/ABCDE";
 import axios from "axios";
 import ABCD from "../../Templates/ABCD/ABCD";
-import Logic_couples_4_4 from "../../Templates/Logic_Couples/Logic_couples_4_4";
-import Logic_couples_4_5 from "../../Templates/Logic_Couples/Logic_couples_4_5";
+import Logic_couples_4_4 from "../../Templates/Logic_Couples/Logic_Couples_4_4";
+import Logic_couples_4_5 from "../../Templates/Logic_Couples/Logic_Couples_4_5";
 import Double_Open from "../../Templates/Double_Open/Double_Open";
 import Open from "../../Templates/Open/Open";
-import Super_Open from "../../Templates/Super_Open/Super_Open";
+import Open_Ended from "../../Templates/Super_Open/Open_Ended";
 import Services from "../../../Services"
 
 
@@ -184,7 +184,7 @@ export class TestView extends React.Component {
             if (data.getType() == "Розгорнуте") {
                 return (
                         <div>
-                            <Super_Open
+                            <Open_Ended
                                 callback={this.updateQuestion}
                                 active={this.state.active}
                                 number={this.state.n}

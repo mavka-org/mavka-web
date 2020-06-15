@@ -7,7 +7,7 @@ import Header from './../Objects/Header/Header.jsx';
 import Comment from './../Objects/Comment/Comment.jsx';
 import Video from './../Objects/Video/Video.jsx';
 import Next from './../Objects/Next/Next.jsx';
-class Super_Open extends React.Component {
+class Open_Ended extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -67,4 +67,4 @@ class Super_Open extends React.Component {
     }
 }
 
-export default Super_Open;
+export default Open_Ended;
