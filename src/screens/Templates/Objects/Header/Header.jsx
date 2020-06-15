@@ -27,7 +27,7 @@ class Header extends React.Component {
             <div>
                 <div className={g.question_header}>
                     <div className={g.title_bar}>
-                        <p><strong><Strong />Практика</strong></p>
+                        <div className={g.icon_header}><div style={{width:25,height:25}}><Strong /></div><strong>&nbsp;Практика</strong></div>
                         <p><strong>{this.props.subject}</strong> {this.props.year} {this.props.session} сесія</p>
                         <Link to={"/subject/" + this.props.subject}>
                             <button className={g.end}>Завершити</button>

@@ -1,15 +1,13 @@
 import React from "react";
-import strong from "../../icons/strong.png";;
-
+import german from "../../icons/german.png";
 
 export default () => (
-    <span style={{
-        backgroundImage: "url( " + strong + ")",
+    <div style={{
+        backgroundImage: "url( " + german + ")",
         backgroundSize: "contain",
         height: "100%",
         backgroundPosition: "center",
         width: "100%",
         backgroundRepeat: "no-repeat"
-    }}>&nbsp; &nbsp; &nbsp;</span>
-
+    }}>&nbsp; &nbsp; &nbsp;</div>
 )

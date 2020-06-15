@@ -4,6 +4,7 @@ import g from '../Templates/Style.module.css';
 import ZNO from './Object/ZNO/ZNO';
 import Topic from "../Templates/Objects/Topic/Topic"
 import Strong from "../Templates/Icon/Strong";
+import Clock from "../Templates/Icon/Clock";
 import VideoCamera from "../Templates/Icon/VideoCamera";
 import { Link, Router, Redirect } from 'react-router-dom';
 import SystemFunctions from "../../utils/SystemFunctions"
@@ -38,7 +39,7 @@ class MainMenu extends React.Component {
     }
 
     // update state
-    updateUserState (resp) {
+    updateUserState(resp) {
         this.setState({
             user: resp
         });
@@ -93,7 +94,7 @@ class MainMenu extends React.Component {
         console.log("!!!!!!!!!!");
         console.log(this.state.active);
         console.log(this.state.tests[this.state.active]);
-        if(this.state.user){
+        if (this.state.user) {
             return (
                 <div className={g.background}>
                     <div className={[s.page, g.page_].join(' ')} >
@@ -106,13 +107,13 @@ class MainMenu extends React.Component {
                                     <button className={s.end}>
                                         Назад до предметів
                                     </button>
-                                </Link>      
+                                </Link>
                             </div>
                         </div>
                         <div className={s.question_body}>
                             <div className={s.tests_body_left}>
                                 <ZNO_component
-                                    tests={this.state.tests} 
+                                    tests={this.state.tests}
                                     updateSelectedTest={this.updateSelectedTest}
                                     active={this.state.active}
                                 />
@@ -145,6 +146,7 @@ class MainMenu extends React.Component {
                                         this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
                                     }}>
                                         <div className={s.wrap}>
+                                            <div className={s.icon}><Strong /></div>
                                             <div className={s.btn_title}><strong>Практикуватися</strong></div>
                                             <div className={s.comment}>Проходь завдання та вчися на поясненнях</div>
                                         </div>
@@ -153,18 +155,23 @@ class MainMenu extends React.Component {
                                         this.props.history.push('/subject/' + this.state.subject + '/simulation/' + this.state.tests[this.state.active].id);
                                     }}>
                                         <div className={s.wrap}>
+                                            <div className={s.icon}><Clock /></div>
                                             <div className={s.btn_title}><strong>Симулювати ЗНО</strong></div>
-                                            <div className={s.comment}>Перевір знання в умовах справжнього тестування</div>
+                                            <div className={s.comment}>Перевір знання в умовах тесту</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className={s.description}>Ти також можеш роздрукувати цей тест тут та автоматично перевірити розв’язання з нашим мобільним додатком (незабаром)</div>
-                                <Topic 
+                                <Topic
                                     topic={["ЛОЛ"]}
                                 />
                                 <div className={s.video_explanation_frame}>
                                     <p><strong><VideoCamera /> Відеопояснення</strong></p>
                                     <div className={s.video}></div>
+                                </div>
+                                <div className={s.skip}>
+                                    <button className={g.btn}>Скинути прогрес</button>
+                                    <div className={s.description} style={{width:'130%',fontSize: '14px', lineHeight:'18px'}}>Ти втратиш прогрес, бали і рекомендовані теми, та зможеш практикувати та симулювати цей тест з нуля </div>
                                 </div>
                             </div>) : null}
                         </div>
@@ -172,7 +179,7 @@ class MainMenu extends React.Component {
                 </div>
             )
         }
-        return(<Redirect to="/login"/>);
+        return (<Redirect to="/login" />);
     }
 }
 

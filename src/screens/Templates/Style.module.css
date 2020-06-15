@@ -35,7 +35,11 @@
     height: 85.5px;
     margin-bottom: 29px;
 }
-
+.icon_header{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
 .title_bar {
     font-size: 22px;
     line-height: 27px;
@@ -167,3 +171,23 @@
     font-family: Gilroy;
     font-size: 18px;
 }
+
+.inactive{
+    opacity:0.4;
+}
+
+.wrong_answer{
+    opacity: 0.6;
+}
+
+
+@media (max-width: 992px) {
+    
+    .video {
+        width: 339px;
+        height: 165.4px;
+        background-color: black;
+        margin-bottom: 30px;
+    }
+}
+
