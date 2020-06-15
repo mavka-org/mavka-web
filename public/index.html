@@ -52,14 +52,26 @@
         }
         images[x].style.width = l + "px";
       }
+
+
       function update () {
         images = document.getElementsByTagName("img");
-        let n = images.length;
+        console.log(images);
+        n = images.length;
         for (let x in images) {
           if (typeof images[x] != "object") continue;
-          upd(x);
+          //alert(x);
+          if (images[x].naturalWidth != 0) {
+            upd(x);
+          }
+          else {
+            images[x].onload = function () {
+              upd(x);
+            };
+          }
         }
       }
+
       for (let x in images) {
         if (typeof images[x] != "object") continue;
         if (images[x].naturalWidth != 0) {
@@ -81,6 +93,7 @@
     <div id="root"></div>
 
     <div id="FAKE"></div>
+    <div id="FAKE1"></div>
 
     <script>
       function f () {
@@ -90,9 +103,9 @@
             MathJax.typesetPromise();
           }).catch((err) => console.log(err.message));
         }
-        update();
       }
       document.getElementById('FAKE').onclick = f;
+      document.getElementById('FAKE1').onclick = update;
     </script>
     <!--
       This HTML file is a template.

@@ -92,11 +92,13 @@ export class Test extends React.Component{
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         document.getElementById("FAKE").click();
+        document.getElementById("FAKE1").click();
     }
     
     componentDidMount() {
         this.getAuthStatus();
         document.getElementById("FAKE").click();
+        document.getElementById("FAKE1").click();
     }
 
     // Get firebase auth status.

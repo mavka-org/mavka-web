@@ -12,6 +12,7 @@ class Answer extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
+        document.getElementById("FAKE1").click();
         if (this.props != prevProps) {
             this.setState({
                 currentAnswer: this.props.currentAnswer,
