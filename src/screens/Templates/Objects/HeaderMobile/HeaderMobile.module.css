@@ -1,0 +1,95 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    padding: 105px 0px;
+    position: absolute;
+    width: 945px;
+    left: calc(50% - 945px/2);
+    top: 0px;
+}
+
+.header{
+    width: 100%;
+    height: 133px;
+    background-color: white;
+    display: flex;
+    font-size: 18px;
+    line-height: 22px;
+    flex-direction: column;
+}
+
+.nav_panel{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 15px;
+    align-items: baseline;
+    margin-top: 15px;
+}
+.tip{
+    
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    margin-top: 15px;
+    background-color: #E8E8E8;
+}
+.tip_1{
+    
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    margin-top: 15px;
+    background-color: white;
+}
+.timer{
+    display: flex;
+    flex-direction: row;
+}
+.title{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+
+@media (max-width: 992px) {
+    /* это будет показано при разрешении монитора до 930 пикселей */
+    .page {
+        display: flex;
+        flex-direction: column;
+        padding: 5px 0px;
+        position: absolute;
+        width: 95%;
+        left: calc(50% - 95%/2);
+        top: 0px;
+        font-size: 16px;
+    }
+}
+@media (max-width: 992px) {
+    /* это будет показано при разрешении монитора до 930 пикселей */
+    .header{
+        width: 100%;
+        height: 133px;
+        display: flex;
+        font-size: 16px;
+        line-height: 20px;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 993px) {
+    .page {
+        display: flex;
+        flex-direction: column;
+        padding: 105px 0px;
+        position: absolute;
+        width: 950px;
+        left: calc(50% - 950px/2);
+        top: 0px;
+    }
+}
