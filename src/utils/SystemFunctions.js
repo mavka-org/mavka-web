@@ -1,4 +1,5 @@
 class SystemFunctions{
+
     static changeStringBeetwenHomeAndMain(homeString){
         let subjectString = "";
         if(homeString == "Математика"){
@@ -11,6 +12,10 @@ class SystemFunctions{
             subjectString = "англійської мови";
         }
         return subjectString;
+    }
+
+    static stringsEqual(str1, str2){
+        return (str1.localeCompare(str2) == 0);
     }
 }
 export default SystemFunctions;

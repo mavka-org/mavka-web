@@ -1,6 +1,5 @@
 import React from 'react';
-import Incorrect from './../../Icon/Incorrect/Incorrect';
-import Correct from './../../Icon/Correct/Correct'
+import CheckAnswerIcon from '../../Icon/CheckAnswerIcon';
 import g from './../../Objects/Answer/Answer.module.css';
 class Answer extends React.Component {
 
@@ -22,7 +21,9 @@ class Answer extends React.Component {
     }
 
     render() {
-        console.log(this.state.currentAnswer + " " +  this.props.letter);
+        console.log(this.state.currentAnswer + " " +  this.props.letter + " " + this.props.isCorrectAnswer);
+        let isUserAnswer = !(this.props.letter.localeCompare(this.state.currentAnswer));
+        console.log(isUserAnswer);
         return (
             <div onClick={()=>{
                 this.props.updateCurrentAnswer(this.props.letter);
@@ -31,7 +32,12 @@ class Answer extends React.Component {
                     <div className={g.letter_choice}>
 
                         <div className={g.check}>
-                            <div className={g.symbol}><Incorrect /></div>
+                            <div className={g.symbol} style={{
+                                display: !this.props.hidden ? "none" : "block"
+                                }}> <CheckAnswerIcon 
+                                        isCorrectAnswer={this.props.isCorrectAnswer}
+                                        isUserAnswer={isUserAnswer}
+                                    /></div>
                             <div className={g.letter}><strong>{this.props.letter}:</strong></div>
                         </div>
                     </div>
