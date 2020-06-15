@@ -122,9 +122,13 @@ export class Test extends React.Component{
                 active: x
             });
         }else{
-            console.log("ПОСЛЕДНИЙ ВОПРОС")
+            
             if(this.state.isPractice){
-                return <Redirect to={'/subject/' + this.state.subject}/>;
+                console.log("ПОСЛЕДНИЙ ВОПРОС")
+                this.props.history.push({
+                    pathname: '/subject/' + this.state.subject,
+                    state: { testID: this.state.testId }
+                  });
             }else{
                 this.state.user.getIdToken().then((token) => {
                     Services.updateTestAnswers(token, this.state.testId, this.state.answers);
