@@ -52,6 +52,7 @@ export class Test extends React.Component{
         let current = this;
         Services.getReferenceById(this.state.testId).then(function (ref) {
             Services.getData(ref).then(function (data) {
+                console.log(data);
                 let myData = data.map(value => Services.getQuestionClass(value));
                 let status = [];
                 for (let i = 0; i < myData.length; i++) status.push(false);
@@ -168,10 +169,12 @@ export class Test extends React.Component{
                 const data = this.state.data;
                 let num = this.state.active - 1;
                 let type = data[num].getType();
+
                 if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
                     type += "_OneColumn";
                 }
                 const DynamicComponent = componentsMap[type];
+                //alert(type);
                 return (
                         <div>
                             <DynamicComponent
