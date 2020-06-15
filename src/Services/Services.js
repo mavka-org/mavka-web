@@ -120,7 +120,7 @@ class Question {
         return this.isDoubleColumn;
     }
     checkCorrect (answerToCheck) {
-        if(this.getType() == "АБВГД"){
+        if(this.getType() == "ABCDE"){
             return answerToCheck == this.answer;
         }
     }

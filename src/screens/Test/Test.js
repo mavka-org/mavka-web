@@ -168,7 +168,7 @@ export class Test extends React.Component{
                 const data = this.state.data;
                 let num = this.state.active - 1;
                 let type = data[num].getType();
-                if (window.innerWidth <= 992 || data[num].getIsDoubleColumn()) {
+                if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
                     type += "_OneColumn";
                 }
                 const DynamicComponent = componentsMap[type];

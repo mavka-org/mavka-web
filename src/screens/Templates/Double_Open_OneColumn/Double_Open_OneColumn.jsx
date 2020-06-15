@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './Double_Open_OneColumn.module.css';
 import g from './../Style.module.css';
-import Incorrect from "../Icon/Incorrect";
 import Party from "../Icon/Party";
 import Question from '../Objects/Question/Question.jsx';
 import Topic from './../Objects/Topic/Topic.jsx';
@@ -22,7 +21,7 @@ class DoubleOpenOneColumn extends React.Component {
                             <div className={s.answers_frame}>
                                 <div className={s.answer}>
                                     <div className={s.variant}>
-                                        <div className={s.number}><div className={s.icon}><Incorrect /></div><strong>1:</strong></div><div>Визначте довжину відрізка math: O_1O_2.</div></div>
+                                        <div className={s.number}><div className={s.icon}></div><strong>1:</strong></div><div>Визначте довжину відрізка math: O_1O_2.</div></div>
                                     <div className={s.comment}>
                                         <p>1) Знайдемо довжину одного кола `math: =8\pi`.2) Знайдемо довжину радіусу з формули довжини кола3) Відстань між центрами кіл дорівнює двом радіусам </p>
                                     </div>
@@ -33,7 +32,7 @@ class DoubleOpenOneColumn extends React.Component {
                                 </div>
                                 <div className={s.answer}>
                                     <div className={s.variant}>
-                                        <div className={s.number}><div className={s.icon}><Incorrect /></div><strong>1:</strong></div><div>Визначте довжину відрізка math: O_1O_2.</div></div>
+                                        <div className={s.number}><div className={s.icon}></div><strong>1:</strong></div><div>Визначте довжину відрізка math: O_1O_2.</div></div>
                                     <div className={s.comment}>
                                         <p>1) Знайдемо довжину одного кола `math: =8\pi`.2) Знайдемо довжину радіусу з формули довжини кола3) Відстань між центрами кіл дорівнює двом радіусам </p>
                                     </div>
