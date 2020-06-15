@@ -92,6 +92,7 @@ class ABCDE extends Component {
                                     hidden={hidden}
                                     updateCurrentAnswer={this.updateCurrentAnswer}
                                     currentAnswer={this.state.currentAnswer}
+                                    isCorrectAnswer={data.checkCorrect('А')}
                                 />
                                 <Answer
                                     answered={this.state.answered}
@@ -101,6 +102,7 @@ class ABCDE extends Component {
                                     hidden={hidden}
                                     updateCurrentAnswer={this.updateCurrentAnswer}
                                     currentAnswer={this.state.currentAnswer}
+                                    isCorrectAnswer={data.checkCorrect('Б')}
                                 />
                                 <Answer
                                     answered={this.state.answered}
@@ -110,6 +112,7 @@ class ABCDE extends Component {
                                     hidden={hidden}
                                     updateCurrentAnswer={this.updateCurrentAnswer}
                                     currentAnswer={this.state.currentAnswer}
+                                    isCorrectAnswer={data.checkCorrect('В')}
                                 />
                                 <Answer
                                     answered={this.state.answered}
@@ -119,6 +122,7 @@ class ABCDE extends Component {
                                     hidden={hidden}
                                     updateCurrentAnswer={this.updateCurrentAnswer}
                                     currentAnswer={this.state.currentAnswer}
+                                    isCorrectAnswer={data.checkCorrect('Г')}
                                 />
                                 <Answer
                                     answered={this.state.answered}
@@ -128,6 +132,7 @@ class ABCDE extends Component {
                                     hidden={hidden}
                                     updateCurrentAnswer={this.updateCurrentAnswer}
                                     currentAnswer={this.state.currentAnswer}
+                                    isCorrectAnswer={data.checkCorrect('Д')}
                                 />
                             </div>
                             <Next 
@@ -136,6 +141,7 @@ class ABCDE extends Component {
                                 number={this.state.active}
                                 currentAnswer={this.state.currentAnswer}
                                 updateAnswers={this.props.updateAnswers}
+                                isPractice={this.props.isPractice}
                             />
                         </div>
                     </div>

@@ -18,7 +18,7 @@
     
 }
 .zno_choose:hover {
-    border: 1px black solid;
+    border: 1px grey solid;
     cursor: pointer;
 }
 
@@ -33,4 +33,7 @@
 .results{
     display: flex;
     flex-direction: row;
+}
+.active {
+    border: 1px black solid;
 }

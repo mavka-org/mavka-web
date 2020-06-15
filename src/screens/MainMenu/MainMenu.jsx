@@ -10,6 +10,7 @@ import SystemFunctions from "../../utils/SystemFunctions"
 import axios from "axios";
 import firebase from "../../global"
 import ZNO_component from './Object/ZNO_component';
+import Services from '../../Services/Services';
 class MainMenu extends React.Component {
 
     constructor(props) {
@@ -59,14 +60,14 @@ class MainMenu extends React.Component {
             response.then(function (value) {
                 let tests = []
                 let T = value.data;
-                console.log("!!!!!!!!");
                 console.log(T);
                 for (let year in T) {
                     for (let t in T[year]) {
                         console.log(T[year][t].status);
                         tests.push({
-                            name: T[year][t].type + " " + year,
-                            status: T[year][t].status,
+                            name1: "ЗНО " + year,
+                            name2: T[year][t].type.toLowerCase() + " сесія",
+                            status: T[year][t].status.toLowerCase(),
                             id: T[year][t].id,
                             ref: T[year][t].ref
                         })
@@ -79,10 +80,19 @@ class MainMenu extends React.Component {
         });
     }
 
+    updateSelectedTest = (num) => {
+        this.setState({
+            active: num
+        })
+    }
+
     render() {
         if (this.state.user == 25) {
             return (<div></div>);
         }
+        console.log("!!!!!!!!!!");
+        console.log(this.state.active);
+        console.log(this.state.tests[this.state.active]);
         if(this.state.user){
             return (
                 <div className={g.background}>
@@ -103,13 +113,15 @@ class MainMenu extends React.Component {
                             <div className={s.tests_body_left}>
                                 <ZNO_component
                                     tests={this.state.tests} 
+                                    updateSelectedTest={this.updateSelectedTest}
+                                    active={this.state.active}
                                 />
                             </div>
 
-                            <div className={s.test_body_right}>
+                            {this.state.tests.length > 0 ? (<div className={s.test_body_right}>
                                 <div className={s.scores_frame}>
                                     <div className={s.title}>
-                                        <strong>Бали ЗНО 2018 додаткова сесія</strong>
+                                        <strong>Бали {this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
                                     </div>
                                     <div className={s.score_frame}>
                                         <div className={s.score}>
@@ -128,13 +140,18 @@ class MainMenu extends React.Component {
                                     <div className={s.btn_wrap}><button className={g.btn}>Переглянути помилки</button></div>
                                 </div>
                                 <div className={s.buttons_frame}>
-                                    <div className={s.btn}>
+                                    <div className={s.btn} onClick={() => {
+                                        Services.changeTestStatusByID(this.token, this.state.tests[this.state.active].id, "вільна практика");
+                                        this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
+                                    }}>
                                         <div className={s.wrap}>
                                             <div className={s.btn_title}><strong>Практикуватися</strong></div>
                                             <div className={s.comment}>Проходь завдання та вчися на поясненнях</div>
                                         </div>
                                     </div>
-                                    <div className={s.btn}>
+                                    <div className={s.btn} onClick={() => {
+                                        this.props.history.push('/subject/' + this.state.subject + '/simulation/' + this.state.tests[this.state.active].id);
+                                    }}>
                                         <div className={s.wrap}>
                                             <div className={s.btn_title}><strong>Симулювати ЗНО</strong></div>
                                             <div className={s.comment}>Перевір знання в умовах справжнього тестування</div>
@@ -149,7 +166,7 @@ class MainMenu extends React.Component {
                                     <p><strong><VideoCamera /> Відеопояснення</strong></p>
                                     <div className={s.video}></div>
                                 </div>
-                            </div>
+                            </div>) : null}
                         </div>
                     </div>
                 </div>
