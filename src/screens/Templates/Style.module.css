@@ -167,3 +167,23 @@
     font-family: Gilroy;
     font-size: 18px;
 }
+
+.inactive{
+    opacity:0.4;
+}
+
+.wrong_answer{
+    opacity: 0.6;
+}
+
+
+@media (max-width: 992px) {
+    
+    .video {
+        width: 339px;
+        height: 165.4px;
+        background-color: black;
+        margin-bottom: 30px;
+    }
+}
+
