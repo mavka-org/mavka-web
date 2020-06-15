@@ -165,8 +165,8 @@ export class Test extends React.Component{
     }
 
     render() {
-        console.log("Test.js");
-        console.log(this.state.checkedAnswers);
+       // console.log("Test.js");
+       // console.log(this.state.checkedAnswers);
         if (this.state.user == 25) {
             return (<div></div>);
         }

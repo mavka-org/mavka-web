@@ -22,13 +22,13 @@ class Answer extends React.Component {
     }
 
     render() {
-        console.log(this.state.currentAnswer + " " +  this.props.letter + " " + this.props.isCorrectAnswer);
+        //console.log(this.state.currentAnswer + " " +  this.props.letter + " " + this.props.isCorrectAnswer);
         let isUserAnswer = !(this.props.letter.localeCompare(this.state.currentAnswer));
-        console.log(isUserAnswer);
+        //console.log(isUserAnswer);
         return (
             <div onClick={()=>{
                 this.props.updateCurrentAnswer(this.props.letter);
-            }}className={!this.state.answered ? (g.answer + (this.state.currentAnswer == this.props.letter ? (" " + g.answer_answered) : "")) : ""}>
+            }}className={(g.answer + (this.state.currentAnswer == this.props.letter ? (" " + g.answer_answered) : ""))}>
                 <div className={g.answer_text_frame}>
                     <div className={g.letter_choice}>
 
