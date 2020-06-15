@@ -1,5 +1,5 @@
 import React from 'react';
-import Incorrect from './../../Icon/Incorrect/Incorrect';
+import Incorrect from '../../Icon/CheckAnswerIcon/CheckAnswerIcon';
 import Correct from './../../Icon/Correct/Correct'
 import g from './../../Objects/Answer/Couple_Answer.module.css';
 class CoupleAnswer extends React.Component {

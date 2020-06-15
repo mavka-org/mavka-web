@@ -188,5 +188,17 @@ class Services {
         )
         return response;
     }
+
+    static async changeTestStatusByID(token, testID, status){
+        const response = await axios.post(
+            'https://us-central1-mavka-c5c01.cloudfunctions.net/changeStatusById',
+            { 
+                token: token,
+                id: testID,
+                status: status
+            },
+            { headers: { 'Content-Type': 'text/plain' } }
+        )
+    }
 }
 export default Services;

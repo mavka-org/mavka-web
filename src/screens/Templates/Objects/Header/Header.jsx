@@ -2,6 +2,7 @@ import React from 'react';
 import g from './../../Style.module.css';
 import Strong from './../../Icon/Strong/Strong';
 import QuestionNavPanel from "../../../../UI/QuestionNavPanel";
+import { Link } from 'react-router-dom';
 class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -28,7 +29,9 @@ class Header extends React.Component {
                     <div className={g.title_bar}>
                         <p><strong><Strong />Практика</strong></p>
                         <p><strong>{this.props.subject}</strong> {this.props.year} {this.props.session} сесія</p>
-                        <button className={g.end}>Завершити</button>
+                        <Link to={"/subject/" + this.props.subject}>
+                            <button className={g.end}>Завершити</button>
+                        </Link>
                     </div>
                 </div>
                 <QuestionNavPanel
