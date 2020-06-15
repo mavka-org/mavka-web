@@ -12,6 +12,7 @@ import axios from "axios";
 import firebase from "../../global"
 import ZNO_component from './Object/ZNO_component';
 import Services from '../../Services/Services';
+import Confetti from '../../UI/Confetti/Confetti';
 class MainMenu extends React.Component {
 
     constructor(props) {
@@ -120,6 +121,9 @@ class MainMenu extends React.Component {
                             </div>
 
                             {this.state.tests.length > 0 ? (<div className={s.test_body_right}>
+                                <div>
+                                    {typeof this.props.location.state != 'undefined' ? (<Confetti />) : null}
+                                </div>
                                 <div className={s.scores_frame}>
                                     <div className={s.title}>
                                         <strong>Бали {this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
