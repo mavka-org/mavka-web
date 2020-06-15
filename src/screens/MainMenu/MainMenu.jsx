@@ -3,7 +3,7 @@ import s from './MainMenu.module.css'
 import g from '../Templates/Style.module.css';
 import ZNO from './Object/ZNO/ZNO';
 import Topic from "../Templates/Objects/Topic/Topic"
-import Strong from "../Templates/Icon/Strong";
+import strong from "../Templates/icons/strong.png";
 import Clock from "../Templates/Icon/Clock";
 import VideoCamera from "../Templates/Icon/VideoCamera";
 import { Link, Router, Redirect } from 'react-router-dom';
@@ -146,7 +146,7 @@ class MainMenu extends React.Component {
                                         this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
                                     }}>
                                         <div className={s.wrap}>
-                                            <div className={s.icon}><Strong /></div>
+                                            <div className={s.icon}><img src={strong} width={"100%"}/></div>
                                             <div className={s.btn_title}><strong>Практикуватися</strong></div>
                                             <div className={s.comment}>Проходь завдання та вчися на поясненнях</div>
                                         </div>
