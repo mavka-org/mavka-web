@@ -45,8 +45,9 @@ class ABCDE extends Component {
         })
     }
     render() {
+        console.log(this.state.currentAnswer);
         const data = this.state.data;
-        let hidden = this.state.answered;
+        let hidden = this.state.answered && this.props.isPractice;
         //console.log("ABCDE.jsx");
         //console.log(this.props.checkedAnswers);
         //console.log(this.state.checkedAnswers);
