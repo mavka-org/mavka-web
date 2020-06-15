@@ -61,10 +61,8 @@ class MainMenu extends React.Component {
             response.then(function (value) {
                 let tests = []
                 let T = value.data;
-                console.log(T);
                 for (let year in T) {
                     for (let t in T[year]) {
-                        console.log(T[year][t].status);
                         tests.push({
                             name1: "ЗНО " + year,
                             name2: T[year][t].type.toLowerCase() + " сесія",
@@ -74,8 +72,11 @@ class MainMenu extends React.Component {
                         })
                     }
                 }
+                //let myProps = Object.keys(current.props.location.state);
+                console.log(current.props.location.state);
                 current.setState({
-                    tests: tests
+                    tests: tests,
+                    active: SystemFunctions.mainMenuActiveElement(typeof current.props.location.state != 'undefined' ? current.props.location.state.testID : 'undefined', tests)
                 })
             });
         });
@@ -93,7 +94,6 @@ class MainMenu extends React.Component {
         }
         console.log("!!!!!!!!!!");
         console.log(this.state.active);
-        console.log(this.state.tests[this.state.active]);
         if (this.state.user) {
             return (
                 <div className={g.background}>
