@@ -6,16 +6,17 @@ import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
 
 class Question {
     constructor(json){
-        this.number = json["Номер"]
-        this.type = json["Формат"];
+        this.number = json["Номер"];
+        this.type = json["Format"];
         this.year = json["Рік"];
         this.number = json["Номер"];
-        this.session = json["Cecія"];
+        this.session = json["Сесія"];
         this.subject = json["Предмет"];
         this.topic = json["Тема"];
         this.question = json["Питання"];
         this.answer = json["Правильна відповідь"];
         this.comment = json["Коментар"];
+        this.isDoubleColumn = json["Розгорнутий вигляд"];
 
         /* ARTEM'S CODE. PLEASE BEWARE IT'S SHITTY */
         this.match_subquestions = [json["Частинка 1"], json["Частинка 2"], json["Частинка 3"], json["Частинка 4"]];
@@ -114,6 +115,9 @@ class Question {
     }
     getOpenAnswer () {
         return this.open_answer; //THIS SHOULDN'T EXIST (change to normal getAnswer())
+    }
+    getIsDoubleColumn() {
+        return this.isDoubleColumn;
     }
     checkCorrect (answerToCheck) {
         if(this.getType() == "АБВГД"){
