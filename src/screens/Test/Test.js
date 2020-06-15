@@ -70,12 +70,12 @@ export class Test extends React.Component{
     
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        document.getElementById("root").click();
+        document.getElementById("FAKE").click();
     }
     
     componentDidMount() {
         this.getAuthStatus();
-        document.getElementById("root").click();
+        document.getElementById("FAKE").click();
     }
 
     // Get firebase auth status.
@@ -162,8 +162,6 @@ export class Test extends React.Component{
                                     currentAnswer={this.state.answers[this.state.active]}
                                     isPractice={this.state.isPractice}
                                 />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
                             </div>
                     )
                 }
@@ -178,8 +176,6 @@ export class Test extends React.Component{
                                     data={data[num]}
                                     changeStatus={this.updateStatus}
                                 />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
                             </div>
                     )
                 }
@@ -198,8 +194,6 @@ export class Test extends React.Component{
                                     updateAnswers={this.updateAnswers}
                                     currentAnswer={null}
                                 />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
                             </div>
                     )
                 }
@@ -218,8 +212,6 @@ export class Test extends React.Component{
                                     updateAnswers={this.updateAnswers}
                                     currentAnswer={null}
                                 />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
                             </div>
                     )
                 }
@@ -234,8 +226,6 @@ export class Test extends React.Component{
                                     data={data[num]}
                                     changeStatus={this.updateStatus}
                                 />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
                             </div>
                     )
                 }
@@ -250,8 +240,6 @@ export class Test extends React.Component{
                                     data={data[num]}
                                     changeStatus={this.updateStatus}
                                 />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
                             </div>
                     )
                 }
@@ -266,8 +254,6 @@ export class Test extends React.Component{
                                     data={data[num]}
                                     changeStatus={this.updateStatus}
                                 />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
                             </div>
                     )
                 }

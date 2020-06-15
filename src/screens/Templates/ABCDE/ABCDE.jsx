@@ -47,9 +47,10 @@ class ABCDE extends Component {
     render() {
         const data = this.state.data;
         let hidden = this.state.answered;
-        console.log("ABCDE.jsx");
-        console.log(this.props.checkedAnswers);
-        console.log(this.state.checkedAnswers);
+        //console.log("ABCDE.jsx");
+        //console.log(this.props.checkedAnswers);
+        //console.log(this.state.checkedAnswers);
+        console.log(this.state.data);
         return (
             <div className={g.background}>
                 <div className={[s.page, g.page_].join(' ')}>
