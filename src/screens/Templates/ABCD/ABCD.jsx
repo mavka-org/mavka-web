@@ -35,7 +35,7 @@ class ABCD extends Component {
     }
     render() {
         const data = this.state.data;
-        let hidden = this.state.answered;
+        let hidden = this.state.answered && this.props.isPractice;
         return (
             <div>
                 <div className={s.question_body}>
@@ -43,45 +43,73 @@ class ABCD extends Component {
                         <Question
                             question={data.getQuestion()}
                             active={this.state.active}
-                            />
+                        />
                         <Topic
                             topic={data.getTopic()}
-                            />
+                            hidden={hidden}
+                        />
                         <Comment
                             comment={data.getComment()}
-                            />
-                        <Video />
+                            hidden={hidden}
+                        />
+                        <Video
+                            hidden={hidden}
+                        />
                     </div>
 
                     <div className={s.answers_frame}>
                         <p className={g.choose}><strong>Обери одну відповідь</strong></p>
                         <div className={s.answers}>
                             <Answer
+                                answered={this.state.answered}
                                 letter={"A"}
                                 question={data.getQuestions()[0]}
                                 explanation={data.getExplanations()[0]}
                                 hidden={hidden}
+                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                currentAnswer={this.state.currentAnswer}
+                                isCorrectAnswer={data.checkCorrect('А')}
                             />
                             <Answer
+                                answered={this.state.answered}
                                 letter={"Б"}
                                 question={data.getQuestions()[1]}
                                 explanation={data.getExplanations()[1]}
                                 hidden={hidden}
+                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                currentAnswer={this.state.currentAnswer}
+                                isCorrectAnswer={data.checkCorrect('Б')}
                             />
                             <Answer
+                                answered={this.state.answered}
                                 letter={"В"}
                                 question={data.getQuestions()[2]}
                                 explanation={data.getExplanations()[2]}
                                 hidden={hidden}
+                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                currentAnswer={this.state.currentAnswer}
+                                isCorrectAnswer={data.checkCorrect('В')}
                             />
                             <Answer
+                                answered={this.state.answered}
                                 letter={"Г"}
                                 question={data.getQuestions()[3]}
                                 explanation={data.getExplanations()[3]}
                                 hidden={hidden}
+                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                currentAnswer={this.state.currentAnswer}
+                                isCorrectAnswer={data.checkCorrect('Г')}
                             />
+
                         </div>
-                        <Next />
+                        <Next
+                            answered={this.state.answered}
+                            updateQuestion={this.props.updateQuestion}
+                            number={this.state.active}
+                            currentAnswer={this.state.currentAnswer}
+                            updateAnswers={this.props.updateAnswers}
+                            isPractice={this.props.isPractice}
+                        />
                     </div>
                 </div>
             </div>
