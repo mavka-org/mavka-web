@@ -50,37 +50,38 @@ class Courses extends React.Component {
         var pic6 = <UK />
         var pic7 = <France />
         var pic8 = <German />
-        if(this.state.user == 25){
-            return(<div></div>)
+        if (this.state.user == 25) {
+            return (<div></div>)
         }
-        if(this.state.user){
+        if (this.state.user) {
             return (
                 <div className={g.background}>
                     <div className={[s.page, g.page_].join(' ')}>
-                        <div className={g.question_header}>
+
+                        <div className={s.question_header}>
                             <div className={s.header}>
-                                <div className={s.title}>Останній ривок до ЗНО <br></br>разом з мавкою <Fire /></div>
+                                <div className={s.title}>Останній ривок до ЗНО <br></br>разом з мавкою <div><Fire /></div></div>
                                 <div className={s.description}>Практикуйся, вчися на поясненнях та проходь симуляції екзамену. Обери предмет:</div>
                             </div>
-                            
-                            <div className={s.courses_wrapper}>
-                                <Course course={'Українська мова і література'} pic={pic1} navigate={this.navigate}/>
-                                <Course course={'Математика'} pic={pic2} navigate={this.navigate}/>
-                                <Course course={'Історія України'} pic={pic3} navigate={this.navigate}/>
-                                <Course course={'Біологія'} pic={pic4} navigate={this.navigate}/>
-                                <Course course={'Географія'} pic={pic5} style={{opacity:0.4, cursor: 'default'}} />
-                                <Course course={'Англійська мова'} pic={pic6} style={{opacity:0.4, cursor: 'default'}}/>
-                                <Course course={'Французька мова'}pic={pic7} style={{opacity:0.4, cursor: 'default'}}/>
-                                <Course course={'Німецька мова'}pic={pic8} style={{opacity:0.4, cursor: 'default'}}/>
-                                
-                            </div>
                         </div>
+                        <div className={s.courses_wrapper}>
+                            <Course course={'Українська мова і література'} pic={pic1} navigate={this.navigate} />
+                            <Course course={'Математика'} pic={pic2} navigate={this.navigate} />
+                            <Course course={'Історія України'} pic={pic3} navigate={this.navigate} />
+                            <Course course={'Біологія'} pic={pic4} navigate={this.navigate} />
+                            <Course course={'Географія'} pic={pic5} style={{ opacity: 0.4, cursor: 'default' }} />
+                            <Course course={'Англійська мова'} pic={pic6} style={{ opacity: 0.4, cursor: 'default' }} />
+                            <Course course={'Французька мова'} pic={pic7} style={{ opacity: 0.4, cursor: 'default' }} />
+                            <Course course={'Німецька мова'} pic={pic8} style={{ opacity: 0.4, cursor: 'default' }} />
+
+                        </div>
+
                     </div>
                 </div>
             );
         }
         else {
-            return(<Redirect to="/login"/>);
+            return (<Redirect to="/login" />);
         }
     }
 }
