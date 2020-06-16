@@ -167,7 +167,7 @@ class MainMenu extends React.Component {
                                     <div className={s.title}>
                                         <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
                                     </div>
-                                    <Scores />
+                                    {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores />) : ""}
                                 </div>
                                 <div className={s.buttons_frame}>
                                     <Button stl={this.btnPracticeStyle()} click={this.onClickPractice()} icon={pic1} title={'Практикуватися'} comment={'Проходь завдання та вчися на поясненнях'} />                         

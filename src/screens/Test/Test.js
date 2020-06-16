@@ -211,7 +211,6 @@ export class Test extends React.Component{
                     type += "_OneColumn";
                 }
                 const DynamicComponent = componentsMap[type];
-                //alert(type);
                 return (
                     <div className={g.background}>
                         <div className={[s.page, g.page_].join(' ')}>

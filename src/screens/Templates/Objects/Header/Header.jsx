@@ -26,12 +26,7 @@ class Header extends React.Component {
         return (
             <div>
                 <div>
-                    <QuestionNavPanel
-                        checkedAnswers={this.state.checkedAnswers}
-                        list={this.props.list}
-                        updateQuestion={this.props.updateQuestion}
-                        active={this.props.active}
-                    />
+                    
                     <div className={g.question_header}>
                         <div className={g.title_bar}>
                             <div className={g.icon_header}><div><Strong />&nbsp;</div><strong>Практика</strong></div>
@@ -41,6 +36,12 @@ class Header extends React.Component {
                             </Link>
                         </div>
                     </div>
+                    <QuestionNavPanel
+                        checkedAnswers={this.state.checkedAnswers}
+                        list={this.props.list}
+                        updateQuestion={this.props.updateQuestion}
+                        active={this.props.active}
+                    />
                 </div>
             </div>
         );
