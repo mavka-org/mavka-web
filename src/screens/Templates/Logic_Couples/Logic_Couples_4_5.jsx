@@ -335,15 +335,6 @@ class Logic_Couples_4_5 extends Component {
                                     number={this.state.active}
                                 />
                             </div>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <Next
-                                answered={this.state.answered}
-                                callback={this.props.changeStatus}
-                                number={this.state.active}
-                            />
                         </div>
 
                     </div>
