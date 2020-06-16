@@ -35,31 +35,21 @@ class Open_Ended extends React.Component {
         let hidden = this.state.answered;
 
         return (
-            <div className={s.background}>
-                <div className={[s.page, g.page_].join(' ')}>
-                    <Header
-                        subject={data.getSubject()}
-                        year={data.getYear()}
-                        session={data.getSession()}
-                        list={this.state.number}
-                        callback={this.props.callback}
+            <div>
+                <div className={s.question_body}>
+                    <Question
+                        question={data.getQuestion()}
                         active={this.state.active}
                         />
-                    <div className={s.question_body}>
-                        <Question
-                            question={data.getQuestion()}
-                            active={this.state.active}
+                    <div className={s.main_answers}>
+                        <Next />
+                        <Topic
+                            topic={data.getTopic()}
                             />
-                        <div className={s.main_answers}>
-                            <Next />
-                            <Topic
-                                topic={data.getTopic()}
-                                />
-                            <Comment
-                                comment={data.getComment()}
-                                />
-                            <Video />
-                        </div>
+                        <Comment
+                            comment={data.getComment()}
+                            />
+                        <Video />
                     </div>
                 </div>
             </div>
