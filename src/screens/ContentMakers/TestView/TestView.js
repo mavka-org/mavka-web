@@ -1,23 +1,44 @@
 import React from 'react';
 import {Redirect, Link} from 'react-router-dom';
 import ABCDE from "../../Templates/ABCDE/ABCDE";
+import ABCDE_OneColumn from "../../Templates/ABCDE_OneColumn/ABCDE_OneColumn";
 import axios from "axios";
 import ABCD from "../../Templates/ABCD/ABCD";
-import Logic_couples_4_4 from "../../Templates/Logic_Couples/Logic_Couples_4_4";
-import Logic_couples_4_5 from "../../Templates/Logic_Couples/Logic_Couples_4_5";
+import ABCD_OneColumn from "../../Templates/ABCD_OneColumn/ABCD_OneColumn";
+import Logic_Couples_4_5 from "../../Templates/Logic_Couples/Logic_Couples_4_5";
+import Logic_Couples_4_5_OneColumn from "../../Templates/Logic_Couples_OneColumn/Logic_Couples_4_5_OneColumn";
+import Logic_Couples_4_4 from "../../Templates/Logic_Couples/Logic_Couples_4_4";
+import Logic_Couples_4_4_OneColumn from "../../Templates/Logic_Couples_OneColumn/Logic_Couples_4_4_OneColumn";
 import Double_Open from "../../Templates/Double_Open/Double_Open";
+import Double_Open_OneColumn from "../../Templates/Double_Open_OneColumn/Double_Open_OneColumn";
 import Open from "../../Templates/Open/Open";
 import Open_Ended from "../../Templates/Super_Open/Open_Ended";
 import Services from "../../../Services"
+import g from "../../Templates/Style.module.css";
+import s from "../../Templates/ABCDE/ABCDE.module.css";
+import Header from "../../Templates/Objects/Header/Header";
 
-
+const componentsMap = {
+    ABCDE,
+    ABCD,
+    Logic_Couples_4_4,
+    Logic_Couples_4_5,
+    Double_Open,
+    Open,
+    Open_Ended,
+    ABCDE_OneColumn,
+    ABCD_OneColumn,
+    Double_Open_OneColumn,
+    Logic_Couples_4_4_OneColumn,
+    Logic_Couples_4_5_OneColumn,
+};
 
 export class TestView extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            testId: this.props.match.params.id,
+            testId: null,
             active: 1,
             data: null,
             n: 0,
@@ -79,125 +100,45 @@ export class TestView extends React.Component {
     }
 
     render() {
-        console.log(this.state.data);
-        console.log(this.state.list);
-        //alert(this.state.active);
-        if (this.state.data) {
+        if (this.state.data.length > 0) {
             const data = this.state.data;
             let num = this.state.active - 1;
-            if (data.getType() == "АБВГД") {
-                return (
-                        <div>
-                            <ABCDE
-                                callback={this.updateQuestion}
-                                active={this.state.active}
-                                number={this.state.n}
-                                answered={this.state.answered[num]}
-                                data={data}
-                                changeStatus={this.updateStatus}
-                            />
-                            {document.getElementById("root").click()}
-                            {document.getElementById("root").click()}
-                        </div>
-                )
-            }
-            if (data.getType() == "АБВГ") {
-                return (
-                        <div>
-                            <ABCD
-                                callback={this.updateQuestion}
-                                active={this.state.active}
-                                number={this.state.n}
-                                answered={this.state.answered[num]}
-                                data={data}
-                                changeStatus={this.updateStatus}
-                            />
-                            {document.getElementById("root").click()}
-                            {document.getElementById("root").click()}
-                        </div>
-                )
-            }
-            if (data.getType() == "Логічні пари 4/4") {
-                return (
-                        <div>
-                            <Logic_couples_4_4
-                                callback={this.updateQuestion}
-                                active={this.state.active}
-                                number={this.state.n}
-                                answered={this.state.answered[num]}
-                                data={data}
-                                changeStatus={this.updateStatus}
-                            />
-                            {document.getElementById("root").click()}
-                            {document.getElementById("root").click()}
-                        </div>
-                )
-            }
-            if (data.getType() == "Логічні пари 4/5") {
-                return (
-                        <div>
-                            <Logic_couples_4_5
-                                callback={this.updateQuestion}
-                                active={this.state.active}
-                                number={this.state.n}
-                                answered={this.state.answered[num]}
-                                data={data}
-                                changeStatus={this.updateStatus}
-                            />
-                            {document.getElementById("root").click()}
-                            {document.getElementById("root").click()}
-                        </div>
-                )
-            }
-            if (data.getType() == "Подвійне відкрите") {
-                return (
-                        <div>
-                            <Double_Open
-                                callback={this.updateQuestion}
-                                active={this.state.active}
-                                number={this.state.n}
-                                answered={this.state.answered[num]}
-                                data={data}
-                                changeStatus={this.updateStatus}
-                            />
-                            {document.getElementById("root").click()}
-                            {document.getElementById("root").click()}
-                        </div>
-                )
-            }
-            if (data.getType() == "Відкрите") {
-                return (
-                        <div>
-                            <Open
-                                callback={this.updateQuestion}
-                                active={this.state.active}
-                                number={this.state.n}
-                                answered={this.state.answered[num]}
-                                data={data}
-                                changeStatus={this.updateStatus}
-                            />
-                            {document.getElementById("root").click()}
-                            {document.getElementById("root").click()}
-                        </div>
-                )
-            }
-            if (data.getType() == "Розгорнуте") {
-                return (
-                        <div>
-                            <Open_Ended
-                                callback={this.updateQuestion}
-                                active={this.state.active}
-                                number={this.state.n}
-                                answered={this.state.answered[num]}
-                                data={data}
-                                changeStatus={this.updateStatus}
-                            />
-                            {document.getElementById("root").click()}
-                            {document.getElementById("root").click()}
-                        </div>
-                )
-            }
+            let type = data[num].getType();
 
+            if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
+                type += "_OneColumn";
+            }
+            const DynamicComponent = componentsMap[type];
+            //alert(type);
+            return (
+                <div className={g.background}>
+                    <div className={[s.page, g.page_].join(' ')}>
+                        <Header
+                            checkedAnswers={this.state.checkedAnswers}
+                            subject={data[num].getSubject()}
+                            year={data[num].getYear()}
+                            session={data[num].getSession()}
+                            list={this.state.n}
+                            updateQuestion={this.updateQuestion}
+                            active={this.state.active}
+                        />
+                        <DynamicComponent
+                            checkedAnswers={this.state.checkedAnswers}
+                            updateQuestion={this.updateQuestion}
+                            active={this.state.active}
+                            number={this.state.n}
+                            answered={(this.state.active in this.state.answers)}
+                            data={data[num]}
+                            changeStatus={this.updateStatus}
+                            updateAnswers={this.updateAnswers}
+                            currentAnswer={this.state.currentAnswer}
+                            isPractice={this.state.isPractice}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                        >
+                        </DynamicComponent>
+                    </div>
+                </div>
+            )
         }
         return (<div></div>);
     }
