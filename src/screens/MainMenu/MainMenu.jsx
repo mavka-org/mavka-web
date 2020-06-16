@@ -91,6 +91,41 @@ class MainMenu extends React.Component {
         })
     }
 
+    startPractice = () => {
+        Services.changeTestStatusByID(this.token, this.state.tests[this.state.active].id, "вільна практика");
+        this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
+    }
+
+    startSimulation = () => {
+        this.props.history.push('/subject/' + this.state.subject + '/simulation/' + this.state.tests[this.state.active].id);
+    }
+
+    onClickPractice(){
+        if(this.state.tests[this.state.active].status == 'тест пройдений'){
+            //animation to button скинути прогрес
+        }else return this.startPractice;
+    }
+
+    onClickSimulation(){
+        if(this.state.tests[this.state.active].status == 'тест не пройдений'){
+            return this.startSimulation;
+        }else{
+            //animation to button скинути прогрес
+        }
+    }
+
+    btnPracticeStyle(){
+        if(this.state.tests[this.state.active].status == 'тест пройдений'){
+            return s.btn_disabled;
+        }else return s.btn;
+    }
+
+    btnSimulationStyle(){
+        if(this.state.tests[this.state.active].status == 'тест не пройдений'){
+            return s.btn;
+        }else return s.btn_disabled;
+    }
+
     render() {
         const pic1 = <img src={strong} width={'100%'} height={'100%'} />
         const pic2 = <Clock />
@@ -132,20 +167,11 @@ class MainMenu extends React.Component {
                                     <div className={s.title}>
                                         <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
                                     </div>
-
+                                    {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores />) : ""}
                                 </div>
                                 <div className={s.buttons_frame}>
-                                    <div className={s.btn} onClick={() => {
-                                        Services.changeTestStatusByID(this.token, this.state.tests[this.state.active].id, "вільна практика");
-                                        this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
-                                    }}>
-                                        <Button icon={pic1} title={'Практикуватися'} comment={'Проходь завдання та вчися на поясненнях'} />
-                                    </div>
-                                    <div className={s.btn_disabled} onClick={() => {
-                                        this.props.history.push('/subject/' + this.state.subject + '/simulation/' + this.state.tests[this.state.active].id);
-                                    }}>
-                                        <Button icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
-                                    </div>
+                                    <Button stl={this.btnPracticeStyle()} click={this.onClickPractice()} icon={pic1} title={'Практикуватися'} comment={'Проходь завдання та вчися на поясненнях'} />                         
+                                    <Button stl={this.btnSimulationStyle()} click={this.onClickSimulation()} icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
                                 </div>
                                 <div className={s.description}>Ти також можеш роздрукувати цей тест тут та автоматично перевірити розв’язання з нашим мобільним додатком (незабаром)</div>
                                 <Topic
@@ -155,7 +181,7 @@ class MainMenu extends React.Component {
                                     <p><strong><VideoCamera /> Відеопояснення</strong></p>
                                     <div className={s.video}></div>
                                 </div>
-                                <Progres />
+                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres />)}
                             </div>) : null}
                         </div>
                     </div>

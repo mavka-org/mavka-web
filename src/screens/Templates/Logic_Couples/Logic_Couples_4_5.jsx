@@ -40,6 +40,74 @@ class Logic_Couples_4_5 extends Component {
         }
     }
 
+    buildQA() {
+        console.log('aaa')
+        const data = this.state.data;
+        let single1 = [];
+        for(let i = 0; i < 4; ++i) {
+            single1.push(<CoupleAnswer
+                number={(i + 1).toString()}
+                correctLetter={data.getMatchCorrectAnswers()[i]}
+                subquestion={data.getMatchSubquestions()[i]}
+                subanswer={""}
+                explanation={data.getMatchExplanations()[i]}
+                />)
+        }
+        let single2 = [];
+        for(let i = 0; i < 5; ++i) {
+            single2.push(<CoupleOption letter={String.fromCharCode('А'.charCodeAt(0) + i)} subquestion={data.getMatch5Options()[i]} />)
+        }
+        let couples = [];
+        for(let i = 0; i < 4; ++i) {
+            couples.push([]);
+            for(let j = 0; j < 5; ++j) {
+                couples[i].push(<CoupleAnswer
+                    number={(i + 1).toString()}
+                    correctLetter={data.getMatchCorrectAnswers()[i]}
+                    subquestion={data.getMatchSubquestions()[i]}
+                    subanswer={data.getMatch5Options()[j]}
+                    explanation={data.getMatchExplanations()[i]}
+                    />)
+            }
+        }
+        let used = [];
+        for(let i = 0; i < 5; ++i) {
+            used[i] = 0;
+        }
+
+        let result = [];
+        for(let i = 0; i < 4; ++i) {
+            let radios = document.getElementsByName('a[' + (i + 1).toString() + ']');
+            let column = 'gg';
+            for (let j = 0; j < radios.length; j++) {
+                if (radios[j].checked) {
+                    column = radios[j].value.charCodeAt(1) - 'a'.charCodeAt(0);
+                }
+            }
+            console.log(column);
+            if(column != 'gg') {
+                console.log(column);
+                used[column] = 1;
+                result.push(couples[i][column]);
+            }
+            else {
+                result.push(single1[i]);
+            }
+        }
+        for(let i = 0; i < 5; ++i) {
+            if(!used[i]) {
+                result.push(single2[i]);
+            }
+        }
+        return result;
+    }
+
+    upd = () => {
+        this.setState({
+            number: this.props.number,
+        })
+    }
+
     render() {
         console.log('asdsad')
 
@@ -52,6 +120,7 @@ class Logic_Couples_4_5 extends Component {
         console.log(this.state.number);
         console.log(this.props.updateQuestion);
         console.log(this.state.active);
+
         return (
             <div>
                 <div className={s.question_body}>
@@ -76,35 +145,7 @@ class Logic_Couples_4_5 extends Component {
                     <div className={s.answers_frame}>
                         <p className={s.choose}><strong>Обери одну відповідь</strong></p>
                         <div className={s.answers}>
-                            <CoupleAnswer
-                                number={"1"}
-                                correctLetter={data.getMatchCorrectAnswers()[0]}
-                                subquestion={data.getMatchSubquestions()[0]}
-                                subanswer={data.getMatch4Options()[0]}
-                                explanation={data.getMatchExplanations()[0]}
-                                />
-                            <CoupleAnswer
-                                number={"2"}
-                                correctLetter={data.getMatchCorrectAnswers()[1]}
-                                subquestion={data.getMatchSubquestions()[1]}
-                                subanswer={data.getMatch4Options()[1]}
-                                explanation={data.getMatchExplanations()[1]}
-                                />
-                            <CoupleAnswer
-                                number={"3"}
-                                correctLetter={data.getMatchCorrectAnswers()[2]}
-                                subquestion={data.getMatchSubquestions()[2]}
-                                subanswer={data.getMatch4Options()[2]}
-                                explanation={data.getMatchExplanations()[2]}
-                                />
-                            <CoupleAnswer
-                                number={"4"}
-                                correctLetter={data.getMatchCorrectAnswers()[3]}
-                                subquestion={data.getMatchSubquestions()[3]}
-                                subanswer={data.getMatch4Options()[3]}
-                                explanation={data.getMatchExplanations()[3]}
-                                />
-                            <CoupleOption letter={'f'} subquestion={'fdf'} />
+                            {this.buildQA()}
                         </div>
                         <div class={s.table}>
                             <table class={s.select_answer}>
@@ -121,31 +162,31 @@ class Logic_Couples_4_5 extends Component {
                                         <th class={s.r}>1</th>
                                         <td>
                                             <label>
-                                                <input type="radio" value="1a" name="a[1]" class={s.q_radio}></input>
+                                                <input type="radio" value="1a" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="1b" name="a[1]" class={s.q_radio}></input>
+                                                <input type="radio" value="1b" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="1c" name="a[1]" class={s.q_radio}></input>
+                                                <input type="radio" value="1c" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="1d" name="a[1]" class={s.q_radio}></input>
+                                                <input type="radio" value="1d" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="1e" name="a[1]" class={s.q_radio}></input>
+                                                <input type="radio" value="1e" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
@@ -155,31 +196,31 @@ class Logic_Couples_4_5 extends Component {
                                         <th class={s.r}>2</th>
                                         <td>
                                             <label>
-                                                <input type="radio" value="2a" name="a[2]" class={s.q_radio}></input>
+                                                <input type="radio" value="2a" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="2b" name="a[2]" class={s.q_radio}></input>
+                                                <input type="radio" value="2b" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="2c" name="a[2]" class={s.q_radio}></input>
+                                                <input type="radio" value="2c" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="2d" name="a[2]" class={s.q_radio}></input>
+                                                <input type="radio" value="2d" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="2e" name="a[2]" class={s.q_radio}></input>
+                                                <input type="radio" value="2e" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
@@ -189,31 +230,31 @@ class Logic_Couples_4_5 extends Component {
                                         <th class={s.r}>3</th>
                                         <td>
                                             <label>
-                                                <input type="radio" value="3a" name="a[3]" class={s.q_radio}></input>
+                                                <input type="radio" value="3a" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="3b" name="a[3]" class={s.q_radio}></input>
+                                                <input type="radio" value="3b" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="3c" name="a[3]" class={s.q_radio}></input>
+                                                <input type="radio" value="3c" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="3d" name="a[3]" class={s.q_radio}></input>
+                                                <input type="radio" value="3d" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="3e" name="a[3]" class={s.q_radio}></input>
+                                                <input type="radio" value="3e" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
@@ -223,31 +264,31 @@ class Logic_Couples_4_5 extends Component {
                                         <th class={s.r}>4</th>
                                         <td>
                                             <label>
-                                                <input type="radio" value="4a" name="a[4]" class={s.q_radio}></input>
+                                                <input type="radio" value="4a" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="4b" name="a[4]" class={s.q_radio}></input>
+                                                <input type="radio" value="4b" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="4c" name="a[4]" class={s.q_radio}></input>
+                                                <input type="radio" value="4c" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="4d" name="a[4]" class={s.q_radio}></input>
+                                                <input type="radio" value="4d" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
-                                                <input type="radio" value="4e" name="a[4]" class={s.q_radio}></input>
+                                                <input type="radio" value="4e" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
                                                 <span class={s.marker}></span>
                                             </label>
                                         </td>
@@ -255,16 +296,16 @@ class Logic_Couples_4_5 extends Component {
                                     </tr>
                                 </tbody>
                             </table>
-                            <Next
+                            <Next 
                                 answered={this.state.answered}
                                 callback={this.props.changeStatus}
                                 number={this.state.active}
                             />
                         </div>
+                    </div>
 
                     </div>
                 </div>
-            </div>
         )
     }
 }

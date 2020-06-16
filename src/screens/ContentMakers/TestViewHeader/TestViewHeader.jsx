@@ -3,7 +3,7 @@ import g from './../../Style.module.css';
 import Strong from './../../Icon/Strong/Strong';
 import QuestionNavPanel from "../../../../UI/QuestionNavPanel";
 import { Link } from 'react-router-dom';
-class Header extends React.Component {
+class TestViewHeader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,26 +26,22 @@ class Header extends React.Component {
         return (
             <div>
                 <div>
-                    
-                    <div className={g.question_header}>
-                        <div className={g.title_bar}>
-                            <div className={g.icon_header}><div><Strong />&nbsp;</div><strong>Практика</strong></div>
-                            <p><strong>{this.props.subject}</strong> {this.props.year} {this.props.session} сесія</p>
-                            <Link to={"/subject/" + this.props.subject}>
-                                <button className={g.end}>Завершити</button>
-                            </Link>
-                        </div>
-                    </div>
                     <QuestionNavPanel
                         checkedAnswers={this.state.checkedAnswers}
                         list={this.props.list}
                         updateQuestion={this.props.updateQuestion}
                         active={this.props.active}
                     />
+                    <div className={g.question_header}>
+                        <div className={g.title_bar}>
+                            <p><strong>{this.props.subject}</strong> {this.props.year} {this.props.session} сесія</p>
+                        </div>
+                        <button className={g.end}>Змінити вигляд питання</button>
+                    </div>
                 </div>
             </div>
         );
     }
 }
 
-export default Header;
+export default TestViewHeader;
