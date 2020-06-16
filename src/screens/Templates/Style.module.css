@@ -173,9 +173,13 @@
 }
 
 .inactive {
-    opacity: 0.4;
+    opacity: 0.4; 
+    cursor: default;
+    border: none !important;
 }
-
+.inactive:hover{
+    border: 1px white solid !important;
+}
 .wrong_answer {
     opacity: 0.6;
 }

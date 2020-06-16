@@ -13,6 +13,9 @@ import firebase from "../../global"
 import ZNO_component from './Object/ZNO_component';
 import Services from '../../Services/Services';
 import Confetti from '../../UI/Confetti/Confetti';
+import Scores from './Object/Scores/Scores';
+import Progres from './Object/Progres/Progres';
+import Button from './Object/Button/Button';
 class MainMenu extends React.Component {
 
     constructor(props) {
@@ -58,7 +61,6 @@ class MainMenu extends React.Component {
                 },
                 { headers: { 'Content-Type': 'text/plain' } }
             );
-
             response.then(function (value) {
                 let tests = []
                 let T = value.data;
@@ -90,6 +92,8 @@ class MainMenu extends React.Component {
     }
 
     render() {
+        const pic1 = <img src={strong} width={'100%'} height={'100%'} />
+        const pic2 = <Clock />
         if (this.state.user == 25) {
             return (<div></div>);
         }
@@ -126,43 +130,21 @@ class MainMenu extends React.Component {
                                 </div>
                                 <div className={s.scores_frame}>
                                     <div className={s.title}>
-                                        <strong>Бали {this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
+                                        <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
                                     </div>
-                                    <div className={s.score_frame}>
-                                        <div className={s.score}>
-                                            <div className={s.mark}>200</div>
-                                            <div className={s.comment}>ЗНО з 200</div>
-                                        </div>
-                                        <div className={s.score}>
-                                            <div className={s.mark}>12</div>
-                                            <div className={s.comment}>ДПА з 12</div>
-                                        </div>
-                                        <div className={s.score}>
-                                            <div className={s.mark}>64</div>
-                                            <div className={s.comment}>Тестовий бал з 64</div>
-                                        </div>
-                                    </div>
-                                    <div className={s.btn_wrap}><button className={g.btn}>Переглянути помилки</button></div>
+
                                 </div>
                                 <div className={s.buttons_frame}>
                                     <div className={s.btn} onClick={() => {
                                         Services.changeTestStatusByID(this.token, this.state.tests[this.state.active].id, "вільна практика");
                                         this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
                                     }}>
-                                        <div className={s.wrap}>
-                                            <div className={s.icon}><img src={strong} width={"100%"}/></div>
-                                            <div className={s.btn_title}><strong>Практикуватися</strong></div>
-                                            <div className={s.comment}>Проходь завдання та вчися на поясненнях</div>
-                                        </div>
+                                        <Button icon={pic1} title={'Практикуватися'} comment={'Проходь завдання та вчися на поясненнях'} />
                                     </div>
-                                    <div className={s.btn} onClick={() => {
+                                    <div className={s.btn_disabled} onClick={() => {
                                         this.props.history.push('/subject/' + this.state.subject + '/simulation/' + this.state.tests[this.state.active].id);
                                     }}>
-                                        <div className={s.wrap}>
-                                            <div className={s.icon}><Clock /></div>
-                                            <div className={s.btn_title}><strong>Симулювати ЗНО</strong></div>
-                                            <div className={s.comment}>Перевір знання в умовах тесту</div>
-                                        </div>
+                                        <Button icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
                                     </div>
                                 </div>
                                 <div className={s.description}>Ти також можеш роздрукувати цей тест тут та автоматично перевірити розв’язання з нашим мобільним додатком (незабаром)</div>
@@ -173,10 +155,7 @@ class MainMenu extends React.Component {
                                     <p><strong><VideoCamera /> Відеопояснення</strong></p>
                                     <div className={s.video}></div>
                                 </div>
-                                <div className={s.skip}>
-                                    <button className={g.btn}>Скинути прогрес</button>
-                                    <div className={s.description} style={{width:'130%',fontSize: '14px', lineHeight:'18px'}}>Ти втратиш прогрес, бали і рекомендовані теми, та зможеш практикувати та симулювати цей тест з нуля </div>
-                                </div>
+                                <Progres />
                             </div>) : null}
                         </div>
                     </div>
