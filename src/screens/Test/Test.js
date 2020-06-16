@@ -131,18 +131,24 @@ export class Test extends React.Component{
                   });
             }else{
                 this.state.user.getIdToken().then((token) => {
-                    Services.changeTestStatusByID(token, this.state.testId, "Ты лох - не прошел порог хаха");
-                    Services.updateTestAnswers(token, this.state.testId, this.state.answers);           
+                    Services.updateTestAnswers(token, this.state.testId, this.state.answers).then(() => {
+                        Services.changeTestStatusByID(token, this.state.testId, "Ты лох - не прошел порог хаха").then(() => {
+                                this.props.history.push({
+                                    pathname: '/subject/' + this.state.subject,
+                                    state: { testID: this.state.testId }
+                                });
+                            }
+                        );
+                    })         
                 });
-                this.setState({
-                    user: 25
-                })
+                
+                /*
                 setTimeout(() => {  this.props.history.push({
                     pathname: '/subject/' + this.state.subject,
                     state: { testID: this.state.testId }
                   });
                 }, 1000);
-                
+                */
             }
         } 
     }

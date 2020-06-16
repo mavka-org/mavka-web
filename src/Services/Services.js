@@ -146,7 +146,7 @@ class Services {
         var list2 = [];
         results1.forEach(url => {
             list2.push(axios.post(
-                'https://us-central1-mavka-c5c01.cloudfunctions.net/getReq',
+                'https://europe-west3-mavka-c5c01.cloudfunctions.net/getReq',
                 {
                     url: url
                 },
@@ -172,7 +172,7 @@ class Services {
     }
     static async updateTestAnswers(token, testID, answers){
         const response = await axios.post(
-            'https://us-central1-mavka-c5c01.cloudfunctions.net/updCourseAnswers',
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/updCourseAnswers',
             { 
                 token: token,
                 courseID: testID,
@@ -183,7 +183,7 @@ class Services {
     }
     static async getTestAnswers(token, testID){
         const response = await axios.post(
-            'https://us-central1-mavka-c5c01.cloudfunctions.net/getTestAnswers',
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/getTestAnswers',
             { 
                 token: token,
                 courseID: testID
@@ -195,7 +195,7 @@ class Services {
 
     static async changeTestStatusByID(token, testID, status){
         const response = await axios.post(
-            'https://us-central1-mavka-c5c01.cloudfunctions.net/changeStatusById',
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/changeStatusById',
             { 
                 token: token,
                 id: testID,

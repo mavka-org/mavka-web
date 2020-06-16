@@ -51,7 +51,7 @@ class MainMenu extends React.Component {
             current.token = token;
             //alert(token);
             const response = axios.post(
-                'https://us-central1-mavka-c5c01.cloudfunctions.net/getTestsBySubject',
+                'https://europe-west3-mavka-c5c01.cloudfunctions.net/getTestsBySubject',
                 {
                     token: token,
                     subject: current.state.subject
