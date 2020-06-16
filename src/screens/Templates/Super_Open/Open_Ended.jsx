@@ -7,7 +7,7 @@ import Header from './../Objects/Header/Header.jsx';
 import Comment from './../Objects/Comment/Comment.jsx';
 import Video from './../Objects/Video/Video.jsx';
 import Next from './../Objects/Next/Next.jsx';
-class Super_Open extends React.Component {
+class Open_Ended extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,31 +35,21 @@ class Super_Open extends React.Component {
         let hidden = this.state.answered;
 
         return (
-            <div className={s.background}>
-                <div className={[s.page, g.page_].join(' ')}>
-                    <Header
-                        subject={data.getSubject()}
-                        year={data.getYear()}
-                        session={data.getSession()}
-                        list={this.state.number}
-                        callback={this.props.callback}
+            <div>
+                <div className={s.question_body}>
+                    <Question
+                        question={data.getQuestion()}
                         active={this.state.active}
                         />
-                    <div className={s.question_body}>
-                        <Question
-                            question={data.getQuestion()}
-                            active={this.state.active}
+                    <div className={s.main_answers}>
+                        <Next />
+                        <Topic
+                            topic={data.getTopic()}
                             />
-                        <div className={s.main_answers}>
-                            <Next />
-                            <Topic
-                                topic={data.getTopic()}
-                                />
-                            <Comment
-                                comment={data.getComment()}
-                                />
-                            <Video />
-                        </div>
+                        <Comment
+                            comment={data.getComment()}
+                            />
+                        <Video />
                     </div>
                 </div>
             </div>
@@ -67,4 +57,4 @@ class Super_Open extends React.Component {
     }
 }
 
-export default Super_Open;
+export default Open_Ended;

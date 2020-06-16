@@ -6,16 +6,17 @@ import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
 
 class Question {
     constructor(json){
-        this.number = json["Номер"]
-        this.type = json["Формат"];
+        this.number = json["Номер"];
+        this.type = json["Format"];
         this.year = json["Рік"];
         this.number = json["Номер"];
-        this.session = json["Cecія"];
+        this.session = json["Сесія"];
         this.subject = json["Предмет"];
         this.topic = json["Тема"];
         this.question = json["Питання"];
         this.answer = json["Правильна відповідь"];
         this.comment = json["Коментар"];
+        this.isDoubleColumn = json["Розгорнутий вигляд"];
 
         /* ARTEM'S CODE. PLEASE BEWARE IT'S SHITTY */
         this.match_subquestions = [json["Частинка 1"], json["Частинка 2"], json["Частинка 3"], json["Частинка 4"]];
@@ -115,8 +116,11 @@ class Question {
     getOpenAnswer () {
         return this.open_answer; //THIS SHOULDN'T EXIST (change to normal getAnswer())
     }
+    getIsDoubleColumn() {
+        return this.isDoubleColumn;
+    }
     checkCorrect (answerToCheck) {
-        if(this.getType() == "АБВГД"){
+        if(this.getType() == "ABCDE"){
             return answerToCheck == this.answer;
         }
     }
@@ -142,7 +146,7 @@ class Services {
         var list2 = [];
         results1.forEach(url => {
             list2.push(axios.post(
-                'https://us-central1-mavka-c5c01.cloudfunctions.net/getReq',
+                'https://europe-west3-mavka-c5c01.cloudfunctions.net/getReq',
                 {
                     url: url
                 },
@@ -168,7 +172,7 @@ class Services {
     }
     static async updateTestAnswers(token, testID, answers){
         const response = await axios.post(
-            'https://us-central1-mavka-c5c01.cloudfunctions.net/updCourseAnswers',
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/updCourseAnswers',
             { 
                 token: token,
                 courseID: testID,
@@ -179,7 +183,7 @@ class Services {
     }
     static async getTestAnswers(token, testID){
         const response = await axios.post(
-            'https://us-central1-mavka-c5c01.cloudfunctions.net/getTestAnswers',
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/getTestAnswers',
             { 
                 token: token,
                 courseID: testID
@@ -191,7 +195,7 @@ class Services {
 
     static async changeTestStatusByID(token, testID, status){
         const response = await axios.post(
-            'https://us-central1-mavka-c5c01.cloudfunctions.net/changeStatusById',
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/changeStatusById',
             { 
                 token: token,
                 id: testID,

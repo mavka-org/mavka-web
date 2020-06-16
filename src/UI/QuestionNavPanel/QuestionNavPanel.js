@@ -126,6 +126,8 @@ class QuestionNavPanel extends Component {
         const styledDr = styled(dr)`
             color: red;
         `;*/
+
+        console.log('?')
         return (
             <div style={{
                 display: "flex",

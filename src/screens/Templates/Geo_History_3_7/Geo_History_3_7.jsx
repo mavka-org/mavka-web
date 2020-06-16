@@ -13,27 +13,24 @@ class Geo_History_3_7 extends React.Component {
     
     render() {
         return (
-            <div className={g.background}>
-                <div className={[s.page, g.page_].join(' ')}>
-                   <Header />
-                    <div style={{marginBottom:20}}><strong>Обери ТРИ відповіді:</strong></div>
-                    <div className={s.question_body}>
-                        <div className={s.answers}>
-                            <Answer />
-                            <Answer />
-                            <Answer />
-                        </div>
-                        <div className={s.answers}>
-                            <Answer />
-                            <Answer />
-                            <Answer />
-                        </div>
+            <div>
+                <div style={{marginBottom:20}}><strong>Обери ТРИ відповіді:</strong></div>
+                <div className={s.question_body}>
+                    <div className={s.answers}>
+                        <Answer />
+                        <Answer />
+                        <Answer />
                     </div>
-                    <Next />
-                    <Topic />
-                    <Comment />
-                    <Video />
+                    <div className={s.answers}>
+                        <Answer />
+                        <Answer />
+                        <Answer />
+                    </div>
                 </div>
+                <Next />
+                <Topic />
+                <Comment />
+                <Video />
             </div>
         );
     }

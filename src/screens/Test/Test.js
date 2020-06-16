@@ -5,13 +5,36 @@ import ListItem from "../../UI/ListItem";
 import ABCDE from "../Templates/ABCDE/ABCDE";
 import Services from "../../Services";
 import ABCD from '../Templates/ABCD/ABCD';
-import Logic_Couples_4_4 from '../Templates/Logic_Couples/Logic_couples_4_4';
-import Logic_Couples_4_5 from '../Templates/Logic_Couples/Logic_couples_4_5';
-import DoubleOpen from '../Templates/Double_Open/Double_Open';
+import Logic_Couples_4_4 from '../Templates/Logic_Couples/Logic_Couples_4_4';
+import Logic_Couples_4_5 from '../Templates/Logic_Couples/Logic_Couples_4_5';
+import Double_Open from '../Templates/Double_Open/Double_Open';
 import Open from '../Templates/Open/Open';
-import Super_Open from '../Templates/Super_Open/Super_Open';
+import Open_Ended from '../Templates/Super_Open/Open_Ended';
 import SystemFunctions from '../../utils/SystemFunctions';
+import ABCDE_OneColumn from "../Templates/ABCDE_OneColumn/ABCDE_OneColumn";
+import ABCD_OneColumn from "../Templates/ABCD_OneColumn/ABCD_OneColumn";
+import Double_Open_OneColumn from "../Templates/Double_Open_OneColumn/Double_Open_OneColumn";
+import Logic_Couples_4_4_OneColumn from "../Templates/Logic_Couples_OneColumn/Logic_Couples_4_4_OneColumn";
+import Logic_Couples_4_5_OneColumn from "../Templates/Logic_Couples_OneColumn/Logic_Couples_4_5_OneColumn";
+import g from "../Templates/Style.module.css";
+import s from "../Templates/ABCDE/ABCDE.module.css";
+import Header from "../Templates/Objects/Header/Header";
 
+
+const componentsMap = {
+    ABCDE,
+    ABCD,
+    Logic_Couples_4_4,
+    Logic_Couples_4_5,
+    Double_Open,
+    Open,
+    Open_Ended,
+    ABCDE_OneColumn,
+    ABCD_OneColumn,
+    Double_Open_OneColumn,
+    Logic_Couples_4_4_OneColumn,
+    Logic_Couples_4_5_OneColumn,
+};
 
 export class Test extends React.Component{
 
@@ -27,11 +50,13 @@ export class Test extends React.Component{
             answered: [],
             n: 0,
             answers: {},
-            checkedAnswers: {}
+            checkedAnswers: {},
+            currentAnswer: null
         }
         let current = this;
         Services.getReferenceById(this.state.testId).then(function (ref) {
             Services.getData(ref).then(function (data) {
+                console.log(data);
                 let myData = data.map(value => Services.getQuestionClass(value));
                 let status = [];
                 for (let i = 0; i < myData.length; i++) status.push(false);
@@ -69,9 +94,15 @@ export class Test extends React.Component{
     }
     
 
-
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        document.getElementById("FAKE").click();
+        document.getElementById("FAKE1").click();
+    }
+    
     componentDidMount() {
         this.getAuthStatus();
+        document.getElementById("FAKE").click();
+        document.getElementById("FAKE1").click();
     }
 
     // Get firebase auth status.
@@ -90,19 +121,41 @@ export class Test extends React.Component{
     }
 
     updateQuestion = (x) => {
+        this.setState({
+            currentAnswer: this.state.answers[x]
+        });
         if(x <= this.state.n){
             this.setState({
                 active: x
             });
         }else{
-            console.log("ПОСЛЕДНИЙ ВОПРОС")
+            
             if(this.state.isPractice){
-                return <Redirect to={'/subject/' + this.state.subject}/>;
+                console.log("ПОСЛЕДНИЙ ВОПРОС")
+                this.props.history.push({
+                    pathname: '/subject/' + this.state.subject,
+                    state: { testID: this.state.testId }
+                  });
             }else{
                 this.state.user.getIdToken().then((token) => {
-                    Services.updateTestAnswers(token, this.state.testId, this.state.answers);
+                    Services.updateTestAnswers(token, this.state.testId, this.state.answers).then(() => {
+                        Services.changeTestStatusByID(token, this.state.testId, "Ты лох - не прошел порог хаха").then(() => {
+                                this.props.history.push({
+                                    pathname: '/subject/' + this.state.subject,
+                                    state: { testID: this.state.testId }
+                                });
+                            }
+                        );
+                    })         
                 });
-                return <Redirect to={'/subject/' + this.state.subject}/>;
+                
+                /*
+                setTimeout(() => {  this.props.history.push({
+                    pathname: '/subject/' + this.state.subject,
+                    state: { testID: this.state.testId }
+                  });
+                }, 1000);
+                */
             }
         } 
     }
@@ -133,9 +186,15 @@ export class Test extends React.Component{
         }
     }
 
+    updateCurrentAnswer = (answer) => {
+        this.setState({
+            currentAnswer: answer
+        })
+    }
+
     render() {
-        console.log("Test.js");
-        console.log(this.state.checkedAnswers);
+       // console.log("Test.js");
+       // console.log(this.state.checkedAnswers);
         if (this.state.user == 25) {
             return (<div></div>);
         }
@@ -143,130 +202,42 @@ export class Test extends React.Component{
             if (this.state.data.length > 0) {
                 const data = this.state.data;
                 let num = this.state.active - 1;
-                if (data[num].getType() == "АБВГД") {
-                    return (
-                            <div>
-                                <ABCDE
-                                    checkedAnswers={this.state.checkedAnswers}
-                                    updateQuestion={this.updateQuestion}
-                                    active={this.state.active}
-                                    number={this.state.n}
-                                    answered={(this.state.active in this.state.answers)}
-                                    data={data[num]}
-                                    changeStatus={this.updateStatus}
-                                    updateAnswers={this.updateAnswers}
-                                    currentAnswer={this.state.answers[this.state.active]}
-                                    isPractice={this.state.isPractice}
-                                />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
-                            </div>
-                    )
+                let type = data[num].getType();
+
+                if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
+                    type += "_OneColumn";
                 }
-                if (data[num].getType() == "АБВГ") {
-                    return (
-                            <div>
-                                <ABCD
-                                    callback={this.updateQuestion}
-                                    active={this.state.active}
-                                    number={this.state.n}
-                                    answered={this.state.answered[num]}
-                                    data={data[num]}
-                                    changeStatus={this.updateStatus}
-                                />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
-                            </div>
-                    )
-                }
-                if (data[num].getType() == "Логічні пари 4/4") {
-                    console.log("Логічні пари 4/4");
-                    return (
-                            <div>
-                                <Logic_Couples_4_4
-                                    checkedAnswers={this.state.checkedAnswers}
-                                    updateQuestion={this.updateQuestion}
-                                    active={this.state.active}
-                                    number={this.state.n}
-                                    answered={(this.state.active in this.state.answers)}
-                                    data={data[num]}
-                                    changeStatus={this.updateStatus}
-                                    updateAnswers={this.updateAnswers}
-                                    currentAnswer={null}
-                                />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
-                            </div>
-                    )
-                }
-                if (data[num].getType() == "Логічні пари 4/5") {
-                    console.log("Логічні пари 4/5");
-                    return (
-                            <div>
-                                <Logic_Couples_4_5
-                                    checkedAnswers={this.state.checkedAnswers}
-                                    updateQuestion={this.updateQuestion}
-                                    active={this.state.active}
-                                    number={this.state.n}
-                                    answered={(this.state.active in this.state.answers)}
-                                    data={data[num]}
-                                    changeStatus={this.updateStatus}
-                                    updateAnswers={this.updateAnswers}
-                                    currentAnswer={null}
-                                />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
-                            </div>
-                    )
-                }
-                if (data[num].getType() == "Подвійне відкрите") {
-                    return (
-                            <div>
-                                <DoubleOpen
-                                    callback={this.updateQuestion}
-                                    active={this.state.active}
-                                    number={this.state.n}
-                                    answered={this.state.answered[num]}
-                                    data={data[num]}
-                                    changeStatus={this.updateStatus}
-                                />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
-                            </div>
-                    )
-                }
-                if (data[num].getType() == "Відкрите") {
-                    return (
-                            <div>
-                                <Open
-                                    callback={this.updateQuestion}
-                                    active={this.state.active}
-                                    number={this.state.n}
-                                    answered={this.state.answered[num]}
-                                    data={data[num]}
-                                    changeStatus={this.updateStatus}
-                                />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
-                            </div>
-                    )
-                }
-                if (data[num].getType() == "Розгорнуте") {
-                    return (
-                            <div>
-                                <Super_Open
-                                    callback={this.updateQuestion}
-                                    active={this.state.active}
-                                    number={this.state.n}
-                                    answered={this.state.answered[num]}
-                                    data={data[num]}
-                                    changeStatus={this.updateStatus}
-                                />
-                                {document.getElementById("root").click()}
-                                {document.getElementById("root").click()}
-                            </div>
-                    )
-                }
+                const DynamicComponent = componentsMap[type];
+                //alert(type);
+                return (
+                    <div className={g.background}>
+                        <div className={[s.page, g.page_].join(' ')}>
+                            <Header
+                                checkedAnswers={this.state.checkedAnswers}
+                                subject={data[num].getSubject()}
+                                year={data[num].getYear()}
+                                session={data[num].getSession()}
+                                list={this.state.n}
+                                updateQuestion={this.updateQuestion}
+                                active={this.state.active}
+                            />
+                            <DynamicComponent
+                                checkedAnswers={this.state.checkedAnswers}
+                                updateQuestion={this.updateQuestion}
+                                active={this.state.active}
+                                number={this.state.n}
+                                answered={(this.state.active in this.state.answers)}
+                                data={data[num]}
+                                changeStatus={this.updateStatus}
+                                updateAnswers={this.updateAnswers}
+                                currentAnswer={this.state.currentAnswer}
+                                isPractice={this.state.isPractice}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
+                            >
+                            </DynamicComponent>
+                        </div>
+                    </div>
+                )
             }
             return (<div></div>);
         }

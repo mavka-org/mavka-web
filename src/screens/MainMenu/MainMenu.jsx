@@ -3,7 +3,7 @@ import s from './MainMenu.module.css'
 import g from '../Templates/Style.module.css';
 import ZNO from './Object/ZNO/ZNO';
 import Topic from "../Templates/Objects/Topic/Topic"
-import Strong from "../Templates/Icon/Strong";
+import strong from "../Templates/icons/strong.png";
 import Clock from "../Templates/Icon/Clock";
 import VideoCamera from "../Templates/Icon/VideoCamera";
 import { Link, Router, Redirect } from 'react-router-dom';
@@ -12,6 +12,7 @@ import axios from "axios";
 import firebase from "../../global"
 import ZNO_component from './Object/ZNO_component';
 import Services from '../../Services/Services';
+import Confetti from '../../UI/Confetti/Confetti';
 class MainMenu extends React.Component {
 
     constructor(props) {
@@ -50,7 +51,7 @@ class MainMenu extends React.Component {
             current.token = token;
             //alert(token);
             const response = axios.post(
-                'https://us-central1-mavka-c5c01.cloudfunctions.net/getTestsBySubject',
+                'https://europe-west3-mavka-c5c01.cloudfunctions.net/getTestsBySubject',
                 {
                     token: token,
                     subject: current.state.subject
@@ -61,10 +62,8 @@ class MainMenu extends React.Component {
             response.then(function (value) {
                 let tests = []
                 let T = value.data;
-                console.log(T);
                 for (let year in T) {
                     for (let t in T[year]) {
-                        console.log(T[year][t].status);
                         tests.push({
                             name1: "ЗНО " + year,
                             name2: T[year][t].type.toLowerCase() + " сесія",
@@ -74,8 +73,11 @@ class MainMenu extends React.Component {
                         })
                     }
                 }
+                //let myProps = Object.keys(current.props.location.state);
+                console.log(current.props.location.state);
                 current.setState({
-                    tests: tests
+                    tests: tests,
+                    active: SystemFunctions.mainMenuActiveElement(typeof current.props.location.state != 'undefined' ? current.props.location.state.testID : 'undefined', tests)
                 })
             });
         });
@@ -93,7 +95,6 @@ class MainMenu extends React.Component {
         }
         console.log("!!!!!!!!!!");
         console.log(this.state.active);
-        console.log(this.state.tests[this.state.active]);
         if (this.state.user) {
             return (
                 <div className={g.background}>
@@ -120,6 +121,9 @@ class MainMenu extends React.Component {
                             </div>
 
                             {this.state.tests.length > 0 ? (<div className={s.test_body_right}>
+                                <div>
+                                    {typeof this.props.location.state != 'undefined' ? (<Confetti />) : null}
+                                </div>
                                 <div className={s.scores_frame}>
                                     <div className={s.title}>
                                         <strong>Бали {this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
@@ -146,7 +150,7 @@ class MainMenu extends React.Component {
                                         this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
                                     }}>
                                         <div className={s.wrap}>
-                                            <div className={s.icon}><Strong /></div>
+                                            <div className={s.icon}><img src={strong} width={"100%"}/></div>
                                             <div className={s.btn_title}><strong>Практикуватися</strong></div>
                                             <div className={s.comment}>Проходь завдання та вчися на поясненнях</div>
                                         </div>

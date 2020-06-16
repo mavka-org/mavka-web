@@ -2,6 +2,15 @@ import React from 'react';
 import g from './../../Style.module.css';
 import Lamb from './../../Icon/Lamb/Lamb';
 class Comment extends React.Component {
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        document.getElementById("FAKE1").click();
+    }
+
+    componentDidMount() {
+        document.getElementById("FAKE1").click();
+    }
+
     render() {
         return (
             <div style={{

@@ -1,14 +1,13 @@
 import React from "react";
-import pointDown from "../../icons/pointDown.png";
-
+import book from "../../icons/book.png";
 
 export default () => (
-    <span style={{
-        backgroundImage: "url( " + pointDown + ")",
+    <div style={{
+        backgroundImage: "url( " + book + ")",
         backgroundSize: "contain",
         height: "100%",
         backgroundPosition: "center",
         width: "100%",
         backgroundRepeat: "no-repeat"
-    }}>&nbsp; &nbsp; &nbsp;</span>
+    }}>&nbsp; &nbsp; &nbsp;</div>
 )

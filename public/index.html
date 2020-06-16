@@ -26,23 +26,90 @@
     -->
 
     <title>React App</title>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script type="text/javascript" async
-            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-      MathJax.Hub.Config({
-        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
-      });
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        svg: {
+          fontCache: 'global'
+        },
+        options: {
+          renderActions: {
+            addMenu: [0, '', '']
+          }
+        }
+      };
     </script>
+    <script>
+      const eps = 1e-2;
+      let images = document.getElementsByTagName("img");
+      let n = images.length;
+      function upd (x) {
+        let l = 0, r = Math.min(images[x].naturalWidth, window.innerWidth * 0.5);
+        while (l + eps < r) {
+          let mid = (l + r + eps) / 2.0;
+          let h = mid * images[x].naturalHeight / images[x].naturalWidth;
+          if (h > window.innerHeight * 0.5 || h * mid / (window.innerHeight * window.innerWidth) > 0.2) r = mid - eps;
+          else l = mid;
+        }
+        images[x].style.width = l + "px";
+      }
+
+
+      function update () {
+        images = document.getElementsByTagName("img");
+        n = images.length;
+        for (let x in images) {
+          if (typeof images[x] != "object") continue;
+          //alert(x);
+          if (images[x].naturalWidth != 0) {
+            upd(x);
+          }
+          else {
+            images[x].onload = function () {
+              upd(x);
+            };
+          }
+        }
+      }
+
+      for (let x in images) {
+        if (typeof images[x] != "object") continue;
+        if (images[x].naturalWidth != 0) {
+          upd(x);
+        }
+        else {
+          images[x].onload = function () {
+            upd(x);
+          };
+        }
+      }
+      window.onresize = update;
+    </script>
+
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
+    <div id="FAKE"></div>
+    <div id="FAKE1"></div>
+
     <script>
       function f () {
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        if (MathJax.startup) {
+          MathJax.typesetPromise().then(() => {
+            // modify the DOM here
+            MathJax.typesetPromise();
+          }).catch((err) => console.log(err.message));
+        }
       }
-      document.getElementById('root').onclick = f;
+      document.getElementById('FAKE').onclick = f;
+      document.getElementById('FAKE1').onclick = update;
     </script>
     <!--
       This HTML file is a template.
@@ -55,38 +122,5 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
-  <script>
-    const eps = 1e-2;
-    let images = document.getElementsByTagName("img");
-    let n = images.length;
-    function upd (x) {
-      let l = 0, r = Math.min(images[x].offsetWidth, window.innerWidth * 0.5);
-      while (l + eps < r) {
-        let mid = (l + r + eps) / 2.0;
-        let h = mid * images[x].naturalHeight / images[x].naturalWidth;
-        if (h > window.innerHeight * 0.5 || h * mid / (window.innerHeight * window.innerWidth) > 0.2) r = mid - eps;
-        else l = mid;
-      }
-      images[x].style.width = l + "px";
-    }
-    function update () {
-      for (let x in images) {
-        if (typeof images[x] != "object") continue;
-        upd(x);
-      }
-    }
-    for (let x in images) {
-      if (typeof images[x] != "object") continue;
-      if (images[x].naturalWidth != 0) {
-        upd(x);
-      }
-      else {
-        images[x].onload = function () {
-          upd(x);
-        };
-      }
-    }
-    window.onresize = update;
-  </script>
-</html>
 
+</html>

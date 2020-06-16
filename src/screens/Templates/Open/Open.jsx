@@ -35,48 +35,38 @@ class Open extends React.Component {
         let hidden = this.state.answered;
 
         return (
-            <div className={s.background}>
-                <div className={[s.page, g.page_].join(' ')}>
-                    <Header
-                        subject={data.getSubject()}
-                        year={data.getYear()}
-                        session={data.getSession()}
-                        list={this.state.number}
-                        callback={this.props.callback}
+            <div>
+                <div className={s.question_body}>
+                    <Question
+                        question={data.getQuestion()}
                         active={this.state.active}
                         />
-                    <div className={s.question_body}>
-                        <Question
-                            question={data.getQuestion()}
-                            active={this.state.active}
-                            />
-                        <div className={s.main_answers}>
-                            <p><strong>Впиши відповідь на питання:</strong> </p>
-                            <div className={s.answers_frame}>
-                                <div className={s.answer}>
-                                    <div className={s.question}>
-                                        <p className={s.variant}><div className={s.check}></div><div className={s.number}></div>{data.getQuestion()}</p>
-                                        <div className={s.comment}>
-                                            {data.getComment()}
-                                        </div>
-                                        <input className={s.inp}></input>
-                                        <div className={s.correct_answer}>
-                                            <div className={s.correct_number}><strong>Правильна відповідь: </strong>{data.getOpenAnswer()}</div>
-                                        </div>
+                    <div className={s.main_answers}>
+                        <p><strong>Впиши відповідь на питання:</strong> </p>
+                        <div className={s.answers_frame}>
+                            <div className={s.answer}>
+                                <div className={s.question}>
+                                    <p className={s.variant}><div className={s.check}></div><div className={s.number}></div>{data.getQuestion()}</p>
+                                    <div className={s.comment}>
+                                        {data.getComment()}
+                                    </div>
+                                    <input className={s.inp}></input>
+                                    <div className={s.correct_answer}>
+                                        <div className={s.correct_number}><strong>Правильна відповідь: </strong>{data.getOpenAnswer()}</div>
                                     </div>
                                 </div>
                             </div>
-                            <Next />
-                            <Topic
-                                topic={data.getTopic()}
-                                />
-                            <Comment
-                                comment={data.getComment()}
-                                />
-                            <Video />
                         </div>
-
+                        <Next />
+                        <Topic
+                            topic={data.getTopic()}
+                            />
+                        <Comment
+                            comment={data.getComment()}
+                            />
+                        <Video />
                     </div>
+
                 </div>
             </div>
         )

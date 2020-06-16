@@ -3,5 +3,12 @@ import videoCamera from "../../icons/videoCamera.png";
 
 
 export default () => (
-    <img src={videoCamera} alt="camera" width={"17px"}/>
+    <span style={{
+        backgroundImage: "url( " + videoCamera + ")",
+        backgroundSize: "contain",
+        height: "100%",
+        backgroundPosition: "center",
+        width: "100%",
+        backgroundRepeat: "no-repeat"
+    }}>&nbsp; &nbsp; &nbsp;</span>
 )
