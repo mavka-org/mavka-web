@@ -25,21 +25,23 @@ class Header extends React.Component {
         console.log(this.state.checkedAnswers);
         return (
             <div>
-                <div className={g.question_header}>
-                    <div className={g.title_bar}>
-                        <div className={g.icon_header}><div><Strong />&nbsp;</div><strong>Практика</strong></div>
-                        <p><strong>{this.props.subject}</strong> {this.props.year} {this.props.session} сесія</p>
-                        <Link to={"/subject/" + this.props.subject}>
-                            <button className={g.end}>Завершити</button>
-                        </Link>
+                <div>
+                    <QuestionNavPanel
+                        checkedAnswers={this.state.checkedAnswers}
+                        list={this.props.list}
+                        updateQuestion={this.props.updateQuestion}
+                        active={this.props.active}
+                    />
+                    <div className={g.question_header}>
+                        <div className={g.title_bar}>
+                            <div className={g.icon_header}><div><Strong />&nbsp;</div><strong>Практика</strong></div>
+                            <p><strong>{this.props.subject}</strong> {this.props.year} {this.props.session} сесія</p>
+                            <Link to={"/subject/" + this.props.subject}>
+                                <button className={g.end}>Завершити</button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
-                <QuestionNavPanel
-                    checkedAnswers={this.state.checkedAnswers}
-                    list={this.props.list}
-                    updateQuestion={this.props.updateQuestion}
-                    active={this.props.active}
-                />
             </div>
         );
     }

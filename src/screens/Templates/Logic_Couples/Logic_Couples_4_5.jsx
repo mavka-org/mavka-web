@@ -16,35 +16,47 @@ class Logic_Couples_4_5 extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            checkedAnswers: props.checkedAnswers,
             number: props.number,
             data: props.data,
             active: props.active,
-            answered: props.answered
+            answered: props.answered,
+            currentAnswer: props.currentAnswer
         }
         console.log(this.props.data);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
+            console.log('sos' + this.props.answered)
             this.setState({
+                checkedAnswers: this.props.checkedAnswers,
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
-                answered: this.props.answered
+                answered: this.props.answered,
+                currentAnswer: this.props.currentAnswer
             })
         }
     }
 
     render() {
+        console.log('asdsad')
+
+
         const data = this.state.data;
         let hidden = this.state.answered;
+        console.log("!");
+        console.log(this.state.checkedAnswers);
+        console.log(data)
         console.log(this.state.number);
-        console.log(this.props.callback);
+        console.log(this.props.updateQuestion);
         console.log(this.state.active);
         return (
             <div className={s.background}>
                 <div className={[s.page, g.page_].join(' ')}>
                     <Header
+                        checkedAnswers={this.state.checkedAnswers}
                         subject={data.getSubject()}
                         year={data.getYear()}
                         session={data.getSession()}
@@ -106,150 +118,152 @@ class Logic_Couples_4_5 extends Component {
                             </div>
                             <div class={s.table}>
                                 <table class={s.select_answer}>
-                                    <tr>
-                                        <th></th>
-                                        <th>А</th>
-                                        <th>Б</th>
-                                        <th>В</th>
-                                        <th>Г</th>
-                                        <th>Д</th>
-                                    </tr>
-                                    <tr>
-                                        <th class={s.r}>1</th>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="1a" name="a[1]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="1b" name="a[1]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="1c" name="a[1]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="1d" name="a[1]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="1e" name="a[1]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
+                                    <tbody>
+                                        <tr>
+                                            <th></th>
+                                            <th>А</th>
+                                            <th>Б</th>
+                                            <th>В</th>
+                                            <th>Г</th>
+                                            <th>Д</th>
+                                        </tr>
+                                        <tr>
+                                            <th class={s.r}>1</th>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="1a" name="a[1]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="1b" name="a[1]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="1c" name="a[1]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="1d" name="a[1]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="1e" name="a[1]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
 
-                                    </tr>
-                                    <tr>
-                                        <th class={s.r}>2</th>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="2a" name="a[2]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="2b" name="a[2]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="2c" name="a[2]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="2d" name="a[2]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="2e" name="a[2]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <th class={s.r}>2</th>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="2a" name="a[2]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="2b" name="a[2]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="2c" name="a[2]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="2d" name="a[2]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="2e" name="a[2]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
 
-                                    </tr>
-                                    <tr>
-                                        <th class={s.r}>3</th>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="3a" name="a[3]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="3b" name="a[3]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="3c" name="a[3]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="3d" name="a[3]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="3e" name="a[3]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <th class={s.r}>3</th>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="3a" name="a[3]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="3b" name="a[3]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="3c" name="a[3]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="3d" name="a[3]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="3e" name="a[3]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
 
-                                    </tr>
-                                    <tr>
-                                        <th class={s.r}>4</th>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="4a" name="a[4]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="4b" name="a[4]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="4c" name="a[4]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="4d" name="a[4]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                <input type="radio" value="4e" name="a[4]" class={s.q_radio}></input>
-                                                <span class={s.marker}></span>
-                                            </label>
-                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <th class={s.r}>4</th>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="4a" name="a[4]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="4b" name="a[4]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="4c" name="a[4]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="4d" name="a[4]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="4e" name="a[4]" class={s.q_radio}></input>
+                                                    <span class={s.marker}></span>
+                                                </label>
+                                            </td>
 
-                                    </tr>
+                                        </tr>
+                                    </tbody>
                                 </table>
                                 <Next 
                                     answered={this.state.answered}
