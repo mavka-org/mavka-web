@@ -122,35 +122,58 @@ class Logic_Couples_4_5 extends Component {
         console.log(this.state.active);
 
         return (
-            <div className={s.background}>
-                <div className={[s.page, g.page_].join(' ')}>
-                    <Header
-                        checkedAnswers={this.state.checkedAnswers}
-                        subject={data.getSubject()}
-                        year={data.getYear()}
-                        session={data.getSession()}
-                        list={this.state.number}
-                        updateQuestion={this.props.updateQuestion}
-                        active={this.state.active}
-                    />
-                    <div className={s.question_body}>
-                        <div className={s.question_frame}>
-                            <Question
-                                question={data.getQuestion()}
-                                active={this.state.active}
-                                />
-                            <Topic
-                                topic={data.getTopic()}
-                                hidden={hidden}
-                                />
-                            <Comment
-                                comment={data.getComment()}
-                                hidden={hidden}
-                                />
-                            <Video 
-                                hidden={hidden}
-                                />
+            <div>
+                <div className={s.question_body}>
+                    <div className={s.question_frame}>
+                        <Question
+                            question={data.getQuestion()}
+                            active={this.state.active}
+                            />
+                        <Topic
+                            topic={data.getTopic()}
+                            hidden={hidden}
+                            />
+                        <Comment
+                            comment={data.getComment()}
+                            hidden={hidden}
+                            />
+                        <Video
+                            hidden={hidden}
+                            />
 
+                    </div>
+                    <div className={s.answers_frame}>
+                        <p className={s.choose}><strong>Обери одну відповідь</strong></p>
+                        <div className={s.answers}>
+                            <CoupleAnswer
+                                number={"1"}
+                                correctLetter={data.getMatchCorrectAnswers()[0]}
+                                subquestion={data.getMatchSubquestions()[0]}
+                                subanswer={data.getMatch4Options()[0]}
+                                explanation={data.getMatchExplanations()[0]}
+                                />
+                            <CoupleAnswer
+                                number={"2"}
+                                correctLetter={data.getMatchCorrectAnswers()[1]}
+                                subquestion={data.getMatchSubquestions()[1]}
+                                subanswer={data.getMatch4Options()[1]}
+                                explanation={data.getMatchExplanations()[1]}
+                                />
+                            <CoupleAnswer
+                                number={"3"}
+                                correctLetter={data.getMatchCorrectAnswers()[2]}
+                                subquestion={data.getMatchSubquestions()[2]}
+                                subanswer={data.getMatch4Options()[2]}
+                                explanation={data.getMatchExplanations()[2]}
+                                />
+                            <CoupleAnswer
+                                number={"4"}
+                                correctLetter={data.getMatchCorrectAnswers()[3]}
+                                subquestion={data.getMatchSubquestions()[3]}
+                                subanswer={data.getMatch4Options()[3]}
+                                explanation={data.getMatchExplanations()[3]}
+                                />
+                            <CoupleOption letter={'f'} subquestion={'fdf'} />
                         </div>
                         <div className={s.answers_frame}>
                             <p className={s.choose}><strong>Обери одну відповідь</strong></p>
@@ -313,7 +336,16 @@ class Logic_Couples_4_5 extends Component {
                                 />
                             </div>
 
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <Next
+                                answered={this.state.answered}
+                                callback={this.props.changeStatus}
+                                number={this.state.active}
+                            />
                         </div>
+
                     </div>
                 </div>
             </div>

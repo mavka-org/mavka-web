@@ -7,7 +7,7 @@ import Services from "../../Services";
 import ABCD from '../Templates/ABCD/ABCD';
 import Logic_Couples_4_4 from '../Templates/Logic_Couples/Logic_Couples_4_4';
 import Logic_Couples_4_5 from '../Templates/Logic_Couples/Logic_Couples_4_5';
-import DoubleOpen from '../Templates/Double_Open/Double_Open';
+import Double_Open from '../Templates/Double_Open/Double_Open';
 import Open from '../Templates/Open/Open';
 import Open_Ended from '../Templates/Super_Open/Open_Ended';
 import SystemFunctions from '../../utils/SystemFunctions';
@@ -16,6 +16,9 @@ import ABCD_OneColumn from "../Templates/ABCD_OneColumn/ABCD_OneColumn";
 import Double_Open_OneColumn from "../Templates/Double_Open_OneColumn/Double_Open_OneColumn";
 import Logic_Couples_4_4_OneColumn from "../Templates/Logic_Couples_OneColumn/Logic_Couples_4_4_OneColumn";
 import Logic_Couples_4_5_OneColumn from "../Templates/Logic_Couples_OneColumn/Logic_Couples_4_5_OneColumn";
+import g from "../Templates/Style.module.css";
+import s from "../Templates/ABCDE/ABCDE.module.css";
+import Header from "../Templates/Objects/Header/Header";
 
 
 const componentsMap = {
@@ -23,7 +26,7 @@ const componentsMap = {
     ABCD,
     Logic_Couples_4_4,
     Logic_Couples_4_5,
-    DoubleOpen,
+    Double_Open,
     Open,
     Open_Ended,
     ABCDE_OneColumn,
@@ -47,7 +50,8 @@ export class Test extends React.Component{
             answered: [],
             n: 0,
             answers: {},
-            checkedAnswers: {}
+            checkedAnswers: {},
+            currentAnswer: null
         }
         let current = this;
         Services.getReferenceById(this.state.testId).then(function (ref) {
@@ -117,6 +121,9 @@ export class Test extends React.Component{
     }
 
     updateQuestion = (x) => {
+        this.setState({
+            currentAnswer: this.state.answers[x]
+        });
         if(x <= this.state.n){
             this.setState({
                 active: x
@@ -179,6 +186,12 @@ export class Test extends React.Component{
         }
     }
 
+    updateCurrentAnswer = (answer) => {
+        this.setState({
+            currentAnswer: answer
+        })
+    }
+
     render() {
        // console.log("Test.js");
        // console.log(this.state.checkedAnswers);
@@ -197,7 +210,17 @@ export class Test extends React.Component{
                 const DynamicComponent = componentsMap[type];
                 //alert(type);
                 return (
-                        <div>
+                    <div className={g.background}>
+                        <div className={[s.page, g.page_].join(' ')}>
+                            <Header
+                                checkedAnswers={this.state.checkedAnswers}
+                                subject={data[num].getSubject()}
+                                year={data[num].getYear()}
+                                session={data[num].getSession()}
+                                list={this.state.n}
+                                updateQuestion={this.updateQuestion}
+                                active={this.state.active}
+                            />
                             <DynamicComponent
                                 checkedAnswers={this.state.checkedAnswers}
                                 updateQuestion={this.updateQuestion}
@@ -207,10 +230,13 @@ export class Test extends React.Component{
                                 data={data[num]}
                                 changeStatus={this.updateStatus}
                                 updateAnswers={this.updateAnswers}
-                                currentAnswer={this.state.answers[this.state.active]}
+                                currentAnswer={this.state.currentAnswer}
                                 isPractice={this.state.isPractice}
-                            />
+                                updateCurrentAnswer={this.updateCurrentAnswer}
+                            >
+                            </DynamicComponent>
                         </div>
+                    </div>
                 )
             }
             return (<div></div>);

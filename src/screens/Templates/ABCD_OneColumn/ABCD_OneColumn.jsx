@@ -12,25 +12,22 @@ import Next from './../Objects/Next/Next.jsx';
 class ABCD_OneColumn extends React.Component {
     render() {
         return (
-            <div className={g.background}>
-                <div className={[s.page, g.page_].join(' ')}>
-                    <Header />
-                    <div className={s.question_body}>
-                        <Question />
-                        <div className={s.answers_frame}>
-                            <p className={g.choose}><strong>Обери одну відповідь</strong></p>
-                            <div className={s.answers}>
-                                <Answer />
-                                <Answer />
-                                <Answer />
-                                <Answer />
-                            </div>
-                            <Next />
-                            <Question />
-                            <Topic />
-                            <Comment />
-                            <Video />
+            <div>
+                <div className={s.question_body}>
+                    <Question />
+                    <div className={s.answers_frame}>
+                        <p className={g.choose}><strong>Обери одну відповідь</strong></p>
+                        <div className={s.answers}>
+                            <Answer />
+                            <Answer />
+                            <Answer />
+                            <Answer />
                         </div>
+                        <Next />
+                        <Question />
+                        <Topic />
+                        <Comment />
+                        <Video />
                     </div>
                 </div>
             </div>
