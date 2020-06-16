@@ -145,201 +145,167 @@ class Logic_Couples_4_5 extends Component {
                     <div className={s.answers_frame}>
                         <p className={s.choose}><strong>Обери одну відповідь</strong></p>
                         <div className={s.answers}>
-                            <CoupleAnswer
-                                number={"1"}
-                                correctLetter={data.getMatchCorrectAnswers()[0]}
-                                subquestion={data.getMatchSubquestions()[0]}
-                                subanswer={data.getMatch4Options()[0]}
-                                explanation={data.getMatchExplanations()[0]}
-                                />
-                            <CoupleAnswer
-                                number={"2"}
-                                correctLetter={data.getMatchCorrectAnswers()[1]}
-                                subquestion={data.getMatchSubquestions()[1]}
-                                subanswer={data.getMatch4Options()[1]}
-                                explanation={data.getMatchExplanations()[1]}
-                                />
-                            <CoupleAnswer
-                                number={"3"}
-                                correctLetter={data.getMatchCorrectAnswers()[2]}
-                                subquestion={data.getMatchSubquestions()[2]}
-                                subanswer={data.getMatch4Options()[2]}
-                                explanation={data.getMatchExplanations()[2]}
-                                />
-                            <CoupleAnswer
-                                number={"4"}
-                                correctLetter={data.getMatchCorrectAnswers()[3]}
-                                subquestion={data.getMatchSubquestions()[3]}
-                                subanswer={data.getMatch4Options()[3]}
-                                explanation={data.getMatchExplanations()[3]}
-                                />
-                            <CoupleOption letter={'f'} subquestion={'fdf'} />
+                            {this.buildQA()}
                         </div>
-                        <div className={s.answers_frame}>
-                            <p className={s.choose}><strong>Обери одну відповідь</strong></p>
-                            <div className={s.answers}>
-                                {this.buildQA()}
-                            </div>
-                            <div class={s.table}>
-                                <table class={s.select_answer}>
-                                    <tbody>
-                                        <tr>
-                                            <th></th>
-                                            <th>А</th>
-                                            <th>Б</th>
-                                            <th>В</th>
-                                            <th>Г</th>
-                                            <th>Д</th>
-                                        </tr>
-                                        <tr>
-                                            <th class={s.r}>1</th>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="1a" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="1b" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="1c" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="1d" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="1e" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
+                        <div class={s.table}>
+                            <table class={s.select_answer}>
+                                <tbody>
+                                    <tr>
+                                        <th></th>
+                                        <th>А</th>
+                                        <th>Б</th>
+                                        <th>В</th>
+                                        <th>Г</th>
+                                        <th>Д</th>
+                                    </tr>
+                                    <tr>
+                                        <th class={s.r}>1</th>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="1a" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="1b" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="1c" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="1d" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="1e" name="a[1]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
 
-                                        </tr>
-                                        <tr>
-                                            <th class={s.r}>2</th>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="2a" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="2b" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="2c" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="2d" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="2e" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
+                                    </tr>
+                                    <tr>
+                                        <th class={s.r}>2</th>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="2a" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="2b" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="2c" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="2d" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="2e" name="a[2]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
 
-                                        </tr>
-                                        <tr>
-                                            <th class={s.r}>3</th>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="3a" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="3b" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="3c" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="3d" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="3e" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
+                                    </tr>
+                                    <tr>
+                                        <th class={s.r}>3</th>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="3a" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="3b" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="3c" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="3d" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="3e" name="a[3]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
 
-                                        </tr>
-                                        <tr>
-                                            <th class={s.r}>4</th>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="4a" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="4b" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="4c" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="4d" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    <input type="radio" value="4e" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
-                                                    <span class={s.marker}></span>
-                                                </label>
-                                            </td>
+                                    </tr>
+                                    <tr>
+                                        <th class={s.r}>4</th>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="4a" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="4b" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="4c" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="4d" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="radio" value="4e" name="a[4]" class={s.q_radio} onChange={this.upd}></input>
+                                                <span class={s.marker}></span>
+                                            </label>
+                                        </td>
 
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <Next 
-                                    answered={this.state.answered}
-                                    callback={this.props.changeStatus}
-                                    number={this.state.active}
-                                />
-                            </div>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <Next 
+                                answered={this.state.answered}
+                                callback={this.props.changeStatus}
+                                number={this.state.active}
+                            />
                         </div>
+                    </div>
 
                     </div>
                 </div>
-            </div>
         )
     }
 }

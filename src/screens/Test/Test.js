@@ -138,8 +138,11 @@ export class Test extends React.Component{
                   });
             }else{
                 this.state.user.getIdToken().then((token) => {
+                    this.setState({
+                        user: 25
+                    })
                     Services.updateTestAnswers(token, this.state.testId, this.state.answers).then(() => {
-                        Services.changeTestStatusByID(token, this.state.testId, "Ты лох - не прошел порог хаха").then(() => {
+                        Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => {
                                 this.props.history.push({
                                     pathname: '/subject/' + this.state.subject,
                                     state: { testID: this.state.testId }
