@@ -25,7 +25,7 @@ class Next extends React.Component {
             else {
                 console.log("выбери ответ");
             }
-        }  
+        }
     }
     render() {
         return (
