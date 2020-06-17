@@ -32,7 +32,6 @@ class SurveyDemographics extends React.Component {
     }
 
     render() {
-        firebase.analytics().logEvent("started demographics survey");
         document.getElementsByTagName('body')[0].setAttribute("style", "overflow-y: hidden;")
         if(this.state.user == 25){
             return(<div></div>)

@@ -17,8 +17,6 @@ class MainMenu extends React.Component {
 
     constructor(props) {
         super(props);
-        alert("serhii is cool");
-        firebase.analytics().logEvent('betka on fire');
         this.token = "";
         this.state = {
             subjectName: SystemFunctions.changeStringBeetwenHomeAndMain(this.props.match.params.id),
