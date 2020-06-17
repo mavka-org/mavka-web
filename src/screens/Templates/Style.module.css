@@ -44,7 +44,7 @@
 
 .title_bar {
     font-size: 22px;
-    line-height: 27px;
+    line-height: 30px;
     display: flex;
     flex-direction: row;
     align-items: baseline;
@@ -171,6 +171,9 @@
     font-family: Gilroy;
     font-size: 18px;
 }
+.btnqnav:focus {
+    outline: 0;
+}
 
 .inactive {
     opacity: 0.4; 
@@ -195,3 +198,4 @@
         margin-bottom: 30px;
     }
 }
+

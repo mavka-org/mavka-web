@@ -31,6 +31,9 @@ class Question {
         this.double_open_explanations = [json["Пояснення 1"], json["Пояснення 2"]];
         this.open_answer = json["Відповідь"];
         this.open_ended_sample = json["Зразкова відповідь"];
+        this.history_3_7_answers = [json["Відповідь 1"], json["Відповідь 2"], json["Відповідь 3"], json["Відповідь 4"], json["Відповідь 5"], json["Відповідь 6"], json["Відповідь 7"]];
+        this.history_3_7_explanations = [json["Пояснення 1"], json["Пояснення 2"], json["Пояснення 3"], json["Пояснення 4"], json["Пояснення 5"], json["Пояснення 6"], json["Пояснення 7"]];
+        this.history_3_7_right_answers = [json["Правильна відповіль 1"], json["Правильна відповіль 2"], json["Правильна відповіль 3"]];
         /* END HERE */
 
         /* stupid code */
@@ -158,6 +161,15 @@ class Question {
     getIsDoubleColumn() {
         return this.isDoubleColumn;
     }
+    getHistory37Questions(){
+        return this.history_3_7_answers;
+    }
+    getHistory37Explanations(){
+        return this.history_3_7_explanations;
+    }
+    getHistory37Answers(){
+        return this.history_3_7_right_answers;
+    }
     getBio3_question(){
         return this.bio3_question;
     }
@@ -216,6 +228,12 @@ class Question {
         }
         if(this.getType() == "Open"){
             return this.areEqualStrNumbers(answerToCheck, this.open_answer);
+        if(this.getType() == "Geo_History_3_7"){
+            for(let i of this.getHistory37Answers()){
+                if(answerToCheck == i)
+                    return true;
+            }
+            return false;
         }
     }
 
@@ -234,6 +252,57 @@ class Question {
                 return answerToCheck == this.bio3_thirdquestion_answer;
             }
         }
+    }
+
+    evaluate (answerToCheck) {
+        let res = [];
+        if(this.getType() == "ABCDE" || this.getType() == "ABCD"){
+            if(answerToCheck == this.answer) {
+                res.push(1);
+                res.push(2);
+            }
+            else {
+                res.push(0);
+                res.push(0);
+            }
+        }
+        else if(this.getType() == "Bio_Triples") {
+            let score = 0;
+            if(answerToCheck[0] == this.bio3_firstquestion_answer) {
+                ++score;
+            }
+            if(answerToCheck[1] == this.bio3_secondquestion_answer) {
+                ++score;
+            }
+            if(answerToCheck[2] == this.bio3_thirdquestion_answer) {
+                ++score;
+            }
+            res.push(score);
+            if(score == 0) {
+                res.push(0);
+            }
+            else if(score == 3) {
+                res.push(2);
+            }
+            else {
+                res.push(1);
+            }
+        }
+        else if(this.getType() == "geo37") {
+            let score = 0;
+            //
+            res.push(score);
+            if(score == 0) {
+                res.push(0);
+            }
+            else if(score == 3) {
+                res.push(2);
+            }
+            else {
+                res.push(1);
+            }
+        }
+        return res;
     }
 }
 

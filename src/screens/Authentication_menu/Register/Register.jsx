@@ -6,14 +6,15 @@ import axios from 'axios'
 
 
 export class Register extends React.Component{
-    
-    
+
+
     constructor(props){
         super(props)
     }
 
     reg(email, password) {
         alert(email + " " + password)
+        firebase.analytics().logEvent('TEST user registered');
         firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -24,7 +25,7 @@ export class Register extends React.Component{
     checkUser() {
         if(firebase.auth().currentUser != null)
             alert(firebase.auth().currentUser.uid)
-        else 
+        else
             alert('gav')
     }
 
@@ -40,10 +41,10 @@ export class Register extends React.Component{
             tok = await firebase.auth().currentUser.getIdToken()
         }
         document.getElementById('sa').value = tok;
-        
+
         const response = await axios.post(
             'https://us-central1-mavka-c5c01.cloudfunctions.net/getTestAnswers',
-            { 
+            {
                 token: tok,
                 courseID: "5FHcq0gcaS6FKHECdKxb"
             },
