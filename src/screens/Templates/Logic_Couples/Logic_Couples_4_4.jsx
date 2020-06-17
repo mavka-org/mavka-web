@@ -197,6 +197,7 @@ class Logic_Couples_4_4 extends Component {
     }
 
     render() {
+        console.log(this.state.data.evaluate(this.state.currentAnswer))
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
         console.log(this.state.currentAnswer)

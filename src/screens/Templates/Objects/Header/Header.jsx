@@ -57,7 +57,7 @@ class Header extends React.Component {
 
     render() {
         let left = Math.max(0, Math.floor(this.state.durationTime - (this.state.time - this.state.timeOfStart) / 1000.0));
-        console.log(this.state.checkedAnswers);
+        //console.log(this.state.checkedAnswers);
 
         if (window.innerWidth <= 992) {
             return (
