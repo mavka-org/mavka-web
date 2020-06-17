@@ -214,6 +214,15 @@ export class Test extends React.Component{
                 const data = this.state.data;
                 let num = this.state.active - 1;
                 let type = data[num].getType();
+                let answers = [];
+                //alert(this.state.answers[1]);
+                for (let i = 0; i < this.state.n; i++) {
+                    if ((i + 1) in this.state.answers)
+                        answers.push(data[i].evaluate(this.state.answers[i + 1])[1]);
+                    else answers.push(-1);
+                }
+                console.log("1111");
+                console.log(answers);
                 if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
                     type += "_OneColumn";
                 }
@@ -238,6 +247,7 @@ export class Test extends React.Component{
                                 updateQuestion={this.updateQuestion}
                                 active={this.state.active}
                                 isPractice={this.state.isPractice}
+                                answers={answers}
                             />
                             <DynamicComponent
                                 updateQuestion={this.updateQuestion}
