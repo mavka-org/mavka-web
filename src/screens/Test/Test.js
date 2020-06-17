@@ -20,6 +20,7 @@ import g from "../Templates/Style.module.css";
 import s from "../Templates/ABCDE/ABCDE.module.css";
 import Header from "../Templates/Objects/Header/Header";
 import BioTriples from '../Templates/BioTriples/BioTriples';
+import Geo_History_3_7 from '../Templates/Geo_History_3_7/Geo_History_3_7';
 
 const componentsMap = {
     ABCDE,
@@ -35,7 +36,8 @@ const componentsMap = {
     Logic_Couples_4_4_OneColumn,
     Logic_Couples_4_5_OneColumn,
     'Bio_Triples': BioTriples,
-    'Bio_Triples_OneColumn': BioTriples
+    'Bio_Triples_OneColumn': BioTriples,
+    Geo_History_3_7
 };
 
 export class Test extends React.Component{
