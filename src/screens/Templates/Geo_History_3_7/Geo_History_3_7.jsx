@@ -13,6 +13,7 @@ class Geo_History_3_7 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+<<<<<<< HEAD
             checkedAnswers: props.checkedAnswers,
             number: props.number,
             data: props.data,
@@ -21,11 +22,20 @@ class Geo_History_3_7 extends React.Component {
             currentAnswer: props.currentAnswer
         }
         //console.log(props.data);
+=======
+            number: props.number,
+            data: props.data,
+            active: props.active,
+            answered: props.answered
+        }
+        console.log(props.data);
+>>>>>>> 452f1f746b412bf90d9f834e5752032925e9909f
     }
 
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
             this.setState({
+<<<<<<< HEAD
                 checkedAnswers: this.props.checkedAnswers,
                 number: this.props.number,
                 data: this.props.data,
@@ -70,6 +80,15 @@ class Geo_History_3_7 extends React.Component {
         else return false;
     }
 
+=======
+                number: this.props.number,
+                data: this.props.data,
+                active: this.props.active,
+                answered: this.props.answered
+            })
+        }
+    }
+>>>>>>> 452f1f746b412bf90d9f834e5752032925e9909f
     render() {
         console.log(this.state.data.evaluate(this.state.currentAnswer))
 
@@ -85,6 +104,7 @@ class Geo_History_3_7 extends React.Component {
         let hidden = this.state.answered && this.props.isPractice;
         return (
             <div>
+<<<<<<< HEAD
                 <Question 
                     question={data.getQuestion()}
                     active={this.state.active}
@@ -167,12 +187,93 @@ class Geo_History_3_7 extends React.Component {
                     </div>
                 </div>
                 <Next 
+=======
+                <div style={{ marginBottom: 20 }}><strong>Обери ТРИ відповіді:</strong></div>
+                <div className={s.question_body}>
+                    <div className={s.answers}>
+                        <Answer
+                            answered={this.state.answered}
+                            letter={"1"}
+                            question={data.getQuestions()[0]}
+                            explanation={data.getExplanations()[0]}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.props.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer}
+                            isCorrectAnswer={data.checkCorrect('1')}
+                        />
+                        <Answer
+                            answered={this.state.answered}
+                            letter={"1"}
+                            question={data.getQuestions()[0]}
+                            explanation={data.getExplanations()[0]}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.props.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer}
+                            isCorrectAnswer={data.checkCorrect('1')}
+                        />
+                        <Answer
+                            answered={this.state.answered}
+                            letter={"1"}
+                            question={data.getQuestions()[0]}
+                            explanation={data.getExplanations()[0]}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.props.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer}
+                            isCorrectAnswer={data.checkCorrect('1')}
+                        />
+                    </div>
+                    <div className={s.answers}>
+                        <Answer
+                            answered={this.state.answered}
+                            letter={"1"}
+                            question={data.getQuestions()[0]}
+                            explanation={data.getExplanations()[0]}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.props.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer}
+                            isCorrectAnswer={data.checkCorrect('1')}
+                        />
+                        <Answer
+                            answered={this.state.answered}
+                            letter={"1"}
+                            question={data.getQuestions()[0]}
+                            explanation={data.getExplanations()[0]}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.props.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer}
+                            isCorrectAnswer={data.checkCorrect('1')}
+                        />
+                        <Answer
+                            answered={this.state.answered}
+                            letter={"1"}
+                            question={data.getQuestions()[0]}
+                            explanation={data.getExplanations()[0]}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.props.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer}
+                            isCorrectAnswer={data.checkCorrect('1')}
+                        />
+                        <Answer
+                            answered={this.state.answered}
+                            letter={"1"}
+                            question={data.getQuestions()[0]}
+                            explanation={data.getExplanations()[0]}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.props.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer}
+                            isCorrectAnswer={data.checkCorrect('1')}
+                        />
+                    </div>
+                </div>
+                <Next
+>>>>>>> 452f1f746b412bf90d9f834e5752032925e9909f
                     answered={this.state.answered}
                     updateQuestion={this.props.updateQuestion}
                     number={this.state.active}
                     currentAnswer={this.state.currentAnswer}
                     updateAnswers={this.props.updateAnswers}
                     isPractice={this.props.isPractice}
+<<<<<<< HEAD
                     isNextAllowed={this.nextValidation()}
                 />
                 <Topic 
@@ -184,6 +285,18 @@ class Geo_History_3_7 extends React.Component {
                     hidden={hidden}
                 />
                 <Video 
+=======
+                />
+                <Topic
+                    topic={data.getTopic()}
+                    hidden={hidden}
+                />
+                <Comment
+                    comment={data.getComment()}
+                    hidden={hidden}
+                />
+                <Video
+>>>>>>> 452f1f746b412bf90d9f834e5752032925e9909f
                     hidden={hidden}
                 />
             </div>
