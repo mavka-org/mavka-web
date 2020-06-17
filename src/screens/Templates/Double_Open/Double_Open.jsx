@@ -14,10 +14,12 @@ class DoubleOpen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            checkedAnswers: props.checkedAnswers,
             number: props.number,
             data: props.data,
             active: props.active,
-            answered: props.answered
+            answered: props.answered,
+            currentAnswer: props.currentAnswer
         }
         console.log(props.data);
     }
@@ -25,17 +27,20 @@ class DoubleOpen extends React.Component {
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
             this.setState({
+                checkedAnswers: this.props.checkedAnswers,
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
-                answered: this.props.answered
+                answered: this.props.answered,
+                currentAnswer: this.props.currentAnswer
             })
         }
     }
 
-    updateCurrentAnswer = (answer) => {
+    updateCurrentAnswer = (answer, index) => {
+        
         this.setState({
-            currentAnswer: answer
+            currentAnswer: this.props.currentAnswer[index] = answer
         })
     }
 

@@ -25,7 +25,7 @@ class Input_Answer extends React.Component {
     updateInput() {
         this.validateAnswer()
         let input = document.getElementById(this.inputId);
-        this.props.updateCurrentAnswer(input.value);
+        this.props.updateCurrentAnswer(input.value, this.number-1);
     }
 
     validateAnswer() {

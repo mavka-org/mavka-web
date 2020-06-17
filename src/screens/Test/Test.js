@@ -89,16 +89,16 @@ export class Test extends React.Component{
                 console.log(myData);
             })
         })
-        
+
 
     }
-    
+
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         document.getElementById("FAKE").click();
         document.getElementById("FAKE1").click();
     }
-    
+
     componentDidMount() {
         this.getAuthStatus();
         document.getElementById("FAKE").click();
@@ -129,7 +129,7 @@ export class Test extends React.Component{
                 active: x
             });
         }else{
-            
+
             if(this.state.isPractice){
                 console.log("ПОСЛЕДНИЙ ВОПРОС")
                 this.props.history.push({
@@ -149,9 +149,9 @@ export class Test extends React.Component{
                                 });
                             }
                         );
-                    })         
+                    })
                 });
-                
+
                 /*
                 setTimeout(() => {  this.props.history.push({
                     pathname: '/subject/' + this.state.subject,
@@ -160,7 +160,7 @@ export class Test extends React.Component{
                 }, 1000);
                 */
             }
-        } 
+        }
     }
 
     updateStatus = (id, x) => {
