@@ -7,23 +7,27 @@ import Services from "../../Services";
 import ABCD from '../Templates/ABCD/ABCD';
 import Logic_Couples_4_4 from '../Templates/Logic_Couples/Logic_Couples_4_4';
 import Logic_Couples_4_5 from '../Templates/Logic_Couples/Logic_Couples_4_5';
-import DoubleOpen from '../Templates/Double_Open/Double_Open';
+import Double_Open from '../Templates/Double_Open/Double_Open';
 import Open from '../Templates/Open/Open';
-import Open_Ended from '../Templates/Super_Open/Open_Ended';
+import Open_Ended from '../Templates/Super_Ended/Open_Ended';
 import SystemFunctions from '../../utils/SystemFunctions';
 import ABCDE_OneColumn from "../Templates/ABCDE_OneColumn/ABCDE_OneColumn";
 import ABCD_OneColumn from "../Templates/ABCD_OneColumn/ABCD_OneColumn";
 import Double_Open_OneColumn from "../Templates/Double_Open_OneColumn/Double_Open_OneColumn";
 import Logic_Couples_4_4_OneColumn from "../Templates/Logic_Couples_OneColumn/Logic_Couples_4_4_OneColumn";
 import Logic_Couples_4_5_OneColumn from "../Templates/Logic_Couples_OneColumn/Logic_Couples_4_5_OneColumn";
-
+import g from "../Templates/Style.module.css";
+import s from "../Templates/ABCDE_OneColumn/ABCDE_OneColumn.module.css";
+import Header from "../Templates/Objects/Header/Header";
+import BioTriples from '../Templates/BioTriples/BioTriples';
+import Geo_History_3_7 from '../Templates/Geo_History_3_7/Geo_History_3_7';
 
 const componentsMap = {
     ABCDE,
     ABCD,
     Logic_Couples_4_4,
     Logic_Couples_4_5,
-    DoubleOpen,
+    Double_Open,
     Open,
     Open_Ended,
     ABCDE_OneColumn,
@@ -31,9 +35,20 @@ const componentsMap = {
     Double_Open_OneColumn,
     Logic_Couples_4_4_OneColumn,
     Logic_Couples_4_5_OneColumn,
+    'Bio_Triples': BioTriples,
+    'Bio_Triples_OneColumn': BioTriples,
+    Geo_History_3_7,
+    'Geo_History_3_7_OneColumn': Geo_History_3_7,
 };
 
 export class Test extends React.Component{
+
+
+    updateScreen () {
+        this.setState({
+            width: window.innerWidth
+        })
+    }
 
     constructor(props) {
         super(props);
@@ -47,8 +62,12 @@ export class Test extends React.Component{
             answered: [],
             n: 0,
             answers: {},
-            checkedAnswers: {}
+            checkedAnswers: {},
+            width: window.innerWidth,
         }
+        this.updateScreen = this.updateScreen.bind(this);
+        window.addEventListener("resize", this.updateScreen);
+
         let current = this;
         Services.getReferenceById(this.state.testId).then(function (ref) {
             Services.getData(ref).then(function (data) {
@@ -85,16 +104,15 @@ export class Test extends React.Component{
                 console.log(myData);
             })
         })
-        
+
 
     }
-    
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         document.getElementById("FAKE").click();
         document.getElementById("FAKE1").click();
     }
-    
+
     componentDidMount() {
         this.getAuthStatus();
         document.getElementById("FAKE").click();
@@ -122,7 +140,7 @@ export class Test extends React.Component{
                 active: x
             });
         }else{
-            
+
             if(this.state.isPractice){
                 console.log("ПОСЛЕДНИЙ ВОПРОС")
                 this.props.history.push({
@@ -131,17 +149,20 @@ export class Test extends React.Component{
                   });
             }else{
                 this.state.user.getIdToken().then((token) => {
+                    this.setState({
+                        user: 25
+                    })
                     Services.updateTestAnswers(token, this.state.testId, this.state.answers).then(() => {
-                        Services.changeTestStatusByID(token, this.state.testId, "Ты лох - не прошел порог хаха").then(() => {
+                        Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => {
                                 this.props.history.push({
                                     pathname: '/subject/' + this.state.subject,
                                     state: { testID: this.state.testId }
                                 });
                             }
                         );
-                    })         
+                    })
                 });
-                
+
                 /*
                 setTimeout(() => {  this.props.history.push({
                     pathname: '/subject/' + this.state.subject,
@@ -150,7 +171,7 @@ export class Test extends React.Component{
                 }, 1000);
                 */
             }
-        } 
+        }
     }
 
     updateStatus = (id, x) => {
@@ -162,6 +183,7 @@ export class Test extends React.Component{
     }
 
     updateAnswers = (num, answer) => {
+        firebase.analytics().logEvent('check');
         const answers = this.state.answers;
         const checkedAnswers = this.state.checkedAnswers;
         answers[num] = answer;
@@ -170,9 +192,9 @@ export class Test extends React.Component{
             answers: answers,
             checkedAnswers: checkedAnswers
         })
-        if(this.state.isPractice){
+        if(this.state.isPractice) {
             this.state.user.getIdToken().then((token) => {
-                let obj ={};
+                let obj = {};
                 obj[num] = answer;
                 Services.updateTestAnswers(token, this.state.testId, obj);
             })
@@ -190,16 +212,32 @@ export class Test extends React.Component{
                 const data = this.state.data;
                 let num = this.state.active - 1;
                 let type = data[num].getType();
-
                 if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
                     type += "_OneColumn";
                 }
                 const DynamicComponent = componentsMap[type];
-                //alert(type);
+
+                if (this.state.active in this.state.answers) {
+                    firebase.analytics().logEvent('oldQuestion');
+                }
+                else {
+                    firebase.analytics().logEvent('newQuestion');
+                }
+
                 return (
-                        <div>
-                            <DynamicComponent
+                    <div className={g.background}>
+                        <div className={[s.page, g.page_].join(' ')}>
+                            <Header
                                 checkedAnswers={this.state.checkedAnswers}
+                                subject={data[num].getSubject()}
+                                year={data[num].getYear()}
+                                session={data[num].getSession()}
+                                list={this.state.n}
+                                updateQuestion={this.updateQuestion}
+                                active={this.state.active}
+                                isPractice={this.state.isPractice}
+                            />
+                            <DynamicComponent
                                 updateQuestion={this.updateQuestion}
                                 active={this.state.active}
                                 number={this.state.n}
@@ -209,8 +247,10 @@ export class Test extends React.Component{
                                 updateAnswers={this.updateAnswers}
                                 currentAnswer={this.state.answers[this.state.active]}
                                 isPractice={this.state.isPractice}
-                            />
+                            >
+                            </DynamicComponent>
                         </div>
+                    </div>
                 )
             }
             return (<div></div>);

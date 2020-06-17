@@ -21,14 +21,40 @@ class Answer extends React.Component {
         }
     }
 
+    check() {
+        if(this.state.currentAnswer == null) {
+            return false;
+        }
+
+        if(typeof this.state.currentAnswer == 'string') {
+            return this.state.currentAnswer == this.props.letter
+        }
+        else if(typeof this.state.currentAnswer == 'object'){
+            let res = false;
+            for(let i of this.state.currentAnswer) {
+                if(this.props.letter == i) res = true;
+            }
+            return res;
+        }
+        else {
+            return false;
+        }
+    }
+
     render() {
         //console.log(this.state.currentAnswer + " " +  this.props.letter + " " + this.props.isCorrectAnswer);
-        let isUserAnswer = !(this.props.letter.localeCompare(this.state.currentAnswer));
+        let isUserAnswer = false;
+        if(this.props.letter >= '1' && this.props.letter <= '9'){
+            for(let i of this.props.currentAnswer){
+                if(this.props.letter == i)
+                    isUserAnswer = true;
+            }
+        }else isUserAnswer = !(this.props.letter.localeCompare(this.state.currentAnswer));
         //console.log(isUserAnswer);
         return (
             <div onClick={()=>{
-                this.props.updateCurrentAnswer(this.props.letter);
-            }}className={(g.answer + (this.state.currentAnswer == this.props.letter ? (" " + g.answer_answered) : ""))}>
+                this.props.updateCurrentAnswer(this.props.letter, this.props.index);
+            }}className={(g.answer + (this.check() ? (" " + g.answer_answered) : ""))}>
                 <div className={g.answer_text_frame}>
                     <div className={g.letter_choice}>
 

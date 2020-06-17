@@ -3,7 +3,6 @@ require("firebase/auth");
 require("firebase/firestore");
 require("firebase/storage");
 require("firebase/analytics");
-
 var firebaseConfig = {
     apiKey: "AIzaSyCpJw3Fn2f1zwE74t0vmKAZG6MnR_3ZQfc",
     authDomain: "mavka-c5c01.firebaseapp.com",

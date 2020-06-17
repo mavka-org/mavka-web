@@ -11,7 +11,7 @@ class Question {
         this.year = json["Рік"];
         this.number = json["Номер"];
         this.session = json["Сесія"];
-        this.subject = json["Предмет"];
+        this.subject = json["Subject"];
         this.topic = json["Тема"];
         this.question = json["Питання"];
         this.answer = json["Правильна відповідь"];
@@ -29,8 +29,46 @@ class Question {
         this.double_open_subquestion = [json["Завдання 1"], json["Завдання 2"]];
         this.double_open_answers = [json["Відповідь 1"], json["Відповідь 2"]];
         this.double_open_explanations = [json["Пояснення 1"], json["Пояснення 2"]];
-        this.open_answer = json["Відповідь"]
+        this.open_answer = json["Відповідь"];
+        this.history_3_7_answers = [json["Відповідь 1"], json["Відповідь 2"], json["Відповідь 3"], json["Відповідь 4"], json["Відповідь 5"], json["Відповідь 6"], json["Відповідь 7"]];
+        this.history_3_7_explanations = [json["Пояснення 1"], json["Пояснення 2"], json["Пояснення 3"], json["Пояснення 4"], json["Пояснення 5"], json["Пояснення 6"], json["Пояснення 7"]];
+        this.history_3_7_right_answers = [json["Правильна відповіль 1"], json["Правильна відповіль 2"], json["Правильна відповіль 3"]];
         /* END HERE */
+
+        /* stupid code */
+        this.bio3_question = json["Передумова"];
+        this.bio3_firstquestion = json["Перше питання"];
+        this.bio3_secondquestion = json["Друге питання"];
+        this.bio3_thirdquestion = json["Третє питання"];
+
+        this.bio3_firstquestion_firstanswer = json["Перше питання: Відповідь 1"];
+        this.bio3_secondquestion_firstanswer = json["Друге питання: Відповідь 1"];
+        this.bio3_thirdquestion_firstanswer = json["Третє питання: Відповідь 1"];
+
+        this.bio3_firstquestion_secondanswer = json["Перше питання: Відповідь 2"];
+        this.bio3_secondquestion_secondanswer = json["Друге питання: Відповідь 2"];
+        this.bio3_thirdquestion_secondanswer = json["Третє питання: Відповідь 2"];
+
+        this.bio3_firstquestion_thirdanswer = json["Перше питання: Відповідь 3"];
+        this.bio3_secondquestion_thirdanswer = json["Друге питання: Відповідь 3"];
+        this.bio3_thirdquestion_thirdanswer = json["Третє питання: Відповідь 3"];
+
+        this.bio3_firstquestion_firstexplain = json["Перше питання: Пояснення 1"];
+        this.bio3_secondquestion_firstexplain = json["Друге питання: Пояснення 1"];
+        this.bio3_thirdquestion_firstexplain = json["Третє питання: Пояснення 1"];
+
+        this.bio3_firstquestion_secondexplain = json["Перше питання: Пояснення 2"];
+        this.bio3_secondquestion_secondexplain = json["Друге питання: Пояснення 2"];
+        this.bio3_thirdquestion_secondexplain = json["Третє питання: Пояснення 2"];
+
+        this.bio3_firstquestion_thirdexplain = json["Перше питання: Пояснення 3"];
+        this.bio3_secondquestion_thirdexplain = json["Друге питання: Пояснення 3"];
+        this.bio3_thirdquestion_thirdexplain = json["Третє питання: Пояснення 3"];
+
+        this.bio3_firstquestion_answer = json["Перше питання: Правильна Відповідь"];
+        this.bio3_secondquestion_answer = json["Друге питання: Правильна Відповідь"];
+        this.bio3_thirdquestion_answer = json["Третє питання: Правильна Відповідь"];
+        /* */
         var tmpArr = ["Відповідь А", "Відповідь Б", "Відповідь В",
             "Відповідь Г", "Відповідь Д", "Відповідь Е", "Відповідь A",
             "Відповідь B", "Відповідь C", "Відповідь D", "Відповідь E",
@@ -119,10 +157,136 @@ class Question {
     getIsDoubleColumn() {
         return this.isDoubleColumn;
     }
+    getHistory37Questions(){
+        return this.history_3_7_answers;
+    }
+    getHistory37Explanations(){
+        return this.history_3_7_explanations;
+    }
+    getHistory37Answers(){
+        return this.history_3_7_right_answers;
+    }
+    getBio3_question(){
+        return this.bio3_question;
+    }
+    getBio3_firstquestion(){
+        let tmp = {
+            question: this.bio3_firstquestion,
+            firstAnswer: this.bio3_firstquestion_firstanswer,
+            secondAnswer: this.bio3_firstquestion_secondanswer,
+            thirdAnswer: this.bio3_firstquestion_thirdanswer,
+            firstExplain: this.bio3_firstquestion_firstexplain,
+            secondExplain: this.bio3_firstquestion_secondexplain,
+            thirdExplain: this.bio3_firstquestion_thirdexplain,
+            answer: this.bio3_firstquestion_answer
+        };
+        return tmp;
+    }
+    getBio3_secondquestion(){
+        let tmp = {
+            question: this.bio3_secondquestion,
+            firstAnswer: this.bio3_secondquestion_firstanswer,
+            secondAnswer: this.bio3_secondquestion_secondanswer,
+            thirdAnswer: this.bio3_secondquestion_thirdanswer,
+            firstExplain: this.bio3_secondquestion_firstexplain,
+            secondExplain: this.bio3_secondquestion_secondexplain,
+            thirdExplain: this.bio3_secondquestion_thirdexplain,
+            answer: this.bio3_secondquestion_answer
+        };
+        return tmp;
+    }
+    getBio3_thirdquestion(){
+        let tmp = {
+            question: this.bio3_thirdquestion,
+            firstAnswer: this.bio3_thirdquestion_firstanswer,
+            secondAnswer: this.bio3_thirdquestion_secondanswer,
+            thirdAnswer: this.bio3_thirdquestion_thirdanswer,
+            firstExplain: this.bio3_thirdquestion_firstexplain,
+            secondExplain: this.bio3_thirdquestion_secondexplain,
+            thirdExplain: this.bio3_thirdquestion_thirdexplain,
+            answer: this.bio3_thirdquestion_answer
+        };
+        return tmp;
+      }
     checkCorrect (answerToCheck) {
-        if(this.getType() == "ABCDE"){
+        if(this.getType() == "ABCDE" || this.getType() == "ABCD"){
             return answerToCheck == this.answer;
         }
+        if(this.getType() == "Geo_History_3_7"){
+            for(let i of this.getHistory37Answers()){
+                if(answerToCheck == i)
+                    return true;
+            }
+            return false;
+        }
+    }
+
+    checkCorrectFromList (answerToCheck, index) {
+        if(this.getType() == "Double_Open" || this.getType() == "Open"){
+            return answerToCheck == this.double_open_answers[index];
+        }
+        if(this.getType() == "Bio_Triples"){
+            if(index == 1){
+                return answerToCheck == this.bio3_firstquestion_answer;
+            }
+            if(index == 2){
+                return answerToCheck == this.bio3_secondquestion_answer;
+            }
+            if(index == 3){
+                return answerToCheck == this.bio3_thirdquestion_answer;
+            }
+        }
+    }
+
+    evaluate (answerToCheck) {
+        let res = [];
+        if(this.getType() == "ABCDE" || this.getType() == "ABCD"){
+            if(answerToCheck == this.answer) {
+                res.push(1);
+                res.push(2);
+            }
+            else {
+                res.push(0);
+                res.push(0);
+            }
+        }
+        else if(this.getType() == "Bio_Triples") {
+            let score = 0;
+            if(answerToCheck[0] == this.bio3_firstquestion_answer) {
+                ++score;
+            }
+            if(answerToCheck[1] == this.bio3_secondquestion_answer) {
+                ++score;
+            }
+            if(answerToCheck[2] == this.bio3_thirdquestion_answer) {
+                ++score;
+            }
+            res.push(score);
+            if(score == 0) {
+                res.push(0);
+            }
+            else if(score == 3) {
+                res.push(2);
+            }
+            else {
+                res.push(1);
+            }
+        }
+        else if(this.getType() == "geo37") {
+            let score = 0;
+            //
+            res.push(score);
+            if(score == 0) {
+                res.push(0);
+            }
+            else if(score == 3) {
+                res.push(2);
+            }
+            else {
+                res.push(1);
+            }
+        }
+        return res;
     }
 }
 
@@ -173,7 +337,7 @@ class Services {
     static async updateTestAnswers(token, testID, answers){
         const response = await axios.post(
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/updCourseAnswers',
-            { 
+            {
                 token: token,
                 courseID: testID,
                 answers: answers
@@ -184,7 +348,7 @@ class Services {
     static async getTestAnswers(token, testID){
         const response = await axios.post(
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/getTestAnswers',
-            { 
+            {
                 token: token,
                 courseID: testID
             },
@@ -196,7 +360,7 @@ class Services {
     static async changeTestStatusByID(token, testID, status){
         const response = await axios.post(
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/changeStatusById',
-            { 
+            {
                 token: token,
                 id: testID,
                 status: status

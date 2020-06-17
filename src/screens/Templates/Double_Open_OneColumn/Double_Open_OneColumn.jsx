@@ -6,55 +6,125 @@ import Question from '../Objects/Question/Question.jsx';
 import Topic from './../Objects/Topic/Topic.jsx';
 import Header from './../Objects/Header/Header.jsx';
 import Comment from './../Objects/Comment/Comment.jsx';
+import Double_Input_Answer from './../Objects/Answer/Double_Input_Answer';
 import Video from './../Objects/Video/Video.jsx';
 import Next from './../Objects/Next/Next.jsx';
-class DoubleOpenOneColumn extends React.Component {
+class Double_Open_OneColumn extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            checkedAnswers: props.checkedAnswers,
+            number: props.number,
+            data: props.data,
+            active: props.active,
+            answered: props.answered,
+            currentAnswer: props.currentAnswer
+        }
+        console.log(props.data);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props != prevProps) {
+            this.setState({
+                checkedAnswers: this.props.checkedAnswers,
+                number: this.props.number,
+                data: this.props.data,
+                active: this.props.active,
+                answered: this.props.answered,
+                currentAnswer: this.props.currentAnswer
+            })
+        }
+    }
+
+    updateCurrentAnswer = (answer, index) => {
+
+        let curAnswer = this.state.currentAnswer
+        curAnswer[index] = answer
+
+        this.setState({
+            currentAnswer: curAnswer
+        })
+    }
+
     render() {
+
+        if(typeof this.state.currentAnswer == "undefined"){
+            this.setState({
+                currentAnswer: ["", ""]
+            })
+            return(<div></div>)
+        }
+
+        const data = this.state.data;
+        let hidden = this.state.answered && this.props.isPractice;
+
         return (
-            <div className={g.background}>
-                <div className={[s.page, g.page_].join(' ')}>
-                    <Header />
-                    <div className={s.question_body}>
-                        <Question />
-                        <div className={s.main_answers}>
-                            <p><strong>Впиши відповіді на питання:</strong> </p>
-                            <div className={s.answers_frame}>
-                                <div className={s.answer}>
-                                    <div className={s.variant}>
-                                        <div className={s.number}><div className={s.icon}></div><strong>1:</strong></div><div>Визначте довжину відрізка math: O_1O_2.</div></div>
-                                    <div className={s.comment}>
-                                        <p>1) Знайдемо довжину одного кола `math: =8\pi`.2) Знайдемо довжину радіусу з формули довжини кола3) Відстань між центрами кіл дорівнює двом радіусам </p>
-                                    </div>
-                                    <input className={s.inp}></input>
-                                    <div className={s.correct_answer}>
-                                        <div className={s.correct_number}><strong>Правильна відповідь: </strong>89</div>
-                                    </div>
-                                </div>
-                                <div className={s.answer}>
-                                    <div className={s.variant}>
-                                        <div className={s.number}><div className={s.icon}></div><strong>1:</strong></div><div>Визначте довжину відрізка math: O_1O_2.</div></div>
-                                    <div className={s.comment}>
-                                        <p>1) Знайдемо довжину одного кола `math: =8\pi`.2) Знайдемо довжину радіусу з формули довжини кола3) Відстань між центрами кіл дорівнює двом радіусам </p>
-                                    </div>
-                                    <input className={s.inp}></input>
-                                    <div className={s.correct_answer}>
-                                        <div className={s.correct_number}><strong>Правильна відповідь: </strong>89</div>
-                                    </div>
-                                </div>
-                            </div>
+            <div>
+                <div className={s.question_body}>
 
-                            <Next />
+                    <Question
+                        question={data.getQuestion()}
+                        active={this.state.active}
+                        />
 
-                            <Topic />
-                            <Comment />
-                            <Video />
+                    <div className={s.main_answers}>
+                        <p><strong>Впиши відповіді на питання:</strong> </p>
+
+                        <div className={s.answers_frame}>
+
+                            <Double_Input_Answer
+                                answered={this.state.answered}
+                                number={"1"}
+                                subquestion={data.getDoubleOpenSubquestion()[0]}
+                                explanation={data.getDoubleOpenExplanations()[0]}
+                                correctAnswer={data.getDoubleOpenAnswers()[0]}
+                                hidden={hidden}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
+                                currentAnswer={this.state.currentAnswer[0]}
+                                isCorrectAnswer={data.checkCorrectFromList(this.state.currentAnswer[0], 0)}
+                                />
+
+                            <Double_Input_Answer
+                                answered={this.state.answered}
+                                number={"2"}
+                                subquestion={data.getDoubleOpenSubquestion()[1]}
+                                explanation={data.getDoubleOpenExplanations()[1]}
+                                correctAnswer={data.getDoubleOpenAnswers()[1]}
+                                hidden={hidden}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
+                                currentAnswer={this.state.currentAnswer[1]}
+                                isCorrectAnswer={data.checkCorrectFromList(this.state.currentAnswer[1], 1)}
+                                />
+
                         </div>
 
+                        <Next
+                            answered={this.state.answered}
+                            updateQuestion={this.props.updateQuestion}
+                            number={this.state.active}
+                            currentAnswer={this.state.currentAnswer}
+                            updateAnswers={this.props.updateAnswers}
+                            isPractice={this.props.isPractice}
+                        />
+                        <Topic
+                            topic={data.getTopic()}
+                            hidden={hidden}
+                            />
+                        <Comment
+                            comment={data.getComment()}
+                            hidden={hidden}
+                            />
+                        <Video
+                            hidden={hidden}
+                        />
+
                     </div>
+
                 </div>
             </div>
         )
     }
 }
 
-export default DoubleOpenOneColumn;
+export default Double_Open_OneColumn;

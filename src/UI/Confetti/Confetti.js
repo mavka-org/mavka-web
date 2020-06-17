@@ -22,7 +22,7 @@ export default () => {
                 gravity={-0.1}
                 initialVelocityX={10}
                 confettiSource={{x:width, y:height, w: 0, h:0}}
-                tweenDuration={1}
+                tweenDuration={2}
             />
         </div>
     )

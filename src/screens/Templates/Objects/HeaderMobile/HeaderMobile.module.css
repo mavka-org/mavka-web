@@ -9,6 +9,8 @@
 }
 
 .header{
+    padding-bottom: 15px;
+    margin-bottom: 20px;
     width: 100%;
     height: 133px;
     background-color: white;
@@ -27,7 +29,6 @@
     margin-top: 15px;
 }
 .tip{
-    
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -37,13 +38,12 @@
     background-color: #E8E8E8;
 }
 .tip_1{
-    
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 15px;
-    margin-top: 15px;
+    margin-top: 0px;
     background-color: white;
 }
 .timer{
@@ -74,7 +74,7 @@
     /* это будет показано при разрешении монитора до 930 пикселей */
     .header{
         width: 100%;
-        height: 133px;
+        height: 200px;
         display: flex;
         font-size: 16px;
         line-height: 20px;

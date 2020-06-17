@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Open.module.css'
+import s from './Super_Open.module.css';
 import g from './../Style.module.css';
 import Question from '../Objects/Question/Question.jsx';
 import Topic from './../Objects/Topic/Topic.jsx';
@@ -7,7 +7,7 @@ import Header from './../Objects/Header/Header.jsx';
 import Comment from './../Objects/Comment/Comment.jsx';
 import Video from './../Objects/Video/Video.jsx';
 import Next from './../Objects/Next/Next.jsx';
-class Open extends React.Component {
+class Open_Ended extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,7 +29,7 @@ class Open extends React.Component {
             })
         }
     }
-
+    
     render() {
         const data = this.state.data;
         let hidden = this.state.answered;
@@ -42,21 +42,6 @@ class Open extends React.Component {
                         active={this.state.active}
                         />
                     <div className={s.main_answers}>
-                        <p><strong>Впиши відповідь на питання:</strong> </p>
-                        <div className={s.answers_frame}>
-                            <div className={s.answer}>
-                                <div className={s.question}>
-                                    <p className={s.variant}><div className={s.check}></div><div className={s.number}></div>{data.getQuestion()}</p>
-                                    <div className={s.comment}>
-                                        {data.getComment()}
-                                    </div>
-                                    <input className={s.inp}></input>
-                                    <div className={s.correct_answer}>
-                                        <div className={s.correct_number}><strong>Правильна відповідь: </strong>{data.getOpenAnswer()}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <Next />
                         <Topic
                             topic={data.getTopic()}
@@ -66,11 +51,10 @@ class Open extends React.Component {
                             />
                         <Video />
                     </div>
-
                 </div>
             </div>
         )
     }
 }
 
-export default Open;
+export default Open_Ended;
