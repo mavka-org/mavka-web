@@ -40,7 +40,7 @@ class Logic_Couples_4_5 extends Component {
         }
     }
 
-    buildQA() {
+    buildQA(type) {
         const data = this.state.data;
         let hidden = !(this.state.answered && this.props.isPractice);
         let single1 = [];
@@ -84,7 +84,7 @@ class Logic_Couples_4_5 extends Component {
         }
 
 
-        let result = [];
+        let result = [], result2 = [];
         if(hidden) {
             let used = [];
             for(let i = 0; i < 5; ++i) {
@@ -114,7 +114,7 @@ class Logic_Couples_4_5 extends Component {
             }
             for(let i = 0; i < 5; ++i) {
                 if(!used[i]) {
-                    result.push(single2[i]);
+                    result2.push(single2[i]);
                 }
             }
         }
@@ -130,11 +130,16 @@ class Logic_Couples_4_5 extends Component {
             }
             for(let i = 0; i < 5; ++i) {
                 if(!used[i]) {
-                    result.push(single2[i]);
+                    result2.push(single2[i]);
                 }
             }
         }
-        return result;
+        if(type == 1) {
+            return result;
+        }
+        else {
+            return result2;
+        }
     }
 
     getChecked(i, j) {
@@ -227,7 +232,8 @@ class Logic_Couples_4_5 extends Component {
                     <div className={s.answers_frame}>
                         <p className={s.choose}><strong>Обери одну відповідь</strong></p>
                         <div className={s.answers}>
-                            {this.buildQA()}
+                            {this.buildQA(1)}
+                            {this.buildQA(2)}
                         </div>
                         <div class={s.table}>
                             <table class={s.select_answer}>
