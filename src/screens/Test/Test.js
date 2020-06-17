@@ -9,7 +9,7 @@ import Logic_Couples_4_4 from '../Templates/Logic_Couples/Logic_Couples_4_4';
 import Logic_Couples_4_5 from '../Templates/Logic_Couples/Logic_Couples_4_5';
 import Double_Open from '../Templates/Double_Open/Double_Open';
 import Open from '../Templates/Open/Open';
-import Open_Ended from '../Templates/Super_Open/Open_Ended';
+import Open_Ended from '../Templates/Super_Ended/Open_Ended';
 import SystemFunctions from '../../utils/SystemFunctions';
 import ABCDE_OneColumn from "../Templates/ABCDE_OneColumn/ABCDE_OneColumn";
 import ABCD_OneColumn from "../Templates/ABCD_OneColumn/ABCD_OneColumn";
@@ -38,6 +38,13 @@ const componentsMap = {
 
 export class Test extends React.Component{
 
+
+    updateScreen () {
+        this.setState({
+            width: window.innerWidth
+        })
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -50,8 +57,12 @@ export class Test extends React.Component{
             answered: [],
             n: 0,
             answers: {},
-            checkedAnswers: {}
+            checkedAnswers: {},
+            width: window.innerWidth,
         }
+        this.updateScreen = this.updateScreen.bind(this);
+        window.addEventListener("resize", this.updateScreen);
+
         let current = this;
         Services.getReferenceById(this.state.testId).then(function (ref) {
             Services.getData(ref).then(function (data) {
@@ -196,9 +207,10 @@ export class Test extends React.Component{
                 let num = this.state.active - 1;
                 let type = data[num].getType();
 
-                /*if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
+                if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
                     type += "_OneColumn";
-                }*/
+                }
+                alert(type);
                 const DynamicComponent = componentsMap[type];
                 return (
                     <div className={g.background}>
