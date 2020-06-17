@@ -92,11 +92,13 @@ class MainMenu extends React.Component {
     }
 
     startPractice = () => {
+        firebase.analytics().logEvent('openPractise');
         Services.changeTestStatusByID(this.token, this.state.tests[this.state.active].id, "вільна практика");
         this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
     }
 
     startSimulation = () => {
+        firebase.analytics().logEvent('openSimulation');
         this.props.history.push('/subject/' + this.state.subject + '/simulation/' + this.state.tests[this.state.active].id);
     }
 
