@@ -10,6 +10,9 @@ import Test from "./screens/Test";
 import TestView from "./screens/ContentMakers/TestView";
 import MainMenu from "./screens/MainMenu";
 import Courses from "./screens/Courses"
+import SurveyDemographics from "./screens/SurveyDemographics"
+import SurveyFeedback from "./screens/SurveyFeedback"
+import SurveyOpenEnded from "./screens/SurveyOpenEnded"
 
 export default () => (
     <Router>
@@ -18,6 +21,9 @@ export default () => (
             <Route path="/about" component={ScreensAbout}/>
             <Route path="/login" component={Login}/>
             <Route path="/home" component={Courses}/>
+            <Route path="/surveydemographics" component={SurveyDemographics}/> // should be placed after user Registration
+            <Route path="/surveyfeedback" component={SurveyFeedback}/> // should be placed either!!! 1) between the end of ZNO simulation and score page, or 2) after Завершити практику button on free practice
+            <Route path="/surveyopenended" component={SurveyOpenEnded}/>
             <Route exact path="/subject/:id" component={MainMenu} />
             <Route exact path="/subject/:id/:mode/:testId" component={Test} />
             <Route exact path={"/preview/:id"} component={TestView}/>

@@ -28,6 +28,7 @@ export class Login extends React.Component {
     }
     async login(email, password) {
         alert(email + " " + password)
+        firebase.analytics().logEvent('TEST user logged in');
         await firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;
