@@ -37,7 +37,8 @@ const componentsMap = {
     Logic_Couples_4_5_OneColumn,
     'Bio_Triples': BioTriples,
     'Bio_Triples_OneColumn': BioTriples,
-    Geo_History_3_7
+    Geo_History_3_7,
+    'Geo_History_3_7_OneColumn': Geo_History_3_7,
 };
 
 export class Test extends React.Component{
