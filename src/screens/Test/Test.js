@@ -119,9 +119,6 @@ export class Test extends React.Component{
     }
 
     updateQuestion = (x) => {
-        this.setState({
-            currentAnswer: this.state.answers[x]
-        });
         if(x <= this.state.n){
             this.setState({
                 active: x
@@ -178,19 +175,13 @@ export class Test extends React.Component{
             answers: answers,
             checkedAnswers: checkedAnswers
         })
-        if(this.state.isPractice){
+        if(this.state.isPractice) {
             this.state.user.getIdToken().then((token) => {
-                let obj ={};
+                let obj = {};
                 obj[num] = answer;
                 Services.updateTestAnswers(token, this.state.testId, obj);
             })
         }
-    }
-
-    updateCurrentAnswer = (answer) => {
-        this.setState({
-            currentAnswer: answer
-        })
     }
 
     render() {
@@ -229,9 +220,8 @@ export class Test extends React.Component{
                                 data={data[num]}
                                 changeStatus={this.updateStatus}
                                 updateAnswers={this.updateAnswers}
-                                currentAnswer={this.state.currentAnswer}
+                                currentAnswer={this.state.answers[this.state.active]}
                                 isPractice={this.state.isPractice}
-                                updateCurrentAnswer={this.updateCurrentAnswer}
                             >
                             </DynamicComponent>
                         </div>

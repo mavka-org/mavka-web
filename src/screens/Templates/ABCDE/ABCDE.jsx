@@ -32,6 +32,7 @@ class ABCDE extends Component {
                 data: this.props.data,
                 active: this.props.active,
                 answered: this.props.answered,
+                currentAnswer: this.props.currentAnswer
             })
         }
     }
