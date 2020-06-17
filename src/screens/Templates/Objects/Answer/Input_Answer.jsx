@@ -14,6 +14,8 @@ class Input_Answer extends React.Component {
 
     componentDidUpdate(prevProps) {
         document.getElementById("FAKE1").click();
+        document.getElementById(this.inputId).value = this.props.currentAnswer
+
         if (this.props != prevProps) {
             this.setState({
                 currentAnswer: this.props.currentAnswer,
