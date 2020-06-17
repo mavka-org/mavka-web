@@ -6,10 +6,12 @@ class Next extends React.Component {
     submitQuestion() {
         if(this.props.isPractice){
             if(this.props.answered) {
+                this.props.scroll();
                 this.props.updateQuestion(this.props.number + 1);
             }
             else {
                 if(this.props.currentAnswer && this.props.isNextAllowed) {
+                    this.props.scroll();
                     this.props.updateAnswers(this.props.number, this.props.currentAnswer);
                 }
                 else {
@@ -19,6 +21,7 @@ class Next extends React.Component {
         }else{
             if(this.props.currentAnswer) {
                 firebase.analytics().logEvent('next');
+                this.props.scroll();
                 this.props.updateAnswers(this.props.number, this.props.currentAnswer);
                 this.props.updateQuestion(this.props.number + 1);
             }

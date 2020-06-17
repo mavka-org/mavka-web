@@ -16,6 +16,8 @@ import Confetti from '../../UI/Confetti/Confetti';
 import Scores from './Object/Scores/Scores';
 import Progres from './Object/Progres/Progres';
 import Button from './Object/Button/Button';
+import {animateScroll as scroll} from 'react-scroll'
+
 import Strong from '../Templates/Icon/Strong/Strong';
 class MainMenu extends React.Component {
 
@@ -92,9 +94,23 @@ class MainMenu extends React.Component {
         })
     }
 
+    deleteTestInfo = (testID) => {
+        this.state.user.getIdToken().then((token) => {
+            Services.deleteTestByID(token, testID);
+        });
+        this.setState({
+            active: this.state.active
+        })
+    }
+
     startPractice = () => {
         firebase.analytics().logEvent('openPractise');
         Services.changeTestStatusByID(this.token, this.state.tests[this.state.active].id, "вільна практика");
+        this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
+    }
+
+    openResults = () => {
+        firebase.analytics().logEvent('openResults');
         this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
     }
 
@@ -103,18 +119,19 @@ class MainMenu extends React.Component {
         this.props.history.push('/subject/' + this.state.subject + '/simulation/' + this.state.tests[this.state.active].id);
     }
 
-    onClickPractice() {
-        if (this.state.tests[this.state.active].status == 'тест пройдений') {
-            //animation to button скинути прогрес
-        } else return this.startPractice;
+
+    onClickPractice(){
+        if(this.state.tests[this.state.active].status == 'тест пройдений'){
+            return this.scrollToBottom; 
+        }else return this.startPractice;
     }
 
     onClickSimulation() {
         if (this.state.tests[this.state.active].status == 'тест не пройдений') {
             return this.startSimulation;
-        } else {
-            //animation to button скинути прогрес
-        }
+        }else{
+            return this.scrollToBottom; 
+        } 
     }
 
     btnPracticeStyle() {
@@ -127,6 +144,10 @@ class MainMenu extends React.Component {
         if (this.state.tests[this.state.active].status == 'тест не пройдений') {
             return s.btn;
         } else return s.btn_disabled;
+    }
+
+    scrollToBottom = () => {
+        scroll.scrollToBottom();
     }
 
     render() {
@@ -165,14 +186,14 @@ class MainMenu extends React.Component {
 
                             {this.state.tests.length > 0 ? (<div className={s.test_body_right}>
                                 <div>
-                                    {typeof this.props.location.state != 'undefined' ? (<Confetti />) : null}
+                                    {this.state.tests[this.state.active].status == 'тест пройдений' && this.props.location.state ? (<Confetti />) : null}
                                 </div>
 
                                 <div className={s.scores_frame}>
                                     <div className={s.title}>
                                         <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
                                     </div>
-                                    {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores />) : ""}
+                                    {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores click={this.openResults}/>) : ""}
                                 </div>
                                 <div className={s.buttons_frame}>
                                     <Button stl={this.btnPracticeStyle()} click={this.onClickPractice()} icon={pic1} title={'Практикуватися'} comment={'Проходь завдання та вчися на поясненнях'} />
@@ -188,7 +209,7 @@ class MainMenu extends React.Component {
                                         <div style={{ margin: '0 auto', color: 'white' }}>Незабаром...</div>
                                     </div>
                                 </div>
-                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres />)}
+                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} click={this.deleteTestInfo}/>)}
                             </div>) : null}
                         </div>
                     </div>

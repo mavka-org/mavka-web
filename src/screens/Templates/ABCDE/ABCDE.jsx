@@ -135,6 +135,7 @@ class ABCDE extends Component {
                             currentAnswer={this.state.currentAnswer}
                             updateAnswers={this.props.updateAnswers}
                             isPractice={this.props.isPractice}
+                            scroll={this.props.scroll}
                         />
                     </div>
                 </div>

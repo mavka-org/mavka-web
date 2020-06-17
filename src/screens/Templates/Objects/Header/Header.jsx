@@ -80,16 +80,16 @@ class Header extends React.Component {
                             }
                             {this.props.isPractice ?
                                 (
-                                    <Link to={'/subject/' + this.props.subject}>
-                                        <div>Завершити</div>
-                                    </Link>
+                                    <button className={g.end} onClick={() => {
+                                        this.props.updateQuestion(10000);
+                                    }}>Завершити</button>
                                 ) :
                                 (
-                                    <div onClick={() => {
+                                    <button className={g.end} onClick={() => {
                                         this.setState({
                                             clicked: true
                                         })
-                                    }}>Завершити</div>)
+                                    }}>Завершити</button>)
                             }
                         </div>
                         <div className={s.tip} >
@@ -126,9 +126,9 @@ class Header extends React.Component {
                             <p><strong>{this.props.subject}</strong> {this.props.year} {this.props.session} сесія</p>
                             {this.props.isPractice ?
                                 (
-                                    <Link to={'/subject/' + this.props.subject}>
-                                        <button className={g.end}>Завершити</button>
-                                    </Link>
+                                    <button className={g.end} onClick={() => {
+                                        this.props.updateQuestion(10000);
+                                    }}>Завершити</button>
                                 ) :
                                 (
                                 <button className={g.end} onClick={() => {
