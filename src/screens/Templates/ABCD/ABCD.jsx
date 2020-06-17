@@ -15,27 +15,34 @@ class ABCD extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            checkedAnswers: props.checkedAnswers,
             number: props.number,
             data: props.data,
             active: props.active,
-            answered: props.answered
+            answered: props.answered,
+            currentAnswer: props.currentAnswer
         }
         console.log(props.data);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
+            console.log('sos' + this.props.answered)
             this.setState({
+                checkedAnswers: this.props.checkedAnswers,
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
-                answered: this.props.answered
+                answered: this.props.answered,
+                currentAnswer: this.props.currentAnswer
             })
         }
     }
     render() {
+        console.log(this.state.currentAnswer);
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
+        console.log(this.state.data);
         return (
             <div>
                 <div className={s.question_body}>
@@ -43,15 +50,15 @@ class ABCD extends Component {
                         <Question
                             question={data.getQuestion()}
                             active={this.state.active}
-                        />
+                            />
                         <Topic
                             topic={data.getTopic()}
                             hidden={hidden}
-                        />
+                            />
                         <Comment
                             comment={data.getComment()}
                             hidden={hidden}
-                        />
+                            />
                         <Video
                             hidden={hidden}
                         />
@@ -100,7 +107,6 @@ class ABCD extends Component {
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Г')}
                             />
-
                         </div>
                         <Next
                             answered={this.state.answered}

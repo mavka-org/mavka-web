@@ -11,6 +11,12 @@ class SystemFunctions{
         if(homeString == "Англійська мова"){
             subjectString = "англійської мови";
         }
+        if(homeString == "Історія України"){
+            subjectString = "історії України";
+        }
+        if(homeString == "Біологія"){
+            subjectString = "біології";
+        }
         return subjectString;
     }
 
