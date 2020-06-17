@@ -19,7 +19,7 @@ class ABCDE extends Component {
             data: props.data,
             active: props.active,
             answered: props.answered,
-            currentAnswer: props.currentAnswer
+            currentAnswer: null
         }
         console.log(props.data);
     }
@@ -32,9 +32,14 @@ class ABCDE extends Component {
                 data: this.props.data,
                 active: this.props.active,
                 answered: this.props.answered,
-                currentAnswer: this.props.currentAnswer
             })
         }
+    }
+
+    updateCurrentAnswer = (answer) => {
+        this.setState({
+            currentAnswer: answer
+        })
     }
 
     render() {
@@ -72,7 +77,7 @@ class ABCDE extends Component {
                                 question={data.getQuestions()[0]}
                                 explanation={data.getExplanations()[0]}
                                 hidden={hidden}
-                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('А')}
                             />
@@ -82,7 +87,7 @@ class ABCDE extends Component {
                                 question={data.getQuestions()[1]}
                                 explanation={data.getExplanations()[1]}
                                 hidden={hidden}
-                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Б')}
                             />
@@ -92,7 +97,7 @@ class ABCDE extends Component {
                                 question={data.getQuestions()[2]}
                                 explanation={data.getExplanations()[2]}
                                 hidden={hidden}
-                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('В')}
                             />
@@ -102,7 +107,7 @@ class ABCDE extends Component {
                                 question={data.getQuestions()[3]}
                                 explanation={data.getExplanations()[3]}
                                 hidden={hidden}
-                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Г')}
                             />
@@ -112,7 +117,7 @@ class ABCDE extends Component {
                                 question={data.getQuestions()[4]}
                                 explanation={data.getExplanations()[4]}
                                 hidden={hidden}
-                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Д')}
                             />

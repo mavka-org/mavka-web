@@ -50,8 +50,7 @@ export class Test extends React.Component{
             answered: [],
             n: 0,
             answers: {},
-            checkedAnswers: {},
-            currentAnswer: null
+            checkedAnswers: {}
         }
         let current = this;
         Services.getReferenceById(this.state.testId).then(function (ref) {
@@ -89,15 +88,15 @@ export class Test extends React.Component{
                 console.log(myData);
             })
         })
-        
+
 
     }
-    
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         document.getElementById("FAKE").click();
         document.getElementById("FAKE1").click();
     }
-    
+
     componentDidMount() {
         this.getAuthStatus();
         document.getElementById("FAKE").click();
@@ -128,7 +127,7 @@ export class Test extends React.Component{
                 active: x
             });
         }else{
-            
+
             if(this.state.isPractice){
                 console.log("ПОСЛЕДНИЙ ВОПРОС")
                 this.props.history.push({
@@ -148,9 +147,9 @@ export class Test extends React.Component{
                                 });
                             }
                         );
-                    })         
+                    })
                 });
-                
+
                 /*
                 setTimeout(() => {  this.props.history.push({
                     pathname: '/subject/' + this.state.subject,
@@ -159,7 +158,7 @@ export class Test extends React.Component{
                 }, 1000);
                 */
             }
-        } 
+        }
     }
 
     updateStatus = (id, x) => {
@@ -186,12 +185,6 @@ export class Test extends React.Component{
                 Services.updateTestAnswers(token, this.state.testId, obj);
             })
         }
-    }
-
-    updateCurrentAnswer = (answer) => {
-        this.setState({
-            currentAnswer: answer
-        })
     }
 
     render() {

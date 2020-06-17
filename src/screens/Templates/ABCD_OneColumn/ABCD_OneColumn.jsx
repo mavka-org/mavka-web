@@ -13,17 +13,21 @@ class ABCD_OneColumn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            checkedAnswers: props.checkedAnswers,
             number: props.number,
             data: props.data,
             active: props.active,
-            answered: props.answered
+            answered: props.answered,
+            currentAnswer: null
         }
         console.log(props.data);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
+            console.log('sos' + this.props.answered)
             this.setState({
+                checkedAnswers: this.props.checkedAnswers,
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
@@ -31,6 +35,13 @@ class ABCD_OneColumn extends React.Component {
             })
         }
     }
+
+    updateCurrentAnswer = (answer) => {
+        this.setState({
+            currentAnswer: answer
+        })
+    }
+
     render() {
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
@@ -50,7 +61,7 @@ class ABCD_OneColumn extends React.Component {
                                 question={data.getQuestions()[0]}
                                 explanation={data.getExplanations()[0]}
                                 hidden={hidden}
-                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('А')}
                             />
@@ -60,7 +71,7 @@ class ABCD_OneColumn extends React.Component {
                                 question={data.getQuestions()[1]}
                                 explanation={data.getExplanations()[1]}
                                 hidden={hidden}
-                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Б')}
                             />
@@ -70,7 +81,7 @@ class ABCD_OneColumn extends React.Component {
                                 question={data.getQuestions()[2]}
                                 explanation={data.getExplanations()[2]}
                                 hidden={hidden}
-                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('В')}
                             />
@@ -80,7 +91,7 @@ class ABCD_OneColumn extends React.Component {
                                 question={data.getQuestions()[3]}
                                 explanation={data.getExplanations()[3]}
                                 hidden={hidden}
-                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Г')}
                             />
