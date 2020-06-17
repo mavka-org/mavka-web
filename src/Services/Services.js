@@ -231,6 +231,57 @@ class Question {
             }
         }
     }
+
+    evaluate (answerToCheck) {
+        let res = [];
+        if(this.getType() == "ABCDE" || this.getType() == "ABCD"){
+            if(answerToCheck == this.answer) {
+                res.push(1);
+                res.push(2);
+            }
+            else {
+                res.push(0);
+                res.push(0);
+            }
+        }
+        else if(this.getType() == "Bio_Triples") {
+            let score = 0;
+            if(answerToCheck[0] == this.bio3_firstquestion_answer) {
+                ++score;
+            }
+            if(answerToCheck[1] == this.bio3_secondquestion_answer) {
+                ++score;
+            }
+            if(answerToCheck[2] == this.bio3_thirdquestion_answer) {
+                ++score;
+            }
+            res.push(score);
+            if(score == 0) {
+                res.push(0);
+            }
+            else if(score == 3) {
+                res.push(2);
+            }
+            else {
+                res.push(1);
+            }
+        }
+        else if(this.getType() == "geo37") {
+            let score = 0;
+            //
+            res.push(score);
+            if(score == 0) {
+                res.push(0);
+            }
+            else if(score == 3) {
+                res.push(2);
+            }
+            else {
+                res.push(1);
+            }
+        }
+        return res;
+    }
 }
 
 class Services {
