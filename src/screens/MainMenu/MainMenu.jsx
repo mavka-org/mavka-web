@@ -127,6 +127,7 @@ class MainMenu extends React.Component {
     }
 
     render() {
+        console.log(this.state.subject);
         const pic1 = <img src={strong} width={'100%'} height={'100%'} />
         const pic2 = <Clock />
         if (this.state.user == 25) {
