@@ -19,7 +19,7 @@ import Logic_Couples_4_5_OneColumn from "../Templates/Logic_Couples_OneColumn/Lo
 import g from "../Templates/Style.module.css";
 import s from "../Templates/ABCDE/ABCDE.module.css";
 import Header from "../Templates/Objects/Header/Header";
-
+import BioTriples from '../Templates/BioTriples/BioTriples';
 
 const componentsMap = {
     ABCDE,
@@ -34,6 +34,8 @@ const componentsMap = {
     Double_Open_OneColumn,
     Logic_Couples_4_4_OneColumn,
     Logic_Couples_4_5_OneColumn,
+    'Bio_Triples': BioTriples,
+    'Bio_Triples_OneColumn': BioTriples
 };
 
 export class Test extends React.Component{
@@ -207,7 +209,6 @@ export class Test extends React.Component{
                 const data = this.state.data;
                 let num = this.state.active - 1;
                 let type = data[num].getType();
-
                 if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
                     type += "_OneColumn";
                 }
