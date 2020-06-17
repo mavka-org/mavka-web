@@ -8,7 +8,9 @@ class Comment extends React.Component {
                 display: !this.props.hidden ? "none" : "block"
             }}>
                 <p><strong><VideoCamera /> Відеопояснення</strong></p>
-                <div className={g.video}></div>
+                <div className={g.video}>
+                    <div style={{margin: 'auto',color: 'white'}}>Незабаром...</div>
+                </div>
             </div>
         );
     }
