@@ -126,7 +126,7 @@ class QuestionNavPanel extends Component {
             color: red;
         `;*/
 
-        console.log('?')
+        //console.log('?')
         return (
             <div style={{
                 display: "flex",

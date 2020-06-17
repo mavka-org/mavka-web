@@ -30,6 +30,7 @@ class Question {
         this.double_open_answers = [json["Відповідь 1"], json["Відповідь 2"]];
         this.double_open_explanations = [json["Пояснення 1"], json["Пояснення 2"]];
         this.open_answer = json["Відповідь"];
+        this.open_ended_sample = json["Зразкова відповідь"];
         this.history_3_7_answers = [json["Відповідь 1"], json["Відповідь 2"], json["Відповідь 3"], json["Відповідь 4"], json["Відповідь 5"], json["Відповідь 6"], json["Відповідь 7"]];
         this.history_3_7_explanations = [json["Пояснення 1"], json["Пояснення 2"], json["Пояснення 3"], json["Пояснення 4"], json["Пояснення 5"], json["Пояснення 6"], json["Пояснення 7"]];
         this.history_3_7_right_answers = [json["Правильна відповіль 1"], json["Правильна відповіль 2"], json["Правильна відповіль 3"]];
@@ -154,6 +155,9 @@ class Question {
     getOpenAnswer () {
         return this.open_answer; //THIS SHOULDN'T EXIST (change to normal getAnswer())
     }
+    getOpenEndedSample () {
+        return this.open_ended_sample;
+    }
     getIsDoubleColumn() {
         return this.isDoubleColumn;
     }
@@ -208,10 +212,22 @@ class Question {
         };
         return tmp;
       }
+
+    areEqualStrNumbers(str1, str2) {
+        let num1 = parseFloat(str1.replace(',', '.'))
+        let num2 = parseFloat(str2.replace(',', '.'))
+
+        return num1 == num2
+    }
+
     checkCorrect (answerToCheck) {
+        if(answerToCheck == null) return false;
+
         if(this.getType() == "ABCDE" || this.getType() == "ABCD"){
             return answerToCheck == this.answer;
         }
+        if(this.getType() == "Open"){
+            return this.areEqualStrNumbers(answerToCheck, this.open_answer);
         if(this.getType() == "Geo_History_3_7"){
             for(let i of this.getHistory37Answers()){
                 if(answerToCheck == i)
@@ -222,8 +238,8 @@ class Question {
     }
 
     checkCorrectFromList (answerToCheck, index) {
-        if(this.getType() == "Double_Open" || this.getType() == "Open"){
-            return answerToCheck == this.double_open_answers[index];
+        if(this.getType() == "Double_Open"){
+            return this.areEqualStrNumbers(answerToCheck, this.double_open_answers[index]);
         }
         if(this.getType() == "Bio_Triples"){
             if(index == 1){
@@ -240,7 +256,7 @@ class Question {
 
     evaluate (answerToCheck) {
         let res = [];
-        if(this.getType() == "ABCDE" || this.getType() == "ABCD"){
+        if(this.getType() == "ABCDE" || this.getType() == "ABCD" || this.getType() == "ABCDE_OneColumn" || this.getType() == "ABCD_OneColumn"){
             if(answerToCheck == this.answer) {
                 res.push(1);
                 res.push(2);
@@ -250,16 +266,18 @@ class Question {
                 res.push(0);
             }
         }
-        else if(this.getType() == "Bio_Triples") {
+        else if(this.getType() == "Bio_Triples" || this.getType() == 'Bio_Triples_OneColumn') {
             let score = 0;
-            if(answerToCheck[0] == this.bio3_firstquestion_answer) {
-                ++score;
-            }
-            if(answerToCheck[1] == this.bio3_secondquestion_answer) {
-                ++score;
-            }
-            if(answerToCheck[2] == this.bio3_thirdquestion_answer) {
-                ++score;
+            if(answerToCheck != null && answerToCheck != undefined) {
+                if(answerToCheck[0] == this.bio3_firstquestion_answer) {
+                    ++score;
+                }
+                if(answerToCheck[1] == this.bio3_secondquestion_answer) {
+                    ++score;
+                }
+                if(answerToCheck[2] == this.bio3_thirdquestion_answer) {
+                    ++score;
+                }
             }
             res.push(score);
             if(score == 0) {
@@ -272,9 +290,15 @@ class Question {
                 res.push(1);
             }
         }
-        else if(this.getType() == "geo37") {
+        else if(this.getType() == "Geo_History_3_7" || this.getType() == 'Geo_History_3_7_OneColumn') {
             let score = 0;
-            //
+            if(answerToCheck != null && answerToCheck != undefined) {
+                for(let i = 0; i < 3; ++i) {
+                    if(answerToCheck[i] == this.history_3_7_right_answers[i]) {
+                        ++score;
+                    }
+                }
+            }
             res.push(score);
             if(score == 0) {
                 res.push(0);
@@ -285,6 +309,62 @@ class Question {
             else {
                 res.push(1);
             }
+        }
+        else if(this.getType() == "Logic_Couples_4_4" || this.getType() == "Logic_Couples_4_5" || this.getType() == "Logic_Couples_4_4_OneColumn" || this.getType() == "Logic_Couples_4_5_OneColumn") {
+            let score = 0;
+            if(answerToCheck != null && answerToCheck != undefined) {
+                for(let i = 0; i < 4; ++i) {
+                    if(answerToCheck[i] == this.match_answers[i]) {
+                        ++score;
+                    }
+                }
+            }
+            res.push(score);
+            if(score == 0) {
+                res.push(0);
+            }
+            else if(score == 4) {
+                res.push(2);
+            }
+            else {
+                res.push(1);
+            }
+        }
+        else if(this.getType() == "Open") {
+            if(answerToCheck == this.open_answer) {
+                res.push(2);
+                res.push(2);
+            }
+            else {
+                res.push(0);
+                res.push(0);
+            }
+        }
+        else if(this.getType() == "Double_Open" || this.getType() == "Double_Open_OneColumn") {
+            let score = 0;
+            if(answerToCheck != null && answerToCheck != undefined) {
+                if(answerToCheck[0] == this.double_open_answers[0]) {
+                    score += 2;
+                }
+                if(answerToCheck[1] == this.double_open_answers[1]) {
+                    score += 2;    
+                }
+            }
+
+            res.push(score);
+            if(score == 0) {
+                res.push(0);
+            }
+            else if(score == 4) {
+                res.push(2);
+            }
+            else {
+                res.push(1);
+            }
+        }
+        else if(this.getType() == "Open_Ended") {
+            res.push(0);
+            res.push(2);
         }
         return res;
     }

@@ -71,6 +71,8 @@ class Geo_History_3_7 extends React.Component {
     }
 
     render() {
+        console.log(this.state.data.evaluate(this.state.currentAnswer))
+
         if(typeof this.state.currentAnswer == "undefined"){
             this.setState({
                 currentAnswer: []

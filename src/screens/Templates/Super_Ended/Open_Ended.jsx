@@ -5,9 +5,12 @@ import Question from '../Objects/Question/Question.jsx';
 import Topic from './../Objects/Topic/Topic.jsx';
 import Header from './../Objects/Header/Header.jsx';
 import Comment from './../Objects/Comment/Comment.jsx';
+import SampleAnswer from './../Objects/SampleAnswer/SampleAnswer.jsx';
 import Video from './../Objects/Video/Video.jsx';
 import Next from './../Objects/Next/Next.jsx';
+
 class Open_Ended extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -16,21 +19,23 @@ class Open_Ended extends React.Component {
             active: props.active,
             answered: props.answered
         }
-        console.log(props.data);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
+            console.log('sos' + this.props.answered)
             this.setState({
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
-                answered: this.props.answered
+                answered: this.props.answered,
             })
         }
     }
-    
+
     render() {
+        console.log(this.state.data.evaluate(this.state.currentAnswer))
+
         const data = this.state.data;
         let hidden = this.state.answered;
 
@@ -42,14 +47,30 @@ class Open_Ended extends React.Component {
                         active={this.state.active}
                         />
                     <div className={s.main_answers}>
-                        <Next />
+                        <Next
+                            isNextAllowed={true}
+                            answered={this.state.answered}
+                            updateQuestion={this.props.updateQuestion}
+                            number={this.state.active}
+                            currentAnswer=" "
+                            updateAnswers={this.props.updateAnswers}
+                            isPractice={this.props.isPractice}
+                        />
                         <Topic
                             topic={data.getTopic()}
+                            hidden={hidden}
+                            />
+                        <SampleAnswer
+                            sample={data.getOpenEndedSample()}
+                            hidden={hidden}
                             />
                         <Comment
                             comment={data.getComment()}
+                            hidden={hidden}
                             />
-                        <Video />
+                        <Video
+                            hidden={hidden}
+                        />
                     </div>
                 </div>
             </div>
