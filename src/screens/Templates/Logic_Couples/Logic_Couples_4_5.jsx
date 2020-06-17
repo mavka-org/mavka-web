@@ -189,6 +189,13 @@ class Logic_Couples_4_5 extends Component {
         })
     }
 
+    isNextAllowed() {
+        if(this.state.currentAnswer != null && this.state.currentAnswer[0].length + this.state.currentAnswer[1].length + this.state.currentAnswer[2].length + this.state.currentAnswer[3].length == 4) {
+            return true;
+        }
+        return false;
+    }
+
     render() {
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
@@ -369,6 +376,7 @@ class Logic_Couples_4_5 extends Component {
                                 </tbody>
                             </table>
                             <Next
+                                isNextAllowed={this.isNextAllowed()}
                                 answered={this.state.answered}
                                 updateQuestion={this.props.updateQuestion}
                                 number={this.state.active}

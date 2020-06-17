@@ -44,6 +44,8 @@ class ABCDE extends Component {
         })
     }
 
+    
+
     render() {
         console.log(this.state.currentAnswer);
         const data = this.state.data;
@@ -125,6 +127,7 @@ class ABCDE extends Component {
                             />
                         </div>
                         <Next
+                            isNextAllowed={true}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}
                             number={this.state.active}
