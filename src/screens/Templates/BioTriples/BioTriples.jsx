@@ -10,18 +10,91 @@ import Comment from '../Objects/Comment/Comment';
 import Video from '../Objects/Video/Video';
 
 class BioTriples extends React.Component {
-    
+    constructor(props) {
+        super(props);
+        this.state = {
+            checkedAnswers: props.checkedAnswers,
+            number: props.number,
+            data: props.data,
+            active: props.active,
+            answered: props.answered,
+            currentAnswer: props.currentAnswer
+        }
+        console.log(props.data);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props != prevProps) {
+            this.setState({
+                checkedAnswers: this.props.checkedAnswers,
+                number: this.props.number,
+                data: this.props.data,
+                active: this.props.active,
+                answered: this.props.answered,
+                currentAnswer: this.props.currentAnswer
+            })
+        }
+    }
+
+    updateCurrentAnswer = (answer, index) => {
+
+        let curAnswer = this.state.currentAnswer
+        curAnswer[index] = answer
+
+        this.setState({
+            currentAnswer: curAnswer
+        })
+    }
+
     render() {
+        if(typeof this.state.currentAnswer == "undefined"){
+            this.setState({
+                currentAnswer: ["", "", ""]
+            })
+            return(<div></div>)
+        }
+
+        let hidden = this.state.answered && this.props.isPractice
         return (
             <div>
-                <Question />
+                <Question 
+                    question={data.getBio3_question()}
+                    active={this.state.active}
+                />
                 <div style={{marginBottom:20}}><strong>Обери одну відповідь до кожнолого з тверджень:</strong></div>
                 <div className={s.question_body}>
                     <div className={s.answers}>
-                        <div className={s.title_column}>Органела є</div>
-                        <Answer />
-                        <Answer />
-                        <Answer />
+                        <div className={s.title_column}>{data.getBio3_firstquestion().question}</div>
+                        <Answer
+                            answered={this.state.answered}
+                            letter={"1"}
+                            question={data.getBio3_firstquestion().firstAnswer}
+                            explanation={data.getBio3_firstquestion().firstExplain}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer[0]}
+                            isCorrectAnswer={data.checkCorrect(this.state.currentAnswer[0], 1)}
+                        />
+                        <Answer 
+                            answered={this.state.answered}
+                            letter={"2"}
+                            question={data.getBio3_firstquestion().secondAnswer}
+                            explanation={data.getBio3_firstquestion().secondExplain}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer[0]}
+                            isCorrectAnswer={data.checkCorrect(this.state.currentAnswer[0], 1)}
+                        />
+                        <Answer 
+                            answered={this.state.answered}
+                            letter={"3"}
+                            question={data.getBio3_firstquestion().thirdAnswer}
+                            explanation={data.getBio3_firstquestion().thirdExplain}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer[0]}
+                            isCorrectAnswer={data.checkCorrect(this.state.currentAnswer[0], 1)}
+                        />
                     </div>
                     <div className={s.answers}>
                         <div className={s.title_column}>Органела є</div>

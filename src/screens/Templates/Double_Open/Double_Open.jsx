@@ -19,7 +19,7 @@ class Double_Open extends React.Component {
             data: props.data,
             active: props.active,
             answered: props.answered,
-            currentAnswer: this.props.currentAnswer
+            currentAnswer: props.currentAnswer
         }
         console.log(props.data);
     }
@@ -57,7 +57,7 @@ class Double_Open extends React.Component {
         }
 
         const data = this.state.data;
-        let hidden = this.state.answered;
+        let hidden = this.state.answered && this.props.isPractice;
 
         return (
             <div className={s.question_body}>
