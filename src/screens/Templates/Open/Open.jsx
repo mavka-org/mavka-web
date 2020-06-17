@@ -47,7 +47,7 @@ class Open extends React.Component {
     }
 
     render() {
-
+        console.log(this.state.data.evaluate(this.state.currentAnswer))
         if(typeof this.state.currentAnswer == "undefined"){
             this.setState({
                 currentAnswer: ""
@@ -82,6 +82,7 @@ class Open extends React.Component {
                         </div>
 
                         <Next
+                            isNextAllowed={isNextAllowed}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}
                             number={this.state.active}
