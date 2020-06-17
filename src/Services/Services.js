@@ -228,6 +228,7 @@ class Question {
         }
         if(this.getType() == "Open"){
             return this.areEqualStrNumbers(answerToCheck, this.open_answer);
+        }
         if(this.getType() == "Geo_History_3_7"){
             for(let i of this.getHistory37Answers()){
                 if(answerToCheck == i)
