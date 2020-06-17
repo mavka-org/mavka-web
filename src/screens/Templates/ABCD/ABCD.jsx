@@ -20,7 +20,7 @@ class ABCD extends Component {
             data: props.data,
             active: props.active,
             answered: props.answered,
-            currentAnswer: props.currentAnswer
+            currentAnswer: null
         }
         console.log(props.data);
     }
@@ -33,11 +33,17 @@ class ABCD extends Component {
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
-                answered: this.props.answered,
-                currentAnswer: this.props.currentAnswer
+                answered: this.props.answered
             })
         }
     }
+
+    updateCurrentAnswer = (answer) => {
+        this.setState({
+            currentAnswer: answer
+        })
+    }
+
     render() {
         console.log(this.state.currentAnswer);
         const data = this.state.data;
@@ -73,7 +79,7 @@ class ABCD extends Component {
                                 question={data.getQuestions()[0]}
                                 explanation={data.getExplanations()[0]}
                                 hidden={hidden}
-                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('А')}
                             />
@@ -83,7 +89,7 @@ class ABCD extends Component {
                                 question={data.getQuestions()[1]}
                                 explanation={data.getExplanations()[1]}
                                 hidden={hidden}
-                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Б')}
                             />
@@ -93,7 +99,7 @@ class ABCD extends Component {
                                 question={data.getQuestions()[2]}
                                 explanation={data.getExplanations()[2]}
                                 hidden={hidden}
-                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('В')}
                             />
@@ -103,7 +109,7 @@ class ABCD extends Component {
                                 question={data.getQuestions()[3]}
                                 explanation={data.getExplanations()[3]}
                                 hidden={hidden}
-                                updateCurrentAnswer={this.props.updateCurrentAnswer}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Г')}
                             />

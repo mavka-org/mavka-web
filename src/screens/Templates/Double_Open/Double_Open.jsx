@@ -10,14 +10,16 @@ import Comment from './../Objects/Comment/Comment.jsx';
 import Video from './../Objects/Video/Video.jsx';
 import Next from './../Objects/Next/Next.jsx';
 
-class DoubleOpen extends React.Component {
+class Double_Open extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            checkedAnswers: props.checkedAnswers,
             number: props.number,
             data: props.data,
             active: props.active,
-            answered: props.answered
+            answered: props.answered,
+            currentAnswer: ["", ""]
         }
         console.log(props.data);
     }
@@ -25,97 +27,91 @@ class DoubleOpen extends React.Component {
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
             this.setState({
+                checkedAnswers: this.props.checkedAnswers,
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
-                answered: this.props.answered
+                answered: this.props.answered,
             })
         }
     }
 
-    updateCurrentAnswer = (answer) => {
+    updateCurrentAnswer = (answer, index) => {
+
+        let curAnswer = this.state.currentAnswer
+        curAnswer[index] = answer
+
         this.setState({
-            currentAnswer: answer
+            currentAnswer: curAnswer
         })
     }
 
     render() {
+
         const data = this.state.data;
         let hidden = this.state.answered;
 
         return (
-            <div className={g.background}>
-                <div className={[s.page, g.page_].join(' ')}>
-                    <Header
-                        subject={data.getSubject()}
-                        year={data.getYear()}
-                        session={data.getSession()}
-                        list={this.state.number}
-                        callback={this.props.callback}
-                        active={this.state.active}
-                        />
-                    <div className={s.question_body}>
-                        <Question
-                            question={data.getQuestion()}
-                            active={this.state.active}
+            <div className={s.question_body}>
+                <Question
+                    question={data.getQuestion()}
+                    active={this.state.active}
+                    />
+                <div className={s.main_answers}>
+                    <p><strong>Впиши відповіді на питання:</strong> </p>
+
+                    <div className={s.answers_frame}>
+
+                        <Input_Answer
+                            answered={this.state.answered}
+                            number={"1"}
+                            subquestion={data.getDoubleOpenSubquestion()[0]}
+                            explanation={data.getDoubleOpenExplanations()[0]}
+                            correctAnswer={data.getDoubleOpenAnswers()[0]}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer}
+                            isCorrectAnswer={true}
                             />
-                        <div className={s.main_answers}>
-                            <p><strong>Впиши відповіді на питання:</strong> </p>
 
-                            <div className={s.answers_frame}>
-
-                                <Input_Answer
-                                    answered={this.state.answered}
-                                    number={"1"}
-                                    subquestion={data.getDoubleOpenSubquestion()[0]}
-                                    explanation={data.getDoubleOpenExplanations()[0]}
-                                    correctAnswer={data.getDoubleOpenAnswers()[0]}
-                                    hidden={hidden}
-                                    updateCurrentAnswer={this.updateCurrentAnswer}
-                                    currentAnswer={this.state.currentAnswer}
-                                    isCorrectAnswer={true}
-                                    />
-
-                                <Input_Answer
-                                    answered={this.state.answered}
-                                    number={"2"}
-                                    subquestion={data.getDoubleOpenSubquestion()[1]}
-                                    explanation={data.getDoubleOpenExplanations()[1]}
-                                    correctAnswer={data.getDoubleOpenAnswers()[1]}
-                                    hidden={hidden}
-                                    updateCurrentAnswer={this.updateCurrentAnswer}
-                                    currentAnswer={this.state.currentAnswer}
-                                    isCorrectAnswer={true}
-                                    />
-                            </div>
-
-                            <Next
-                                answered={this.state.answered}
-                                updateQuestion={this.props.updateQuestion}
-                                number={this.state.active}
-                                currentAnswer={this.state.currentAnswer}
-                                updateAnswers={this.props.updateAnswers}
-                                isPractice={this.props.isPractice}
-                                />
-
-                            <Topic
-                                topic={data.getTopic()}
-                                hidden={hidden}
-                                />
-                            <Comment
-                                comment={data.getComment()}
-                                hidden={hidden}
-                                />
-                            <Video
-                                hidden={hidden}
-                                />
-                        </div>
-
+                        <Input_Answer
+                            answered={this.state.answered}
+                            number={"2"}
+                            subquestion={data.getDoubleOpenSubquestion()[1]}
+                            explanation={data.getDoubleOpenExplanations()[1]}
+                            correctAnswer={data.getDoubleOpenAnswers()[1]}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer}
+                            isCorrectAnswer={true}
+                            />
                     </div>
+
+                    <Next
+                        answered={this.state.answered}
+                        updateQuestion={this.props.updateQuestion}
+                        number={this.state.active}
+                        currentAnswer={this.state.currentAnswer}
+                        updateAnswers={this.props.updateAnswers}
+                        isPractice={this.props.isPractice}
+                        />
+
+                    <Topic
+                        topic={data.getTopic()}
+                        hidden={hidden}
+                        />
+                    <Comment
+                        comment={data.getComment()}
+                        hidden={hidden}
+                        />
+                    <Video
+                        hidden={hidden}
+                        />
                 </div>
+
             </div>
         )
     }
 }
 
-export default DoubleOpen;
+export default Double_Open;

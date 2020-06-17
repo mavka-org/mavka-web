@@ -8,7 +8,43 @@ import Header from './../Objects/Header/Header.jsx';
 import Comment from './../Objects/Comment/Comment.jsx';
 import Video from './../Objects/Video/Video.jsx';
 import Next from './../Objects/Next/Next.jsx';
-class DoubleOpenOneColumn extends React.Component {
+class Double_Open_OneColumn extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            checkedAnswers: props.checkedAnswers,
+            number: props.number,
+            data: props.data,
+            active: props.active,
+            answered: props.answered,
+            currentAnswer: [null, null]
+        }
+        console.log(props.data);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props != prevProps) {
+            this.setState({
+                checkedAnswers: this.props.checkedAnswers,
+                number: this.props.number,
+                data: this.props.data,
+                active: this.props.active,
+                answered: this.props.answered,
+            })
+        }
+    }
+
+    updateCurrentAnswer = (answer, index) => {
+
+        let curAnswer = this.state.currentAnswer
+        curAnswer[index] = answer
+
+        this.setState({
+            currentAnswer: curAnswer
+        })
+    }
+    
     render() {
         return (
             <div>
@@ -54,4 +90,4 @@ class DoubleOpenOneColumn extends React.Component {
     }
 }
 
-export default DoubleOpenOneColumn;
+export default Double_Open_OneColumn;
