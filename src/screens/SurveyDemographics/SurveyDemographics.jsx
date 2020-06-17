@@ -32,14 +32,18 @@ class SurveyDemographics extends React.Component {
     }
 
     render() {
+        firebase.analytics().logEvent("started demographics survey");
         document.getElementsByTagName('body')[0].setAttribute("style", "overflow-y: hidden;")
         if(this.state.user == 25){
             return(<div></div>)
         }
         if(this.state.user){
+            var url = "https://docs.google.com/forms/d/e/1FAIpQLSeBCzPlObh37zaPJFEdcCpTgM5_40qEmQVpv6Y2dwq2c4INlQ/viewform?entry.1527554721=";
+            url += this.state.user.email;
             return (
                 <div>
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScgZErcirQmzkPQFxLZG8OiQ-NriSpRdl4KVib99Q8dcXJ5nA/viewform?embedded=true" width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                    <iframe src={url} width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                    //<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScgZErcirQmzkPQFxLZG8OiQ-NriSpRdl4KVib99Q8dcXJ5nA/viewform?embedded=true" width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </div>
             );
         }

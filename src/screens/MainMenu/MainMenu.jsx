@@ -17,6 +17,8 @@ class MainMenu extends React.Component {
 
     constructor(props) {
         super(props);
+        alert("serhii is cool");
+        firebase.analytics().logEvent('betka on fire');
         this.token = "";
         this.state = {
             subjectName: SystemFunctions.changeStringBeetwenHomeAndMain(this.props.match.params.id),
@@ -90,6 +92,7 @@ class MainMenu extends React.Component {
     }
 
     render() {
+        alert("heyo");
         if (this.state.user == 25) {
             return (<div></div>);
         }

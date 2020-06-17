@@ -30,11 +30,13 @@ export class Home extends React.Component{
         })
     }
     render() {
+        alert("yo");
+        firebase.analytics().logEvent('TEST user logged in');
         if(this.state.user == 25){
             return(<div></div>)
         }
         if(this.state.user) {
-            return( 
+            return(
                 <div>
                     <List/>
                     <button onClick={async() => await sosi()}></button>
