@@ -228,14 +228,14 @@ class Question {
         }
         if (this.getType() == "Open") {
             return this.areEqualStrNumbers(answerToCheck, this.open_answer);
-            if (this.getType() == "Geo_History_3_7") {
-                for (let i of this.getHistory37Answers()) {
-                    if (answerToCheck == i)
-                        return true;
-                }
-                return false;
-            }
         }
+        if (this.getType() == "Geo_History_3_7") {
+              for (let i of this.getHistory37Answers()) {
+                  if (answerToCheck == i)
+                     return true;
+              }
+             return false;
+       }
     }
     checkCorrectFromList (answerToCheck, index) {
         if(this.getType() == "Double_Open"){
