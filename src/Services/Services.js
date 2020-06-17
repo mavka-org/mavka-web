@@ -226,7 +226,7 @@ class Question {
         if(this.getType() == "ABCDE" || this.getType() == "ABCD"){
             return answerToCheck == this.answer;
         }
-        if(this.getType() == "Open"){
+        if(this.getType() == "Open")
             return this.areEqualStrNumbers(answerToCheck, this.open_answer);
         if(this.getType() == "Geo_History_3_7"){
             for(let i of this.getHistory37Answers()){
@@ -236,6 +236,7 @@ class Question {
             return false;
         }
     }
+
 
     checkCorrectFromList (answerToCheck, index) {
         if(this.getType() == "Double_Open"){
@@ -444,6 +445,17 @@ class Services {
                 token: token,
                 id: testID,
                 status: status
+            },
+            { headers: { 'Content-Type': 'text/plain' } }
+        )
+    }
+
+    static async deleteTestByID(token, testID){
+        const response = await axios.post(
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/deleteCourseById',
+            { 
+                token: token,
+                id: testID,
             },
             { headers: { 'Content-Type': 'text/plain' } }
         )

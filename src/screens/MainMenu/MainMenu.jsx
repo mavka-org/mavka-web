@@ -16,6 +16,8 @@ import Confetti from '../../UI/Confetti/Confetti';
 import Scores from './Object/Scores/Scores';
 import Progres from './Object/Progres/Progres';
 import Button from './Object/Button/Button';
+import {animateScroll as scroll} from 'react-scroll'
+
 class MainMenu extends React.Component {
 
     constructor(props) {
@@ -91,6 +93,15 @@ class MainMenu extends React.Component {
         })
     }
 
+    deleteTestInfo = (testID) => {
+        this.state.user.getIdToken().then((token) => {
+            Services.deleteTestByID(token, testID);
+        });
+        this.setState({
+            active: this.state.active
+        })
+    }
+
     startPractice = () => {
         firebase.analytics().logEvent('openPractise');
         Services.changeTestStatusByID(this.token, this.state.tests[this.state.active].id, "вільна практика");
@@ -109,7 +120,7 @@ class MainMenu extends React.Component {
 
     onClickPractice(){
         if(this.state.tests[this.state.active].status == 'тест пройдений'){
-            //animation to button скинути прогрес
+            return this.scrollToBottom; 
         }else return this.startPractice;
     }
 
@@ -117,7 +128,7 @@ class MainMenu extends React.Component {
         if(this.state.tests[this.state.active].status == 'тест не пройдений'){
             return this.startSimulation;
         }else{
-            //animation to button скинути прогрес
+            return this.scrollToBottom; 
         }
     }
 
@@ -131,6 +142,10 @@ class MainMenu extends React.Component {
         if(this.state.tests[this.state.active].status == 'тест не пройдений'){
             return s.btn;
         }else return s.btn_disabled;
+    }
+
+    scrollToBottom = () => {
+        scroll.scrollToBottom();
     }
 
     render() {
@@ -169,7 +184,7 @@ class MainMenu extends React.Component {
 
                             {this.state.tests.length > 0 ? (<div className={s.test_body_right}>
                                 <div>
-                                    {typeof this.props.location.state != 'undefined' ? (<Confetti />) : null}
+                                    {this.state.tests[this.state.active].status == 'тест пройдений' && this.props.location.state ? (<Confetti />) : null}
                                 </div>
                                 <div className={s.scores_frame}>
                                     <div className={s.title}>
@@ -189,7 +204,7 @@ class MainMenu extends React.Component {
                                     <p><strong><VideoCamera /> Відеопояснення</strong></p>
                                     <div className={s.video}></div>
                                 </div>
-                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres />)}
+                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} click={this.deleteTestInfo}/>)}
                             </div>) : null}
                         </div>
                     </div>
