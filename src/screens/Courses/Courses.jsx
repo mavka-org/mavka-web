@@ -38,6 +38,7 @@ class Courses extends React.Component {
     }
 
     navigate = (ref) => {
+        firebase.analytics().logEvent('choose subject', { subject: ref});
         this.props.history.push(ref);
     }
 

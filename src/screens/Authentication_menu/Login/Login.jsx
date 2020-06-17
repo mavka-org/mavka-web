@@ -34,6 +34,7 @@ export class Login extends React.Component {
             alert(errorCode + " " + errorMessage);
         });
         if(firebase.auth().currentUser){
+            firebase.analytics().logEvent('userLogin');
             this.props.history.push('/home')
         }
     }

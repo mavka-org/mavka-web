@@ -178,6 +178,7 @@ export class Test extends React.Component{
     }
 
     updateAnswers = (num, answer) => {
+        firebase.analytics().logEvent('check');
         const answers = this.state.answers;
         const checkedAnswers = this.state.checkedAnswers;
         answers[num] = answer;
@@ -211,6 +212,14 @@ export class Test extends React.Component{
                     type += "_OneColumn";
                 }
                 const DynamicComponent = componentsMap[type];
+
+                if (this.state.active in this.state.answers) {
+                    firebase.analytics().logEvent('oldQuestion');
+                }
+                else {
+                    firebase.analytics().logEvent('newQuestion');
+                }
+
                 return (
                     <div className={g.background}>
                         <div className={[s.page, g.page_].join(' ')}>
