@@ -10,7 +10,37 @@ import Comment from '../Objects/Comment/Comment';
 import Video from '../Objects/Video/Video';
 
 class BioTriples extends React.Component {
-    
+    constructor(props) {
+        super(props);
+        this.state = {
+            checkedAnswers: props.checkedAnswers,
+            number: props.number,
+            data: props.data,
+            active: props.active,
+            answered: props.answered,
+            currentAnswer: null
+        }
+        console.log(props.data);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props != prevProps) {
+            console.log('sos' + this.props.answered)
+            this.setState({
+                checkedAnswers: this.props.checkedAnswers,
+                number: this.props.number,
+                data: this.props.data,
+                active: this.props.active,
+                answered: this.props.answered
+            })
+        }
+    }
+
+    updateCurrentAnswer = (answer) => {
+        this.setState({
+            currentAnswer: answer
+        })
+    }
     render() {
         return (
             <div>
