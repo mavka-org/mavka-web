@@ -53,7 +53,6 @@ class Input_Answer extends React.Component {
                                 isUserAnswer={true}
                             />
                         </div>
-                        <strong>{this.props.number}:</strong>
                     </div>
 
                     <div style={{
@@ -61,12 +60,6 @@ class Input_Answer extends React.Component {
                         }}
                         dangerouslySetInnerHTML={{ __html: this.props.subquestion }}>
                     </div>
-                </div>
-
-                <div className={s.comment} style={{
-                    display: !this.props.hidden ? "none" : "block"
-                    }}>
-                    <div dangerouslySetInnerHTML={{ __html: this.props.explanation }}></div>
                 </div>
 
                 <input className={s.inp} id={this.inputId} value={this.props.currentAnswer} onChange={() => {this.updateInput()}}></input>

@@ -72,7 +72,6 @@ class Open extends React.Component {
                         <div className={s.answers_frame}>
                             <Input_Answer
                                 answered={this.state.answered}
-                                explanation={data.getComment()}
                                 correctAnswer={data.getOpenAnswer()}
                                 hidden={hidden}
                                 updateCurrentAnswer={this.updateCurrentAnswer}

@@ -99,6 +99,7 @@ class Double_Open extends React.Component {
                     </div>
 
                     <Next
+                        isNextAllowed={isNextAllowed}
                         answered={this.state.answered}
                         updateQuestion={this.props.updateQuestion}
                         number={this.state.active}

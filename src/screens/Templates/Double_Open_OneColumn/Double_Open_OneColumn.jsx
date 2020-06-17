@@ -21,7 +21,6 @@ class Double_Open_OneColumn extends React.Component {
             answered: props.answered,
             currentAnswer: props.currentAnswer
         }
-        console.log(props.data);
     }
 
     componentDidUpdate(prevProps) {
@@ -47,8 +46,11 @@ class Double_Open_OneColumn extends React.Component {
         })
     }
 
-    render() {
+    validateCurrentAnswer() {
+        return (this.state.currentAnswer[0] != "" && this.state.currentAnswer[1] != "")
+    }
 
+    render() {
         if(typeof this.state.currentAnswer == "undefined"){
             this.setState({
                 currentAnswer: ["", ""]
@@ -58,6 +60,7 @@ class Double_Open_OneColumn extends React.Component {
 
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
+        let isNextAllowed = this.validateCurrentAnswer()
 
         return (
             <div>
@@ -100,6 +103,7 @@ class Double_Open_OneColumn extends React.Component {
                         </div>
 
                         <Next
+                            isNextAllowed={isNextAllowed}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}
                             number={this.state.active}
