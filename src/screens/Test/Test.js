@@ -187,6 +187,12 @@ export class Test extends React.Component{
         }
     }
 
+    updateCurrentAnswer = (answer) => {
+        this.setState({
+            currentAnswer: answer
+        })
+    }
+
     render() {
        // console.log("Test.js");
        // console.log(this.state.checkedAnswers);
