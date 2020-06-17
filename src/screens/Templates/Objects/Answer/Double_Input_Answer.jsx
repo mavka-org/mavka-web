@@ -1,7 +1,7 @@
 import React from 'react';
 import CheckAnswerIcon from '../../Icon/CheckAnswerIcon';
 import s from './../../Objects/Answer/Input_Answer.module.css';
-class Input_Answer extends React.Component {
+class Double_Input_Answer extends React.Component {
 
     constructor(props) {
         super(props);
@@ -82,4 +82,4 @@ class Input_Answer extends React.Component {
     }
 }
 
-export default Input_Answer;
+export default Double_Input_Answer;
