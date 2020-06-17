@@ -221,22 +221,22 @@ class Question {
     }
 
     checkCorrect (answerToCheck) {
-        if(answerToCheck == null) return false;
+        if (answerToCheck == null) return false;
 
-        if(this.getType() == "ABCDE" || this.getType() == "ABCD"){
+        if (this.getType() == "ABCDE" || this.getType() == "ABCD") {
             return answerToCheck == this.answer;
         }
-        if(this.getType() == "Open")
+        if (this.getType() == "Open") {
             return this.areEqualStrNumbers(answerToCheck, this.open_answer);
-        if(this.getType() == "Geo_History_3_7"){
-            for(let i of this.getHistory37Answers()){
-                if(answerToCheck == i)
-                    return true;
-            }
-            return false;
         }
+        if (this.getType() == "Geo_History_3_7") {
+              for (let i of this.getHistory37Answers()) {
+                  if (answerToCheck == i)
+                     return true;
+              }
+             return false;
+       }
     }
-
 
     checkCorrectFromList (answerToCheck, index) {
         if(this.getType() == "Double_Open"){
@@ -256,13 +256,16 @@ class Question {
     }
 
     evaluate (answerToCheck) {
+        //alert(answerToCheck + " " + this.answer);
         let res = [];
         if(this.getType() == "ABCDE" || this.getType() == "ABCD" || this.getType() == "ABCDE_OneColumn" || this.getType() == "ABCD_OneColumn"){
             if(answerToCheck == this.answer) {
+                //alert("HERE 1");
                 res.push(1);
                 res.push(2);
             }
             else {
+                //alert("HERE 2");
                 res.push(0);
                 res.push(0);
             }

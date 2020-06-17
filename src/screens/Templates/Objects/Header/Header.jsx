@@ -144,6 +144,8 @@ class Header extends React.Component {
                         list={this.props.list}
                         updateQuestion={this.props.updateQuestion}
                         active={this.props.active}
+                        answers={this.props.answers}
+                        isPractice={this.props.isPractice}
                     />
                 </div>
             </div>
