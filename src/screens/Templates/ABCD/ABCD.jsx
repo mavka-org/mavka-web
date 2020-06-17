@@ -20,7 +20,7 @@ class ABCD extends Component {
             data: props.data,
             active: props.active,
             answered: props.answered,
-            currentAnswer: null
+            currentAnswer: props.currentAnswer
         }
         console.log(props.data);
     }
@@ -33,7 +33,8 @@ class ABCD extends Component {
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
-                answered: this.props.answered
+                answered: this.props.answered,
+                currentAnswer: this.props.currentAnswer
             })
         }
     }
@@ -45,6 +46,8 @@ class ABCD extends Component {
     }
 
     render() {
+        console.log(this.state.data.evaluate(this.state.currentAnswer))
+
         console.log(this.state.currentAnswer);
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
@@ -115,6 +118,7 @@ class ABCD extends Component {
                             />
                         </div>
                         <Next
+                            isNextAllowed={true}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}
                             number={this.state.active}

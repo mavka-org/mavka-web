@@ -18,7 +18,7 @@ class ABCD_OneColumn extends React.Component {
             data: props.data,
             active: props.active,
             answered: props.answered,
-            currentAnswer: null
+            currentAnswer: props.currentAnswer
         }
         console.log(props.data);
     }
@@ -31,7 +31,8 @@ class ABCD_OneColumn extends React.Component {
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
-                answered: this.props.answered
+                answered: this.props.answered,
+                currentAnswer: this.props.currentAnswer
             })
         }
     }
