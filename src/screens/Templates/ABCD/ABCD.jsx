@@ -45,6 +45,8 @@ class ABCD extends Component {
     }
 
     render() {
+        console.log(this.state.data.evaluate(this.state.currentAnswer))
+
         console.log(this.state.currentAnswer);
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
@@ -115,6 +117,7 @@ class ABCD extends Component {
                             />
                         </div>
                         <Next
+                            isNextAllowed={true}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}
                             number={this.state.active}

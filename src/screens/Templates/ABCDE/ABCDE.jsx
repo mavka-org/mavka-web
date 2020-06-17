@@ -47,6 +47,7 @@ class ABCDE extends Component {
     
 
     render() {
+        console.log(this.state.data.evaluate(this.state.currentAnswer))
         console.log(this.state.currentAnswer);
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;

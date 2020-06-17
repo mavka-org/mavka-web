@@ -34,6 +34,8 @@ class Open_Ended extends React.Component {
     }
 
     render() {
+        console.log(this.state.data.evaluate(this.state.currentAnswer))
+
         const data = this.state.data;
         let hidden = this.state.answered;
 

@@ -47,12 +47,14 @@ class Open extends React.Component {
     }
 
     render() {
+
         if(typeof this.state.currentAnswer == "undefined"){
             this.setState({
                 currentAnswer: ""
             })
             return(<div></div>)
         }
+
 
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
