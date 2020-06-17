@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import ButtonQNav from "../ButtonQNav";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import styled from "styled-components";
 
 class QuestionNavPanel extends Component {
 
@@ -43,7 +42,7 @@ class QuestionNavPanel extends Component {
                     //this.update(i + 1);
                 },
                 status: false,
-                active: i == 0
+                active: i == this.props.active - 1
             });
         }
 
@@ -146,6 +145,9 @@ class QuestionNavPanel extends Component {
                         background-color: white;
                         width:` + this.getWidth(2.2) + `px;
                         height:` + this.getHeight(3) + `px;
+                    }
+                    #my-dropdown:focus {
+                        outline: 0;
                     }
                     `}
                 </style>

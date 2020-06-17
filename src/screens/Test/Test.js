@@ -17,7 +17,7 @@ import Double_Open_OneColumn from "../Templates/Double_Open_OneColumn/Double_Ope
 import Logic_Couples_4_4_OneColumn from "../Templates/Logic_Couples_OneColumn/Logic_Couples_4_4_OneColumn";
 import Logic_Couples_4_5_OneColumn from "../Templates/Logic_Couples_OneColumn/Logic_Couples_4_5_OneColumn";
 import g from "../Templates/Style.module.css";
-import s from "../Templates/ABCDE/ABCDE.module.css";
+import s from "../Templates/ABCDE_OneColumn/ABCDE_OneColumn.module.css";
 import Header from "../Templates/Objects/Header/Header";
 
 
@@ -231,6 +231,7 @@ export class Test extends React.Component{
                                 list={this.state.n}
                                 updateQuestion={this.updateQuestion}
                                 active={this.state.active}
+                                isPractice={this.state.isPractice}
                             />
                             <DynamicComponent
                                 updateQuestion={this.updateQuestion}
