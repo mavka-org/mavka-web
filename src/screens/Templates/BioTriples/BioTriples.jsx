@@ -65,17 +65,36 @@ class BioTriples extends React.Component {
                 <div className={s.question_body}>
                     <div className={s.answers}>
                         <div className={s.title_column}>{data.getBio3_firstquestion().question}</div>
-                        <Answer />
+                        <Answer
                             answered={this.state.answered}
-                            letter={"A"}
+                            letter={"1"}
                             question={data.getBio3_firstquestion().firstAnswer}
                             explanation={data.getBio3_firstquestion().firstExplain}
                             hidden={hidden}
                             updateCurrentAnswer={this.updateCurrentAnswer}
-                            currentAnswer={this.state.currentAnswer}
-                            isCorrectAnswer={data.checkCorrect('А')}
-                        <Answer />
-                        <Answer />
+                            currentAnswer={this.state.currentAnswer[0]}
+                            isCorrectAnswer={data.checkCorrect(this.state.currentAnswer[0], 1)}
+                        />
+                        <Answer 
+                            answered={this.state.answered}
+                            letter={"2"}
+                            question={data.getBio3_firstquestion().secondAnswer}
+                            explanation={data.getBio3_firstquestion().secondExplain}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer[0]}
+                            isCorrectAnswer={data.checkCorrect(this.state.currentAnswer[0], 1)}
+                        />
+                        <Answer 
+                            answered={this.state.answered}
+                            letter={"3"}
+                            question={data.getBio3_firstquestion().thirdAnswer}
+                            explanation={data.getBio3_firstquestion().thirdExplain}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer[0]}
+                            isCorrectAnswer={data.checkCorrect(this.state.currentAnswer[0], 1)}
+                        />
                     </div>
                     <div className={s.answers}>
                         <div className={s.title_column}>Органела є</div>

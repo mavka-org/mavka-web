@@ -22,7 +22,7 @@ class Answer extends React.Component {
     }
 
     render() {
-        //console.log(this.state.currentAnswer + " " +  this.props.letter + " " + this.props.isCorrectAnswer);
+        console.log(this.state.currentAnswer + " " +  this.props.letter + " " + this.props.isCorrectAnswer);
         let isUserAnswer = !(this.props.letter.localeCompare(this.state.currentAnswer));
         //console.log(isUserAnswer);
         return (

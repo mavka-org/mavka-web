@@ -215,9 +215,20 @@ class Question {
         }
     }
 
-    checkCorrect (answerToCheck, index) {
+    checkCorrectFromList (answerToCheck, index) {
         if(this.getType() == "Double_Open" || this.getType() == "Open"){
             return answerToCheck == this.double_open_answers[index];
+        }
+        if(this.getType() == "Bio_Triples"){
+            if(index == 1){
+                return answerToCheck == this.bio3_firstquestion_answer;
+            }
+            if(index == 2){
+                return answerToCheck == this.bio3_secondquestion_answer;
+            }
+            if(index == 3){
+                return answerToCheck == this.bio3_thirdquestion_answer;
+            }
         }
     }
 }
