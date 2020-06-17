@@ -11,7 +11,13 @@ class Question {
         this.year = json["Рік"];
         this.number = json["Номер"];
         this.session = json["Сесія"];
-        this.subject = json["Предмет"];
+        if(json["Предмет"] == 'ULL')
+            this.subject = 'Українська мова і література';
+        else if(json["Предмет"] == 'UHistory')
+            this.subject = 'Історія України';
+        else if(json["Предмет"] == 'Bio')
+            this.subject = 'Біологія';
+        else this.subject = json["Предмет"];
         this.topic = json["Тема"];
         this.question = json["Питання"];
         this.answer = json["Правильна відповідь"];
@@ -120,7 +126,7 @@ class Question {
         return this.isDoubleColumn;
     }
     checkCorrect (answerToCheck) {
-        if(this.getType() == "ABCDE"){
+        if(this.getType() == "ABCDE" || this.getType() == "ABCD"){
             return answerToCheck == this.answer;
         }
     }
