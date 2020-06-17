@@ -221,7 +221,7 @@ class Question {
         }
     }
 
-    checkCorrect (answerToCheck, index) {
+    checkCorrectFromList (answerToCheck, index) {
         if(this.getType() == "Double_Open" || this.getType() == "Open"){
             return answerToCheck == this.double_open_answers[index];
         }
