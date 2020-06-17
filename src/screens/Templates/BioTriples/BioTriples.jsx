@@ -54,7 +54,10 @@ class BioTriples extends React.Component {
             return(<div></div>)
         }
 
-        let hidden = this.state.answered && this.props.isPractice
+        
+        const data = this.state.data;
+        let hidden = this.state.answered && this.props.isPractice;
+        console.log(data.getBio3_secondquestion());
         return (
             <div>
                 <Question 
@@ -66,6 +69,7 @@ class BioTriples extends React.Component {
                     <div className={s.answers}>
                         <div className={s.title_column}>{data.getBio3_firstquestion().question}</div>
                         <Answer
+                            index={0}
                             answered={this.state.answered}
                             letter={"1"}
                             question={data.getBio3_firstquestion().firstAnswer}
@@ -73,9 +77,10 @@ class BioTriples extends React.Component {
                             hidden={hidden}
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[0]}
-                            isCorrectAnswer={data.checkCorrect(this.state.currentAnswer[0], 1)}
+                            isCorrectAnswer={data.checkCorrectFromList("1", 1)}
                         />
                         <Answer 
+                            index={0}
                             answered={this.state.answered}
                             letter={"2"}
                             question={data.getBio3_firstquestion().secondAnswer}
@@ -83,9 +88,10 @@ class BioTriples extends React.Component {
                             hidden={hidden}
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[0]}
-                            isCorrectAnswer={data.checkCorrect(this.state.currentAnswer[0], 1)}
+                            isCorrectAnswer={data.checkCorrectFromList("2", 1)}
                         />
-                        <Answer 
+                        <Answer
+                            index={0} 
                             answered={this.state.answered}
                             letter={"3"}
                             question={data.getBio3_firstquestion().thirdAnswer}
@@ -93,26 +99,101 @@ class BioTriples extends React.Component {
                             hidden={hidden}
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[0]}
-                            isCorrectAnswer={data.checkCorrect(this.state.currentAnswer[0], 1)}
+                            isCorrectAnswer={data.checkCorrectFromList("3", 1)}
                         />
                     </div>
                     <div className={s.answers}>
-                        <div className={s.title_column}>Органела є</div>
-                        <Answer />
-                        <Answer />
-                        <Answer />
+                        <div className={s.title_column}>{data.getBio3_secondquestion().question}</div>
+                        <Answer
+                            index={1}
+                            answered={this.state.answered}
+                            letter={"1"}
+                            question={data.getBio3_secondquestion().firstAnswer}
+                            explanation={data.getBio3_secondquestion().firstExplain}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer[1]}
+                            isCorrectAnswer={data.checkCorrectFromList("1", 2)}
+                        />
+                        <Answer 
+                            index={1}
+                            answered={this.state.answered}
+                            letter={"2"}
+                            question={data.getBio3_secondquestion().secondAnswer}
+                            explanation={data.getBio3_secondquestion().secondExplain}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer[1]}
+                            isCorrectAnswer={data.checkCorrectFromList("2", 2)}
+                        />
+                        <Answer
+                            index={1} 
+                            answered={this.state.answered}
+                            letter={"3"}
+                            question={data.getBio3_secondquestion().thirdAnswer}
+                            explanation={data.getBio3_secondquestion().thirdExplain}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer[1]}
+                            isCorrectAnswer={data.checkCorrectFromList("3", 2)}
+                        />
                     </div>
                     <div className={s.answers}>
-                        <div className={s.title_column}>Органела є</div>
-                        <Answer />
-                        <Answer />
-                        <Answer />
+                        <div className={s.title_column}>{data.getBio3_thirdquestion().question}</div>
+                        <Answer
+                            index={2}
+                            answered={this.state.answered}
+                            letter={"1"}
+                            question={data.getBio3_thirdquestion().firstAnswer}
+                            explanation={data.getBio3_thirdquestion().firstExplain}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer[2]}
+                            isCorrectAnswer={data.checkCorrectFromList("1", 3)}
+                        />
+                        <Answer 
+                            index={2}
+                            answered={this.state.answered}
+                            letter={"2"}
+                            question={data.getBio3_thirdquestion().secondAnswer}
+                            explanation={data.getBio3_thirdquestion().secondExplain}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer[2]}
+                            isCorrectAnswer={data.checkCorrectFromList("2", 3)}
+                        />
+                        <Answer
+                            index={2} 
+                            answered={this.state.answered}
+                            letter={"3"}
+                            question={data.getBio3_thirdquestion().thirdAnswer}
+                            explanation={data.getBio3_thirdquestion().thirdExplain}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer[2]}
+                            isCorrectAnswer={data.checkCorrectFromList("3", 3)}
+                        />
                     </div>
                 </div>
-                <Next />
-                <Topic />
-                <Comment />
-                <Video />
+                <Next 
+                    answered={this.state.answered}
+                    updateQuestion={this.props.updateQuestion}
+                    number={this.state.active}
+                    currentAnswer={this.state.currentAnswer}
+                    updateAnswers={this.props.updateAnswers}
+                    isPractice={this.props.isPractice}
+                />
+                <Topic 
+                    topic={data.getTopic()}
+                    hidden={hidden}
+                />
+                <Comment 
+                    comment={data.getComment()}
+                    hidden={hidden}
+                />
+                <Video 
+                    hidden={hidden}
+                />
             </div>
         );
     }

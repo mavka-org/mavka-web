@@ -196,19 +196,6 @@ class Question {
         };
         return tmp;
       }
-    getBio3_secondquestion(){
-        let tmp = {
-            question: this.bio3_secondquestion,
-            firstAnswer: this.bio3_firstquestion_secondanswer,
-            secondAnswer: this.bio3_secondquestion_secondanswer,
-            thirdAnswer: this.bio3_secondquestion_thirdanswer,
-            firstExplain: this.bio3_secondquestion_firstexplain,
-            secondExplain: this.bio3_secondquestion_secondexplain,
-            thirdExplain: this.bio3_secondquestion_thirdexplain,
-            answer: this.bio3_secondquestion_answer
-        };
-        return tmp;
-    }
     checkCorrect (answerToCheck) {
         if(this.getType() == "ABCDE" || this.getType() == "ABCD"){
             return answerToCheck == this.answer;

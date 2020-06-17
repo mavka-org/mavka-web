@@ -52,7 +52,7 @@ class Double_Open extends React.Component {
     }
 
     render() {
-
+        console.log("I am here");
         if(typeof this.state.currentAnswer == "undefined"){
             this.setState({
                 currentAnswer: ["", ""]
@@ -108,8 +108,7 @@ class Double_Open extends React.Component {
                         currentAnswer={this.state.currentAnswer}
                         updateAnswers={this.props.updateAnswers}
                         isPractice={this.props.isPractice}
-                        />
-
+                    />
                     <Topic
                         topic={data.getTopic()}
                         hidden={hidden}
