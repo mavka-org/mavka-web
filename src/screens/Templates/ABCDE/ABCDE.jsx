@@ -19,7 +19,7 @@ class ABCDE extends Component {
             data: props.data,
             active: props.active,
             answered: props.answered,
-            currentAnswer: null
+            currentAnswer: props.currentAnswer
         }
         console.log(props.data);
     }

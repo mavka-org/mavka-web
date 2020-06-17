@@ -82,8 +82,8 @@ class Logic_Couples_4_5 extends Component {
     
             for(let i = 0; i < 4; ++i) {
                 let column;
-                if(this.props.currentAnswer != null) {
-                    column = this.props.currentAnswer[i];
+                if(this.state.currentAnswer != null) {
+                    column = this.state.currentAnswer[i];
                 }
                 else {
                     column = '';
@@ -127,8 +127,8 @@ class Logic_Couples_4_5 extends Component {
     }
 
     getChecked(i, j) {
-        if(this.props.currentAnswer == null) return false;
-        return (this.props.currentAnswer[i] == j);
+        if(this.state.currentAnswer == null) return false;
+        return (this.state.currentAnswer[i] == j);
     }
 
     upd = () => {
@@ -148,7 +148,7 @@ class Logic_Couples_4_5 extends Component {
                 ans.push(String.fromCharCode('А'.charCodeAt(0) + column));
             }
         }
-        this.props.updateCurrentAnswer(ans);
+        this.updateCurrentAnswer(ans);
     }
 
     getDisabled() {
@@ -160,9 +160,15 @@ class Logic_Couples_4_5 extends Component {
         return opts;
     }
 
+    updateCurrentAnswer = (answer) => {
+        this.setState({
+            currentAnswer: answer
+        })
+    }
+
     render() {
         const data = this.state.data;
-        let hidden = !(this.state.answered && this.props.isPractice);
+        let hidden = this.state.answered && this.props.isPractice;
         console.log(this.state.currentAnswer)
 
         return (

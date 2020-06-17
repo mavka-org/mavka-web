@@ -196,9 +196,9 @@ export class Test extends React.Component{
                 let num = this.state.active - 1;
                 let type = data[num].getType();
 
-                if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
+                /*if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
                     type += "_OneColumn";
-                }
+                }*/
                 const DynamicComponent = componentsMap[type];
                 return (
                     <div className={g.background}>
