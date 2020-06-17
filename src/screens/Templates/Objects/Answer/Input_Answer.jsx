@@ -58,15 +58,15 @@ class Input_Answer extends React.Component {
 
                     <div style={{
                         display: this.props.subquestion == null ? "none" : "block"
-                        }}>
-                        {this.props.subquestion}
+                        }}
+                        dangerouslySetInnerHTML={{ __html: this.props.subquestion }}>
                     </div>
                 </div>
 
                 <div className={s.comment} style={{
                     display: !this.props.hidden ? "none" : "block"
                     }}>
-                    <div>{this.props.explanation}</div>
+                    <div dangerouslySetInnerHTML={{ __html: this.props.explanation }}></div>
                 </div>
 
                 <input className={s.inp} id={this.inputId} value={this.props.currentAnswer} onChange={() => {this.updateInput()}}></input>

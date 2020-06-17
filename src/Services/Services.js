@@ -11,13 +11,7 @@ class Question {
         this.year = json["Рік"];
         this.number = json["Номер"];
         this.session = json["Сесія"];
-        if(json["Предмет"] == 'ULL')
-            this.subject = 'Українська мова і література';
-        else if(json["Предмет"] == 'UHistory')
-            this.subject = 'Історія України';
-        else if(json["Предмет"] == 'Bio')
-            this.subject = 'Біологія';
-        else this.subject = json["Предмет"];
+        this.subject = json["Subject"];
         this.topic = json["Тема"];
         this.question = json["Питання"];
         this.answer = json["Правильна відповідь"];
@@ -224,6 +218,17 @@ class Question {
     checkCorrectFromList (answerToCheck, index) {
         if(this.getType() == "Double_Open" || this.getType() == "Open"){
             return answerToCheck == this.double_open_answers[index];
+        }
+        if(this.getType() == "Bio_Triples"){
+            if(index == 1){
+                return answerToCheck == this.bio3_firstquestion_answer;
+            }
+            if(index == 2){
+                return answerToCheck == this.bio3_secondquestion_answer;
+            }
+            if(index == 3){
+                return answerToCheck == this.bio3_thirdquestion_answer;
+            }
         }
     }
 }

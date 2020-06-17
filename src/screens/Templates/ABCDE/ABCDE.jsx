@@ -12,6 +12,7 @@ import Next from './../Objects/Next/Next.jsx';
 import { Component } from 'react';
 
 class ABCDE extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -19,7 +20,7 @@ class ABCDE extends Component {
             data: props.data,
             active: props.active,
             answered: props.answered,
-            currentAnswer: null
+            currentAnswer: props.currentAnswer
         }
         console.log(props.data);
     }
