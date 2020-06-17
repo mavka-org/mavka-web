@@ -6,7 +6,7 @@ import Question from '../Objects/Question/Question.jsx';
 import Topic from './../Objects/Topic/Topic.jsx';
 import Header from './../Objects/Header/Header.jsx';
 import Comment from './../Objects/Comment/Comment.jsx';
-import Input_Answer from './../Objects/Answer/Input_Answer';
+import Double_Input_Answer from './../Objects/Answer/Double_Input_Answer';
 import Video from './../Objects/Video/Video.jsx';
 import Next from './../Objects/Next/Next.jsx';
 class Double_Open_OneColumn extends React.Component {
@@ -73,7 +73,7 @@ class Double_Open_OneColumn extends React.Component {
 
                         <div className={s.answers_frame}>
 
-                            <Input_Answer
+                            <Double_Input_Answer
                                 answered={this.state.answered}
                                 number={"1"}
                                 subquestion={data.getDoubleOpenSubquestion()[0]}
@@ -85,7 +85,7 @@ class Double_Open_OneColumn extends React.Component {
                                 isCorrectAnswer={data.checkCorrectFromList(this.state.currentAnswer[0], 0)}
                                 />
 
-                            <Input_Answer
+                            <Double_Input_Answer
                                 answered={this.state.answered}
                                 number={"2"}
                                 subquestion={data.getDoubleOpenSubquestion()[1]}

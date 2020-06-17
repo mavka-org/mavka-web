@@ -3,7 +3,7 @@ import s from './Double_Open.module.css';
 import g from './../Style.module.css';
 import Party from "../Icon/Party";
 import Question from './../Objects/Question/Question.jsx';
-import Input_Answer from './../Objects/Answer/Input_Answer';
+import Double_Input_Answer from './../Objects/Answer/Double_Input_Answer';
 import Topic from './../Objects/Topic/Topic.jsx';
 import Header from './../Objects/Header/Header.jsx';
 import Comment from './../Objects/Comment/Comment.jsx';
@@ -47,6 +47,10 @@ class Double_Open extends React.Component {
         })
     }
 
+    validateCurrentAnswer() {
+        return (this.state.currentAnswer[0] != "" && this.state.currentAnswer[1] != "")
+    }
+
     render() {
         console.log("I am here");
         if(typeof this.state.currentAnswer == "undefined"){
@@ -58,6 +62,8 @@ class Double_Open extends React.Component {
 
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
+        let isNextAllowed = this.validateCurrentAnswer()
+        console.log(isNextAllowed)
 
         return (
             <div className={s.question_body}>
@@ -70,7 +76,7 @@ class Double_Open extends React.Component {
 
                     <div className={s.answers_frame}>
 
-                        <Input_Answer
+                        <Double_Input_Answer
                             answered={this.state.answered}
                             number={"1"}
                             subquestion={data.getDoubleOpenSubquestion()[0]}
@@ -82,7 +88,7 @@ class Double_Open extends React.Component {
                             isCorrectAnswer={data.checkCorrectFromList(this.state.currentAnswer[0], 0)}
                             />
 
-                        <Input_Answer
+                        <Double_Input_Answer
                             answered={this.state.answered}
                             number={"2"}
                             subquestion={data.getDoubleOpenSubquestion()[1]}
