@@ -27,6 +27,7 @@ class Logic_Couples_4_5 extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        document.getElementById('FAKE').click();
         if (this.props != prevProps) {
             console.log('sos' + this.props.answered)
             this.setState({
@@ -60,6 +61,15 @@ class Logic_Couples_4_5 extends Component {
         let couples = [];
         for(let i = 0; i < 4; ++i) {
             couples.push([]);
+
+
+            let isCorrectAnswer;
+            if(this.state.currentAnswer != null) {
+                isCorrectAnswer = data.getMatchCorrectAnswers()[i].charCodeAt(0) == this.state.currentAnswer[i].charCodeAt(0)
+            }
+            else {
+                isCorrectAnswer = false;
+            }
             for(let j = 0; j < 5; ++j) {
                 couples[i].push(<CoupleAnswer
                     hidden={hidden}
@@ -68,6 +78,7 @@ class Logic_Couples_4_5 extends Component {
                     subquestion={data.getMatchSubquestions()[i]}
                     subanswer={data.getMatch5Options()[j]}
                     explanation={data.getMatchExplanations()[i]}
+                    isCorrectAnswer={isCorrectAnswer}
                     />)
             }
         }
@@ -160,10 +171,29 @@ class Logic_Couples_4_5 extends Component {
         return opts;
     }
 
+    getBorder(i, j) {
+        const data = this.state.data;
+        let hidden = !(this.state.answered && this.props.isPractice);
+        var opts = {};
+        if(!hidden) {
+            if(data.getMatchCorrectAnswers()[i].charCodeAt(0) - 'А'.charCodeAt(0) == j) {
+                opts['style'] = {border: '2px solid green'};
+            }
+        }
+        return opts;
+    }
+
     updateCurrentAnswer = (answer) => {
         this.setState({
             currentAnswer: answer
         })
+    }
+
+    isNextAllowed() {
+        if(this.state.currentAnswer != null && this.state.currentAnswer[0].length + this.state.currentAnswer[1].length + this.state.currentAnswer[2].length + this.state.currentAnswer[3].length == 4) {
+            return true;
+        }
+        return false;
     }
 
     render() {
@@ -213,31 +243,31 @@ class Logic_Couples_4_5 extends Component {
                                         <td>
                                             <label>
                                                 <input type="radio" value="1a" name="a[1]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(0, 'А')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(0, 0)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="1b" name="a[1]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(0, 'Б')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(0, 1)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="1c" name="a[1]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(0, 'В')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(0, 2)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="1d" name="a[1]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(0, 'Г')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(0, 3)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="1e" name="a[1]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(0, 'Д')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(0, 4)} class={s.marker}></span>
                                             </label>
                                         </td>
 
@@ -247,31 +277,31 @@ class Logic_Couples_4_5 extends Component {
                                         <td>
                                             <label>
                                                 <input type="radio" value="2a" name="a[2]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(1, 'А')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(1, 0)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="2b" name="a[2]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(1, 'Б')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(1, 1)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="2c" name="a[2]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(1, 'В')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(1, 2)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="2d" name="a[2]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(1, 'Г')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(1, 3)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="2e" name="a[2]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(1, 'Д')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(1, 4)} class={s.marker}></span>
                                             </label>
                                         </td>
 
@@ -281,31 +311,31 @@ class Logic_Couples_4_5 extends Component {
                                         <td>
                                             <label>
                                                 <input type="radio" value="3a" name="a[3]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(2, 'А')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(2, 0)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="3b" name="a[3]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(2, 'Б')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(2, 1)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="3c" name="a[3]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(2, 'В')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(2, 2)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="3d" name="a[3]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(2, 'Г')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(2, 3)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="3e" name="a[3]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(2, 'Д')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(2, 4)} class={s.marker}></span>
                                             </label>
                                         </td>
 
@@ -315,37 +345,38 @@ class Logic_Couples_4_5 extends Component {
                                         <td>
                                             <label>
                                                 <input type="radio" value="4a" name="a[4]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(3, 'А')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(3, 0)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="4b" name="a[4]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(3, 'Б')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(3, 1)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="4c" name="a[4]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(3, 'В')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(3, 2)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="4d" name="a[4]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(3, 'Г')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(3, 3)} class={s.marker}></span>
                                             </label>
                                         </td>
                                         <td>
                                             <label>
                                                 <input type="radio" value="4e" name="a[4]" class={s.q_radio} {...this.getDisabled()} checked={this.getChecked(3, 'Д')} onChange={this.upd}></input>
-                                                <span class={s.marker}></span>
+                                                <span {...this.getBorder(3, 4)} class={s.marker}></span>
                                             </label>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <Next
+                                isNextAllowed={this.isNextAllowed()}
                                 answered={this.state.answered}
                                 updateQuestion={this.props.updateQuestion}
                                 number={this.state.active}

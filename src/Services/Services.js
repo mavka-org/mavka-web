@@ -30,6 +30,7 @@ class Question {
         this.double_open_answers = [json["Відповідь 1"], json["Відповідь 2"]];
         this.double_open_explanations = [json["Пояснення 1"], json["Пояснення 2"]];
         this.open_answer = json["Відповідь"];
+        this.open_ended_sample = json["Зразкова відповідь"];
         /* END HERE */
 
         /* stupid code */
@@ -151,6 +152,9 @@ class Question {
     getOpenAnswer () {
         return this.open_answer; //THIS SHOULDN'T EXIST (change to normal getAnswer())
     }
+    getOpenEndedSample () {
+        return this.open_ended_sample;
+    }
     getIsDoubleColumn() {
         return this.isDoubleColumn;
     }
@@ -206,7 +210,7 @@ class Question {
 
     checkCorrect (answerToCheck) {
         if(answerToCheck == null) return false;
-        
+
         if(this.getType() == "ABCDE" || this.getType() == "ABCD"){
             return answerToCheck == this.answer;
         }

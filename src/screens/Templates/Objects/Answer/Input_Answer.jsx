@@ -1,7 +1,6 @@
 import React from 'react';
 import CheckAnswerIcon from '../../Icon/CheckAnswerIcon';
 import s from './../../Objects/Answer/Input_Answer.module.css';
-
 class Input_Answer extends React.Component {
 
     constructor(props) {
@@ -28,7 +27,7 @@ class Input_Answer extends React.Component {
     updateInput() {
         this.validateAnswer()
         let input = document.getElementById(this.inputId);
-        this.props.updateCurrentAnswer(input.value);
+        this.props.updateCurrentAnswer(input.value, this.props.number-1);
     }
 
     validateAnswer() {
@@ -54,6 +53,13 @@ class Input_Answer extends React.Component {
                                 isUserAnswer={true}
                             />
                         </div>
+                        <strong>{this.props.number}:</strong>
+                    </div>
+
+                    <div style={{
+                        display: this.props.subquestion == null ? "none" : "block"
+                        }}
+                        dangerouslySetInnerHTML={{ __html: this.props.subquestion }}>
                     </div>
                 </div>
 

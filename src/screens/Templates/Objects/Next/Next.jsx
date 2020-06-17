@@ -9,7 +9,7 @@ class Next extends React.Component {
                 this.props.updateQuestion(this.props.number + 1);
             }
             else {
-                if(this.props.currentAnswer) {
+                if(this.props.currentAnswer && this.props.isNextAllowed) {
                     this.props.updateAnswers(this.props.number, this.props.currentAnswer);
                 }
                 else {
@@ -25,7 +25,7 @@ class Next extends React.Component {
             else {
                 console.log("выбери ответ");
             }
-        }  
+        }
     }
     render() {
         return (
