@@ -1,36 +1,46 @@
 import React from 'react';
+import firebase from "../../../global"
 import {Redirect, Link} from 'react-router-dom';
+import ListItem from "../../../UI/ListItem";
 import ABCDE from "../../Templates/ABCDE/ABCDE";
+import Services from "../../../Services";
+import ABCD from '../../Templates/ABCD/ABCD';
+import Logic_Couples_4_4 from '../../Templates/Logic_Couples/Logic_Couples_4_4';
+import Logic_Couples_4_5 from '../../Templates/Logic_Couples/Logic_Couples_4_5';
+import Double_Open from '../../Templates/Double_Open/Double_Open';
+import Open from '../../Templates/Open/Open';
+import Open_Ended from '../../Templates/Super_Ended/Open_Ended';
+import SystemFunctions from '../../../utils/SystemFunctions';
 import ABCDE_OneColumn from "../../Templates/ABCDE_OneColumn/ABCDE_OneColumn";
-import axios from "axios";
-import ABCD from "../../Templates/ABCD/ABCD";
 import ABCD_OneColumn from "../../Templates/ABCD_OneColumn/ABCD_OneColumn";
-import Logic_Couples_4_5 from "../../Templates/Logic_Couples/Logic_Couples_4_5";
-import Logic_Couples_4_5_OneColumn from "../../Templates/Logic_Couples_OneColumn/Logic_Couples_4_5_OneColumn";
-import Logic_Couples_4_4 from "../../Templates/Logic_Couples/Logic_Couples_4_4";
-import Logic_Couples_4_4_OneColumn from "../../Templates/Logic_Couples_OneColumn/Logic_Couples_4_4_OneColumn";
-import Double_Open from "../../Templates/Double_Open/Double_Open";
 import Double_Open_OneColumn from "../../Templates/Double_Open_OneColumn/Double_Open_OneColumn";
-import Open from "../../Templates/Open/Open";
-import Open_Ended from "../../Templates/Super_Ended/Open_Ended";
-import Services from "../../../Services"
+import Logic_Couples_4_4_OneColumn from "../../Templates/Logic_Couples_OneColumn/Logic_Couples_4_4_OneColumn";
+import Logic_Couples_4_5_OneColumn from "../../Templates/Logic_Couples_OneColumn/Logic_Couples_4_5_OneColumn";
 import g from "../../Templates/Style.module.css";
 import s from "../../Templates/ABCDE/ABCDE.module.css";
 import Header from "../../Templates/Objects/Header/Header";
+import BioTriples from '../../Templates/BioTriples/BioTriples';
+import Geo_History_3_7 from '../../Templates/Geo_History_3_7/Geo_History_3_7';
 
 const componentsMap = {
     ABCDE,
+    ABCDE_OneColumn,
     ABCD,
+    ABCD_OneColumn,
     Logic_Couples_4_4,
     Logic_Couples_4_5,
     Double_Open,
-    Open,
-    Open_Ended,
-    ABCDE_OneColumn,
-    ABCD_OneColumn,
     Double_Open_OneColumn,
+    Open,
+    'Open_OneColumn': Open,
+    Open_Ended,
+    'Open_Ended_OneColumn': Open_Ended,
     Logic_Couples_4_4_OneColumn,
     Logic_Couples_4_5_OneColumn,
+    'Bio_Triples': BioTriples,
+    'Bio_Triples_OneColumn': BioTriples,
+    Geo_History_3_7,
+    'Geo_History_3_7_OneColumn': Geo_History_3_7
 };
 
 export class TestView extends React.Component {

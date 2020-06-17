@@ -24,22 +24,23 @@ import Geo_History_3_7 from '../Templates/Geo_History_3_7/Geo_History_3_7';
 
 const componentsMap = {
     ABCDE,
+    ABCDE_OneColumn,
     ABCD,
+    ABCD_OneColumn,
     Logic_Couples_4_4,
     Logic_Couples_4_5,
     Double_Open,
+    Double_Open_OneColumn,
     Open,
     'Open_OneColumn': Open,
     Open_Ended,
     'Open_Ended_OneColumn': Open_Ended,
-    ABCDE_OneColumn,
-    ABCD_OneColumn,
-    Double_Open_OneColumn,
     Logic_Couples_4_4_OneColumn,
     Logic_Couples_4_5_OneColumn,
     'Bio_Triples': BioTriples,
     'Bio_Triples_OneColumn': BioTriples,
-    Geo_History_3_7
+    Geo_History_3_7,
+    'Geo_History_3_7_OneColumn': Geo_History_3_7
 };
 
 export class Test extends React.Component{
