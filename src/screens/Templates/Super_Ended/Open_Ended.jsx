@@ -39,6 +39,8 @@ class Open_Ended extends React.Component {
         const data = this.state.data;
         let hidden = this.state.answered;
 
+        console.log(data)
+
         return (
             <div>
                 <div className={s.question_body}>
@@ -60,12 +62,12 @@ class Open_Ended extends React.Component {
                             topic={data.getTopic()}
                             hidden={hidden}
                             />
-                        <SampleAnswer
-                            sample={data.getOpenEndedSample()}
-                            hidden={hidden}
-                            />
                         <Comment
                             comment={data.getComment()}
+                            hidden={hidden}
+                            />
+                        <SampleAnswer
+                            sample={data.getOpenEndedSample()}
                             hidden={hidden}
                             />
                         <Video
