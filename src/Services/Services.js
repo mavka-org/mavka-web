@@ -196,15 +196,28 @@ class Question {
         };
         return tmp;
       }
+
+    areEqualStrNumbers(str1, str2) {
+        let num1 = parseFloat(str1.replace(',', '.'))
+        let num2 = parseFloat(str2.replace(',', '.'))
+
+        return num1 == num2
+    }
+
     checkCorrect (answerToCheck) {
+        if(answerToCheck == null) return false;
+        
         if(this.getType() == "ABCDE" || this.getType() == "ABCD"){
             return answerToCheck == this.answer;
+        }
+        if(this.getType() == "Open"){
+            return this.areEqualStrNumbers(answerToCheck, this.open_answer);
         }
     }
 
     checkCorrectFromList (answerToCheck, index) {
-        if(this.getType() == "Double_Open" || this.getType() == "Open"){
-            return answerToCheck == this.double_open_answers[index];
+        if(this.getType() == "Double_Open"){
+            return this.areEqualStrNumbers(answerToCheck, this.double_open_answers[index]);
         }
         if(this.getType() == "Bio_Triples"){
             if(index == 1){

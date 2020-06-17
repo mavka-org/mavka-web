@@ -28,6 +28,7 @@ const componentsMap = {
     Logic_Couples_4_5,
     Double_Open,
     Open,
+    'Open_OneColumn': Open,
     Open_Ended,
     ABCDE_OneColumn,
     ABCD_OneColumn,
