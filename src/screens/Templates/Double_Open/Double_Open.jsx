@@ -79,7 +79,7 @@ class Double_Open extends React.Component {
                             hidden={hidden}
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[0]}
-                            isCorrectAnswer={true}
+                            isCorrectAnswer={data.checkCorrect(this.state.currentAnswer[0], 0)}
                             />
 
                         <Input_Answer
@@ -91,7 +91,7 @@ class Double_Open extends React.Component {
                             hidden={hidden}
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[1]}
-                            isCorrectAnswer={true}
+                            isCorrectAnswer={data.checkCorrect(this.state.currentAnswer[1], 1)}
                             />
                     </div>
 
