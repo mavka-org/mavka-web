@@ -18,38 +18,62 @@ class BioTriples extends React.Component {
             data: props.data,
             active: props.active,
             answered: props.answered,
-            currentAnswer: null
+            currentAnswer: props.currentAnswer
         }
         console.log(props.data);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
-            console.log('sos' + this.props.answered)
             this.setState({
                 checkedAnswers: this.props.checkedAnswers,
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
-                answered: this.props.answered
+                answered: this.props.answered,
+                currentAnswer: this.props.currentAnswer
             })
         }
     }
 
-    updateCurrentAnswer = (answer) => {
+    updateCurrentAnswer = (answer, index) => {
+
+        let curAnswer = this.state.currentAnswer
+        curAnswer[index] = answer
+
         this.setState({
-            currentAnswer: answer
+            currentAnswer: curAnswer
         })
     }
+
     render() {
+        if(typeof this.state.currentAnswer == "undefined"){
+            this.setState({
+                currentAnswer: ["", "", ""]
+            })
+            return(<div></div>)
+        }
+
+        let hidden = this.state.answered && this.props.isPractice
         return (
             <div>
-                <Question />
+                <Question 
+                    question={data.getBio3_question()}
+                    active={this.state.active}
+                />
                 <div style={{marginBottom:20}}><strong>Обери одну відповідь до кожнолого з тверджень:</strong></div>
                 <div className={s.question_body}>
                     <div className={s.answers}>
-                        <div className={s.title_column}>Органела є</div>
+                        <div className={s.title_column}>{data.getBio3_firstquestion().question}</div>
                         <Answer />
+                            answered={this.state.answered}
+                            letter={"A"}
+                            question={data.getBio3_firstquestion().firstAnswer}
+                            explanation={data.getBio3_firstquestion().firstExplain}
+                            hidden={hidden}
+                            updateCurrentAnswer={this.updateCurrentAnswer}
+                            currentAnswer={this.state.currentAnswer}
+                            isCorrectAnswer={data.checkCorrect('А')}
                         <Answer />
                         <Answer />
                     </div>

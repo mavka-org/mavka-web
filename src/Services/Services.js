@@ -11,13 +11,7 @@ class Question {
         this.year = json["Рік"];
         this.number = json["Номер"];
         this.session = json["Сесія"];
-        if(json["Предмет"] == 'ULL')
-            this.subject = 'Українська мова і література';
-        else if(json["Предмет"] == 'UHistory')
-            this.subject = 'Історія України';
-        else if(json["Предмет"] == 'Bio')
-            this.subject = 'Біологія';
-        else this.subject = json["Предмет"];
+        this.subject = json["Subject"];
         this.topic = json["Тема"];
         this.question = json["Питання"];
         this.answer = json["Правильна відповідь"];

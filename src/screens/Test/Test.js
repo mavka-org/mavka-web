@@ -210,7 +210,6 @@ export class Test extends React.Component{
                 if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
                     type += "_OneColumn";
                 }
-                alert(type);
                 const DynamicComponent = componentsMap[type];
                 return (
                     <div className={g.background}>
