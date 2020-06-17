@@ -16,6 +16,7 @@ import Confetti from '../../UI/Confetti/Confetti';
 import Scores from './Object/Scores/Scores';
 import Progres from './Object/Progres/Progres';
 import Button from './Object/Button/Button';
+import Strong from '../Templates/Icon/Strong/Strong';
 class MainMenu extends React.Component {
 
     constructor(props) {
@@ -130,7 +131,7 @@ class MainMenu extends React.Component {
 
     render() {
         console.log(this.state.subject);
-        const pic1 = <img src={strong} width={'100%'} height={'100%'} />
+        const pic1 = <Strong />
         const pic2 = <Clock />
         if (this.state.user == 25) {
             return (<div></div>);
@@ -166,6 +167,7 @@ class MainMenu extends React.Component {
                                 <div>
                                     {typeof this.props.location.state != 'undefined' ? (<Confetti />) : null}
                                 </div>
+                                
                                 <div className={s.scores_frame}>
                                     <div className={s.title}>
                                         <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>

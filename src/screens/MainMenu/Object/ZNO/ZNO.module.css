@@ -1,7 +1,7 @@
 .zno_choose {
     display: flex;
     flex-direction: column;
-    padding: 2% 16px;
+    padding: 2% 5px;
     min-width: 96%;
     max-width: 96%;
     background: #FFFFFF;
