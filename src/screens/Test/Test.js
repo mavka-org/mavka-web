@@ -223,7 +223,6 @@ export class Test extends React.Component{
                                 active={this.state.active}
                             />
                             <DynamicComponent
-                                checkedAnswers={this.state.checkedAnswers}
                                 updateQuestion={this.updateQuestion}
                                 active={this.state.active}
                                 number={this.state.n}

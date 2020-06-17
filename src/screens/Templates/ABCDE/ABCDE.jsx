@@ -15,7 +15,6 @@ class ABCDE extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            checkedAnswers: props.checkedAnswers,
             number: props.number,
             data: props.data,
             active: props.active,
@@ -29,7 +28,6 @@ class ABCDE extends Component {
         if (this.props != prevProps) {
             console.log('sos' + this.props.answered)
             this.setState({
-                checkedAnswers: this.props.checkedAnswers,
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
