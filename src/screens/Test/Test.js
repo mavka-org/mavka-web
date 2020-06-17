@@ -50,8 +50,7 @@ export class Test extends React.Component{
             answered: [],
             n: 0,
             answers: {},
-            checkedAnswers: {},
-            currentAnswer: null
+            checkedAnswers: {}
         }
         let current = this;
         Services.getReferenceById(this.state.testId).then(function (ref) {
@@ -186,12 +185,6 @@ export class Test extends React.Component{
                 Services.updateTestAnswers(token, this.state.testId, obj);
             })
         }
-    }
-
-    updateCurrentAnswer = (answer) => {
-        this.setState({
-            currentAnswer: answer
-        })
     }
 
     render() {
