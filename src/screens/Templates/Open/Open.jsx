@@ -5,36 +5,60 @@ import Question from '../Objects/Question/Question.jsx';
 import Topic from './../Objects/Topic/Topic.jsx';
 import Header from './../Objects/Header/Header.jsx';
 import Comment from './../Objects/Comment/Comment.jsx';
+import Input_Answer from './../Objects/Answer/Input_Answer';
 import Video from './../Objects/Video/Video.jsx';
 import Next from './../Objects/Next/Next.jsx';
+
 class Open extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
+            checkedAnswers: props.checkedAnswers,
             number: props.number,
             data: props.data,
             active: props.active,
-            answered: props.answered
+            answered: props.answered,
+            currentAnswer: props.currentAnswer
         }
-        console.log(props.data);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
             this.setState({
+                checkedAnswers: this.props.checkedAnswers,
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
-                answered: this.props.answered
+                answered: this.props.answered,
+                currentAnswer: this.props.currentAnswer
             })
         }
     }
 
+    updateCurrentAnswer = (answer) => {
+        this.setState({
+            currentAnswer: answer
+        })
+    }
+
+    validateCurrentAnswer() {
+        return (this.state.currentAnswer != "")
+    }
+
     render() {
-        console.log(this.state.data.evaluate(this.state.currentAnswer))
+
+        if(typeof this.state.currentAnswer == "undefined"){
+            this.setState({
+                currentAnswer: ""
+            })
+            return(<div></div>)
+        }
+
 
         const data = this.state.data;
-        let hidden = this.state.answered;
+        let hidden = this.state.answered && this.props.isPractice;
+        let isNextAllowed = this.validateCurrentAnswer()
 
         return (
             <div>
@@ -46,27 +70,37 @@ class Open extends React.Component {
                     <div className={s.main_answers}>
                         <p><strong>Впиши відповідь на питання:</strong> </p>
                         <div className={s.answers_frame}>
-                            <div className={s.answer}>
-                                <div className={s.question}>
-                                    <p className={s.variant}><div className={s.check}></div><div className={s.number}></div>{data.getQuestion()}</p>
-                                    <div className={s.comment}>
-                                        {data.getComment()}
-                                    </div>
-                                    <input className={s.inp}></input>
-                                    <div className={s.correct_answer}>
-                                        <div className={s.correct_number}><strong>Правильна відповідь: </strong>{data.getOpenAnswer()}</div>
-                                    </div>
-                                </div>
-                            </div>
+                            <Input_Answer
+                                answered={this.state.answered}
+                                explanation={data.getComment()}
+                                correctAnswer={data.getOpenAnswer()}
+                                hidden={hidden}
+                                updateCurrentAnswer={this.updateCurrentAnswer}
+                                currentAnswer={this.state.currentAnswer}
+                                isCorrectAnswer={data.checkCorrect(this.state.currentAnswer)}
+                                />
                         </div>
-                        <Next />
+
+                        <Next
+                            answered={this.state.answered}
+                            updateQuestion={this.props.updateQuestion}
+                            number={this.state.active}
+                            currentAnswer={this.state.currentAnswer}
+                            updateAnswers={this.props.updateAnswers}
+                            isPractice={this.props.isPractice}
+                        />
+
                         <Topic
                             topic={data.getTopic()}
+                            hidden={hidden}
                             />
                         <Comment
                             comment={data.getComment()}
+                            hidden={hidden}
                             />
-                        <Video />
+                        <Video
+                            hidden={hidden}
+                            />
                     </div>
 
                 </div>

@@ -30,6 +30,7 @@ class Question {
         this.double_open_answers = [json["Відповідь 1"], json["Відповідь 2"]];
         this.double_open_explanations = [json["Пояснення 1"], json["Пояснення 2"]];
         this.open_answer = json["Відповідь"];
+        this.open_ended_sample = json["Зразкова відповідь"];
         this.history_3_7_answers = [json["Відповідь 1"], json["Відповідь 2"], json["Відповідь 3"], json["Відповідь 4"], json["Відповідь 5"], json["Відповідь 6"], json["Відповідь 7"]];
         this.history_3_7_explanations = [json["Пояснення 1"], json["Пояснення 2"], json["Пояснення 3"], json["Пояснення 4"], json["Пояснення 5"], json["Пояснення 6"], json["Пояснення 7"]];
         this.history_3_7_right_answers = [json["Правильна відповіль 1"], json["Правильна відповіль 2"], json["Правильна відповіль 3"]];
@@ -154,6 +155,9 @@ class Question {
     getOpenAnswer () {
         return this.open_answer; //THIS SHOULDN'T EXIST (change to normal getAnswer())
     }
+    getOpenEndedSample () {
+        return this.open_ended_sample;
+    }
     getIsDoubleColumn() {
         return this.isDoubleColumn;
     }
@@ -208,10 +212,22 @@ class Question {
         };
         return tmp;
       }
+
+    areEqualStrNumbers(str1, str2) {
+        let num1 = parseFloat(str1.replace(',', '.'))
+        let num2 = parseFloat(str2.replace(',', '.'))
+
+        return num1 == num2
+    }
+
     checkCorrect (answerToCheck) {
+        if(answerToCheck == null) return false;
+
         if(this.getType() == "ABCDE" || this.getType() == "ABCD"){
             return answerToCheck == this.answer;
         }
+        if(this.getType() == "Open"){
+            return this.areEqualStrNumbers(answerToCheck, this.open_answer);
         if(this.getType() == "Geo_History_3_7"){
             for(let i of this.getHistory37Answers()){
                 if(answerToCheck == i)
@@ -222,8 +238,8 @@ class Question {
     }
 
     checkCorrectFromList (answerToCheck, index) {
-        if(this.getType() == "Double_Open" || this.getType() == "Open"){
-            return answerToCheck == this.double_open_answers[index];
+        if(this.getType() == "Double_Open"){
+            return this.areEqualStrNumbers(answerToCheck, this.double_open_answers[index]);
         }
         if(this.getType() == "Bio_Triples"){
             if(index == 1){

@@ -21,7 +21,6 @@ class Double_Open extends React.Component {
             answered: props.answered,
             currentAnswer: props.currentAnswer
         }
-        console.log(props.data);
     }
 
     componentDidUpdate(prevProps) {
@@ -52,10 +51,6 @@ class Double_Open extends React.Component {
     }
 
     render() {
-        console.log(this.state.data.evaluate(this.state.currentAnswer))
-
-
-        console.log("I am here");
         if(typeof this.state.currentAnswer == "undefined"){
             this.setState({
                 currentAnswer: ["", ""]
@@ -66,7 +61,6 @@ class Double_Open extends React.Component {
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
         let isNextAllowed = this.validateCurrentAnswer()
-        console.log(isNextAllowed)
 
         return (
             <div className={s.question_body}>
