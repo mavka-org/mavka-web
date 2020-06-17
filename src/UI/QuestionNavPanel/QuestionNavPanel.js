@@ -13,7 +13,7 @@ class QuestionNavPanel extends Component {
 
     componentDidUpdate (prevProps) {
         if (this.props != prevProps) {
-            let getStatus = (i) => ((i + 1) in this.props.checkedAnswers);
+            let getStatus = (i) => (this.props.answers[i]);
             let buttons = [...this.state.buttons];
             for(let i = 0; i < buttons.length; i++) {
                 buttons[i].status = getStatus(i);
@@ -33,6 +33,7 @@ class QuestionNavPanel extends Component {
         super(props);
         let list = props.list;
 
+        let getStatus = (i) => (this.props.answers[i]);
         let buttons = [];
         for (let i = 0; i < list; i++) {
             buttons.push({
@@ -41,7 +42,7 @@ class QuestionNavPanel extends Component {
                     this.props.updateQuestion(i + 1);
                     //this.update(i + 1);
                 },
-                status: false,
+                status: getStatus(i),
                 active: i == this.props.active - 1
             });
         }
@@ -69,16 +70,41 @@ class QuestionNavPanel extends Component {
             pushed={button.pushed}
             number={index + 1}
             key={index + 1}
-            backColor={this.backColor(button)}
-            color={this.colorText(button)}
+            backColor={!button.active ? this.backColor(button.status) : "#FFBE0B"}
+            color={!button.active ? this.colorText(button.status) : "#000000"}
             height={this.getHeight(button.active ? 4.5 : 3)}
             width={this.getWidth(2.2)}
             marginLeft={this.getWidth(0.22)}
         />
     );
 
-    backColor = status => status.active ? "#FFBE0B" : status.status ? "#000000" : "#FFFFFF";
-    colorText = status => status.active ? "#000000" : status.status ? "#FFFFFF" : "#000000";
+    backColor = status => {
+        if (!this.props.isPractice) {
+            if (status == -1) {
+                return "#FFFFFF";
+            }
+            return "#000000";
+        }
+        if (status == 0) {
+            return "#FBE1E4";
+        }
+        if (status == 1) {
+            return "#FCECD3";
+        }
+        if (status == 2) {
+            return "#EAF2EB";
+        }
+        return "#FFFFFF";
+    }
+    colorText = status => {
+        if (!this.props.isPractice) {
+            if (status == -1) {
+                return "#000000";
+            }
+            return "#FFFFFF";
+        }
+        return "#000000";
+    }
 
     render() {
         const delta = 10;
