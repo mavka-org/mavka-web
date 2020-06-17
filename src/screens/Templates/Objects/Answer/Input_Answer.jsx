@@ -69,7 +69,7 @@ class Input_Answer extends React.Component {
                     <div>{this.props.explanation}</div>
                 </div>
 
-                <input className={s.inp} id={this.inputId} onChange={() => {this.updateInput()}}></input>
+                <input className={s.inp} id={this.inputId} value={this.props.currentAnswer} onChange={() => {this.updateInput()}}></input>
 
                 <div className={s.correct_answer} style={{
                     display: !this.props.hidden ? "none" : "block"

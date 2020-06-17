@@ -71,7 +71,7 @@ class Question {
         this.bio3_firstquestion_answer = json["Перше питання: Правильна Відповідь"];
         this.bio3_secondquestion_answer = json["Друге питання: Правильна Відповідь"];
         this.bio3_thirdquestion_answer = json["Третє питання: Правильна Відповідь"];
-        /* */ 
+        /* */
         var tmpArr = ["Відповідь А", "Відповідь Б", "Відповідь В",
             "Відповідь Г", "Відповідь Д", "Відповідь Е", "Відповідь A",
             "Відповідь B", "Відповідь C", "Відповідь D", "Відповідь E",
@@ -220,6 +220,12 @@ class Question {
             return answerToCheck == this.answer;
         }
     }
+
+    checkCorrect (answerToCheck, index) {
+        if(this.getType() == "Double_Open" || this.getType() == "Open"){
+            return answerToCheck == this.double_open_answers[index];
+        }
+    }
 }
 
 class Services {
@@ -269,7 +275,7 @@ class Services {
     static async updateTestAnswers(token, testID, answers){
         const response = await axios.post(
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/updCourseAnswers',
-            { 
+            {
                 token: token,
                 courseID: testID,
                 answers: answers
@@ -280,7 +286,7 @@ class Services {
     static async getTestAnswers(token, testID){
         const response = await axios.post(
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/getTestAnswers',
-            { 
+            {
                 token: token,
                 courseID: testID
             },
@@ -292,7 +298,7 @@ class Services {
     static async changeTestStatusByID(token, testID, status){
         const response = await axios.post(
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/changeStatusById',
-            { 
+            {
                 token: token,
                 id: testID,
                 status: status
