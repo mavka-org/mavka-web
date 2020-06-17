@@ -46,6 +46,12 @@ class BioTriples extends React.Component {
         })
     }
 
+    nextValidation(currentAnswer){
+        if(this.state.currentAnswer[0] != '' && this.state.currentAnswer[1] != '' && this.state.currentAnswer[2] != '')
+            return true;
+        else return false;
+    }
+
     render() {
         if(typeof this.state.currentAnswer == "undefined"){
             this.setState({
@@ -54,7 +60,7 @@ class BioTriples extends React.Component {
             return(<div></div>)
         }
 
-        
+        let isNextAllowed = this.nextValidation(this.state.currentAnswer);
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
         console.log(data.getBio3_secondquestion());
@@ -182,6 +188,7 @@ class BioTriples extends React.Component {
                     currentAnswer={this.state.currentAnswer}
                     updateAnswers={this.props.updateAnswers}
                     isPractice={this.props.isPractice}
+                    isNextAllowed={isNextAllowed}
                 />
                 <Topic 
                     topic={data.getTopic()}
