@@ -10,8 +10,6 @@ export default props => (
         height: props.height,
         color: props.color,
         fontSize: 18,
-        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.08)",
-        
-        
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.08)"
     }}>{props.number}</button>
 );
