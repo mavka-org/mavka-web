@@ -19,7 +19,7 @@ class Double_Open extends React.Component {
             data: props.data,
             active: props.active,
             answered: props.answered,
-            currentAnswer: ["", ""]
+            currentAnswer: this.props.currentAnswer
         }
         console.log(props.data);
     }
@@ -32,6 +32,7 @@ class Double_Open extends React.Component {
                 data: this.props.data,
                 active: this.props.active,
                 answered: this.props.answered,
+                currentAnswer: this.props.currentAnswer
             })
         }
     }
@@ -47,6 +48,13 @@ class Double_Open extends React.Component {
     }
 
     render() {
+
+        if(typeof this.state.currentAnswer == "undefined"){
+            this.setState({
+                currentAnswer: ["", ""]
+            })
+            return(<div></div>)
+        }
 
         const data = this.state.data;
         let hidden = this.state.answered;
@@ -70,7 +78,7 @@ class Double_Open extends React.Component {
                             correctAnswer={data.getDoubleOpenAnswers()[0]}
                             hidden={hidden}
                             updateCurrentAnswer={this.updateCurrentAnswer}
-                            currentAnswer={this.state.currentAnswer}
+                            currentAnswer={this.state.currentAnswer[0]}
                             isCorrectAnswer={true}
                             />
 
@@ -82,7 +90,7 @@ class Double_Open extends React.Component {
                             correctAnswer={data.getDoubleOpenAnswers()[1]}
                             hidden={hidden}
                             updateCurrentAnswer={this.updateCurrentAnswer}
-                            currentAnswer={this.state.currentAnswer}
+                            currentAnswer={this.state.currentAnswer[1]}
                             isCorrectAnswer={true}
                             />
                     </div>

@@ -18,7 +18,7 @@ class Double_Open_OneColumn extends React.Component {
             data: props.data,
             active: props.active,
             answered: props.answered,
-            currentAnswer: [null, null]
+            currentAnswer: this.props.currentAnswer
         }
         console.log(props.data);
     }
@@ -31,6 +31,7 @@ class Double_Open_OneColumn extends React.Component {
                 data: this.props.data,
                 active: this.props.active,
                 answered: this.props.answered,
+                currentAnswer: this.props.currentAnswer
             })
         }
     }
@@ -44,7 +45,7 @@ class Double_Open_OneColumn extends React.Component {
             currentAnswer: curAnswer
         })
     }
-    
+
     render() {
         return (
             <div>

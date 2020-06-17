@@ -12,7 +12,7 @@ import Logic_Couples_4_4_OneColumn from "../../Templates/Logic_Couples_OneColumn
 import Double_Open from "../../Templates/Double_Open/Double_Open";
 import Double_Open_OneColumn from "../../Templates/Double_Open_OneColumn/Double_Open_OneColumn";
 import Open from "../../Templates/Open/Open";
-import Open_Ended from "../../Templates/Super_Open/Open_Ended";
+import Open_Ended from "../../Templates/Super_Ended/Open_Ended";
 import Services from "../../../Services"
 import g from "../../Templates/Style.module.css";
 import s from "../../Templates/ABCDE/ABCDE.module.css";
