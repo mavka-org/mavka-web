@@ -234,7 +234,7 @@ class MainMenu extends React.Component {
                 </div>
             )
         }
-        return (<Redirect to="/login" />);
+        return (<Redirect to="/register" />);
     }
 }
 
