@@ -81,6 +81,7 @@ class Open extends React.Component {
                         </div>
 
                         <Next
+                            scroll={this.props.scroll}
                             scores={this.props.scores}
                             isNextAllowed={isNextAllowed}
                             answered={this.state.answered}
