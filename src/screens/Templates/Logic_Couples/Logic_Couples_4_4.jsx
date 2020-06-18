@@ -359,6 +359,7 @@ class Logic_Couples_4_4 extends Component {
                                 currentAnswer={this.state.currentAnswer}
                                 updateAnswers={this.props.updateAnswers}
                                 isPractice={this.props.isPractice}
+                                scroll={this.props.scroll}
                             />
                         </div>
                     </div>

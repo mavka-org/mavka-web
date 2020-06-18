@@ -191,6 +191,7 @@ class BioTriples extends React.Component {
                     updateAnswers={this.props.updateAnswers}
                     isPractice={this.props.isPractice}
                     isNextAllowed={isNextAllowed}
+                    scroll={this.props.scroll}
                 />
                 <Topic 
                     topic={data.getTopic()}

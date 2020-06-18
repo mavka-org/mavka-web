@@ -174,6 +174,7 @@ class Geo_History_3_7 extends React.Component {
                     updateAnswers={this.props.updateAnswers}
                     isPractice={this.props.isPractice}
                     isNextAllowed={this.nextValidation()}
+                    scroll={this.props.scroll}
                 />
                 <Topic 
                     topic={data.getTopic()}
