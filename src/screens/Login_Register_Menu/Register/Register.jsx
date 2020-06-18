@@ -67,6 +67,7 @@ class Register extends React.Component {
                         <button className={s.btn} onClick={async()=>{
                             await this.register(document.getElementById('email').value, document.getElementById('password').value);
                         }}>Зареєструватися з Email</button>
+                        <div className={s.account}>Вже маєш акаунт?</div>
                     </div>
                 </div>
             </div>
