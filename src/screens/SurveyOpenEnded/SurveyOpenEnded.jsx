@@ -38,9 +38,11 @@ class SurveyOpenEnded extends React.Component {
             return(<div></div>)
         }
         if(this.state.user){
+            var url = "https://docs.google.com/forms/d/e/1FAIpQLSdksE7_7G53XpqGyMrcYVEft-gj8x9KmwgKSyTnr9P87f0NsQ/viewform?usp=pp_url&entry.1391972551=";
+            url += this.state.user.email;
             return (
                 <div>
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdksE7_7G53XpqGyMrcYVEft-gj8x9KmwgKSyTnr9P87f0NsQ/viewform?embedded=true" width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                    <iframe src={url} width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </div>
             );
         }
