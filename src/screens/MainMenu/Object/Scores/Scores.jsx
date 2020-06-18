@@ -7,15 +7,15 @@ class Scores extends React.Component {
             <div className={s.scores_frame}>
                 <div className={s.score_frame}>
                     <div className={s.score}>
-                        <div className={s.mark}>200</div>
+                        <div className={s.mark}>{this.props.score200}</div>
                         <div className={s.comment}>ЗНО з 200</div>
                     </div>
                     <div className={s.score}>
-                        <div className={s.mark}>12</div>
+                        <div className={s.mark}>{this.props.score12}</div>
                         <div className={s.comment}>ДПА з 12</div>
                     </div>
                     <div className={s.score}>
-                        <div className={s.mark}>64</div>
+                        <div className={s.mark}>{this.props.numCorrect}</div>
                         <div className={s.comment}>Тестовий бал з 64</div>
                     </div>
                 </div>
