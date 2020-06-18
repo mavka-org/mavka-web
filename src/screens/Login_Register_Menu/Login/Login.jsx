@@ -55,12 +55,10 @@ class Login extends React.Component {
                     <div className={s.btns}>
                         <button className={s.btn_google}>Увійти з Google</button>
                         <button className={s.btn}>Увійти з Facebook</button>
-
                         <div className={s.info}>
                             <div className={s.title}>EMAIL</div>
                             <div className={s.inp_wrapper}><div className={s.icon}></div><input id='email'></input></div>
                         </div>
-
                         <div className={s.info}>
                             <div className={s.title}>ПАРОЛЬ</div>
                             <div className={s.inp_wrapper}><div className={s.icon}></div><input id='password' type="password"></input></div>
@@ -68,6 +66,7 @@ class Login extends React.Component {
                         <button className={s.btn} onClick={async()=>{
                             await this.login(document.getElementById('email').value, document.getElementById('password').value);
                         }}>Увійти з Email</button>
+                        <div className={s.account}>Зареєструватися</div>
                     </div>
                 </div>
             </div>

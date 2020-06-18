@@ -21,13 +21,22 @@
     font-weight: bold;
     font-style: italic;
 }
+.page{
+    position: absolute;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+}
 .window {
+    
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
     width: 500px;
     height: 500px;
+    margin: auto;
     font-family: Gilroy;
+    margin-top: 100px;
 }
 
 .header {
@@ -117,4 +126,9 @@
 }
 .inp_wrapper>input:focus {
     outline:0;
+}
+.account{
+    color: gray;
+    text-decoration: underline;
+    cursor: pointer;
 }
