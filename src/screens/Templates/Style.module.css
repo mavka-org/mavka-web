@@ -198,4 +198,20 @@
         margin-bottom: 30px;
     }
 }
+@media (max-width: 992px) {
+    .end {
+        width: 30%;
+        height: 80%;
+        background: #FFFFFF;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin: 0px 0px;
+        font-family: Gilroy;
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: bold;
+        transition: 0.2s ease-in-out;
+    }
+}
 

@@ -25,7 +25,7 @@
 
 .question_body {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: 0px;
     width: 945px;
     height: 100%;
@@ -36,7 +36,7 @@
 .question_frame{
     display: flex;
     flex-direction: column;
-    width:50%;
+    width:100%;
 }
 
 
@@ -46,19 +46,22 @@
 .answers_frame{
     display: flex;
     flex-direction: column;
-    width: 50%;
-    align-items: flex-start;
+    width: 100%;
+    align-content: space-between;
+    
 }
 
 .answers{
     display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-    margin-bottom: 7px;
-    width: 100%;
+    flex-direction: row;
    
 }
-
+.answer_wrap{
+    display: flex;
+    flex-direction: column;
+    width:33%;
+    margin: 0px 10px;
+}
 
 /* table */
 .marker {
@@ -92,7 +95,7 @@
     box-sizing: border-box;
     border-spacing: 2px;
     border-color: grey;
-
+    border-spacing: 8px 8px; 
 }
 
 .select_answer label {
@@ -121,6 +124,7 @@
 
 .select_answer input[type=radio]:checked+span {
     background: rgb(0, 0, 0);
+    border: 2px black solid;
 }
 
 .select_answer span:hover {

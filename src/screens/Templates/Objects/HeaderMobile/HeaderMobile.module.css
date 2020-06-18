@@ -1,18 +1,9 @@
-.page {
-    display: flex;
-    flex-direction: column;
-    padding: 105px 0px;
-    position: absolute;
-    width: 945px;
-    left: calc(50% - 945px/2);
-    top: 0px;
-}
 
 .header{
     padding-bottom: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     width: 100%;
-    height: 133px;
+    height: 100%;
     background-color: white;
     display: flex;
     font-size: 18px;
@@ -82,14 +73,3 @@
     }
 }
 
-@media (min-width: 993px) {
-    .page {
-        display: flex;
-        flex-direction: column;
-        padding: 105px 0px;
-        position: absolute;
-        width: 950px;
-        left: calc(50% - 950px/2);
-        top: 0px;
-    }
-}
