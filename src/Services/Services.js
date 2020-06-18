@@ -237,6 +237,7 @@ class Question {
              return false;
        }
     }
+
     checkCorrectFromList (answerToCheck, index) {
         if(this.getType() == "Double_Open"){
             return this.areEqualStrNumbers(answerToCheck, this.double_open_answers[index]);
@@ -447,6 +448,17 @@ class Services {
                 token: token,
                 id: testID,
                 status: status
+            },
+            { headers: { 'Content-Type': 'text/plain' } }
+        )
+    }
+
+    static async deleteTestByID(token, testID){
+        const response = await axios.post(
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/deleteCourseById',
+            { 
+                token: token,
+                id: testID,
             },
             { headers: { 'Content-Type': 'text/plain' } }
         )
