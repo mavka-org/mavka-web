@@ -342,6 +342,7 @@ class Logic_Couples_4_4_OneColumn extends React.Component {
                                 </tbody>
                             </table>
                             <Next
+                                scores={this.props.scores}
                                 isNextAllowed={this.isNextAllowed()}
                                 answered={this.state.answered}
                                 updateQuestion={this.props.updateQuestion}

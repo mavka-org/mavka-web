@@ -103,6 +103,7 @@ class Double_Open_OneColumn extends React.Component {
                         </div>
 
                         <Next
+                            scores={this.props.scores}
                             isNextAllowed={isNextAllowed}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}

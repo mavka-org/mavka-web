@@ -166,7 +166,8 @@ class Geo_History_3_7 extends React.Component {
                         />
                     </div>
                 </div>
-                <Next 
+                <Next
+                    scores={this.props.scores}
                     answered={this.state.answered}
                     updateQuestion={this.props.updateQuestion}
                     number={this.state.active}

@@ -269,6 +269,7 @@ class Question {
                 res.push(0);
                 res.push(0);
             }
+            res.push(1);
         }
         else if(this.getType() == "Bio_Triples" || this.getType() == 'Bio_Triples_OneColumn') {
             let score = 0;
@@ -293,6 +294,7 @@ class Question {
             else {
                 res.push(1);
             }
+            res.push(3);
         }
         else if(this.getType() == "Geo_History_3_7" || this.getType() == 'Geo_History_3_7_OneColumn') {
             let score = 0;
@@ -313,6 +315,7 @@ class Question {
             else {
                 res.push(1);
             }
+            res.push(3);
         }
         else if(this.getType() == "Logic_Couples_4_4" || this.getType() == "Logic_Couples_4_5" || this.getType() == "Logic_Couples_4_4_OneColumn" || this.getType() == "Logic_Couples_4_5_OneColumn") {
             let score = 0;
@@ -333,6 +336,7 @@ class Question {
             else {
                 res.push(1);
             }
+            res.push(4);
         }
         else if(this.getType() == "Open") {
             if(answerToCheck == this.open_answer) {
@@ -343,6 +347,7 @@ class Question {
                 res.push(0);
                 res.push(0);
             }
+            res.push(2);
         }
         else if(this.getType() == "Double_Open" || this.getType() == "Double_Open_OneColumn") {
             let score = 0;
@@ -365,10 +370,12 @@ class Question {
             else {
                 res.push(1);
             }
+            res.push(4);
         }
         else if(this.getType() == "Open_Ended") {
             res.push(0);
             res.push(2);
+            res.push(0);
         }
         return res;
     }

@@ -115,6 +115,7 @@ class ABCDE_OneColumn extends React.Component {
                             />
                         </div>
                         <Next
+                            scores={this.props.scores}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}
                             number={this.state.active}
