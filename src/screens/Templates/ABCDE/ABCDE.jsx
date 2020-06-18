@@ -54,7 +54,7 @@ class ABCDE extends Component {
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
         let isNextAllowed = this.validateCurrentAnswer()
-        
+
         return (
             <div>
                 <div className={s.question_body}>
@@ -131,7 +131,7 @@ class ABCDE extends Component {
                             />
                         </div>
                         <Next
-                            isNextAllowed={true}
+                            isNextAllowed={isNextAllowed}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}
                             number={this.state.active}

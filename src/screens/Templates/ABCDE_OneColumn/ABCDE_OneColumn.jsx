@@ -52,7 +52,7 @@ class ABCDE_OneColumn extends React.Component {
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
         let isNextAllowed = this.validateCurrentAnswer()
-        
+
         return (
             <div>
                 <div className={s.question_body}>
@@ -115,6 +115,7 @@ class ABCDE_OneColumn extends React.Component {
                             />
                         </div>
                         <Next
+                            isNextAllowe={isNextAllowed}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}
                             number={this.state.active}
