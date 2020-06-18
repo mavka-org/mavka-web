@@ -377,6 +377,7 @@ class Logic_Couples_4_5 extends React.Component {
                                 currentAnswer={this.state.currentAnswer}
                                 updateAnswers={this.props.updateAnswers}
                                 isPractice={this.props.isPractice}
+                                scroll={this.props.scroll}
                             />
                             <Topic
                                 topic={data.getTopic()}

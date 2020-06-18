@@ -51,10 +51,15 @@ class Answer extends React.Component {
             }
         }else isUserAnswer = !(this.props.letter.localeCompare(this.state.currentAnswer));
         //console.log(isUserAnswer);
+        //this.props.isCorrectAnswer ? (g.answer + (this.check() ? (" " + g.answer_answered) : "")) : (g.btn_inactive + (isUserAnswer ? (" " + g.answer_answered) : ""))
         return (
             <div onClick={()=>{
-                this.props.updateCurrentAnswer(this.props.letter, this.props.index);
-            }}className={(g.answer + (this.check() ? (" " + g.answer_answered) : ""))}>
+                if(!this.state.answered)
+                    this.props.updateCurrentAnswer(this.props.letter, this.props.index);
+            }}className={this.state.answered ? (g.answer_withouthover) : (g.answer)} style={{
+                border: (isUserAnswer) ? "1px black solid" : "",
+                opacity: (this.props.hidden && !this.props.isCorrectAnswer) ? "50%" : "100%",
+            }}>
                 <div className={g.answer_text_frame}>
                     <div className={g.letter_choice}>
 
