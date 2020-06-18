@@ -384,6 +384,7 @@ class Logic_Couples_4_5 extends Component {
                                 </tbody>
                             </table>
                             <Next
+                                scores={this.props.scores}
                                 isNextAllowed={this.isNextAllowed()}
                                 answered={this.state.answered}
                                 updateQuestion={this.props.updateQuestion}

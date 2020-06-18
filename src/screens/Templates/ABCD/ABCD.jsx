@@ -121,6 +121,7 @@ class ABCD extends Component {
                             />
                         </div>
                         <Next
+                            scores={this.props.scores}
                             isNextAllowed={true}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}

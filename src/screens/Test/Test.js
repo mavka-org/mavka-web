@@ -222,6 +222,12 @@ export class Test extends React.Component{
                         answers.push(data[i].evaluate(this.state.answers[i + 1])[1]);
                     else answers.push(-1);
                 }
+                let scores = [];
+                for(let i = 0; i < this.state.n; i++) {
+                    if ((i + 1) in this.state.answers)
+                        scores.push(data[i].evaluate(this.state.answers[i + 1]));
+                    else scores.push(-1);
+                }
                 console.log("1111");
                 console.log(answers);
                 if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
@@ -235,7 +241,7 @@ export class Test extends React.Component{
                 else {
                     firebase.analytics().logEvent('newQuestion');
                 }
-
+                console.log(scores);
                 return (
                     <div className={g.background}>
                         <div className={[s.page, g.page_].join(' ')}>
@@ -261,6 +267,7 @@ export class Test extends React.Component{
                                 currentAnswer={this.state.answers[this.state.active]}
                                 isPractice={this.state.isPractice}
                                 scroll={this.scrollToTop}
+                                scores={scores}
                             >
                             </DynamicComponent>
                         </div>
