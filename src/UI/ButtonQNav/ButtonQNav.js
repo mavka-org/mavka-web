@@ -4,7 +4,7 @@ export default props => (
     <button className={g.btnqnav} onClick={props.pushed} style={{
         backgroundColor: props.backColor,
         borderRadius: "5px",
-        borderWidth: 1,
+        border: "1px solid " + props.backColor,
         width: props.width,
         marginLeft: props.marginLeft,
         height: props.height,
