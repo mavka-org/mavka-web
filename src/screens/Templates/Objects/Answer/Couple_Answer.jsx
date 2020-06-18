@@ -23,7 +23,7 @@ class CoupleAnswer extends React.Component {
                         <div className={g.letter} style={{ marginLeft: 30 }}><strong>{this.props.correctLetter}:</strong></div>
                         <div className={g.answer_text}>{this.props.subanswer}</div>
                     </div>
-                    <div className={g.comment}>{this.props.explanation}</div>
+                    <div className={g.comment} dangerouslySetInnerHTML={{ __html: this.props.explanation }}></div>
                 </div>)
             }
         }
