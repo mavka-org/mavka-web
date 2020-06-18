@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ScreensAbout from "./screens/About";
 import NotFound from "./screens/NotFound";
 
-import Login from "./screens/Authentication_menu/Login"
+import Login from "./screens//Login_Register_Menu/Login/Login"
 import Home from "./screens/Home";
 import Test from "./screens/Test";
 import TestView from "./screens/ContentMakers/TestView";
@@ -13,6 +13,7 @@ import Courses from "./screens/Courses"
 import SurveyDemographics from "./screens/SurveyDemographics"
 import SurveyFeedback from "./screens/SurveyFeedback"
 import SurveyOpenEnded from "./screens/SurveyOpenEnded"
+import Register from "./screens/Login_Register_Menu/Register/Register";
 
 export default () => (
     <Router>
@@ -20,6 +21,7 @@ export default () => (
             <Route exact path="/" children={()=><h2>Main</h2>}/>
             <Route path="/about" component={ScreensAbout}/>
             <Route path="/login" component={Login}/>
+            <Route path="/register" component={Register}/>
             <Route path="/home" component={Courses}/>
             <Route path="/surveydemographics" component={SurveyDemographics}/> 
             <Route path="/surveyfeedback" component={SurveyFeedback}/> 

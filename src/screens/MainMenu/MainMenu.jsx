@@ -69,6 +69,7 @@ class MainMenu extends React.Component {
             response.then(function (value) {
                 let tests = []
                 let T = value.data;
+                console.log(value.data)
                 for (let year in T) {
                     for (let t in T[year]) {
                         tests.push({
@@ -76,10 +77,14 @@ class MainMenu extends React.Component {
                             name2: T[year][t].type.toLowerCase() + " сесія",
                             status: T[year][t].status.toLowerCase(),
                             id: T[year][t].id,
-                            ref: T[year][t].ref
+                            ref: T[year][t].ref,
+                            score200: T[year][t].score200,
+                            score12: T[year][t].score12,
+                            numCorrect: T[year][t].numCorrect
                         })
                     }
                 }
+                console.log(tests);
                 //let myProps = Object.keys(current.props.location.state);
                 console.log(current.props.location.state);
                 current.setState({
@@ -99,13 +104,13 @@ class MainMenu extends React.Component {
     deleteTestInfo = (testID) => {
         this.scrollToTop();
         this.state.user.getIdToken().then((token) => {
-            Services.deleteTestByID(token, testID);
+            Services.deleteTestByID(token, testID).then(()=>{
+                this.updateUserState(this.state.user);
+            });
         });
-        let tmp = this.state.tests;
+        /*let tmp = this.state.tests;
         tmp[this.state.active].status = 'тест не пройдений';
-        this.setState({
-            tests: tmp
-        })
+        */
         
     }
 
@@ -211,7 +216,7 @@ class MainMenu extends React.Component {
                                     <div className={s.title}>
                                         <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
                                     </div>
-                                    {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores click={this.openResults}/>) : ""}
+                                    {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores numCorrect={this.state.tests[this.state.active].numCorrect} score12={this.state.tests[this.state.active].score12} score200={this.state.tests[this.state.active].score200} click={this.openResults}/>) : ""}
                                 </div>
                                 <div className={s.buttons_frame}>
                                     <Button stl={this.btnPracticeStyle()} click={this.onClickPractice()} icon={pic1} title={'Практикуватися'} comment={'Проходь завдання та вчися на поясненнях'} />
@@ -234,7 +239,7 @@ class MainMenu extends React.Component {
                 </div>
             )
         }
-        return (<Redirect to="/login" />);
+        return (<Redirect to="/register" />);
     }
 }
 

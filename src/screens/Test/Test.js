@@ -22,6 +22,7 @@ import Header from "../Templates/Objects/Header/Header";
 import BioTriples from '../Templates/BioTriples/BioTriples';
 import Geo_History_3_7 from '../Templates/Geo_History_3_7/Geo_History_3_7';
 import {animateScroll as scroll} from 'react-scroll'
+import Axios from 'axios';
 
 const componentsMap = {
     ABCDE,
@@ -84,23 +85,27 @@ export class Test extends React.Component{
                     answered: status,
                     n: myData.length
                 });
-                current.state.user.getIdToken().then((token)=>{
-                    Services.getTestAnswers(token, current.state.testId).then(function (response){
-                        console.log("Test.js");
-                        console.log(response.data);
-                        let checkedAnswers = {};
-                        if(response.data != "not exist"){
-                            for(let tmp in response.data){
-                                if(tmp != "status")
-                                    checkedAnswers[tmp] = current.state.data[Number(tmp) - 1].checkCorrect(response.data[tmp]);
+                if(current.state.user != null){
+                    current.state.user.getIdToken().then((token)=>{
+                        Services.getTestAnswers(token, current.state.testId).then(function (response){
+                            console.log("Test.js");
+                            console.log(response.data);
+                            let checkedAnswers = {};
+                            if(response.data != "not exist"){
+                                for(let tmp in response.data){
+                                    if(tmp != "status" && tmp != "Test_results")
+                                        checkedAnswers[tmp] = current.state.data[Number(tmp) - 1].checkCorrect(response.data[tmp]);
+                                }
+                                current.setState({
+                                    answers: response.data,
+                                    checkedAnswers: checkedAnswers
+                                })
+                            }else{
+                                Services.changeTestStatusByID(token, current.state.testId, "вільна практика");
                             }
-                            current.setState({
-                                answers: response.data,
-                                checkedAnswers: checkedAnswers
-                            })
-                        }
+                        })
                     })
-                })
+                }         
             })
         })
 
@@ -148,17 +153,40 @@ export class Test extends React.Component{
                   });
             }else{
                 this.state.user.getIdToken().then((token) => {
-                    this.setState({
-                        user: 25
-                    })
                     Services.updateTestAnswers(token, this.state.testId, this.state.answers).then(() => {
-                        Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => {
-                                this.props.history.push({
-                                    pathname: '/subject/' + this.state.subject,
-                                    state: { testID: this.state.testId }
-                                });
+                        let res = {};
+                        for(let i = 0; i < this.state.n; i++) {
+                            if ((i + 1) in this.state.answers) {
+                                let tmp = this.state.data[i].evaluate2(this.state.answers[i + 1]);
+                                if(tmp != null) {
+                                    res[i + 1] = tmp;
+                                }
                             }
-                        );
+                        }
+                        console.log(this.state.user);
+                        console.log({ 
+                            Test_id: this.state.testId,
+                            User_id: this.state.user.uid,
+                            UserAnswers: res
+                        })
+                        Axios.post(
+                            'https://flask.mavka.org/api/post_score',
+                            { 
+                                Test_id: this.state.testId,
+                                User_id: this.state.user.uid,
+                                UserAnswers: res
+                            },
+                            { headers: { 'Content-Type': 'application/json' } }
+                        ).then((response) => {
+                            console.log(response);
+                            Services.changeTestStatusByID(token, this.state.testId, "тест пройдений").then(() => {
+                                    this.props.history.push({
+                                        pathname: '/subject/' + this.state.subject,
+                                        state: { testID: this.state.testId }
+                                    });
+                                }
+                            );
+                        })
                     })
                 });
 
@@ -276,7 +304,7 @@ export class Test extends React.Component{
             }
             return (<div></div>);
         }
-        return(<Redirect to="/login"/>);
+        return(<Redirect to="/register"/>);
     }
 }
 

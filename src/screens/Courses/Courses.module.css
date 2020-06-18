@@ -41,6 +41,40 @@
     flex-direction: column;
 }
 
+.exit {
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.end {
+    align-items: center;
+    text-align: center;
+    width: 210px;
+    height: 38.5px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    line-height: 22px;
+    transition: 0.2s ease-in-out;
+    vertical-align: middle;
+    font-family: Gilroy;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.end:focus {
+    outline: 0;
+}
+
+.end:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
 @media (max-width: 992px) {
     /* это будет показано при разрешении монитора до 930 пикселей */
     .page {

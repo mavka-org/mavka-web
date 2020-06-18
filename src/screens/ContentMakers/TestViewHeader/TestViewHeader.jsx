@@ -57,6 +57,7 @@ class TestViewHeader extends React.Component {
     }
 
     switchViewMode() {
+        document.getElementById("switchButton").disabled = true;
         let testId = this.props.testId
         fetch('https://flask.mavka.org/api/switch_view_mode?page_id=' + testId)
             .catch(e => console.log(e));
@@ -82,7 +83,7 @@ class TestViewHeader extends React.Component {
                         <div className={s.nav_panel}>
                             <div className={s.nav}>Усі завдання</div>
                             <div className={g.icon_header}><div><Strong />&nbsp;</div><strong>Прев'ю</strong></div>
-                            <div onClick={() => {
+                            <div id="switchButton" onClick={() => {
                                 this.switchViewMode()
                             }}>Змінити на {this.props.isDoubleColumn ? "одну колонку" : "дві колонки"}
                             </div>
@@ -113,7 +114,7 @@ class TestViewHeader extends React.Component {
                         <div className={g.title_bar}>
                             <div className={g.icon_header}><div><Strong />&nbsp;</div><strong>Прев'ю</strong></div>
                             <p><strong>{this.props.subject}</strong> {this.props.year} {this.props.session} сесія</p>
-                            <button className={g.end} style={{width: "250px"}} onClick={() => {
+                            <button className={g.end} id="switchButton" style={{width: "250px"}} onClick={() => {
                                 this.switchViewMode()
                             }}>Змінити на {this.props.isDoubleColumn ? "одну колонку" : "дві колонки"}
                         </button>

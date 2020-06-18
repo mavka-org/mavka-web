@@ -61,9 +61,16 @@ class Courses extends React.Component {
 
                         <div className={s.question_header}>
                             <div className={s.header}>
-                                <div className={s.title}>Останній ривок до ЗНО <br></br>разом з мавкою <div><Fire /></div></div>
+                                <div className={s.title}>Останній ривок до ЗНО <br/>разом з мавкою <div><Fire /></div></div>
                                 <div className={s.description}>Практикуйся, вчися на поясненнях та проходь симуляції екзамену. Обери предмет:</div>
                             </div>
+                        </div>
+                        <div className={s.exit}>
+                                <button className={s.end} onClick={()=>{
+                                    firebase.auth().signOut();
+                                }}>
+                                    Вийти
+                                </button>
                         </div>
                         <div className={s.courses_wrapper}>
                             <Course course={'Українська мова і література'} pic={pic1} navigate={this.navigate} />
@@ -82,7 +89,7 @@ class Courses extends React.Component {
             );
         }
         else {
-            return (<Redirect to="/login" />);
+            return (<Redirect to="/register" />);
         }
     }
 }
