@@ -300,8 +300,10 @@ class Question {
             let score = 0;
             if(answerToCheck != null && answerToCheck != undefined) {
                 for(let i = 0; i < 3; ++i) {
-                    if(answerToCheck[i] == this.history_3_7_right_answers[i]) {
-                        ++score;
+                    for(let j = 0; j < 3; ++j) {
+                        if(answerToCheck[i] == this.history_3_7_right_answers[j]) {
+                            ++score;
+                        }
                     }
                 }
             }
