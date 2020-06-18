@@ -18,6 +18,7 @@ import Logic_Couples_4_4_OneColumn from "../../Templates/Logic_Couples_OneColumn
 import Logic_Couples_4_5_OneColumn from "../../Templates/Logic_Couples_OneColumn/Logic_Couples_4_5_OneColumn";
 import g from "../../Templates/Style.module.css";
 import s from "../../Templates/ABCDE/ABCDE.module.css";
+import TestViewHeader from "../TestViewHeader/TestViewHeader";
 import Header from "../../Templates/Objects/Header/Header";
 import BioTriples from '../../Templates/BioTriples/BioTriples';
 import Geo_History_3_7 from '../../Templates/Geo_History_3_7/Geo_History_3_7';
@@ -77,7 +78,6 @@ export class TestView extends React.Component {
             .then(result => {
                 console.log(result);
                 if(result['error']){
-                    console.log(result['error'])
                     this.setState({
                         error: result['error']
                     })
@@ -91,7 +91,7 @@ export class TestView extends React.Component {
             })
             .catch(e => console.log(e));
 
-        console.log(this.state.data)
+            console.log(this.state.data)
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -151,7 +151,6 @@ export class TestView extends React.Component {
     }
 
     render() {
-        console.log("HELLO")
         console.log(this.state.data)
 
         if(this.state.error){
@@ -164,7 +163,6 @@ export class TestView extends React.Component {
 
         if (this.state.data != null) {
             if (this.state.data['number']) {
-                console.log("INSIDE")
                 const data = this.state.data;
                 let num = this.state.active - 1;
                 let type = data.getType();
@@ -177,7 +175,7 @@ export class TestView extends React.Component {
                 return (
                     <div className={g.background}>
                         <div className={[s.page, g.page_].join(' ')}>
-                            <Header
+                            <TestViewHeader
                                 checkedAnswers={this.state.checkedAnswers}
                                 subject={data.getSubject()}
                                 year={data.getYear()}
@@ -185,6 +183,9 @@ export class TestView extends React.Component {
                                 list={this.state.n}
                                 updateQuestion={this.updateQuestion}
                                 active={this.state.active}
+                                answers={this.state.answers}
+                                isDoubleColumn={data.getIsDoubleColumn()}
+                                testId={this.state.list[this.state.active]}
                             />
                             <DynamicComponent
                                 updateQuestion={this.updateQuestion}
