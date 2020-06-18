@@ -78,7 +78,7 @@
     .page {
         display: flex;
         flex-direction: column;
-        padding: 105px 0px;
+        padding: 10px 0px;
         position: absolute;
         width: 95%;
         height: 270%;

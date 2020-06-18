@@ -85,6 +85,7 @@
     box-sizing: border-box;
     border-spacing: 2px;
     border-color: grey;
+    border-spacing: 8px 8px; 
 }
 
 .select_answer label {

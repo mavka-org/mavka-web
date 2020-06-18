@@ -51,7 +51,12 @@
     margin-bottom: 7px;
     margin-left: 20px;
 }
-
+.answer_wrap{
+    display: flex;
+    flex-direction: column;
+    width:33%;
+    margin: 0px 10px;
+}
 /* table */
 
 .marker {
@@ -85,6 +90,7 @@
     box-sizing: border-box;
     border-spacing: 2px;
     border-color: grey;
+    border-spacing: 8px 8px; 
 }
 
 .select_answer label {
