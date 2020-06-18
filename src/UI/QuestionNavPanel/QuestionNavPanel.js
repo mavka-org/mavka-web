@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ButtonQNav from "../ButtonQNav";
-import DropdownButton from "react-bootstrap/DropdownButton";
+import "./navigation.css";
 
 class QuestionNavPanel extends Component {
 
@@ -65,7 +65,7 @@ class QuestionNavPanel extends Component {
 
 
 
-    htmlButton = (button, index) => (
+    htmlButton = (button, index, needMargin) => (
         <ButtonQNav
             pushed={button.pushed}
             number={index + 1}
@@ -74,7 +74,7 @@ class QuestionNavPanel extends Component {
             color={!button.active ? this.colorText(button.status) : "#000000"}
             height={this.getHeight(button.active ? 4.5 : 3)}
             width={this.getWidth(2.2)}
-            marginLeft={this.getWidth(0.22)}
+            marginLeft={needMargin ? this.getWidth(0.22) : 0}
         />
     );
 
@@ -106,6 +106,25 @@ class QuestionNavPanel extends Component {
         return "#000000";
     }
 
+    reformat (code) {
+        let new_code = [];
+        for (let i = 0; i < code.length; i += 3) {
+            let r = Math.min(code.length - 1, i + 2);
+            let cnt = r - i + 1;
+            if (cnt == 1) {
+                new_code.push(<li>{code[i]}</li>);
+            }
+            if (cnt == 2) {
+                new_code.push(<li>{code[i]} {code[i + 1]}</li>)
+            }
+            if (cnt == 3) {
+                //alert(1);
+                new_code.push(<li>{code[i]} {code[i + 1]} {code[i + 2]}</li>)
+            }
+        }
+        return new_code;
+    }
+
     render() {
         const delta = 10;
         let n = this.state.n;
@@ -113,11 +132,11 @@ class QuestionNavPanel extends Component {
         let allButtons = this.state.buttons;
 
         const styles = {
-            border: "1px solid black",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.08)",
             borderRadius: "5px",
-            width: this.getWidth(7.4),
-            marginLeft: this.getWidth(0.22)
-            
+            width: this.getWidth(2.2),
+            marginLeft: this.getWidth(0.22),
+            textAlign: "center"
         };
         let l = Math.max(current - delta / 2, 1);
         let r = Math.min(n, l + delta);
@@ -127,17 +146,17 @@ class QuestionNavPanel extends Component {
 
         let middle = allButtons.map((button, index) => {
             if (l - 1  > index || r - 1 < index) return null;
-            return this.htmlButton(button, index);
+            return this.htmlButton(button, index, true);
         });
 
         let left = allButtons.map((button, index) => {
             if (l - 1 <= index) return null;
-            return this.htmlButton(button, index);
+            return this.htmlButton(button, index, false)
         });
 
         let right = allButtons.map((button, index) => {
             if (r - 1 >= index) return null;
-            return this.htmlButton(button, index);
+            return this.htmlButton(button, index, false)
         });
 
         let check = elem => elem != null;
@@ -159,7 +178,8 @@ class QuestionNavPanel extends Component {
                 width: "100%",
                 height: "100%",
                 justifyContent: "center",
-                alignItems: "flex-end"
+                alignItems: "flex-end",
+                marginBottom: "10px"
             }}>
                 <style type="text/css">
                     {`
@@ -185,16 +205,18 @@ class QuestionNavPanel extends Component {
                 />
                 <div>
                     <div style={{opacity: left.length > 0 ? 1 : 0.4}}>
-                        <DropdownButton
-                            key={'left'}
-                            drop={'left'}
-                            title={'⯇'}
-                            id={"my-dropdown"}
-                        >
-                            <div style={styles}>
-                                {left}
-                            </div>
-                        </DropdownButton>
+                        <ul>
+                            <li style={styles}><a href={"#"} >⯇</a>
+                                <ul
+                                    className={"dropdown"}
+                                    style={{
+                                        zIndex: 100
+                                    }}
+                                >
+                                {this.reformat(left)}
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 {middle}
@@ -202,16 +224,18 @@ class QuestionNavPanel extends Component {
                     marginLeft: this.getWidth(0.22)
                 }}>
                     <div style={{opacity: right.length > 0 ? 1 : 0.4}}>
-                        <DropdownButton
-                            key={'right'}
-                            drop={'right'}
-                            title={'⯈'}
-                            id={"my-dropdown"}
-                        >
-                            <div style={styles}>
-                                {right}
-                            </div>
-                        </DropdownButton>
+                        <ul>
+                            <li style={styles}><a href={"#"} >⯈</a>
+                                <ul
+                                    className={"dropdown"}
+                                    style={{
+                                        zIndex: 100
+                                    }}
+                                >
+                                    {this.reformat(right)}
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
