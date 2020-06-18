@@ -45,13 +45,16 @@ class ABCD extends Component {
         })
     }
 
-    render() {
-        console.log(this.state.data.evaluate(this.state.currentAnswer))
+    validateCurrentAnswer() {
+        return (this.state.currentAnswer != "")
+    }
 
-        console.log(this.state.currentAnswer);
+    render() {
+
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
-        console.log(this.state.data);
+        let isNextAllowed = this.validateCurrentAnswer()
+
         return (
             <div>
                 <div className={s.question_body}>

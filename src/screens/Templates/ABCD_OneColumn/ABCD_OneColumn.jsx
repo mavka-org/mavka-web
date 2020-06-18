@@ -43,9 +43,15 @@ class ABCD_OneColumn extends React.Component {
         })
     }
 
+    validateCurrentAnswer() {
+        return (this.state.currentAnswer != "")
+    }
+
     render() {
+
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
+        let isNextAllowed = this.validateCurrentAnswer()
         return (
             <div>
                 <div className={s.question_body}>
