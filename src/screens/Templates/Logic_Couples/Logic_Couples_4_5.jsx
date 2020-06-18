@@ -212,10 +212,12 @@ class Logic_Couples_4_5 extends Component {
             <div>
                 <div className={s.question_body}>
                     <div className={s.question_frame}>
+                    
                         <Question
                             question={data.getQuestion()}
                             active={this.state.active}
                             />
+                        {this.buildQA(2)}
                         <Topic
                             topic={data.getTopic()}
                             hidden={hidden}
@@ -233,7 +235,7 @@ class Logic_Couples_4_5 extends Component {
                         <p className={s.choose}><strong>Обери одну відповідь</strong></p>
                         <div className={s.answers}>
                             {this.buildQA(1)}
-                            {this.buildQA(2)}
+                            
                         </div>
                         <div class={s.table}>
                             <table class={s.select_answer}>
