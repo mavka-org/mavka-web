@@ -11,7 +11,6 @@ class Next extends React.Component {
             }
             else {
                 if(this.props.currentAnswer && this.props.isNextAllowed) {
-                    this.props.scroll();
                     this.props.updateAnswers(this.props.number, this.props.currentAnswer);
                 }
                 else {

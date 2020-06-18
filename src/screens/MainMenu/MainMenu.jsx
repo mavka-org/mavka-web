@@ -17,6 +17,8 @@ import Scores from './Object/Scores/Scores';
 import Progres from './Object/Progres/Progres';
 import Button from './Object/Button/Button';
 import {animateScroll as scroll} from 'react-scroll'
+import {bounce} from 'react-animations'
+import Radium, {StyleRoot} from 'radium';
 
 import Strong from '../Templates/Icon/Strong/Strong';
 class MainMenu extends React.Component {
@@ -95,12 +97,16 @@ class MainMenu extends React.Component {
     }
 
     deleteTestInfo = (testID) => {
+        this.scrollToTop();
         this.state.user.getIdToken().then((token) => {
             Services.deleteTestByID(token, testID);
         });
+        let tmp = this.state.tests;
+        tmp[this.state.active].status = 'тест не пройдений';
         this.setState({
-            active: this.state.active
+            tests: tmp
         })
+        
     }
 
     startPractice = () => {
@@ -150,7 +156,19 @@ class MainMenu extends React.Component {
         scroll.scrollToBottom();
     }
 
+    scrollToTop = () => {
+        scroll.scrollToTop();
+    }
+
+    
+
     render() {
+        let styles = {
+            bounce: {
+              animation: 'x 1s',
+              animationName: Radium.keyframes(bounce, 'bounce')
+            }
+          }
         console.log(this.state.subject);
         const pic1 = <Strong />
         const pic2 = <Clock />
