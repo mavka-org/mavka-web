@@ -21,8 +21,8 @@ export default () => (
             <Route path="/about" component={ScreensAbout}/>
             <Route path="/login" component={Login}/>
             <Route path="/home" component={Courses}/>
-            <Route path="/surveydemographics" component={SurveyDemographics}/> // should be placed after user Registration
-            <Route path="/surveyfeedback" component={SurveyFeedback}/> // should be placed either!!! 1) between the end of ZNO simulation and score page, or 2) after Завершити практику button on free practice
+            <Route path="/surveydemographics" component={SurveyDemographics}/> 
+            <Route path="/surveyfeedback" component={SurveyFeedback}/> 
             <Route path="/surveyopenended" component={SurveyOpenEnded}/>
             <Route exact path="/subject/:id" component={MainMenu} />
             <Route exact path="/subject/:id/:mode/:testId" component={Test} />

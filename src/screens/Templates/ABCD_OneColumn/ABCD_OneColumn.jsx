@@ -105,12 +105,14 @@ class ABCD_OneColumn extends React.Component {
                         </div>
                         <Next
                             isNextAllowed={isNextAllowed}
+                            scores={this.props.scores}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}
                             number={this.state.active}
                             currentAnswer={this.state.currentAnswer}
                             updateAnswers={this.props.updateAnswers}
                             isPractice={this.props.isPractice}
+                            scroll={this.props.scroll}
                         />
                         <Topic
                             topic={data.getTopic()}

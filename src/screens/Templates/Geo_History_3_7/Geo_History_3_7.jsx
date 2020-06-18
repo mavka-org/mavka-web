@@ -166,7 +166,8 @@ class Geo_History_3_7 extends React.Component {
                         />
                     </div>
                 </div>
-                <Next 
+                <Next
+                    scores={this.props.scores}
                     answered={this.state.answered}
                     updateQuestion={this.props.updateQuestion}
                     number={this.state.active}
@@ -174,6 +175,7 @@ class Geo_History_3_7 extends React.Component {
                     updateAnswers={this.props.updateAnswers}
                     isPractice={this.props.isPractice}
                     isNextAllowed={this.nextValidation()}
+                    scroll={this.props.scroll}
                 />
                 <Topic 
                     topic={data.getTopic()}

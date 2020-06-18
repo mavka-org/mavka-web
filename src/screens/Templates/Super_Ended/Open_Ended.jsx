@@ -50,6 +50,7 @@ class Open_Ended extends React.Component {
                         />
                     <div className={s.main_answers}>
                         <Next
+                            scores={this.props.scores}
                             isNextAllowed={true}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}

@@ -17,7 +17,7 @@ export class Register extends React.Component{
                     <div className={style.name}>
                         <p>Ім'я</p>
                         <input placeholder="Ім'я"></input>
-                        <p>Прізвище</p>npm start
+                        <p>Прізвище</p>
                         <input placeholder='Прізвище'></input>
                     </div>
                     <p>Електронна пошта</p>

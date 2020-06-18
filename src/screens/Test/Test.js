@@ -21,6 +21,7 @@ import s from "../Templates/ABCDE_OneColumn/ABCDE_OneColumn.module.css";
 import Header from "../Templates/Objects/Header/Header";
 import BioTriples from '../Templates/BioTriples/BioTriples';
 import Geo_History_3_7 from '../Templates/Geo_History_3_7/Geo_History_3_7';
+import {animateScroll as scroll} from 'react-scroll'
 
 const componentsMap = {
     ABCDE,
@@ -73,12 +74,10 @@ export class Test extends React.Component{
         let current = this;
         Services.getReferenceById(this.state.testId).then(function (ref) {
             Services.getData(ref).then(function (data) {
-                console.log(data);
                 let myData = data.map(value => Services.getQuestionClass(value));
                 let status = [];
                 for (let i = 0; i < myData.length; i++) status.push(false);
                 myData.sort((a, b) => a.getNumber() - b.getNumber());
-                console.log("!!!!!!!!!!!!!");
                 console.log(myData);
                 current.setState({
                     data: myData,
@@ -102,8 +101,6 @@ export class Test extends React.Component{
                         }
                     })
                 })
-                console.log("Data");
-                console.log(myData);
             })
         })
 
@@ -142,9 +139,9 @@ export class Test extends React.Component{
                 active: x
             });
         }else{
-
+            console.log("ПОСЛЕДНИЙ ВОПРОС")
+            console.log(this.state.testId)
             if(this.state.isPractice){
-                console.log("ПОСЛЕДНИЙ ВОПРОС")
                 this.props.history.push({
                     pathname: '/subject/' + this.state.subject,
                     state: { testID: this.state.testId }
@@ -203,6 +200,10 @@ export class Test extends React.Component{
         }
     }
 
+    scrollToTop = () => {
+        scroll.scrollToTop();
+    }
+
     render() {
        // console.log("Test.js");
        // console.log(this.state.checkedAnswers);
@@ -221,6 +222,12 @@ export class Test extends React.Component{
                         answers.push(data[i].evaluate(this.state.answers[i + 1])[1]);
                     else answers.push(-1);
                 }
+                let scores = [];
+                for(let i = 0; i < this.state.n; i++) {
+                    if ((i + 1) in this.state.answers)
+                        scores.push(data[i].evaluate(this.state.answers[i + 1]));
+                    else scores.push(-1);
+                }
                 console.log("1111");
                 console.log(answers);
                 if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
@@ -234,7 +241,7 @@ export class Test extends React.Component{
                 else {
                     firebase.analytics().logEvent('newQuestion');
                 }
-
+                console.log(scores);
                 return (
                     <div className={g.background}>
                         <div className={[s.page, g.page_].join(' ')}>
@@ -259,6 +266,8 @@ export class Test extends React.Component{
                                 updateAnswers={this.updateAnswers}
                                 currentAnswer={this.state.answers[this.state.active]}
                                 isPractice={this.state.isPractice}
+                                scroll={this.scrollToTop}
+                                scores={scores}
                             >
                             </DynamicComponent>
                         </div>

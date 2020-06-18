@@ -103,6 +103,7 @@ class Double_Open_OneColumn extends React.Component {
                         </div>
 
                         <Next
+                            scores={this.props.scores}
                             isNextAllowed={isNextAllowed}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}
@@ -110,6 +111,7 @@ class Double_Open_OneColumn extends React.Component {
                             currentAnswer={this.state.currentAnswer}
                             updateAnswers={this.props.updateAnswers}
                             isPractice={this.props.isPractice}
+                            scroll={this.props.scroll}
                         />
                         <Topic
                             topic={data.getTopic()}

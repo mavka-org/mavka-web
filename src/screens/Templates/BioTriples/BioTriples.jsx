@@ -184,6 +184,7 @@ class BioTriples extends React.Component {
                     </div>
                 </div>
                 <Next 
+                    scores={this.props.scores}
                     answered={this.state.answered}
                     updateQuestion={this.props.updateQuestion}
                     number={this.state.active}
@@ -191,6 +192,7 @@ class BioTriples extends React.Component {
                     updateAnswers={this.props.updateAnswers}
                     isPractice={this.props.isPractice}
                     isNextAllowed={isNextAllowed}
+                    scroll={this.props.scroll}
                 />
                 <Topic 
                     topic={data.getTopic()}

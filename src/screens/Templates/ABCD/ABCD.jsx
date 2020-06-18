@@ -121,13 +121,16 @@ class ABCD extends Component {
                             />
                         </div>
                         <Next
+
                             isNextAllowed={isNextAllowed}
+                            scores={this.props.scores}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}
                             number={this.state.active}
                             currentAnswer={this.state.currentAnswer}
                             updateAnswers={this.props.updateAnswers}
                             isPractice={this.props.isPractice}
+                            scroll={this.props.scroll}
                         />
                     </div>
                 </div>

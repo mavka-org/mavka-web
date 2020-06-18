@@ -237,6 +237,7 @@ class Question {
              return false;
        }
     }
+
     checkCorrectFromList (answerToCheck, index) {
         if(this.getType() == "Double_Open"){
             return this.areEqualStrNumbers(answerToCheck, this.double_open_answers[index]);
@@ -268,6 +269,7 @@ class Question {
                 res.push(0);
                 res.push(0);
             }
+            res.push(1);
         }
         else if(this.getType() == "Bio_Triples" || this.getType() == 'Bio_Triples_OneColumn') {
             let score = 0;
@@ -292,13 +294,16 @@ class Question {
             else {
                 res.push(1);
             }
+            res.push(3);
         }
         else if(this.getType() == "Geo_History_3_7" || this.getType() == 'Geo_History_3_7_OneColumn') {
             let score = 0;
             if(answerToCheck != null && answerToCheck != undefined) {
                 for(let i = 0; i < 3; ++i) {
-                    if(answerToCheck[i] == this.history_3_7_right_answers[i]) {
-                        ++score;
+                    for(let j = 0; j < 3; ++j) {
+                        if(answerToCheck[i] == this.history_3_7_right_answers[j]) {
+                            ++score;
+                        }
                     }
                 }
             }
@@ -312,6 +317,7 @@ class Question {
             else {
                 res.push(1);
             }
+            res.push(3);
         }
         else if(this.getType() == "Logic_Couples_4_4" || this.getType() == "Logic_Couples_4_5" || this.getType() == "Logic_Couples_4_4_OneColumn" || this.getType() == "Logic_Couples_4_5_OneColumn") {
             let score = 0;
@@ -332,6 +338,7 @@ class Question {
             else {
                 res.push(1);
             }
+            res.push(4);
         }
         else if(this.getType() == "Open") {
             if(answerToCheck == this.open_answer) {
@@ -342,6 +349,7 @@ class Question {
                 res.push(0);
                 res.push(0);
             }
+            res.push(2);
         }
         else if(this.getType() == "Double_Open" || this.getType() == "Double_Open_OneColumn") {
             let score = 0;
@@ -364,10 +372,12 @@ class Question {
             else {
                 res.push(1);
             }
+            res.push(4);
         }
         else if(this.getType() == "Open_Ended") {
             res.push(0);
             res.push(2);
+            res.push(0);
         }
         return res;
     }
@@ -447,6 +457,17 @@ class Services {
                 token: token,
                 id: testID,
                 status: status
+            },
+            { headers: { 'Content-Type': 'text/plain' } }
+        )
+    }
+
+    static async deleteTestByID(token, testID){
+        const response = await axios.post(
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/deleteCourseById',
+            { 
+                token: token,
+                id: testID,
             },
             { headers: { 'Content-Type': 'text/plain' } }
         )
