@@ -104,13 +104,13 @@ class MainMenu extends React.Component {
     deleteTestInfo = (testID) => {
         this.scrollToTop();
         this.state.user.getIdToken().then((token) => {
-            Services.deleteTestByID(token, testID);
+            Services.deleteTestByID(token, testID).then(()=>{
+                this.updateUserState(this.state.user);
+            });
         });
-        let tmp = this.state.tests;
+        /*let tmp = this.state.tests;
         tmp[this.state.active].status = 'тест не пройдений';
-        this.setState({
-            tests: tmp
-        })
+        */
         
     }
 
@@ -239,7 +239,7 @@ class MainMenu extends React.Component {
                 </div>
             )
         }
-        return (<Redirect to="/login" />);
+        return (<Redirect to="/register" />);
     }
 }
 

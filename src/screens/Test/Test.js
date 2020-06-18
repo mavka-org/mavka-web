@@ -85,23 +85,27 @@ export class Test extends React.Component{
                     answered: status,
                     n: myData.length
                 });
-                current.state.user.getIdToken().then((token)=>{
-                    Services.getTestAnswers(token, current.state.testId).then(function (response){
-                        console.log("Test.js");
-                        console.log(response.data);
-                        let checkedAnswers = {};
-                        if(response.data != "not exist"){
-                            for(let tmp in response.data){
-                                if(tmp != "status")
-                                    checkedAnswers[tmp] = current.state.data[Number(tmp) - 1].checkCorrect(response.data[tmp]);
+                if(current.state.user != null){
+                    current.state.user.getIdToken().then((token)=>{
+                        Services.getTestAnswers(token, current.state.testId).then(function (response){
+                            console.log("Test.js");
+                            console.log(response.data);
+                            let checkedAnswers = {};
+                            if(response.data != "not exist"){
+                                for(let tmp in response.data){
+                                    if(tmp != "status" && tmp != "Test_results")
+                                        checkedAnswers[tmp] = current.state.data[Number(tmp) - 1].checkCorrect(response.data[tmp]);
+                                }
+                                current.setState({
+                                    answers: response.data,
+                                    checkedAnswers: checkedAnswers
+                                })
+                            }else{
+                                Services.changeTestStatusByID(token, current.state.testId, "вільна практика");
                             }
-                            current.setState({
-                                answers: response.data,
-                                checkedAnswers: checkedAnswers
-                            })
-                        }
+                        })
                     })
-                })
+                }         
             })
         })
 
@@ -175,7 +179,7 @@ export class Test extends React.Component{
                             { headers: { 'Content-Type': 'application/json' } }
                         ).then((response) => {
                             console.log(response);
-                            Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => {
+                            Services.changeTestStatusByID(token, this.state.testId, "тест пройдений").then(() => {
                                     this.props.history.push({
                                         pathname: '/subject/' + this.state.subject,
                                         state: { testID: this.state.testId }
@@ -300,7 +304,7 @@ export class Test extends React.Component{
             }
             return (<div></div>);
         }
-        return(<Redirect to="/login"/>);
+        return(<Redirect to="/register"/>);
     }
 }
 
