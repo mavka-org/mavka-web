@@ -104,6 +104,7 @@ class ABCD_OneColumn extends React.Component {
                             />
                         </div>
                         <Next
+                            isNextAllowed={isNextAllowed}
                             scores={this.props.scores}
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}
