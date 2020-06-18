@@ -37,7 +37,7 @@ class SurveyDemographics extends React.Component {
             return(<div></div>)
         }
         if(this.state.user){
-            var url = "https://docs.google.com/forms/d/e/1FAIpQLSeBCzPlObh37zaPJFEdcCpTgM5_40qEmQVpv6Y2dwq2c4INlQ/viewform?entry.1527554721=";
+            var url = "https://docs.google.com/forms/d/e/1FAIpQLScgZErcirQmzkPQFxLZG8OiQ-NriSpRdl4KVib99Q8dcXJ5nA/viewform?usp=pp_url&entry.1198759471=";
             url += this.state.user.email;
             return (
                 <div>

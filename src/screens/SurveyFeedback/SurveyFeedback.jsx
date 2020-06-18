@@ -38,9 +38,11 @@ class SurveyFeedback extends React.Component {
             return(<div></div>)
         }
         if(this.state.user){
+            var url = "https://docs.google.com/forms/d/e/1FAIpQLSczD7jdjTArSGJbTM0TfecCkati2G94aSSLU_ybgE_a5JcFmQ/viewform?usp=pp_url&entry.1412116077=";
+            url += this.state.user.email;
             return (
                 <div>
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSczD7jdjTArSGJbTM0TfecCkati2G94aSSLU_ybgE_a5JcFmQ/viewform?embedded=true" width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                    <iframe src={url} width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </div>
             );
         }
