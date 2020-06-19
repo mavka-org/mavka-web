@@ -47,29 +47,39 @@ class Next extends React.Component {
 
     getResult() {
         if(this.props.isPractice && this.props.answered) {
-            if(this.props.scores[this.props.number - 1][1] == 2) {
+            if(this.props.isOpenEnded) {
                 return (
                     <div>
-                        <div className={g.result}><strong>Правильно!<Party /></strong></div>
-                        <div className={g.stats}>Ти отримаєш {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
-                    </div>
-                );
-            }
-            else if(this.props.scores[this.props.number - 1][1] == 1) {
-                return (
-                    <div>
-                        <div className={g.result}><strong>Частково правильно<Strong /></strong></div>
-                        <div className={g.stats}>Ти отримаєш {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
+                        <div className={g.result}><strong>Молодець!<Party /></strong></div>
+                        <div className={g.stats}>Ми нарахуємо тобі типовий бал, який отримували учні зі схожими тестовими відповідями на справжньому ЗНО</div>
                     </div>
                 );
             }
             else {
-                return (
-                    <div>
-                        <div className={g.result}><strong>Похибка, не здавайся!<Strong /></strong></div>
-                        <div className={g.stats}>Ти отримаєш {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]} можливих</div>
-                    </div>
-                );
+                if(this.props.scores[this.props.number - 1][1] == 2) {
+                    return (
+                        <div>
+                            <div className={g.result}><strong>Правильно!<Party /></strong></div>
+                            <div className={g.stats}>Ти отримаєш {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
+                        </div>
+                    );
+                }
+                else if(this.props.scores[this.props.number - 1][1] == 1) {
+                    return (
+                        <div>
+                            <div className={g.result}><strong>Частково правильно<Strong /></strong></div>
+                            <div className={g.stats}>Ти отримаєш {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
+                        </div>
+                    );
+                }
+                else {
+                    return (
+                        <div>
+                            <div className={g.result}><strong>Похибка, не здавайся!<Strong /></strong></div>
+                            <div className={g.stats}>Ти отримаєш {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]} можливих</div>
+                        </div>
+                    );
+                }
             }
         }
         else {
