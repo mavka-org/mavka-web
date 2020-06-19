@@ -153,6 +153,11 @@ export class Test extends React.Component{
                   });
             }else{
                 this.state.user.getIdToken().then((token) => {
+                    for(let i = 1; i <= this.state.n; i++){
+                        if(!(i in this.state.answers)){
+                            this.state.answers[i] = "";
+                        }
+                    }
                     Services.updateTestAnswers(token, this.state.testId, this.state.answers).then(() => {
                         let res = {};
                         for(let i = 0; i < this.state.n; i++) {
@@ -189,14 +194,6 @@ export class Test extends React.Component{
                         })
                     })
                 });
-
-                /*
-                setTimeout(() => {  this.props.history.push({
-                    pathname: '/subject/' + this.state.subject,
-                    state: { testID: this.state.testId }
-                  });
-                }, 1000);
-                */
             }
         }
     }

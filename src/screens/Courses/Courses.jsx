@@ -73,14 +73,14 @@ class Courses extends React.Component {
                                 </button>
                         </div>
                         <div className={s.courses_wrapper}>
-                            <Course course={'Українська мова і література'} pic={pic1} navigate={this.navigate} />
-                            <Course course={'Математика'} pic={pic2} navigate={this.navigate} />
-                            <Course course={'Історія України'} pic={pic3} navigate={this.navigate} />
-                            <Course course={'Біологія'} pic={pic4} navigate={this.navigate} />
-                            <Course course={'Географія'} pic={pic5} style={{ opacity: 0.4, cursor: 'default' }} />
-                            <Course course={'Англійська мова'} pic={pic6} style={{ opacity: 0.4, cursor: 'default' }} />
-                            <Course course={'Французька мова'} pic={pic7} style={{ opacity: 0.4, cursor: 'default' }} />
-                            <Course course={'Німецька мова'} pic={pic8} style={{ opacity: 0.4, cursor: 'default' }} />
+                            <Course hover={true} course={'Українська мова і література'} pic={pic1} navigate={this.navigate} />
+                            <Course hover={true} course={'Математика'} pic={pic2} navigate={this.navigate} />
+                            <Course hover={true} course={'Історія України'} pic={pic3} navigate={this.navigate} />
+                            <Course hover={true} course={'Біологія'} pic={pic4} navigate={this.navigate} />
+                            <Course hover={false} course={'Географія'} pic={pic5} style={{ opacity: 0.4, cursor: 'default' }} />
+                            <Course hover={false} course={'Англійська мова'} pic={pic6} style={{ opacity: 0.4, cursor: 'default' }} />
+                            <Course hover={false} course={'Французька мова'} pic={pic7} style={{ opacity: 0.4, cursor: 'default' }} />
+                            <Course hover={false} course={'Німецька мова'} pic={pic8} style={{ opacity: 0.4, cursor: 'default' }} />
 
                         </div>
 

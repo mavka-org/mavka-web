@@ -76,16 +76,47 @@ class Next extends React.Component {
             return <div></div>;
         }
     }
-
+    buttonName(){
+        if(this.props.isPractice){
+            if(!this.props.answered)
+                return 'Перевірити';
+            else{
+                if(this.props.isLastQuestion)
+                    return 'Завершити тест';
+                return 'Наступне питання';
+            }
+        }else{
+            if(this.props.isLastQuestion)
+                return 'Завершити тест';
+            return 'Наступне питання';
+        }
+    }
+    showSkip(){
+        if(this.props.isLastQuestion)
+            return false;
+        else {
+            if(this.props.isPractice){
+                if(this.props.answered)
+                    return false;
+                return true;
+            }
+            return true;
+        }
+    }
     render() {
         return (
             <div className={g.result_frame}>
                 {this.getResult()}
                 <div className={g.wrap}>
-                <button className={g.btn} onClick={() => {
+                <button className={this.props.isNextAllowed ? (g.btn) : (g.btn + ' ' + g.inactiveNextButton)} onClick={() => {
                     this.submitQuestion();
-                }}>{this.props.answered ? "Наступне питання" : "Перевірити"}</button>
-                    <button class={g.pass}>Пропустити</button>
+                }}>{this.buttonName()}</button>
+                <button class={g.pass} style={{
+                    display: this.showSkip() ? "block" : "none"
+                }} onClick={()=>{
+                        this.props.scroll();
+                        this.props.updateQuestion(this.props.number + 1);
+                    }}>Пропустити</button>
                 </div>
             </div>
         );

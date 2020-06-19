@@ -46,7 +46,7 @@ class ABCDE extends Component {
 
 
     validateCurrentAnswer() {
-        return (this.state.currentAnswer != "")
+        return (this.state.currentAnswer != null)
     }
 
     render() {
@@ -87,6 +87,7 @@ class ABCDE extends Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('А')}
+                                isPractice={this.state.isPractice}
                             />
                             <Answer
                                 answered={this.state.answered}
@@ -97,6 +98,7 @@ class ABCDE extends Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Б')}
+                                isPractice={this.state.isPractice}
                             />
                             <Answer
                                 answered={this.state.answered}
@@ -107,6 +109,7 @@ class ABCDE extends Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('В')}
+                                isPractice={this.state.isPractice}
                             />
                             <Answer
                                 answered={this.state.answered}
@@ -117,6 +120,7 @@ class ABCDE extends Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Г')}
+                                isPractice={this.state.isPractice}
                             />
                             <Answer
                                 answered={this.state.answered}
@@ -127,6 +131,7 @@ class ABCDE extends Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Д')}
+                                isPractice={this.state.isPractice}
                             />
                         </div>
                         <Next
@@ -139,6 +144,7 @@ class ABCDE extends Component {
                             updateAnswers={this.props.updateAnswers}
                             isPractice={this.props.isPractice}
                             scroll={this.props.scroll}
+                            isLastQuestion={this.props.number == this.props.active}
                         />
                     </div>
                 </div>

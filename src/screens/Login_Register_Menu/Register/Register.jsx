@@ -2,7 +2,7 @@ import React from 'react'
 import s from './../Login_Register.module.css';
 import g from '../../Templates/Style.module.css';
 import firebase from "../../../global"
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 class Register extends React.Component {
     state = {
@@ -67,7 +67,9 @@ class Register extends React.Component {
                         <button className={s.btn} onClick={async()=>{
                             await this.register(document.getElementById('email').value, document.getElementById('password').value);
                         }}>Зареєструватися з Email</button>
-                        <div className={s.account}>Вже маєш акаунт?</div>
+                        <Link to='/login'>
+                            <div className={s.account}>Вже маєш акаунт?</div>
+                        </Link>  
                     </div>
                 </div>
             </div>

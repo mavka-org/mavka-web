@@ -172,12 +172,7 @@ class MainMenu extends React.Component {
     
 
     render() {
-        let styles = {
-            bounce: {
-              animation: 'x 1s',
-              animationName: Radium.keyframes(bounce, 'bounce')
-            }
-          }
+        console.log(this.state.tests[this.state.active]);
         const pic1 = <Strong />
         const pic2 = <Clock />
         if (this.state.user == 25) {
