@@ -54,9 +54,9 @@ class Answer extends React.Component {
         //this.props.isCorrectAnswer ? (g.answer + (this.check() ? (" " + g.answer_answered) : "")) : (g.btn_inactive + (isUserAnswer ? (" " + g.answer_answered) : ""))
         return (
             <div onClick={()=>{
-                if(!this.state.answered)
+                if(!this.state.answered || !this.props.isPractice)
                     this.props.updateCurrentAnswer(this.props.letter, this.props.index);
-            }}className={this.state.answered ? (g.answer_withouthover) : (g.answer)} style={{
+            }}className={this.state.answered && this.props.isPractice ? (g.answer_withouthover) : (g.answer)} style={{
                 border: (isUserAnswer) ? "1px black solid" : "",
                 opacity: (this.props.hidden && !this.props.isCorrectAnswer) ? "50%" : "100%",
             }}>
