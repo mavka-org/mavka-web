@@ -23,7 +23,14 @@ import NotFound from './../NotFound'
 
 
 import Strong from '../Templates/Icon/Strong/Strong';
+import HeaderMainMenu from "./Object/HeaderMainMenu/HeaderMainMenu";
 class MainMenu extends React.Component {
+
+    updateScreen () {
+        this.setState({
+            width: window.innerWidth
+        })
+    }
 
     constructor(props) {
         super(props);
@@ -35,6 +42,8 @@ class MainMenu extends React.Component {
             tests: [],
             active: 0
         }
+        this.updateScreen = this.updateScreen.bind(this);
+        window.addEventListener("resize", this.updateScreen);
         
     }
 
@@ -185,7 +194,7 @@ class MainMenu extends React.Component {
             return (
                 <div className={g.background}>
                     <div className={[s.page, g.page_].join(' ')} >
-                        <div className={s.header}>
+                        {window.innerWidth > 992 ? (<div className={s.header}>
                             <div className={s.question_title}>
                                 <strong>Тести з<br></br> {this.state.subjectName}</strong>
                             </div>
@@ -196,7 +205,9 @@ class MainMenu extends React.Component {
                                     </button>
                                 </Link>
                             </div>
-                        </div>
+                        </div>) : (<HeaderMainMenu>
+                            <strong>Тести з<br></br> {this.state.subjectName}</strong>
+                        </HeaderMainMenu>)}
                         <div className={s.question_body}>
                             <div className={s.tests_body_left}>
                                 <ZNO_component

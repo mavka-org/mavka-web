@@ -55,6 +55,15 @@ class Header extends React.Component {
         })
     }
 
+    openNav() {
+        document.getElementById("myNav").style.width = "60%";
+    }
+
+    closeNav() {
+        document.getElementById("myNav").style.width = "0%";
+    }
+
+
     render() {
         let left = Math.max(0, Math.floor(this.state.durationTime - (this.state.time - this.state.timeOfStart) / 1000.0));
         //console.log(this.state.checkedAnswers);
@@ -62,6 +71,19 @@ class Header extends React.Component {
         if (window.innerWidth <= 992) {
             return (
                 <div>
+                    <div id="myNav" className={s.overlay}>
+                        <a href={"javascript:void(0)"} className={s.closebtn} onClick={this.closeNav}>&times;</a>
+                        <div className={s.overlayContent}>
+                            <QuestionNavPanel
+                                checkedAnswers={this.state.checkedAnswers}
+                                list={this.props.list}
+                                updateQuestion={this.props.updateQuestion}
+                                active={this.props.active}
+                                answers={this.props.answers}
+                                isPractice={this.props.isPractice}
+                            />
+                        </div>
+                    </div>
                     {(left <= 0 || this.state.clicked) && !this.props.isPractice ? (<Alert
                         time={left}
                         cancel={this.cancel}
@@ -70,7 +92,7 @@ class Header extends React.Component {
                     />) : null}
                     <div className={s.header}>
                         <div className={s.nav_panel}>
-                            <div className={s.nav}>Усі завдання</div>
+                            <div className={s.nav} onClick={this.openNav}>Усі завдання</div>
                             {this.props.isPractice ? (
                                     <div className={g.icon_header}><div style={{marginBottom:'10px'}}><Strong /></div> <strong>&nbsp;Практика</strong></div>
                                 ) :
