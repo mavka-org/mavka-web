@@ -81,7 +81,7 @@ class ABCD extends Component {
                         <div className={s.answers}>
                             <Answer
                                 answered={this.state.answered}
-                                letter={"A"}
+                                letter={"А"}
                                 question={data.getQuestions()[0]}
                                 explanation={data.getExplanations()[0]}
                                 hidden={hidden}
