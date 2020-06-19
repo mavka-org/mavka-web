@@ -1,7 +1,8 @@
 import React from 'react';
 import g from './../../Style.module.css';
 import Party from './../../Icon/Party/Party';
-import Strong from './../../Icon/StrongCopy/Strong';
+import RaisedFist from './../../Icon/RaisedFist';
+import Like from './../../Icon/Like';
 import firebase from "../../../../global";
 class Next extends React.Component {
     submitQuestion() {
@@ -50,24 +51,24 @@ class Next extends React.Component {
             if(this.props.scores[this.props.number - 1][1] == 2) {
                 return (
                     <div>
-                        <div className={g.result}><strong>Правильно!<Party /></strong></div>
-                        <div className={g.stats}>Ти отримаєш {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
+                        <div className={g.result}><strong>Правильно! <Party /></strong></div>
+                        <div className={g.stats}>Отримано {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
                     </div>
                 );
             }
             else if(this.props.scores[this.props.number - 1][1] == 1) {
                 return (
                     <div>
-                        <div className={g.result}><strong>Частково правильно<Strong /></strong></div>
-                        <div className={g.stats}>Ти отримаєш {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
+                        <div className={g.result}><strong>Частково правильно <Like /></strong></div>
+                        <div className={g.stats}>Отримано {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
                     </div>
                 );
             }
             else {
                 return (
                     <div>
-                        <div className={g.result}><strong>Похибка, не здавайся!<Strong /></strong></div>
-                        <div className={g.stats}>Ти отримаєш {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]} можливих</div>
+                        <div className={g.result}><strong>Похибка, не здавайся! <RaisedFist /></strong></div>
+                        <div className={g.stats}>Отримано {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
                     </div>
                 );
             }
