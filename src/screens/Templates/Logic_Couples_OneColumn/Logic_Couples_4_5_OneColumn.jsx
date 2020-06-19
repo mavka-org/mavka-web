@@ -380,6 +380,7 @@ class Logic_Couples_4_5 extends React.Component {
                                 updateAnswers={this.props.updateAnswers}
                                 isPractice={this.props.isPractice}
                                 scroll={this.props.scroll}
+                                isLastQuestion={this.props.number == this.props.active}
                             />
                             <Topic
                                 topic={data.getTopic()}

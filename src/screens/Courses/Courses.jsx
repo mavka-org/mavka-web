@@ -78,10 +78,10 @@ class Courses extends React.Component {
                         </div>
 
                         <div className={s.courses_wrapper}>
-                            <Course hover={false} course={'Українська мова і література'} pic={pic1} navigate={this.navigate} />
-                            <Course hover={false} course={'Математика'} pic={pic2} navigate={this.navigate} />
-                            <Course hover={false} course={'Історія України'} pic={pic3} navigate={this.navigate} />
-                            <Course hover={false} course={'Біологія'} pic={pic4} navigate={this.navigate} />
+                            <Course hover={true} course={'Українська мова і література'} pic={pic1} navigate={this.navigate} />
+                            <Course hover={true} course={'Математика'} pic={pic2} navigate={this.navigate} />
+                            <Course hover={true} course={'Історія України'} pic={pic3} navigate={this.navigate} />
+                            <Course hover={true} course={'Біологія'} pic={pic4} navigate={this.navigate} />
                             <Course hover={false} course={'Фізика'} pic={pic5} style={{ opacity: 0.4, cursor: 'default' }} />
                             <Course hover={false} course={'Географія'} pic={pic6} style={{ opacity: 0.4, cursor: 'default' }} />
                             <Course hover={false} course={'Англійська мова'} pic={pic7} style={{ opacity: 0.4, cursor: 'default' }} />
