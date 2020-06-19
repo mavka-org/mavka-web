@@ -21,7 +21,7 @@ class Progres extends React.Component {
 
     customConfirm() {
         if(this.state.clicked) {
-            return <AlertConfirm cancel={this.cancel} deleteTestInfo={this.props.deleteTestInfo} testID={this.props.testID}/>
+            return <AlertConfirm cancel={this.cancel} click={this.props.deleteTestInfo} args={[this.props.testID]}/>
         }
         else {
             return null;
@@ -30,15 +30,15 @@ class Progres extends React.Component {
 
     render() {
         return (
-                <div className={s.skip}>
-                    {this.customConfirm()}
-                    <button className={g.btn} onClick={()=>{
-                        this.setState({
-                            clicked: true
-                        })
-                    }}>Скинути прогрес</button>
-                    <div className={s.description} style={{ width: '130%', fontSize: '14px', lineHeight: '18px' }}>Ти втратиш прогрес, бали і рекомендовані теми, та зможеш практикувати та симулювати цей тест з нуля </div>
-                </div>
+            <div className={s.skip}>
+                {this.customConfirm()}
+                <button className={g.btn} onClick={()=>{
+                    this.setState({
+                        clicked: true
+                    })
+                }}>Скинути прогрес</button>
+                <div className={s.description} style={{ width: '130%', fontSize: '14px', lineHeight: '18px' }}>Ти втратиш прогрес, бали і рекомендовані теми, та зможеш практикувати та симулювати цей тест з нуля </div>
+            </div>
         );
     }
 }

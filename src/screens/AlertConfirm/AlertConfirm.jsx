@@ -25,7 +25,7 @@ class AlertConfirm extends React.Component {
                     <div className={s.alert_description}>Ви впевенені, що бажаєте скинути прогрес для цього теста?  </div>
                     <div className={s.btn_wrapper}>
                         <button className={s.btn_end} onClick={() => {
-                            this.props.deleteTestInfo(this.props.testID);
+                            this.props.click(...this.props.args);
                             this.props.cancel();
                         }}>Так</button>
                         <button className={s.btn_turn_back} onClick={() => {
