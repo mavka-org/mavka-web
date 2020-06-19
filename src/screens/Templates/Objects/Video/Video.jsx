@@ -9,7 +9,7 @@ class Comment extends React.Component {
             }}>
                 <p><strong><VideoCamera /> Відеопояснення</strong></p>
                 <div className={g.video}>
-                    <div style={{margin: 'auto',color: 'white'}}>Незабаром...</div>
+                    <div className={g.video_text}>Незабаром...</div>
                 </div>
             </div>
         );

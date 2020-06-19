@@ -30,7 +30,7 @@
 .answer_text {
     font-size: 18px;
     margin-bottom: 16px;
-    
+    line-height: 25px;
 }
 
 .answer:focus {
@@ -65,7 +65,7 @@
 
 .choose {
     font-size: 18px;
-    line-height: 22px;
+    line-height: 25px;
 }
 
 .check {
@@ -83,7 +83,7 @@
 
 .comment {
     font-size: 15px;
-    line-height: 19px;
+    line-height: 23px;
     margin-left: 16px;
     margin-bottom: 16px;
 }
