@@ -48,7 +48,8 @@
       let images = document.getElementsByTagName("img");
       let n = images.length;
       function upd (x) {
-        let l = 0, r =Math.min(Math.min(images[x].naturalWidth, images[x].parentNode.parentElement.clientWidth), window.innerWidth * 0.5);
+        console.log(images[x]);
+        let l = 0, r = Math.min(Math.min(images[x].naturalWidth, images[x].parentNode.parentElement.clientWidth * (window.innerWidth <= 992 ? 0.6 : 0.8)), window.innerWidth * 0.5);
         while (l + eps < r) {
           let mid = (l + r + eps) / 2.0;
           let h = mid * images[x].naturalHeight / images[x].naturalWidth;

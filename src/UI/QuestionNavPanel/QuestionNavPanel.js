@@ -78,6 +78,7 @@ class QuestionNavPanel extends Component {
         />
     );
 
+
     backColor = status => {
         if (!this.props.isPractice) {
             if (status == -1) {
@@ -96,6 +97,27 @@ class QuestionNavPanel extends Component {
         }
         return "#FFFFFF";
     }
+
+    backColor1 = status => { /// для Дани
+        if (!this.props.isPractice) { //симуляция
+            if (status == -1) { // не отвечен
+                return "#FFFFFF";
+            }
+            return "#000000"; ///отвечен
+        }
+        if (status == 0) {///неправильно
+            return "#FBE1E4";
+        }
+        if (status == 1) {///частично
+            return "#FCECD3";
+        }
+        if (status == 2) {///правильно
+            return "#EAF2EB";
+        }
+        return "#FFFFFF";//не отвечен
+    }
+
+
     colorText = status => {
         if (!this.props.isPractice) {
             if (status == -1) {
@@ -125,11 +147,48 @@ class QuestionNavPanel extends Component {
         return new_code;
     }
 
+
+    closeNav() {
+        document.getElementById("myNav").style.width = "0%";
+    }
+
     render() {
+
+
+
         const delta = 10;
         let n = this.state.n;
         let current = this.state.current;
         let allButtons = this.state.buttons;
+
+        if (window.innerWidth <= 992) {
+            let code = [];
+            for (let i = 0; i < this.state.n; i++) {
+                code.push(
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "row"
+                    }}>
+                        <label htmlFor={i}><div style={{
+                            width: "27px",
+                            height: "27px",
+                            borderRadius: "15px",
+                            border: "1px solid black",
+                            backgroundColor: !allButtons[i].active ? this.backColor1(allButtons[i].status) : "#FFBE0B"
+                        }}></div></label>
+                        <div id={i} onClick={() => {
+                            this.props.updateQuestion(i + 1);
+                            this.closeNav();
+                        }} style={{cursor: "pointer"}}>
+                            Завдання {i + 1}
+                        </div>
+                    </div>
+                )
+            }
+            return (
+                <div>{code}</div>
+            );
+        }
 
         const styles = {
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.08)",
