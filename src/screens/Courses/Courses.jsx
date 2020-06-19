@@ -14,6 +14,7 @@ import France from './../Templates/Icon/France';
 import UK from './../Templates/Icon/UK';
 import Book from './../Templates/Icon/Book'
 import { Redirect } from 'react-router-dom';
+import Footer from './Object/Footer/Footer';
 class Courses extends React.Component {
     state = {
         user: 25
@@ -89,7 +90,10 @@ class Courses extends React.Component {
                             <Course hover={false} course={'Німецька мова'} pic={pic9} style={{ opacity: 0.4, cursor: 'default' }} />
 
                         </div>
-
+                        <div style={{width: '100%',marginTop: '90px', marginBottom: '10px',color:'Gray'}}><hr></hr></div>
+                        <div className={s.footer}>
+                            <Footer />
+                        </div>
                     </div>
                 </div>
             );

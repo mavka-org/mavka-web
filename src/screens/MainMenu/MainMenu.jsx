@@ -21,6 +21,7 @@ import {bounce} from 'react-animations'
 import Radium, {StyleRoot} from 'radium';
 import NotFound from './../NotFound'
 
+
 import Strong from '../Templates/Icon/Strong/Strong';
 class MainMenu extends React.Component {
 
@@ -108,14 +109,14 @@ class MainMenu extends React.Component {
     deleteTestInfo = (testID) => {
         this.scrollToTop();
         this.state.user.getIdToken().then((token) => {
-            Services.deleteTestByID(token, testID).then(()=>{
+            Services.deleteTestByID(token, testID).then(() => {
                 this.updateUserState(this.state.user);
             });
         });
         /*let tmp = this.state.tests;
         tmp[this.state.active].status = 'тест не пройдений';
         */
-        
+
     }
 
     startPractice = () => {
@@ -135,18 +136,18 @@ class MainMenu extends React.Component {
     }
 
 
-    onClickPractice(){
-        if(this.state.tests[this.state.active].status == 'тест пройдений'){
-            return this.scrollToBottom; 
-        }else return this.startPractice;
+    onClickPractice() {
+        if (this.state.tests[this.state.active].status == 'тест пройдений') {
+            return this.scrollToBottom;
+        } else return this.startPractice;
     }
 
     onClickSimulation() {
         if (this.state.tests[this.state.active].status == 'тест не пройдений') {
             return this.startSimulation;
-        }else{
-            return this.scrollToBottom; 
-        } 
+        } else {
+            return this.scrollToBottom;
+        }
     }
 
     btnPracticeStyle() {
@@ -169,10 +170,9 @@ class MainMenu extends React.Component {
         scroll.scrollToTop();
     }
 
-    
+
 
     render() {
-        console.log(this.state.tests[this.state.active]);
         const pic1 = <Strong />
         const pic2 = <Clock />
         if (this.state.user == 25) {
@@ -215,7 +215,7 @@ class MainMenu extends React.Component {
                                     <div className={s.title}>
                                         <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
                                     </div>
-                                    {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores numCorrect={this.state.tests[this.state.active].numCorrect} score12={this.state.tests[this.state.active].score12} score200={this.state.tests[this.state.active].score200} click={this.openResults}/>) : ""}
+                                    {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores numCorrect={this.state.tests[this.state.active].numCorrect} score12={this.state.tests[this.state.active].score12} score200={this.state.tests[this.state.active].score200} click={this.openResults} />) : ""}
                                 </div>
                                 <div className={s.buttons_frame}>
                                     <Button stl={this.btnPracticeStyle()} click={this.onClickPractice()} icon={pic1} title={'Практикуватися'} comment={'Проходь завдання та вчися на поясненнях'} />
@@ -228,14 +228,14 @@ class MainMenu extends React.Component {
                                 <div className={s.video_explanation_frame}>
                                     <p><strong><VideoCamera /> Відеопояснення</strong></p>
                                     <div className={s.video}>
-                                        <div style={{ margin: '0 auto', color: 'white' }}>Незабаром...</div>
+                                        <div className={g.video_text}>Незабаром...</div>
                                     </div>
                                 </div>
-                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} click={this.deleteTestInfo}/>)}
+                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} click={this.deleteTestInfo} />)}
                             </div>) : null}
                         </div>
                     </div>
-                </div>
+                </div >
             )
         }
         return (<Redirect to="/register" />);

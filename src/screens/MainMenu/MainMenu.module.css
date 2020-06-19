@@ -6,7 +6,8 @@
     width: 945px;
     left: calc(50% - 945px/2);
     top: 0px;
-    overflow: hidden;;
+    overflow: hidden;
+    ;
 }
 
 /* header */
@@ -227,8 +228,6 @@
     align-self: center;
 }
 
-
-
 /* adaptive */
 
 @media (min-width: 930px) {
@@ -250,9 +249,8 @@
         font-size: 14px;
         line-height: 18px;
     }
-
-
 }
+
 @media (max-width: 992px) {
     /* это будет показано при разрешении монитора до 930 пикселей */
     .page {
@@ -261,7 +259,7 @@
         padding: 105px 0px;
         position: absolute;
         width: 95%;
-        height: 280%;
+        height: 180%;
         left: calc(50% - 95%/2);
         top: 0px;
         background-color: #FFFFFF;
@@ -275,7 +273,7 @@
         display: flex;
         flex-direction: column;
         width: 320px;
-        align-self:center;
+        align-self: center;
     }
     .test_body_right {
         margin-left: 2%;
@@ -307,18 +305,28 @@
         font-size: 14px;
         line-height: 18px;
     }
-    .title{
+    .title {
         margin-left: 100px;
         margin-top: 30px;
     }
     .video_explanation_frame {
-        width: 90%;
+        width: 100%;
         height: 100%;
     }
-    .video_explanation_frame > p{
+    .video_explanation_frame>p {
         margin-left: 100px;
     }
+    .video {
+        width: 100%;
+        height: 350px;
+        background-color: black;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
+
 @media (max-width: 325px) {
     /* это будет показано при разрешении монитора до 930 пикселей */
     .page {
@@ -336,9 +344,8 @@
         display: flex;
         flex-direction: column;
         width: 280px;
-        align-self:center;
+        align-self: center;
     }
-
     .test_body_right {
         margin-left: 1%;
         display: flex;
@@ -349,19 +356,22 @@
         display: flex;
         flex-direction: column;
         align-self: center;
-
     }
-
-
-    .title{
+    .title {
         margin-left: 130px;
         margin-top: 30px;
     }
     .video_explanation_frame {
-        width: 90%;
-        height: 100%;
+        width: 100%;
+        height: 90%;
     }
-    .video_explanation_frame > p{
-        margin-left: 130px;
+    .video {
+        width: 100%;
+        height: 250px;
+        background-color: black;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
