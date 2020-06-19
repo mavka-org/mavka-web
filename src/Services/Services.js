@@ -256,7 +256,8 @@ class Question {
     }
 
     evaluate (answerToCheck) {
-        //alert(answerToCheck + " " + this.answer);
+        //console.log(answerToCheck + " " + this.answer);
+        //console.log((this.answer == 'А'))
         let res = [];
         if(this.getType() == "ABCDE" || this.getType() == "ABCD" || this.getType() == "ABCDE_OneColumn" || this.getType() == "ABCD_OneColumn"){
             if(answerToCheck == this.answer) {

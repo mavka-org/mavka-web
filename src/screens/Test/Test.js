@@ -45,8 +45,52 @@ const componentsMap = {
     'Geo_History_3_7_OneColumn': Geo_History_3_7,
 };
 
+
+
+
 export class Test extends React.Component{
 
+    getTouches = (evt) => {
+        return evt.touches ||             // browser API
+            evt.originalEvent.touches; // jQuery
+    }
+
+    handleTouchStart = (evt) => {
+        const firstTouch = this.getTouches(evt)[0];
+        this.xDown = firstTouch.clientX;
+        this.yDown = firstTouch.clientY;
+    };
+
+    handleTouchMove = (evt) => {
+        if ( ! this.xDown || ! this.yDown ) {
+            return;
+        }
+
+        var xUp = evt.touches[0].clientX;
+        var yUp = evt.touches[0].clientY;
+
+        var xDiff = this.xDown - xUp;
+        var yDiff = this.yDown - yUp;
+
+        if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+            if ( xDiff > 0 ) {
+                this.updateQuestion(Math.min(this.state.active + 1, this.state.n));
+                /* left swipe */
+            } else {
+                this.updateQuestion(Math.max(1, this.state.active - 1));
+                /* right swipe */
+            }
+        } else {
+            if ( yDiff > 0 ) {
+                /* up swipe */
+            } else {
+                /* down swipe */
+            }
+        }
+        /* reset values */
+        this.xDown = null;
+        this.yDown = null;
+    };
 
     updateScreen () {
         this.setState({
@@ -56,9 +100,12 @@ export class Test extends React.Component{
 
     constructor(props) {
         super(props);
+        this.xDown = null;
+        this.yDown = null;
         this.state = {
             subject: this.props.match.params.id,
             testId: this.props.match.params.testId,
+            mode: this.props.match.params.mode,
             isPractice: SystemFunctions.stringsEqual(this.props.match.params.mode, 'practice'),
             user: 25,
             active: 1,
@@ -109,6 +156,9 @@ export class Test extends React.Component{
             })
         })
 
+        document.addEventListener('touchstart', this.handleTouchStart, false);
+        document.addEventListener('touchmove', this.handleTouchMove, false);
+
 
     }
 
@@ -153,6 +203,11 @@ export class Test extends React.Component{
                   });
             }else{
                 this.state.user.getIdToken().then((token) => {
+                    for(let i = 1; i <= this.state.n; i++){
+                        if(!(i in this.state.answers)){
+                            this.state.answers[i] = "";
+                        }
+                    }
                     Services.updateTestAnswers(token, this.state.testId, this.state.answers).then(() => {
                         let res = {};
                         for(let i = 0; i < this.state.n; i++) {
@@ -179,7 +234,7 @@ export class Test extends React.Component{
                             { headers: { 'Content-Type': 'application/json' } }
                         ).then((response) => {
                             console.log(response);
-                            Services.changeTestStatusByID(token, this.state.testId, "тест пройдений").then(() => {
+                            Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => { // Dont touch this status
                                     this.props.history.push({
                                         pathname: '/subject/' + this.state.subject,
                                         state: { testID: this.state.testId }
@@ -189,14 +244,6 @@ export class Test extends React.Component{
                         })
                     })
                 });
-
-                /*
-                setTimeout(() => {  this.props.history.push({
-                    pathname: '/subject/' + this.state.subject,
-                    state: { testID: this.state.testId }
-                  });
-                }, 1000);
-                */
             }
         }
     }

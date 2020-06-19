@@ -1,7 +1,8 @@
 import React from 'react';
 import g from './../../Style.module.css';
 import Party from './../../Icon/Party/Party';
-import Strong from './../../Icon/StrongCopy/Strong';
+import RaisedFist from './../../Icon/RaisedFist';
+import Like from './../../Icon/Like';
 import firebase from "../../../../global";
 class Next extends React.Component {
     submitQuestion() {
@@ -47,45 +48,86 @@ class Next extends React.Component {
 
     getResult() {
         if(this.props.isPractice && this.props.answered) {
-            if(this.props.scores[this.props.number - 1][1] == 2) {
+            if(this.props.isOpenEnded) {
                 return (
                     <div>
-                        <div className={g.result}><strong>Правильно!<Party /></strong></div>
-                        <div className={g.stats}>Ти отримаєш {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
-                    </div>
-                );
-            }
-            else if(this.props.scores[this.props.number - 1][1] == 1) {
-                return (
-                    <div>
-                        <div className={g.result}><strong>Частково правильно<Strong /></strong></div>
-                        <div className={g.stats}>Ти отримаєш {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
+                        <div className={g.result}><strong>Молодець!<Party /></strong></div>
+                        <div className={g.stats}>Ми нарахуємо тобі типовий бал, який отримували учні зі схожими тестовими відповідями на справжньому ЗНО</div>
                     </div>
                 );
             }
             else {
-                return (
-                    <div>
-                        <div className={g.result}><strong>Похибка, не здавайся!<Strong /></strong></div>
-                        <div className={g.stats}>Ти отримаєш {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]} можливих</div>
-                    </div>
-                );
+                if(this.props.scores[this.props.number - 1][1] == 2) {
+                    return (
+                        <div>
+                            <div className={g.result}><strong>Правильно!<Party /></strong></div>
+                            <div className={g.stats}>Отримано {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
+                        </div>
+                    );
+                }
+                else if(this.props.scores[this.props.number - 1][1] == 1) {
+                    return (
+                        <div>
+                            <div className={g.result}><strong>Частково правильно<Strong /></strong></div>
+                            <div className={g.stats}>Отримано {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
+                        </div>
+                    );
+                }
+                else {
+                    return (
+                        <div>
+                            <div className={g.result}><strong>Похибка, не здавайся!<Strong /></strong></div>
+                            <div className={g.stats}>Отримано {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]} </div>
+                        </div>
+                    );
+                }
             }
         }
         else {
             return <div></div>;
         }
     }
-
+    buttonName(){
+        if(this.props.isPractice){
+            if(!this.props.answered)
+                return 'Перевірити';
+            else{
+                if(this.props.isLastQuestion)
+                    return 'Завершити тест';
+                return 'Наступне питання';
+            }
+        }else{
+            if(this.props.isLastQuestion)
+                return 'Завершити тест';
+            return 'Наступне питання';
+        }
+    }
+    showSkip(){
+        if(this.props.isLastQuestion)
+            return false;
+        else {
+            if(this.props.isPractice){
+                if(this.props.answered)
+                    return false;
+                return true;
+            }
+            return true;
+        }
+    }
     render() {
         return (
             <div className={g.result_frame}>
                 {this.getResult()}
                 <div className={g.wrap}>
-                <button className={g.btn} onClick={() => {
+                <button className={this.props.isNextAllowed ? (g.btn) : (g.btn + ' ' + g.inactiveNextButton)} onClick={() => {
                     this.submitQuestion();
-                }}>{this.props.answered ? "Наступне питання" : "Перевірити"}</button>
-                    <button class={g.pass}>Пропустити</button>
+                }}>{this.buttonName()}</button>
+                <button class={g.pass} style={{
+                    display: this.showSkip() ? "block" : "none"
+                }} onClick={()=>{
+                        this.props.scroll();
+                        this.props.updateQuestion(this.props.number + 1);
+                    }}>Пропустити</button>
                 </div>
             </div>
         );

@@ -16,9 +16,11 @@ import Confetti from '../../UI/Confetti/Confetti';
 import Scores from './Object/Scores/Scores';
 import Progres from './Object/Progres/Progres';
 import Button from './Object/Button/Button';
-import { animateScroll as scroll } from 'react-scroll'
-import { bounce } from 'react-animations'
-import Radium, { StyleRoot } from 'radium';
+import {animateScroll as scroll} from 'react-scroll'
+import {bounce} from 'react-animations'
+import Radium, {StyleRoot} from 'radium';
+import NotFound from './../NotFound'
+
 
 import Strong from '../Templates/Icon/Strong/Strong';
 class MainMenu extends React.Component {
@@ -33,6 +35,7 @@ class MainMenu extends React.Component {
             tests: [],
             active: 0
         }
+        
     }
 
     componentDidMount() {
@@ -54,7 +57,9 @@ class MainMenu extends React.Component {
         });
 
         let current = this;
-
+        if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія'){
+            return (NotFound);
+        }
         let token = resp.getIdToken().then(function (token) {
             current.token = token;
             //alert(token);
@@ -168,20 +173,14 @@ class MainMenu extends React.Component {
 
 
     render() {
-        let styles = {
-            bounce: {
-                animation: 'x 1s',
-                animationName: Radium.keyframes(bounce, 'bounce')
-            }
-        }
-        console.log(this.state.subject);
         const pic1 = <Strong />
         const pic2 = <Clock />
         if (this.state.user == 25) {
             return (<div></div>);
         }
-        console.log("!!!!!!!!!!");
-        console.log(this.state.active);
+        if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія'){
+            return (NotFound);
+        }
         if (this.state.user) {
             return (
                 <div className={g.background}>
