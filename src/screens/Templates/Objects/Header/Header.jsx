@@ -72,7 +72,7 @@ class Header extends React.Component {
                         <div className={s.nav_panel}>
                             <div className={s.nav}>Усі завдання</div>
                             {this.props.isPractice ? (
-                                    <div className={g.icon_header}><div><Strong />&nbsp;</div><strong>Практика</strong></div>
+                                    <div className={g.icon_header}><div style={{marginBottom:'10px'}}><Strong /></div> <strong> Практика</strong></div>
                                 ) :
                                 (
                                     <b className={s.timer}><Clock/>{this.convertTime(Math.floor(this.state.durationTime - (this.state.time - this.state.timeOfStart) / 1000.0))}</b>

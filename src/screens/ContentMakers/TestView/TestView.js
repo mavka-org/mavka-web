@@ -167,6 +167,11 @@ export class TestView extends React.Component {
                 let num = this.state.active - 1;
                 let type = data.getType();
 
+                let scores = [];
+                for(let i = 0; i < this.state.n; i++) {
+                    scores.push(-1);
+                }
+
                 if (window.innerWidth <= 992 || !data.getIsDoubleColumn()) {
                     type += "_OneColumn";
                 }
@@ -197,6 +202,7 @@ export class TestView extends React.Component {
                                 updateAnswers={this.updateAnswers}
                                 currentAnswer={this.state.answers[this.state.active]}
                                 isPractice={this.state.isPractice}
+                                scores={scores}
                             >
                             </DynamicComponent>
                         </div>

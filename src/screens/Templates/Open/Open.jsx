@@ -55,7 +55,6 @@ class Open extends React.Component {
             return(<div></div>)
         }
 
-
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
         let isNextAllowed = this.validateCurrentAnswer()
