@@ -81,7 +81,7 @@
         padding: 10px 0px;
         position: absolute;
         width: 95%;
-        height: 270%;
+        height: 180%;
         left: calc(50% - 95%/2);
         top: 0px;
     }
@@ -94,8 +94,9 @@
         padding: 105px 0px;
         position: absolute;
         width: 950px;
-        height: 270%;
+        height: 150%;
         left: calc(50% - 950px/2);
         top: 0px;
     }
 }
+
