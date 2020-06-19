@@ -64,7 +64,7 @@ class Logic_Couples_4_5 extends React.Component {
 
 
             let isCorrectAnswer;
-            if(this.state.currentAnswer != null) {
+            if(this.state.currentAnswer != null && this.state.currentAnswer.length > i) {
                 isCorrectAnswer = data.getMatchCorrectAnswers()[i].charCodeAt(0) == this.state.currentAnswer[i].charCodeAt(0)
             }
             else {
@@ -93,7 +93,7 @@ class Logic_Couples_4_5 extends React.Component {
     
             for(let i = 0; i < 4; ++i) {
                 let column;
-                if(this.state.currentAnswer != null) {
+                if(this.state.currentAnswer != null && this.state.currentAnswer.length > i) {
                     column = this.state.currentAnswer[i];
                 }
                 else {
@@ -143,7 +143,7 @@ class Logic_Couples_4_5 extends React.Component {
     }
 
     getChecked(i, j) {
-        if(this.state.currentAnswer == null) return false;
+        if(this.state.currentAnswer == null || this.state.currentAnswer.length <= i) return false;
         return (this.state.currentAnswer[i] == j);
     }
 
@@ -195,7 +195,7 @@ class Logic_Couples_4_5 extends React.Component {
     }
 
     isNextAllowed() {
-        if(this.state.currentAnswer != null && this.state.currentAnswer[0].length + this.state.currentAnswer[1].length + this.state.currentAnswer[2].length + this.state.currentAnswer[3].length == 4) {
+        if(this.state.currentAnswer != null && this.state.currentAnswer.length == 4 && this.state.currentAnswer[0].length + this.state.currentAnswer[1].length + this.state.currentAnswer[2].length + this.state.currentAnswer[3].length == 4) {
             return true;
         }
         return false;
