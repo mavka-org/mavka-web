@@ -4,6 +4,7 @@ import Party from './../../Icon/Party/Party';
 import RaisedFist from './../../Icon/RaisedFist';
 import Like from './../../Icon/Like';
 import firebase from "../../../../global";
+import Strong from '../../Icon/Strong/Strong';
 class Next extends React.Component {
     submitQuestion() {
         if(this.props.isPractice){
