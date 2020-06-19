@@ -29,7 +29,9 @@ class Alert extends React.Component {
                         <button className={s.btn_end} onClick={() => {
                             this.props.updateQuestion(10000);
                         }}>Завершити та отримати бал</button>
-                        <button className={s.btn_hard_end}>Завершити та скинути прогрес</button>
+                        <button className={s.btn_hard_end} onClick={() => {
+                            this.props.goToMenu();
+                        }}>Завершити та скинути прогрес</button>
                     </div>
                 </div>
             </div>

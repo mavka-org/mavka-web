@@ -23,6 +23,7 @@ import BioTriples from '../Templates/BioTriples/BioTriples';
 import Geo_History_3_7 from '../Templates/Geo_History_3_7/Geo_History_3_7';
 import {animateScroll as scroll} from 'react-scroll'
 import Axios from 'axios';
+import NotFound from './../NotFound'
 
 const componentsMap = {
     ABCDE,
@@ -115,12 +116,19 @@ export class Test extends React.Component{
             answers: {},
             checkedAnswers: {},
             width: window.innerWidth,
+            statusFound: true
         }
         this.updateScreen = this.updateScreen.bind(this);
         window.addEventListener("resize", this.updateScreen);
 
         let current = this;
         Services.getReferenceById(this.state.testId).then(function (ref) {
+            console.log(ref);
+            if(typeof ref == 'undefined'){
+                current.setState({
+                    statusFound: false
+                })
+            }
             Services.getData(ref).then(function (data) {
                 let myData = data.map(value => Services.getQuestionClass(value));
                 let status = [];
@@ -237,7 +245,7 @@ export class Test extends React.Component{
                             Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => { // Dont touch this status
                                     this.props.history.push({
                                         pathname: '/subject/' + this.state.subject,
-                                        state: { testID: this.state.testId }
+                                        state: { testID: this.state.testId, confetti: true }
                                     });
                                 }
                             );
@@ -247,6 +255,18 @@ export class Test extends React.Component{
             }
         }
     }
+
+    goToMenu = () => {
+        this.state.user.getIdToken().then((token) => {
+            Services.changeTestStatusByID(token, this.state.testId, "Тест не пройдений").then(() => { // Dont touch this status
+                this.props.history.push({
+                    pathname: '/subject/' + this.state.subject,
+                    state: { testID: this.state.testId }
+                });
+            });
+        });
+    }
+
 
     updateStatus = (id, x) => {
         const answered = this.state.answered;
@@ -285,6 +305,15 @@ export class Test extends React.Component{
         if (this.state.user == 25) {
             return (<div></div>);
         }
+        if(!this.state.statusFound){
+            return (NotFound);
+        }
+        if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія'){
+            return (NotFound);
+        }
+        if (this.state.mode != 'practice' && this.state.mode != 'simulation'){
+            return (NotFound);
+        }
         if (this.state.user) {
             if (this.state.data.length > 0) {
                 const data = this.state.data;
@@ -303,8 +332,8 @@ export class Test extends React.Component{
                         scores.push(data[i].evaluate(this.state.answers[i + 1]));
                     else scores.push(-1);
                 }
-                console.log("1111");
-                console.log(answers);
+                //console.log("1111");
+                //console.log(answers);
                 if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
                     type += "_OneColumn";
                 }
@@ -316,11 +345,12 @@ export class Test extends React.Component{
                 else {
                     firebase.analytics().logEvent('newQuestion');
                 }
-                console.log(scores);
+                //console.log(scores);
                 return (
                     <div className={g.background}>
                         <div className={[s.page, g.page_].join(' ')}>
                             <Header
+                                goToMenu={this.goToMenu}
                                 checkedAnswers={this.state.checkedAnswers}
                                 subject={data[num].getSubject()}
                                 year={data[num].getYear()}

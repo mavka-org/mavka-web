@@ -40,7 +40,8 @@ class MainMenu extends React.Component {
             subject: this.props.match.params.id,
             user: 25,
             tests: [],
-            active: 0
+            active: 0,
+            confetti: this.props.location.state
         }
         this.updateScreen = this.updateScreen.bind(this);
         window.addEventListener("resize", this.updateScreen);
@@ -111,7 +112,8 @@ class MainMenu extends React.Component {
 
     updateSelectedTest = (num) => {
         this.setState({
-            active: num
+            active: num,
+            confetti: null
         })
     }
 
@@ -219,7 +221,7 @@ class MainMenu extends React.Component {
 
                             {this.state.tests.length > 0 ? (<div className={s.test_body_right}>
                                 <div>
-                                    {this.state.tests[this.state.active].status == 'тест пройдений' && this.props.location.state ? (<Confetti />) : null}
+                                    {this.state.tests[this.state.active].status == 'тест пройдений' && this.state.confetti && this.state.confetti.confetti ? (<Confetti />) : null}
                                 </div>
 
                                 <div className={s.scores_frame}>
@@ -242,7 +244,8 @@ class MainMenu extends React.Component {
                                         <div className={g.video_text}>Незабаром...</div>
                                     </div>
                                 </div>
-                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} click={this.deleteTestInfo} />)}
+                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} deleteTestInfo={this.deleteTestInfo}/>)}
+
                             </div>) : null}
                         </div>
                     </div>
