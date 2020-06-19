@@ -14,10 +14,12 @@ import France from './../Templates/Icon/France';
 import UK from './../Templates/Icon/UK';
 import Book from './../Templates/Icon/Book'
 import { Redirect } from 'react-router-dom';
+import AlertConfirm from './../AlertConfirm/AlertConfirm'
 import Footer from './Object/Footer/Footer';
 class Courses extends React.Component {
     state = {
-        user: 25
+        user: 25,
+        clicked: false
     }
 
     componentDidMount = () => this.getAuthStatus();
@@ -43,6 +45,25 @@ class Courses extends React.Component {
         this.props.history.push(ref);
     }
 
+    cancel = () => {
+        this.setState({
+            clicked: false
+        })
+    }
+
+    signOut = () => {
+        firebase.auth().signOut();
+    }
+
+    customConfirm() {
+        if(this.state.clicked) {
+            return <AlertConfirm text={'Ви впевенені, що бажаєте вийти з акаунта?'} cancel={this.cancel} click={this.signOut} args={[]}/>
+        }
+        else {
+            return null;
+        }
+    }
+
     render() {
         var pic1 = <Book />
         var pic2 = <Moai />
@@ -59,6 +80,7 @@ class Courses extends React.Component {
         if (this.state.user) {
             return (
                 <div className={g.background}>
+                    {this.customConfirm()}
                     <div className={[s.page, g.page_].join(' ')}>
 
                         <div className={s.question_header}>
@@ -71,7 +93,9 @@ class Courses extends React.Component {
 
                             <div className={s.exit}>
                                 <button className={s.end} onClick={() => {
-                                    firebase.auth().signOut();
+                                    this.setState({
+                                        clicked: true
+                                    })
                                 }}>
                                     Вийти
                                 </button>

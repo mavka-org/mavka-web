@@ -248,6 +248,18 @@ export class Test extends React.Component{
         }
     }
 
+    goToMenu = () => {
+        this.state.user.getIdToken().then((token) => {
+            Services.changeTestStatusByID(token, this.state.testId, "Тест не пройдений").then(() => { // Dont touch this status
+                this.props.history.push({
+                    pathname: '/subject/' + this.state.subject,
+                    state: { testID: this.state.testId }
+                });
+            });
+        });
+    }
+
+
     updateStatus = (id, x) => {
         const answered = this.state.answered;
         answered[id - 1] = x;
@@ -303,8 +315,8 @@ export class Test extends React.Component{
                         scores.push(data[i].evaluate(this.state.answers[i + 1]));
                     else scores.push(-1);
                 }
-                console.log("1111");
-                console.log(answers);
+                //console.log("1111");
+                //console.log(answers);
                 if (window.innerWidth <= 992 || !data[num].getIsDoubleColumn()) {
                     type += "_OneColumn";
                 }
@@ -316,11 +328,12 @@ export class Test extends React.Component{
                 else {
                     firebase.analytics().logEvent('newQuestion');
                 }
-                console.log(scores);
+                //console.log(scores);
                 return (
                     <div className={g.background}>
                         <div className={[s.page, g.page_].join(' ')}>
                             <Header
+                                goToMenu={this.goToMenu}
                                 checkedAnswers={this.state.checkedAnswers}
                                 subject={data[num].getSubject()}
                                 year={data[num].getYear()}
