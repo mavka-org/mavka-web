@@ -24,6 +24,7 @@ import NotFound from './../NotFound'
 
 import Strong from '../Templates/Icon/Strong/Strong';
 import HeaderMainMenu from "./Object/HeaderMainMenu/HeaderMainMenu";
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 class MainMenu extends React.Component {
 
     updateScreen () {
@@ -41,7 +42,8 @@ class MainMenu extends React.Component {
             user: 25,
             tests: [],
             active: 0,
-            confetti: this.props.location.state
+            confetti: this.props.location.state,
+            loading: true
         }
         this.updateScreen = this.updateScreen.bind(this);
         window.addEventListener("resize", this.updateScreen);
@@ -104,7 +106,8 @@ class MainMenu extends React.Component {
                 console.log(current.props.location.state);
                 current.setState({
                     tests: tests,
-                    active: SystemFunctions.mainMenuActiveElement(typeof current.props.location.state != 'undefined' ? current.props.location.state.testID : 'undefined', tests)
+                    active: SystemFunctions.mainMenuActiveElement(typeof current.props.location.state != 'undefined' ? current.props.location.state.testID : 'undefined', tests),
+                    loading: false
                 })
             });
         });
@@ -186,11 +189,15 @@ class MainMenu extends React.Component {
     render() {
         const pic1 = <Strong />
         const pic2 = <Clock />
-        if (this.state.user == 25) {
-            return (<div></div>);
-        }
+        
         if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія'){
-            return (NotFound);
+            return (<Redirect to="/404" />);
+        }
+        if(this.state.loading){
+            return (<LoadingScreen />);
+        }
+        if (this.state.user == 25) {
+            return (<LoadingScreen />);
         }
         if (this.state.user) {
             return (
@@ -240,7 +247,7 @@ class MainMenu extends React.Component {
                                 />
                                 <div className={s.video_explanation_frame}>
                                     <p><strong><VideoCamera /> Відеопояснення</strong></p>
-                                    <div className={s.video}>
+                                    <div className={g.video}>
                                         <div className={g.video_text}>Незабаром...</div>
                                     </div>
                                 </div>
