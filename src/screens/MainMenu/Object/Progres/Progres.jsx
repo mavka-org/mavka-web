@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './../../MainMenu.module.css';
-import { confirmAlert } from 'react-confirm-alert';
 import g from './../../../Templates/Style.module.css';
 import AlertConfirm from './../../../AlertConfirm/AlertConfirm'
 
@@ -21,7 +20,7 @@ class Progres extends React.Component {
 
     customConfirm() {
         if(this.state.clicked) {
-            return <AlertConfirm text={'Ви впевенені, що бажаєте скинути прогрес для цього теста?'} cancel={this.cancel} click={this.props.deleteTestInfo} args={[this.props.testID]}/>
+            return <AlertConfirm text={'Ви впевнені, що бажаєте скинути прогрес для цього теста?'} cancel={this.cancel} click={this.props.deleteTestInfo} args={[this.props.testID]}/>
         }
         else {
             return null;

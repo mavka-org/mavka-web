@@ -123,7 +123,7 @@ class Courses extends React.Component {
             );
         }
         else {
-            return (<Redirect to="/register" />);
+            return (<Redirect to="/login" />);
         }
     }
 }

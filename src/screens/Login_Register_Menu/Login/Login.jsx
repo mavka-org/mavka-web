@@ -10,7 +10,9 @@ class Login extends React.Component {
         emailComment: '',
         passwordComment: '',
         changedEmail: true,
-        changedPassword: true
+        changedPassword: true,
+        googleComment: '',
+        fbComment: ''
     }
 
     componentDidMount = () => this.getAuthStatus();
@@ -46,7 +48,7 @@ class Login extends React.Component {
             }
             if(error.code == "auth/invalid-email"){
                 current.setState({
-                    emailComment: "Неправильний формат електронної пошти!",
+                    emailComment: "Неправильний формат електронної адреси!",
                     passwordComment: "",
                     changedPassword: true,
                     changedEmail: false
@@ -54,7 +56,7 @@ class Login extends React.Component {
             }
             if(error.code == "auth/user-not-found"){
                 current.setState({
-                    emailComment: "Не існує користувача з даною електронною поштою!",
+                    emailComment: "Не існує користувача з даною електронною адресою!",
                     passwordComment: "",
                     changedPassword: true,
                     changedEmail: false
@@ -70,13 +72,17 @@ class Login extends React.Component {
 
     trueChangedEmail(){
         this.setState({
-            changedEmail: true
+            changedEmail: true,
+            googleComment: '',
+            fbComment: ''
         })
     }
 
     trueChangedPassword(){
         this.setState({
-            changedPassword: true
+            changedPassword: true,
+            googleComment: '',
+            fbComment: ''
         })
     }
 
@@ -95,8 +101,42 @@ class Login extends React.Component {
                         <strong>Вхід</strong>
                     </div>
                     <div className={s.btns}>
-                        <button className={s.btn_google}>Увійти з Google</button>
-                        <button className={s.btn}>Увійти з Facebook</button>
+                        <button className={s.btn_google} onClick={()=>{
+                            current.setState({
+                                googleComment: '',
+                                fbComment: ''
+                            })
+                            let provider = new firebase.auth.GoogleAuthProvider();
+                            firebase.auth().signInWithPopup(provider).then(function(result) {
+                             var token = result.credential.accessToken;
+                             var user = result.user;
+                            }).catch(function(error){
+                                current.setState({
+                                    googleComment: 'Електрона адреса вже використовується!'
+                                })
+                            });
+                        }}>Увійти з Google</button>
+                        <div style={{color:'red'}}>
+                            {this.state.googleComment}
+                        </div>
+                        <button className={s.btn} onClick={()=>{
+                            current.setState({
+                                googleComment: '',
+                                fbComment: ''
+                            })
+                            var provider = new firebase.auth.FacebookAuthProvider();
+                            firebase.auth().signInWithPopup(provider).then(function(result) {
+                                var token = result.credential.accessToken;
+                                var user = result.user;
+                              }).catch(function(error) {
+                                current.setState({
+                                    fbComment: 'Електрона адреса вже використовується!'
+                                })
+                              });
+                        }}>Увійти з Facebook</button>
+                        <div style={{color:'red'}}>
+                            {this.state.fbComment}
+                        </div>
                         <div className={s.info}>
                             <div className={s.title}>EMAIL</div>
                             <div className={s.inp_wrapper}><div className={s.icon}></div><input onChange={()=>{
