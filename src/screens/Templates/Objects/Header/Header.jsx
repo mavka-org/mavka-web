@@ -72,24 +72,24 @@ class Header extends React.Component {
                         <div className={s.nav_panel}>
                             <div className={s.nav}>Усі завдання</div>
                             {this.props.isPractice ? (
-                                    <div className={g.icon_header}><div style={{marginBottom:'10px'}}><Strong /></div> <strong> Практика</strong></div>
+                                    <div className={g.icon_header}><div style={{marginBottom:'10px'}}><Strong /></div> <strong>&nbsp;Практика</strong></div>
                                 ) :
                                 (
-                                    <b className={s.timer}><Clock/>{this.convertTime(Math.floor(this.state.durationTime - (this.state.time - this.state.timeOfStart) / 1000.0))}</b>
+                                    <b className={s.timer}><Clock/><div style={{width: "15px"}}>&nbsp;{this.convertTime(Math.floor(this.state.durationTime - (this.state.time - this.state.timeOfStart) / 1000.0))}</div></b>
                                 )
                             }
                             {this.props.isPractice ?
                                 (
-                                    <button className={g.end} onClick={() => {
+                                    <div style={{cursor: "pointer"}} onClick={() => {
                                         this.props.updateQuestion(10000);
-                                    }}>Завершити</button>
+                                    }}>Завершити</div>
                                 ) :
                                 (
-                                    <button className={g.end} onClick={() => {
+                                    <div style={{cursor: "pointer"}} onClick={() => {
                                         this.setState({
                                             clicked: true
                                         })
-                                    }}>Завершити</button>)
+                                    }}>Завершити</div>)
                             }
                         </div>
                         <div className={s.tip} >
@@ -117,10 +117,10 @@ class Header extends React.Component {
                     <div className={g.question_header}>
                         <div className={g.title_bar}>
                             {this.props.isPractice ? (
-                                    <div className={g.icon_header}><div><Strong />&nbsp;</div><strong>Практика</strong></div>
+                                    <div className={g.icon_header}><div><Strong />&nbsp;</div><strong>&nbsp;Практика</strong></div>
                                 ) :
                                 (
-                                    <b><Clock/>{this.convertTime(Math.floor(this.state.durationTime - (this.state.time - this.state.timeOfStart) / 1000.0))}</b>
+                                    <b><div className={g.icon_header}><Clock/>&nbsp;<div style={{width: "15px"}}>{this.convertTime(Math.floor(this.state.durationTime - (this.state.time - this.state.timeOfStart) / 1000.0))}</div></div></b>
                                 )
                             }
                             <p><strong>{this.props.subject}</strong> {this.props.year} {this.props.session} сесія</p>
