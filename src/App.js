@@ -13,6 +13,7 @@ import Courses from "./screens/Courses"
 import SurveyDemographics from "./screens/SurveyDemographics"
 import SurveyFeedback from "./screens/SurveyFeedback"
 import SurveyOpenEnded from "./screens/SurveyOpenEnded"
+import LoadingScreen from "./screens/LoadingScreen"
 import Register from "./screens/Login_Register_Menu/Register/Register";
 
 export default () => (
@@ -23,9 +24,10 @@ export default () => (
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
             <Route path="/home" component={Courses}/>
-            <Route path="/surveydemographics" component={SurveyDemographics}/> 
-            <Route path="/surveyfeedback" component={SurveyFeedback}/> 
+            <Route path="/surveydemographics" component={SurveyDemographics}/>
+            <Route path="/surveyfeedback" component={SurveyFeedback}/>
             <Route path="/surveyopenended" component={SurveyOpenEnded}/>
+            <Route path={"/loading"} component={LoadingScreen}/>
             <Route exact path="/subject/:id" component={MainMenu} />
             <Route exact path="/subject/:id/:mode/:testId" component={Test} />
             <Route exact path={"/preview/:id"} component={TestView}/>
