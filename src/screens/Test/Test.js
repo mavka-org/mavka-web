@@ -245,7 +245,7 @@ export class Test extends React.Component{
                             Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => { // Dont touch this status
                                     this.props.history.push({
                                         pathname: '/subject/' + this.state.subject,
-                                        state: { testID: this.state.testId }
+                                        state: { testID: this.state.testId, confetti: true }
                                     });
                                 }
                             );
