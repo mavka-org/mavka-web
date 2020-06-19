@@ -231,7 +231,7 @@ class MainMenu extends React.Component {
                                         <div style={{ margin: '0 auto', color: 'white' }}>Незабаром...</div>
                                     </div>
                                 </div>
-                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} click={this.deleteTestInfo}/>)}
+                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} deleteTestInfo={this.deleteTestInfo}/>)}
                             </div>) : null}
                         </div>
                     </div>
