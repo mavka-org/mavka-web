@@ -59,6 +59,7 @@ export class Test extends React.Component{
         this.state = {
             subject: this.props.match.params.id,
             testId: this.props.match.params.testId,
+            mode: this.props.match.params.mode,
             isPractice: SystemFunctions.stringsEqual(this.props.match.params.mode, 'practice'),
             user: 25,
             active: 1,
