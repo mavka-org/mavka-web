@@ -27,7 +27,7 @@ class ABCDE extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
-            console.log('sos' + this.props.answered)
+            //console.log('sos' + this.props.answered)
             this.setState({
                 number: this.props.number,
                 data: this.props.data,

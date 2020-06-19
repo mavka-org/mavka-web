@@ -10,7 +10,9 @@ class Register extends React.Component {
         emailComment: '',
         passwordComment: '',
         changedEmail: true,
-        changedPassword: true
+        changedPassword: true,
+        googleComment: '',
+        fbComment: ''
     }
 
     componentDidMount = () => this.getAuthStatus();
@@ -46,7 +48,7 @@ class Register extends React.Component {
             }
             if(error.code == "auth/email-already-in-use"){
                 current.setState({
-                    emailComment: "Дана електронна пошта вже використовується іншим користувачем!",
+                    emailComment: "Електронна адреса вже використовується!",
                     passwordComment: "",
                     changedPassword: true,
                     changedEmail: false
@@ -69,7 +71,9 @@ class Register extends React.Component {
     }
     trueChangedEmail(){
         this.setState({
-            changedEmail: true
+            changedEmail: true,
+            googleComment: '',
+            fbComment: ''
         })
     }
 
@@ -77,7 +81,9 @@ class Register extends React.Component {
         console.log(text);
         if(text.target.value.length >= 6){
             this.setState({
-                changedPassword: true
+                changedPassword: true,
+                googleComment: '',
+                fbComment: ''
             })
         }  
     }
@@ -88,6 +94,7 @@ class Register extends React.Component {
         if(this.state.user){
             return(<Redirect to="/home"/>)
         }
+        let current = this;
         return (
             <div className={g.background}>
                 <div className={s.window}>
@@ -95,8 +102,42 @@ class Register extends React.Component {
                         <strong>Реєстрація</strong>
                     </div>
                     <div className={s.btns}>
-                        <button className={s.btn_google}>Увійти з Google</button>
-                        <button className={s.btn}>Увійти з Facebook</button>
+                        <button className={s.btn_google} onClick={()=>{
+                            current.setState({
+                                googleComment: '',
+                                fbComment: ''
+                            })
+                            let provider = new firebase.auth.GoogleAuthProvider();
+                            firebase.auth().signInWithPopup(provider).then(function(result) {
+                             var token = result.credential.accessToken;
+                             var user = result.user;
+                            }).catch(function(error){
+                                current.setState({
+                                    googleComment: 'Електрона адреса вже використовується!'
+                                })
+                            });
+                        }}>Увійти з Google</button>
+                        <div style={{color:'red'}}>
+                            {this.state.googleComment}
+                        </div>
+                        <button className={s.btn} onClick={()=>{
+                            current.setState({
+                                googleComment: '',
+                                fbComment: ''
+                            })
+                            var provider = new firebase.auth.FacebookAuthProvider();
+                            firebase.auth().signInWithPopup(provider).then(function(result) {
+                                var token = result.credential.accessToken;
+                                var user = result.user;
+                              }).catch(function(error) {
+                                current.setState({
+                                    fbComment: 'Електрона адреса вже використовується!'
+                                })
+                              });
+                        }}>Увійти з Facebook</button>
+                        <div style={{color:'red'}}>
+                            {this.state.fbComment}
+                        </div>
                         <div className={s.info}>
                             <div className={s.title}>EMAIL</div>
                             <div className={s.inp_wrapper}><div className={s.icon}></div><input onChange={()=>{

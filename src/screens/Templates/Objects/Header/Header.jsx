@@ -66,6 +66,7 @@ class Header extends React.Component {
                         time={left}
                         cancel={this.cancel}
                         subject={this.props.subject}
+                        goToMenu={this.props.goToMenu}
                         updateQuestion={this.props.updateQuestion}
                     />) : null}
                     <div className={s.header}>
@@ -112,6 +113,7 @@ class Header extends React.Component {
                     cancel={this.cancel}
                     subject={this.props.subject}
                     updateQuestion={this.props.updateQuestion}
+                    goToMenu={this.props.goToMenu}
                 />) : null}
                 <div>
                     <div className={g.question_header}>

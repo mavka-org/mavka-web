@@ -4,7 +4,7 @@ import Party from './../../Icon/Party/Party';
 import RaisedFist from './../../Icon/RaisedFist';
 import Like from './../../Icon/Like';
 import firebase from "../../../../global";
-import Strong from './../../Icon/Strong';
+import Strong from '../../Icon/Strong/Strong';
 class Next extends React.Component {
     submitQuestion() {
         if(this.props.isPractice){
@@ -69,7 +69,7 @@ class Next extends React.Component {
                 else if(this.props.scores[this.props.number - 1][1] == 1) {
                     return (
                         <div>
-                            <div className={g.result}><strong>Частково правильно<Strong /></strong></div>
+                            <div className={g.result}><strong>Частково правильно<Like /></strong></div>
                             <div className={g.stats}>Отримано {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]}</div>
                         </div>
                     );
@@ -77,7 +77,7 @@ class Next extends React.Component {
                 else {
                     return (
                         <div>
-                            <div className={g.result}><strong>Похибка, не здавайся!<Strong /></strong></div>
+                            <div className={g.result}><strong>Похибка, не здавайся!<RaisedFist /></strong></div>
                             <div className={g.stats}>Отримано {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]} </div>
                         </div>
                     );
