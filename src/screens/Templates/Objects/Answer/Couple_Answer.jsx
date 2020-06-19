@@ -19,7 +19,6 @@ class CoupleAnswer extends React.Component {
                 return(
                 <div>
                     <div className={g.check}>
-                        
                         <div className={g.letter} style={{ marginLeft: 30 }}><strong>{this.props.correctLetter}:</strong></div>
                         <div className={g.answer_text}>{this.props.subanswer}</div>
                     </div>
@@ -35,8 +34,8 @@ class CoupleAnswer extends React.Component {
     render() {
         return (
             <div className={g.answer_withouthover} style={{
-                border: (!this.props.hidden && this.props.isCorrectAnswer) ? "1px black solid" : "",
-                opacity: (!this.props.hidden && !this.props.isCorrectAnswer) ? "50%" : "100%"
+                border: (!this.props.hidden && this.props.isCorrectAnswer || this.props.hidden && this.props.subanswer.length > 0) ? "1px black solid" : "",
+                opacity: (!this.props.hidden && !this.props.isCorrectAnswer) ? "70%" : "100%"
                 }}>
                 <div className={g.answer_text_frame}>
                     <div className={g.letter_choice}>
@@ -45,8 +44,8 @@ class CoupleAnswer extends React.Component {
                             <div className={g.symbol} style={{
                                 display: this.props.hidden ? "none" : "block",
                                 }}> <CheckAnswerIcon 
-                                    isCorrectAnswer={this.props.isCorrectAnswer}
-                                    isUserAnswer={true}
+                                    isCorrectAnswer={true}
+                                    isUserAnswer={this.props.isCorrectAnswer}
                                     /></div>
                             <div className={g.number}><strong>{this.props.number}:</strong></div>
                             <div className={g.answer_text}>{this.props.subquestion}</div>
