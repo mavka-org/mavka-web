@@ -184,7 +184,7 @@ export class Test extends React.Component{
                             { headers: { 'Content-Type': 'application/json' } }
                         ).then((response) => {
                             console.log(response);
-                            Services.changeTestStatusByID(token, this.state.testId, "тест пройдений").then(() => {
+                            Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => { // Dont touch this status
                                     this.props.history.push({
                                         pathname: '/subject/' + this.state.subject,
                                         state: { testID: this.state.testId }
