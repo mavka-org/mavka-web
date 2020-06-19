@@ -26,7 +26,7 @@
     background-color: #FFFFFF;
     font-family: Gilroy;
     font-size: 18px;
-    line-height: 22px;
+    line-height: 25px;
     user-select: none;
 }
 
@@ -61,7 +61,7 @@
     margin: 0px 0px;
     font-family: Gilroy;
     font-size: 18px;
-    line-height: 22px;
+    line-height: 25px;
     font-weight: bold;
     transition: 0.2s ease-in-out;
 }
@@ -112,7 +112,7 @@
     font-weight: bold;
     font-family: Gilroy;
     font-size: 18px;
-    line-height: 22px;
+    line-height: 25px;
     transition: 0.2s ease-out;
     border: none;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.28);
@@ -132,7 +132,7 @@
 
 .pass {
     font-size: 18px;
-    line-height: 22px;
+    line-height: 25px;
     color: gray;
     opacity: 0.8;
     text-decoration: underline;
@@ -165,8 +165,19 @@
     height: 275.4px;
     background-color: black;
     margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+.video_text{
+    margin: 0 auto;
+    color:white;
+    position: absolute;
+    font-size: 22px;
+    font-family: Gilroy;
+    line-height: 29px;
 
+}
 .btnqnav {
     font-family: Gilroy;
     font-size: 18px;
@@ -186,7 +197,15 @@
 .wrong_answer {
     opacity: 0.6;
 }
-
+.inactiveNextButton {
+    opacity: 0.4; 
+    cursor: default;
+}
+.inactiveNextButton:hover{
+    opacity: 0.4;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.28);
+    cursor: default;
+}
 
 /* mediaquery */
 

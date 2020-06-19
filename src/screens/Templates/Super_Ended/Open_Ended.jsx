@@ -50,6 +50,7 @@ class Open_Ended extends React.Component {
                         />
                     <div className={s.main_answers}>
                         <Next
+                            isOpenEnded={true}
                             scroll={this.props.scroll}
                             scores={this.props.scores}
                             isNextAllowed={true}

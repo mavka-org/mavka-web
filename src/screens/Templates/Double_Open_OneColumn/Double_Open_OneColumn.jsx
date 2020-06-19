@@ -112,6 +112,7 @@ class Double_Open_OneColumn extends React.Component {
                             updateAnswers={this.props.updateAnswers}
                             isPractice={this.props.isPractice}
                             scroll={this.props.scroll}
+                            isLastQuestion={this.props.number == this.props.active}
                         />
                         <Topic
                             topic={data.getTopic()}
