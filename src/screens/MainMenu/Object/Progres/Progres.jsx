@@ -21,7 +21,7 @@ class Progres extends React.Component {
 
     customConfirm() {
         if(this.state.clicked) {
-            return <AlertConfirm cancel={this.cancel} click={this.props.deleteTestInfo} args={[this.props.testID]}/>
+            return <AlertConfirm text={'Ви впевенені, що бажаєте скинути прогрес для цього теста?'} cancel={this.cancel} click={this.props.deleteTestInfo} args={[this.props.testID]}/>
         }
         else {
             return null;

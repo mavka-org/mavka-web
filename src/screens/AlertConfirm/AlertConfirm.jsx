@@ -22,7 +22,7 @@ class AlertConfirm extends React.Component {
                 zIndex: 100,
             }}>
                 <div className={s.alert}>
-                    <div className={s.alert_description}>Ви впевенені, що бажаєте скинути прогрес для цього теста?  </div>
+                    <div className={s.alert_description}>{this.props.text}</div>
                     <div className={s.btn_wrapper}>
                         <button className={s.btn_end} onClick={() => {
                             this.props.click(...this.props.args);

@@ -57,7 +57,7 @@ class Courses extends React.Component {
 
     customConfirm() {
         if(this.state.clicked) {
-            return <AlertConfirm cancel={this.cancel} click={this.signOut} args={[]}/>
+            return <AlertConfirm text={'Ви впевенені, що бажаєте вийти з акаунта?'} cancel={this.cancel} click={this.signOut} args={[]}/>
         }
         else {
             return null;
