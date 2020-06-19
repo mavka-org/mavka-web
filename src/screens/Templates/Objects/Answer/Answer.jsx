@@ -1,6 +1,6 @@
 import React from 'react';
 import CheckAnswerIcon from '../../Icon/CheckAnswerIcon';
-import g from './../../Objects/Answer/Answer.module.css';
+import g from './Answer.module.css';
 class Answer extends React.Component {
 
     constructor(props) {
@@ -50,7 +50,9 @@ class Answer extends React.Component {
                     isUserAnswer = true;
             }
         }else isUserAnswer = !(this.props.letter.localeCompare(this.state.currentAnswer));
-        //console.log(isUserAnswer);
+        console.log("ISPRACTICE")
+        console.log(this.props.isPractice);
+        console.log(this.props.answered)
         //this.props.isCorrectAnswer ? (g.answer + (this.check() ? (" " + g.answer_answered) : "")) : (g.btn_inactive + (isUserAnswer ? (" " + g.answer_answered) : ""))
         return (
             <div onClick={()=>{
@@ -66,7 +68,7 @@ class Answer extends React.Component {
                         <div className={g.check}>
                             <div className={g.symbol} style={{
                                 display: !this.props.hidden ? "none" : "block"
-                                }}> <CheckAnswerIcon 
+                                }}> <CheckAnswerIcon
                                         isCorrectAnswer={this.props.isCorrectAnswer}
                                         isUserAnswer={isUserAnswer}
                                     /></div>

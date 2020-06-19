@@ -62,8 +62,8 @@ class Footer extends React.Component {
                             <div className={s.name}>Имя Фамилия</div>
                         </div>
                     </div>
-                    
-                    
+
+
                 </div>
             </div>
         )
