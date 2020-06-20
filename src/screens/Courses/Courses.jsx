@@ -59,8 +59,8 @@ class Courses extends React.Component {
     }
 
     customConfirm() {
-        if(this.state.clicked) {
-            return <AlertConfirm text={'Ви впевенені, що бажаєте вийти з акаунта?'} cancel={this.cancel} click={this.signOut} args={[]}/>
+        if (this.state.clicked) {
+            return <AlertConfirm text={'Ви впевенені, що бажаєте вийти з акаунта?'} cancel={this.cancel} click={this.signOut} args={[]} />
         }
         else {
             return null;
@@ -77,7 +77,7 @@ class Courses extends React.Component {
         var pic7 = <UK />
         var pic8 = <France />
         var pic9 = <German />
-        if(!this.state.user){
+        if (!this.state.user) {
             return (<Redirect to="/register" />);
         }
         if (this.state.user == 25) {
@@ -92,12 +92,11 @@ class Courses extends React.Component {
                         <div className={s.question_header}>
 
                             <div className={s.header}>
-                                <div className={s.title}>Останній ривок до ЗНО</div>
-                                <div className={s.title}>разом з мавкою <div style={{ display: 'inline-flex' }}> <Fire /></div></div>
+                                <div className={s.title}><div className={s.sub_title}>Останній ривок до ЗНО разом з мавкою</div></div>
                                 <div className={s.description}>Практикуйся, вчися на поясненнях та проходь симуляції екзамену. Обери предмет:</div>
                             </div>
 
-                            <div className={s.exit}>
+                            {/* <div className={s.exit}>
                                 <button className={s.end} onClick={() => {
                                     this.setState({
                                         clicked: true
@@ -105,7 +104,7 @@ class Courses extends React.Component {
                                 }}>
                                     Вийти
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className={s.courses_wrapper}>
@@ -120,7 +119,7 @@ class Courses extends React.Component {
                             <Course hover={false} course={'Німецька мова'} pic={pic9} style={{ opacity: 0.4, cursor: 'default' }} />
 
                         </div>
-                        <div style={{width: '100%',marginTop: '90px', marginBottom: '10px',color:'Gray'}}><hr></hr></div>
+                        <div style={{ width: '100%', marginTop: '90px', marginBottom: '10px', color: 'Gray' }}><hr></hr></div>
                         <div className={s.footer}>
                             <Footer />
                         </div>

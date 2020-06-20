@@ -281,13 +281,15 @@ class QuestionNavPanel extends Component {
                 <div  style={{
                     marginLeft: this.getWidth(0.22)
                 }}>
-                    <div style={{opacity: right.length > 0 ? 1 : 0.4}}>
+                    <div >
                         <ul>
                             <li style={styles}><a href={"#"} >⯈</a>
                                 <ul
                                     className={"dropdown"}
                                     style={{
-                                        zIndex: 100
+                                        zIndex: 100,
+                                        backgroundColor:'white',
+                                        opacity:1,
                                     }}
                                 >
                                     {this.reformat(right)}

@@ -13,11 +13,15 @@
 .title {
     display: inline-flex;
     flex-direction: row;
-    flex-wrap: wrap;
     font-size: 36px;
     line-height: 44px;
     font-weight: 600;
     margin-bottom: 8px;
+}
+.sub_title {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: baseline;
 }
 
 .description {
