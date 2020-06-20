@@ -36,7 +36,7 @@ export default () => (
             <Route exact path={"/preview/:id"} component={TestView}/>
             <Route exact path={"/404"} component={NotFound}/>
             <Route path="/typeform" component={Typeform}/>
-            <Route component={NotFound}/>
+            <Route path="*" component={NotFound} />
 
         </Switch>
     </Router>

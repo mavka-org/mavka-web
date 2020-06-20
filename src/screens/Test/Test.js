@@ -290,7 +290,8 @@ export class Test extends React.Component{
                             {
                                 Test_id: this.state.testId,
                                 User_id: this.state.user.uid,
-                                UserAnswers: res
+                                UserAnswers: res,
+                                Subject: SystemFunctions.convertSubjectName(this.state.subject)
                             },
                             { headers: { 'Content-Type': 'application/json' } }
                         ).then((response) => {

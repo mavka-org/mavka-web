@@ -3,11 +3,39 @@ import s from './Landing.module.css';
 import Strong from './../Templates/Icon/Strong'
 import Clock from './../Templates/Icon/Clock'
 import Light from './../Templates/Icon/Light'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import firebase from '../../global'
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 class Landing extends React.Component {
+    state = {
+        user: 25,
+    }
+
+    componentDidMount = () => this.getAuthStatus();
+
+    // Get firebase auth status.
+    getAuthStatus = () => {
+        firebase.auth().onAuthStateChanged((resp) => {
+
+            // Pass response to a call back func to update state
+            this.updateUserState(resp);
+        });
+    }
+
+    // update state
+    updateUserState = (resp) => {
+        this.setState({
+            user: resp
+        })
+    }
     render() {
         firebase.analytics().logEvent('open landing');
+        if(this.state.user == 25){
+            return (<LoadingScreen />)
+        }
+        if(this.state.user){
+            return(<Redirect to="/home"/>)
+        }
         return (
             <div className={s.page}>
                 <div className={s.wrapper}>
