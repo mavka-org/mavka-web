@@ -5,6 +5,7 @@ import { ReactTypeformEmbed } from 'react-typeform-embed';
 import s from './Survey.module.css';
 import g from './../Templates/Style.module.css';
 import axios from 'axios'
+import Services from '../../Services/Services';
 
 class SurveyDemographics extends React.Component {
     state = {
@@ -47,15 +48,8 @@ class SurveyDemographics extends React.Component {
         }
         if(this.state.user){
             firebase.analytics().logEvent('start demographics survey')
-            let url = 'https://api.typeform.com/forms/JpyKH0vn/responses';
-            axios.get(url, {
-                headers: {
-                    'Access-Control-Allow-Origin': "*",
-                    'Authorization': '6xXKW9jNFB6FLBYWaKJ6zJLndsYeXVSQEbfuPyxvjXY3'
-                }
-            }).then((res) => {
-                console.log(res.data);
-            });
+            let url = 'https://api.typeform.com/forms/JpyKH0vn/responses?page_size=1'
+            Services.getReqForm(url);
             return(<div></div>)
         }
         else {
