@@ -527,6 +527,19 @@ class Services {
             return doc.get("ref");
         });
     }
+
+    static async checkFeedbackSurvey (token) {
+        const response = await axios.post(
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/checkFeedbackSurvey',
+            { 
+                token: token,
+            },
+            { headers: { 'Content-Type': 'text/plain' } }
+        )
+        console.log(response.data)
+        return response.data;
+    }
+
     static getQuestionClass (json) {
         return new Question(json);
     }

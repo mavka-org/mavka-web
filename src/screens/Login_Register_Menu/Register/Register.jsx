@@ -5,6 +5,7 @@ import firebase from "../../../global"
 import { Redirect, Link } from 'react-router-dom';
 import LoadingScreen from '../../LoadingScreen/LoadingScreen';
 
+
 class Register extends React.Component {
     state = {
         user: 25,
@@ -13,7 +14,7 @@ class Register extends React.Component {
         changedEmail: true,
         changedPassword: true,
         googleComment: '',
-        fbComment: ''
+        fbComment: '',
     }
 
     componentDidMount = () => this.getAuthStatus();
@@ -66,8 +67,9 @@ class Register extends React.Component {
         });
 
         if(firebase.auth().currentUser){
+            //console.log('aa')
             firebase.analytics().logEvent('userLogin');
-            this.props.history.push('/home')
+            this.props.history.push('/surveydemographics')
         }
     }
     trueChangedEmail(){
@@ -92,7 +94,7 @@ class Register extends React.Component {
         if(this.state.user == 25){
             return (<LoadingScreen />);
         }
-        if(this.state.user){
+        if(this.state.user) {
             return(<Redirect to="/home"/>)
         }
         let current = this;
@@ -112,6 +114,8 @@ class Register extends React.Component {
                             firebase.auth().signInWithPopup(provider).then(function(result) {
                              var token = result.credential.accessToken;
                              var user = result.user;
+                            }).then(() => {
+                                this.props.history.push('/surveydemographics')
                             }).catch(function(error){
                                 current.setState({
                                     googleComment: 'Електрона адреса вже використовується!'
@@ -130,7 +134,9 @@ class Register extends React.Component {
                             firebase.auth().signInWithPopup(provider).then(function(result) {
                                 var token = result.credential.accessToken;
                                 var user = result.user;
-                              }).catch(function(error) {
+                              }).then(() => {
+                                this.props.history.push('/surveydemographics')
+                            }).catch(function(error) {
                                 current.setState({
                                     fbComment: 'Електрона адреса вже використовується!'
                                 })
