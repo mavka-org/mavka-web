@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import ButtonQNav from "../ButtonQNav";
 import "./navigation.css";
 import g from './../../screens/Templates/Style.module.css';
+import RightArrow from "../../screens/Templates/Icon/RightArrow";
+import LeftArrow from "../../screens/Templates/Icon/LeftArrow";
 class QuestionNavPanel extends Component {
 
     updateWindowDimensions() {
@@ -264,11 +266,12 @@ class QuestionNavPanel extends Component {
                 <div>
                     <div style={{opacity: left.length > 0 ? 1 : 0.4}}>
                         <ul>
-                            <li style={styles}><a href={"#"} >⯇</a>
+                            <li style={styles}><a href={"#"}><LeftArrow/></a>
                                 <ul
                                     className={"dropdown"}
                                     style={{
-                                        zIndex: 100
+                                        zIndex: 100,
+                                        display: left.length > 0 ? "block" : "none"
                                     }}
                                 >
                                 {this.reformat(left)}
@@ -283,11 +286,12 @@ class QuestionNavPanel extends Component {
                 }}>
                     <div style={{opacity: right.length > 0 ? 1 : 0.4}}>
                         <ul>
-                            <li style={styles}><a href={"#"} >⯈</a>
+                            <li style={styles}><a href={"#"} ><RightArrow/></a>
                                 <ul
                                     className={"dropdown"}
                                     style={{
-                                        zIndex: 100
+                                        zIndex: 100,
+                                        display: right.length > 0 ? "block" : "none"
                                     }}
                                 >
                                     {this.reformat(right)}
