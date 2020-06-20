@@ -32,8 +32,7 @@ class SurveyFeedback extends React.Component {
     }
 
     render() {
-        document.getElementsByTagName('body')[0].setAttribute("style", "overflow-y: hidden;")
-
+        document.getElementsByTagName('body')[0].setAttribute("style", "overflow-y: scroll;")
         if(this.state.user == 25){
             return(<div></div>)
         }
@@ -42,7 +41,10 @@ class SurveyFeedback extends React.Component {
             url += this.state.user.email;
             return (
                 <div style={{backgroundColor: '#f2f2f2'}}>
-                    <center><Link to={'/home'}><button className={s.btn_turn_back}>Вийти з опитування</button></Link></center>
+                    <center><button className={s.btn_turn_back} onClick={()=>{this.props.history.push({
+                            pathname: '/subject/' + this.props.location.state.subject,
+                            state: { testID: this.props.location.state.testID }
+                        });}}>Вийти з опитування</button></center>
                     <iframe src={url} width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </div>
             );
