@@ -534,6 +534,26 @@ class Services {
             return doc.get("ref");
         });
     }
+    static async getTechnicalPauseStatus(){
+        const firestore = firebase.firestore();
+        return await firestore.collection("services").doc('technicalPause').get().then(doc => {
+            return doc.get("pause");
+        });
+    }
+
+
+    static async checkFeedbackSurvey (token) {
+        const response = await axios.post(
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/checkFeedbackSurvey',
+            { 
+                token: token,
+            },
+            { headers: { 'Content-Type': 'text/plain' } }
+        )
+        console.log(response.data)
+        return response.data;
+    }
+
     static getQuestionClass (json) {
         return new Question(json);
     }
@@ -581,6 +601,13 @@ class Services {
             },
             { headers: { 'Content-Type': 'text/plain' } }
         )
+    }
+
+    static async getTeamInfo () {
+        const firestore = firebase.firestore();
+        return await firestore.collection("team").doc("team-names").get().then(doc => {
+            return doc.get("Team");
+        });
     }
 }
 export default Services;

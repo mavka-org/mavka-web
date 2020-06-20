@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from './../../global'
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import s from './Survey.module.css';
 import g from './../Templates/Style.module.css';
 
@@ -41,7 +41,8 @@ class SurveyDemographics extends React.Component {
             var url = "https://docs.google.com/forms/d/e/1FAIpQLScgZErcirQmzkPQFxLZG8OiQ-NriSpRdl4KVib99Q8dcXJ5nA/viewform?usp=pp_url&entry.1198759471=";
             url += this.state.user.email;
             return (
-                <div>
+                <div style={{backgroundColor: '#f2f2f2'}}>
+                    <center><Link to={'/home'}><button className={s.btn_turn_back}>Перейти на домашню сторінку</button></Link></center>
                     <iframe src={url} width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                     //<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScgZErcirQmzkPQFxLZG8OiQ-NriSpRdl4KVib99Q8dcXJ5nA/viewform?embedded=true" width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </div>

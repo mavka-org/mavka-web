@@ -16,11 +16,12 @@ import SurveyFeedback from "./screens/SurveyFeedback"
 import SurveyOpenEnded from "./screens/SurveyOpenEnded"
 import LoadingScreen from "./screens/LoadingScreen"
 import Register from "./screens/Login_Register_Menu/Register/Register";
+import Landing from "./screens/Landing/Landing";
 
 export default () => (
     <Router>
         <Switch>
-            <Route exact path="/" children={()=><h2>Main</h2>}/>
+            <Route exact path="/" children={()=><Landing />}/>
             <Route path="/about" component={ScreensAbout}/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>

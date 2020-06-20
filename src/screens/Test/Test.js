@@ -212,10 +212,21 @@ export class Test extends React.Component{
             console.log("ПОСЛЕДНИЙ ВОПРОС")
             console.log(this.state.testId)
             if(this.state.isPractice){
-                this.props.history.push({
-                    pathname: '/subject/' + this.state.subject,
-                    state: { testID: this.state.testId }
-                  });
+                this.state.user.getIdToken().then((token) => {
+                    return Services.checkFeedbackSurvey(token)
+                }).then((result) => {
+                    if(result.toString() == 'done') {
+                        this.props.history.push({
+                            pathname: '/subject/' + this.state.subject,
+                            state: { testID: this.state.testId }
+                        });
+                    }
+                    else {
+                        this.props.history.push({
+                            pathname: '/surveyfeedback',
+                        });
+                    }
+                })
             }else{
                 this.state.user.getIdToken().then((token) => {
                     for(let i = 1; i <= this.state.n; i++){
@@ -258,10 +269,21 @@ export class Test extends React.Component{
                                 { headers: { 'Content-Type': 'application/json' } }
                             ).then((response) => {
                                 Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => { // Dont touch this status
-                                    this.props.history.push({
-                                        pathname: '/subject/' + this.state.subject,
-                                        state: { testID: this.state.testId, confetti: true }
-                                    });
+                                    this.state.user.getIdToken().then((token) => {
+                                        return Services.checkFeedbackSurvey(token)
+                                    }).then((result) => {
+                                        if(result.toString() == 'done') {
+                                            this.props.history.push({
+                                                pathname: '/subject/' + this.state.subject,
+                                                state: { testID: this.state.testId }
+                                            });
+                                        }
+                                        else {
+                                            this.props.history.push({
+                                                pathname: '/surveyfeedback',
+                                            });
+                                        }
+                                    })
                                 });
                             })
                         })
