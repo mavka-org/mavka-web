@@ -119,7 +119,8 @@ export class Test extends React.Component{
             width: window.innerWidth,
             statusFound: true,
             loading: true,
-            topicSimulation: []
+            topicSimulation: [],
+            redirect: false
         }
         this.updateScreen = this.updateScreen.bind(this);
         window.addEventListener("resize", this.updateScreen);
@@ -151,6 +152,14 @@ export class Test extends React.Component{
                             let checkedAnswers = {};
                             if(response.data != "not exist"){
                                 for(let tmp in response.data){
+                                    if(tmp == 'status'){
+                                        if(response.data[tmp] == 'Тест пройдений' && current.props.match.params.mode == 'simulation'){
+                                            console.log('lalalal');
+                                            current.setState({
+                                                redirect: true
+                                            })
+                                        }       
+                                    }
                                     if(tmp != "status" && tmp != "Test_results" && tmp!= "Topics_to_review")
                                         checkedAnswers[tmp] = current.state.data[Number(tmp) - 1].checkCorrect(response.data[tmp]);
                                 }
@@ -210,9 +219,11 @@ export class Test extends React.Component{
             });
         }else{
             console.log("ПОСЛЕДНИЙ ВОПРОС")
-            console.log(this.state.answers)
-            
-            if(this.state.isPractice) {
+            console.log(this.state.testId)
+            this.setState({
+                loading: !this.state.loading
+            })
+            if(this.state.isPractice){
                 let cnt = Object.keys(this.state.answers).length;
                 if('Topics_to_review' in this.state.answers) {
                     cnt -= 1;
@@ -221,7 +232,6 @@ export class Test extends React.Component{
                     cnt -= 1;
                 }
                 firebase.analytics().logEvent('finish practice', {countOfAnsweredQuestions: cnt});
-
                 this.state.user.getIdToken().then((token) => {
                     return Services.checkFeedbackSurvey(token)
                 }).then((result) => {
@@ -250,6 +260,9 @@ export class Test extends React.Component{
                 console.log(time);
                 firebase.analytics().logEvent('finish simulation', {countOfAnsweredQuestions: cnt});
 
+                this.setState({
+                    loading: !this.stateloading
+                })
                 this.state.user.getIdToken().then((token) => {
                     for(let i = 1; i <= this.state.n; i++){
                         if(!(i in this.state.answers)){
@@ -395,6 +408,10 @@ export class Test extends React.Component{
         }
         if (this.state.mode != 'practice' && this.state.mode != 'simulation'){
             return (<Redirect to="/404" />);
+        }
+        if(this.state.redirect){
+            //this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.testId);
+            return(<Redirect to={'/subject/' + this.state.subject + '/practice/' + this.state.testId}/>)
         }
         if(this.state.loading || this.state.user == 25){
             return (<LoadingScreen />);

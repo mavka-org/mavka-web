@@ -4,12 +4,16 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import Markdown from "./Markdown";
 import "./index.css"
+import Services from './Services/Services';
+import TechnicalPause from './screens/TechnicalPause/TechnicalPause'
 
-ReactDOM.render(
+Services.getTechnicalPauseStatus().then((pause) => {
+    ReactDOM.render(
         <div>
-            <App/>
+              {pause ? <TechnicalPause /> : <App />}
         </div>,
-  document.getElementById('root')
-);
+      document.getElementById('root')
+    );
+})
 
 serviceWorker.unregister();

@@ -43,7 +43,7 @@ class MainMenu extends React.Component {
             active: 0,
             confetti: this.props.location.state,
             loading: true,
-            clicked: false
+            selectedMainMenu: false
         }
         this.updateScreen = this.updateScreen.bind(this);
         window.addEventListener("resize", this.updateScreen);
@@ -102,30 +102,52 @@ class MainMenu extends React.Component {
                         })
                     }
                 }
+                tests.sort((a, b) => (a.name1 < b.name1) ? 1 : -1)
                 console.log(tests);
                 //let myProps = Object.keys(current.props.location.state);
                 console.log(current.props.location.state);
                 current.setState({
                     tests: tests,
-                    active: SystemFunctions.mainMenuActiveElement(typeof current.props.location.state != 'undefined' ? current.props.location.state.testID : 'undefined', tests),
-                    loading: false
+                    active: SystemFunctions.mainMenuActiveElement(typeof current.state.confetti != 'undefined' ? current.state.confetti.testID : 'undefined', tests, current.state.active),
+                    loading: false,
+                    selectedMainMenu: typeof current.props.location.state != 'undefined' ? true : false
                 })
             });
         });
     }
 
     updateSelectedTest = (num) => {
+        if(window.innerWidth > 992){
+            this.setState({
+                active: num,
+                confetti: null
+            })
+        }
+        else{
+            this.setState({
+                active: num,
+                confetti: null,
+                selectedMainMenu: true
+            })
+        }
+    }
+    
+    changeMobileMainMenu = () => {
         this.setState({
-            active: num,
-            confetti: null
+            selectedMainMenu: !this.state.selectedMainMenu
         })
     }
 
     deleteTestInfo = (testID) => {
         firebase.analytics().logEvent('erase progress');
         this.scrollToTop();
+        //let tmp = this.state.confetti;
+        //tmp.testID = this.state.tests[this.state.active].testID;
         this.setState({
-            loading: true
+            loading: true,
+            selectedMainMenu: false,
+            confetti: undefined,
+            active: this.state.active
         })
         this.state.user.getIdToken().then((token) => {
             Services.deleteTestByID(token, testID).then(() => {
@@ -194,7 +216,10 @@ class MainMenu extends React.Component {
         scroll.scrollToTop();
     }
 
-
+    navigate = (ref) => {
+        firebase.analytics().logEvent('choose subject', { subject: ref });
+        this.props.history.push(ref);
+    }
 
     render() {
         const pic1 = <Strong />
@@ -209,65 +234,118 @@ class MainMenu extends React.Component {
             return (<LoadingScreen />);
         }
         if (this.state.user) {
-            return (
-                <div className={g.background}>
-                    <div className={[s.page, g.page_].join(' ')} >
-                        {window.innerWidth > 992 ? (<div className={s.header}>
-                            <div className={s.question_title}>
-                                <strong>Тести з<br></br> {this.state.subjectName}</strong>
-                            </div>
-                            <div className={s.exit}>
-                                <Link to={'/home'}>
+            if(window.innerWidth > 992){
+                return (
+                    <div className={g.background}>
+                        <div className={[s.page, g.page_].join(' ')} >
+                            <div className={s.header}>
+                                <div className={s.question_title}>
+                                    <strong>Тести з<br></br> {this.state.subjectName}</strong>
+                                </div>
+                                <div className={s.exit}>
+                                    <Link to={'/home'}>
                                     <button className={s.end} onClick={()=>{firebase.analytics().logEvent('return to home');}}>
                                         Назад до предметів
                                     </button>
                                 </Link>
+                                </div>
                             </div>
-                        </div>) : (<HeaderMainMenu>
-                            <strong>Тести з<br></br> {this.state.subjectName}</strong>
-                        </HeaderMainMenu>)}
-                        <div className={s.question_body}>
-                            <div className={s.tests_body_left}>
-                                <ZNO_component
-                                    tests={this.state.tests}
-                                    updateSelectedTest={this.updateSelectedTest}
-                                    active={this.state.active}
-                                />
+                            <div className={s.question_body}>
+                                <div className={s.tests_body_left}>
+                                    <ZNO_component
+                                        tests={this.state.tests}
+                                        updateSelectedTest={this.updateSelectedTest}
+                                        active={this.state.active}
+                                    />
+                                </div>
+    
+                                {this.state.tests.length > 0 ? (<div className={s.test_body_right}>
+                                    <div>
+                                        {this.state.tests[this.state.active].status == 'тест пройдений' && this.state.confetti && this.state.confetti.confetti ? (<Confetti />) : null}
+                                    </div>
+    
+                                    <div className={s.scores_frame}>
+                                        <div className={s.title}>
+                                            <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
+                                        </div>
+                                        {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores numCorrect={this.state.tests[this.state.active].numCorrect} score12={this.state.tests[this.state.active].score12} score200={this.state.tests[this.state.active].score200} click={this.openResults} />) : ""}
+                                    </div>
+                                    <div className={s.buttons_frame}>
+                                        <Button stl={this.btnPracticeStyle()} click={this.onClickPractice()} icon={pic1} title={'Практикуватися'} comment={'Проходь завдання та вчися на поясненнях'} />
+                                        <Button alert={this.alert()} stl={this.btnSimulationStyle()} click={this.onClickSimulation()} icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
+                                    </div>
+                                    <div className={s.description}>Ти також можеш роздрукувати цей тест тут та автоматично перевірити розв’язання з нашим мобільним додатком (незабаром)</div>
+                                    <TopicWithNum
+                                        topics={this.state.tests[this.state.active].Topics_to_review}
+                                        status={this.state.tests[this.state.active].status}
+                                        //hidden={!(this.state.tests[this.state.active].status == 'тест пройдений' || this.state.tests[this.state.active].status == 'вільна практика')}
+                                    />
+                                    <div className={s.video_explanation_frame}>
+                                        <p><strong><VideoCamera /> Відеопояснення</strong></p>
+                                        <div className={s.video}>
+                                            <div className={s.video_text}>Незабаром...</div>
+                                        </div>
+                                    </div>
+                                    {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} deleteTestInfo={this.deleteTestInfo}/>)}
+    
+                                </div>) : null}
                             </div>
-
-                            {this.state.tests.length > 0 ? (<div className={s.test_body_right}>
-                                <div>
-                                    {this.state.tests[this.state.active].status == 'тест пройдений' && this.state.confetti && this.state.confetti.confetti ? (<Confetti />) : null}
-                                </div>
-
-                                <div className={s.scores_frame}>
-                                    <div className={s.title}>
-                                        <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
-                                    </div>
-                                    {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores numCorrect={this.state.tests[this.state.active].numCorrect} score12={this.state.tests[this.state.active].score12} score200={this.state.tests[this.state.active].score200} click={this.openResults} />) : ""}
-                                </div>
-                                <div className={s.buttons_frame}>
-                                    <Button stl={this.btnPracticeStyle()} click={this.onClickPractice()} icon={pic1} title={'Практикуватися'} comment={'Проходь завдання та вчися на поясненнях'} />
-                                    <Button alert={this.alert()} stl={this.btnSimulationStyle()} click={this.onClickSimulation()} icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
-                                </div>
-                                <div className={s.description}>Ти також можеш роздрукувати цей тест тут та автоматично перевірити розв’язання з нашим мобільним додатком (незабаром)</div>
-                                <TopicWithNum
-                                    topics={this.state.tests[this.state.active].Topics_to_review}
-                                    hidden={!(this.state.tests[this.state.active].status == 'тест пройдений' || this.state.tests[this.state.active].status == 'вільна практика')}
-                                />
-                                <div className={s.video_explanation_frame}>
-                                    <p><strong><VideoCamera /> Відеопояснення</strong></p>
-                                    <div className={s.video}>
-                                        <div className={s.video_text}>Незабаром...</div>
-                                    </div>
-                                </div>
-                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} deleteTestInfo={this.deleteTestInfo}/>)}
-
-                            </div>) : null}
                         </div>
-                    </div>
-                </div >
-            )
+                    </div >
+                )
+            }else{
+                return (
+                    <div className={g.background}>
+                        <div className={[s.page, g.page_].join(' ')} >
+                            <HeaderMainMenu selectedMainMenu={this.state.selectedMainMenu} navigate={this.state.selectedMainMenu ? this.changeMobileMainMenu : this.navigate}>
+                                {this.state.selectedMainMenu ? '' : (<strong>Тести з<br></br> {this.state.subjectName}</strong>)}
+                            </HeaderMainMenu>
+                            <div className={s.question_body}>
+                                <div className={s.tests_body_left} style={{
+                                    display: this.state.selectedMainMenu ? "none" : "block"
+                                }}>
+                                    <ZNO_component
+                                        tests={this.state.tests}
+                                        updateSelectedTest={this.updateSelectedTest}
+                                        active={-1}
+                                    />
+                                </div>
+                                {(this.state.tests.length > 0 && this.state.selectedMainMenu) ? (<div className={s.test_body_right}>
+                                    <div>
+                                        {this.state.tests[this.state.active].status == 'тест пройдений' && this.state.confetti && this.state.confetti.confetti ? (<Confetti />) : null}
+                                    </div>
+    
+                                    <div className={s.scores_frame}>
+                                        <div className={s.title}>
+                                            <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
+                                        </div>
+                                        {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores numCorrect={this.state.tests[this.state.active].numCorrect} score12={this.state.tests[this.state.active].score12} score200={this.state.tests[this.state.active].score200} click={this.openResults} />) : ""}
+                                    </div>
+                                    <div className={s.buttons_frame}>
+                                        <Button stl={this.btnPracticeStyle()} click={this.onClickPractice()} icon={pic1} title={'Практикуватися'} comment={'Проходь завдання та вчися на поясненнях'} />
+                                        <Button alert={this.alert()} stl={this.btnSimulationStyle()} click={this.onClickSimulation()} icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
+                                    </div>
+                                    <div className={s.description}>Ти також можеш роздрукувати цей тест тут та автоматично перевірити розв’язання з нашим мобільним додатком (незабаром)</div>
+                                    <TopicWithNum
+                                        topics={this.state.tests[this.state.active].Topics_to_review}
+                                        status={this.state.tests[this.state.active].status}
+                                        //hidden={!(this.state.tests[this.state.active].status == 'тест пройдений' || this.state.tests[this.state.active].status == 'вільна практика')}
+                                    />
+                                    <div className={s.video_explanation_frame}>
+                                        <p><strong><VideoCamera /> Відеопояснення</strong></p>
+                                        <div className={s.video}>
+                                            <div className={s.video_text}>Незабаром...</div>
+                                        </div>
+                                    </div>
+                                    {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} deleteTestInfo={this.deleteTestInfo}/>)}
+    
+                                </div>) : null}
+                            </div>
+                        </div>
+                    </div >
+                )
+            }
+           
         }
     }
 }

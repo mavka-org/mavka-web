@@ -29,11 +29,12 @@ class MainMenu extends React.Component {
         super(props);
         this.token = "";
         this.state = {
-            subjectName: SystemFunctions.changeStringBeetwenHomeAndMain(this.props.match.params.id),
-            subject: this.props.match.params.id,
+            subjectName: SystemFunctions.changeStringBeetwenHomeAndMain(this.props.id),
+            subject: this.props.id,
             user: 25,
             tests: [],
-            active: 0
+            active: 0,
+            selectedMainMenu: false
         }
         
     }
@@ -102,7 +103,9 @@ class MainMenu extends React.Component {
 
     updateSelectedTest = (num) => {
         this.setState({
-            active: num
+            active: num,
+            confetti: null,
+            selectedMainMenu: true
         })
     }
 
@@ -175,6 +178,9 @@ class MainMenu extends React.Component {
     render() {
         const pic1 = <Strong />
         const pic2 = <Clock />
+        if(!this.state.user){
+            return (<Redirect to="/register" />);
+        }
         if (this.state.user == 25) {
             return (<div></div>);
         }
@@ -198,7 +204,9 @@ class MainMenu extends React.Component {
                             </div>
                         </div>
                         <div className={s.question_body}>
-                            <div className={s.tests_body_left}>
+                            <div className={s.tests_body_left} style={{
+                                    display: this.state.selectedMainMenu ? "none" : "block"
+                                }}>
                                 <ZNO_component
                                     tests={this.state.tests}
                                     updateSelectedTest={this.updateSelectedTest}
@@ -206,7 +214,7 @@ class MainMenu extends React.Component {
                                 />
                             </div>
 
-                            {this.state.tests.length > 0 ? (<div className={s.test_body_right}>
+                            {(this.state.tests.length > 0 && this.state.selectedMainMenu) ? (<div className={s.test_body_right}>
                                 <div>
                                     {this.state.tests[this.state.active].status == 'тест пройдений' && this.props.location.state ? (<Confetti />) : null}
                                 </div>
@@ -238,7 +246,6 @@ class MainMenu extends React.Component {
                 </div >
             )
         }
-        return (<Redirect to="/register" />);
     }
 }
 
