@@ -527,6 +527,13 @@ class Services {
             return doc.get("ref");
         });
     }
+    static async getTechnicalPauseStatus(){
+        const firestore = firebase.firestore();
+        return await firestore.collection("services").doc('technicalPause').get().then(doc => {
+            return doc.get("pause");
+        });
+    }
+
 
     static async checkFeedbackSurvey (token) {
         const response = await axios.post(
