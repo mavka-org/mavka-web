@@ -2,7 +2,7 @@ import React from 'react';
 import s from './MainMenu.module.css'
 import g from '../Templates/Style.module.css';
 import ZNO from './Object/ZNO/ZNO';
-import Topic from "../Templates/Objects/Topic/Topic"
+import TopicWithNum from "../Templates/Objects/TopicsWithNum/TopicsWithNum"
 import strong from "../Templates/icons/strong.png";
 import Clock from "../Templates/Icon/Clock";
 import VideoCamera from "../Templates/Icon/VideoCamera";
@@ -97,7 +97,8 @@ class MainMenu extends React.Component {
                             ref: T[year][t].ref,
                             score200: T[year][t].score200,
                             score12: T[year][t].score12,
-                            numCorrect: T[year][t].numCorrect
+                            numCorrect: T[year][t].numCorrect,
+                            Topics_to_review: T[year][t].Topics_to_review
                         })
                     }
                 }
@@ -240,8 +241,9 @@ class MainMenu extends React.Component {
                                     <Button stl={this.btnSimulationStyle()} click={this.onClickSimulation()} icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
                                 </div>
                                 <div className={s.description}>Ти також можеш роздрукувати цей тест тут та автоматично перевірити розв’язання з нашим мобільним додатком (незабаром)</div>
-                                <Topic
-                                    topic={["ЛОЛ"]}
+                                <TopicWithNum
+                                    topics={this.state.tests[this.state.active].Topics_to_review}
+                                    hidden={!(this.state.tests[this.state.active].status == 'тест пройдений' || this.state.tests[this.state.active].status == 'вільна практика')}
                                 />
                                 <div className={s.video_explanation_frame}>
                                     <p><strong><VideoCamera /> Відеопояснення</strong></p>
