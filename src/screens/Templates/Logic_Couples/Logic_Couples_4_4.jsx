@@ -214,7 +214,7 @@ class Logic_Couples_4_4 extends Component {
                         />
                     </div>
                     <div className={s.answers_frame}>
-                        <p className={s.choose}><strong>Обери одну відповідь</strong></p>
+                        <p className={s.choose}><strong>Встанови відповідність:</strong></p>
                         <div className={s.answers}>
                             <div className={s.answer_wrap}>
                                 {this.buildQA(1)}

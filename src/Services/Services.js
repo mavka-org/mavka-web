@@ -554,6 +554,18 @@ class Services {
         return response.data;
     }
 
+    static async getReqForm (url) {
+        const response = await axios.post(
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/getReqForm',
+            { 
+                url: url,
+            },
+            { headers: { 'Content-Type': 'text/plain' } }
+        )
+        console.log(response.data)
+        return response.data;
+    }
+
     static getQuestionClass (json) {
         return new Question(json);
     }

@@ -4,7 +4,8 @@ import { Link, Redirect } from 'react-router-dom';
 import * as typeformEmbed from '@typeform/embed'
 import s from './Survey.module.css';
 import g from './../Templates/Style.module.css';
-
+import axios from 'axios'
+import Services from '../../Services/Services';
 
 class Typeform extends React.Component {
 
