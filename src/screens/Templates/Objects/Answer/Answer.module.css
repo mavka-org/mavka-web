@@ -11,6 +11,7 @@
     align-self: center;
     margin-bottom: 7px;
     transition: 0.2s linear;
+    cursor: pointer;
 }
 .answer_withouthover {
     display: flex;

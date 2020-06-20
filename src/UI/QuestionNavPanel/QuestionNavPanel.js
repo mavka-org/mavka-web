@@ -268,7 +268,9 @@ class QuestionNavPanel extends Component {
                                 <ul
                                     className={"dropdown"}
                                     style={{
-                                        zIndex: 100
+                                        zIndex: 100,
+                                        backgroundColor:'white',
+                                        opacity:1,
                                     }}
                                 >
                                 {this.reformat(left)}
