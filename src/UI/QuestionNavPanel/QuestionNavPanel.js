@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import ButtonQNav from "../ButtonQNav";
 import "./navigation.css";
-
+import g from './../../screens/Templates/Style.module.css';
 class QuestionNavPanel extends Component {
 
     updateWindowDimensions() {
@@ -106,13 +106,13 @@ class QuestionNavPanel extends Component {
             return "#000000"; ///отвечен
         }
         if (status == 0) {///неправильно
-            return "#FBE1E4";
+            return '#E7574F';
         }
         if (status == 1) {///частично
-            return "#FCECD3";
+            return '#FFBE0B';
         }
         if (status == 2) {///правильно
-            return "#EAF2EB";
+            return '#0EFB71';
         }
         return "#FFFFFF";//не отвечен
     }
@@ -165,16 +165,15 @@ class QuestionNavPanel extends Component {
             let code = [];
             for (let i = 0; i < this.state.n; i++) {
                 code.push(
-                    <div style={{
-                        display: "flex",
-                        flexDirection: "row"
-                    }}>
+                    <div className={g.variant_anwer}>
                         <label htmlFor={i}><div style={{
-                            width: "27px",
-                            height: "27px",
+                            width: "15px",
+                            height: "15px",
                             borderRadius: "15px",
-                            border: "1px solid black",
-                            backgroundColor: !allButtons[i].active ? this.backColor1(allButtons[i].status) : "#FFBE0B"
+                            border: "2px solid black",
+                            marginLeft:'15px',
+                            marginRight: '15px',
+                            backgroundColor: !allButtons[i].active ? this.backColor1(allButtons[i].status) : "black"
                         }}></div></label>
                         <div id={i} onClick={() => {
                             this.props.updateQuestion(i + 1);

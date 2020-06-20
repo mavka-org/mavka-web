@@ -245,8 +245,8 @@ class MainMenu extends React.Component {
                                 />
                                 <div className={s.video_explanation_frame}>
                                     <p><strong><VideoCamera /> Відеопояснення</strong></p>
-                                    <div className={g.video}>
-                                        <div className={g.video_text}>Незабаром...</div>
+                                    <div className={s.video}>
+                                        <div className={s.video_text}>Незабаром...</div>
                                     </div>
                                 </div>
                                 {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} deleteTestInfo={this.deleteTestInfo}/>)}
