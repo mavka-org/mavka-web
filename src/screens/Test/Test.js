@@ -211,6 +211,9 @@ export class Test extends React.Component{
         }else{
             console.log("ПОСЛЕДНИЙ ВОПРОС")
             console.log(this.state.testId)
+            this.setState({
+                loading: !this.state.loading
+            })
             if(this.state.isPractice){
                 this.state.user.getIdToken().then((token) => {
                     return Services.checkFeedbackSurvey(token)
@@ -228,6 +231,9 @@ export class Test extends React.Component{
                     }
                 })
             }else{
+                this.setState({
+                    loading: !this.stateloading
+                })
                 this.state.user.getIdToken().then((token) => {
                     for(let i = 1; i <= this.state.n; i++){
                         if(!(i in this.state.answers)){

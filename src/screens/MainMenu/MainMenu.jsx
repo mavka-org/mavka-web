@@ -109,7 +109,7 @@ class MainMenu extends React.Component {
                 console.log(current.props.location.state);
                 current.setState({
                     tests: tests,
-                    active: SystemFunctions.mainMenuActiveElement(typeof current.props.location.state != 'undefined' ? current.props.location.state.testID : 'undefined', tests),
+                    active: SystemFunctions.mainMenuActiveElement(typeof current.state.confetti != 'undefined' ? current.state.confetti.testID : 'undefined', tests, current.state.active),
                     loading: false,
                     selectedMainMenu: typeof current.props.location.state != 'undefined' ? true : false
                 })
@@ -141,9 +141,13 @@ class MainMenu extends React.Component {
 
     deleteTestInfo = (testID) => {
         this.scrollToTop();
+        //let tmp = this.state.confetti;
+        //tmp.testID = this.state.tests[this.state.active].testID;
         this.setState({
             loading: true,
-            selectedMainMenu: false
+            selectedMainMenu: false,
+            confetti: undefined,
+            active: this.state.active
         })
         this.state.user.getIdToken().then((token) => {
             Services.deleteTestByID(token, testID).then(() => {
