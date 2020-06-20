@@ -3,7 +3,7 @@ import s from './Footer.module.css';
 import Services from '../../Services'
 
 class Footer extends React.Component {
-    state ={
+    state = {
         names: []
     }
 
@@ -18,8 +18,8 @@ class Footer extends React.Component {
         let names = []
 
         for (let x of data) {
-            if(!x['Name'].includes('Нейтан'))
-            names.push(x['Name']);
+            if (!x['Name'].includes('Нейтан'))
+                names.push(x['Name']);
         }
 
         this.setState({
@@ -35,7 +35,7 @@ class Footer extends React.Component {
         let tempGroup = []
 
         for (let i = 0; i < names.length; i++) {
-            if (i % n == 0){
+            if (i % n == 0) {
                 lists.push(tempGroup)
                 tempGroup = []
             }
@@ -49,8 +49,8 @@ class Footer extends React.Component {
 
         // CAN'T RETURN ALL OF THEM:
 
-        return lists.map(function(group){
-            return(
+        return lists.map(function (group) {
+            return (
                 <div className={s.names}>
                     <div className={s.names_object}>
                         <div className={s.name}>{group[3]}</div>
@@ -66,7 +66,7 @@ class Footer extends React.Component {
                     </div>
                 </div>
             )
-          })
+        })
     }
 
     render() {
@@ -74,20 +74,29 @@ class Footer extends React.Component {
             <div className={s.footer}>
                 <div className={s.info}>
                     <div className={s.info_mavka}>
-                        <div><strong>мавка</strong></div>
-                        <div>описание</div>
+                        <div className={s.title}><strong>мавка</strong></div>
+                        <div>Інноваційна неприбуткова освітня онлайн платформа з контеном, що дійсно підходить учням 21го сторіччя. Створюється з любов'ю<br></br><br></br>
+
+                            ©ГО «Мавка», 2020. При використанні матеріалів сайту, зворотнє посилання обов'язкове. Використані тестові завдання належать Українському центру якості освіти.</div>
                     </div>
-                    <div className={s.info}>
+                   
                         <div className={s.info_mavka}>
-                            <div><strong>Зв'язок</strong></div>
+                            <div className={s.title}><strong>Посилання</strong></div>
+                            <div>Про мавку</div>
+                            
+                        </div>
+                   
+                    
+                        <div className={s.info_mavka}>
+                            <div className={s.title}><strong>Зв'язок</strong></div>
                             <div>мавка @Телеграм</div>
                             <div>hello@mavka.org</div>
                         </div>
-                    </div>
+                    
                 </div>
                 <div className={s.names_frame}>
                     <div className={s.title}><strong>Люди за мавкою</strong></div>
-                    <center>{this.write_all_names()}</center>
+                    {this.write_all_names()}
                 </div>
             </div>
         )
