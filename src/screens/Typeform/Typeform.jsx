@@ -1,17 +1,34 @@
 import React from 'react';
 import firebase from './../../global'
 import { Link, Redirect } from 'react-router-dom';
-import { ReactTypeformEmbed } from 'react-typeform-embed';
+import * as typeformEmbed from '@typeform/embed'
 import s from './Survey.module.css';
 import g from './../Templates/Style.module.css';
 
 
 class SurveyDemographics extends React.Component {
+
     state = {
         user: 25
     }
 
-    componentDidMount = () => this.getAuthStatus();
+    componentDidMount() {
+
+        this.getAuthStatus();
+
+        const popup1 = typeformEmbed.makePopup('https://laptiev.typeform.com/to/JpyKH0vn', {
+            mode: 'popup',
+            autoClose: 3000,
+            hideHeaders: true,
+            hideFooters: true,
+            onSubmit: function() {
+                    console.log('ONSUBMIT')
+            }
+        })
+
+        popup1.open()
+
+    }
 
     // Get firebase auth status.
     getAuthStatus = () => {
@@ -43,16 +60,10 @@ class SurveyDemographics extends React.Component {
             return(<div></div>)
         }
         if(this.state.user){
-            firebase.analytics().logEvent('start demographics survey')
-            var url = "https://docs.google.com/forms/d/e/1FAIpQLScgZErcirQmzkPQFxLZG8OiQ-NriSpRdl4KVib99Q8dcXJ5nA/viewform?usp=pp_url&entry.1198759471=";
-            url += this.state.user.email;
+            //firebase.analytics().logEvent('start demographics survey')
             return (
                 <div style={{backgroundColor: '#f2f2f2'}}>
                     <center><Link to={'/home'}><button className={s.btn_turn_back}>Перейти на домашню сторінку</button></Link></center>
-                    <ReactTypeformEmbed
-                        url='https://developerplatform.typeform.com/to/Xc7NMh'
-                        onSubmit={this.test()}
-                        />
                 </div>
             );
         }
