@@ -70,8 +70,8 @@ class QuestionNavPanel extends Component {
             pushed={button.pushed}
             number={index + 1}
             key={index + 1}
-            backColor={!button.active ? this.backColor(button.status) : "#FFBE0B"}
-            color={!button.active ? this.colorText(button.status) : "#000000"}
+            backColor={!button.active ? this.backColor(button.status) : "#000000"}
+            color={!button.active ? this.colorText(button.status) : "#FFFFFF"}
             height={this.getHeight(button.active ? 4.5 : 3)}
             width={this.getWidth(2.2)}
             marginLeft={needMargin ? this.getWidth(0.22) : 0}
@@ -84,16 +84,16 @@ class QuestionNavPanel extends Component {
             if (status == -1) {
                 return "#FFFFFF";
             }
-            return "#000000";
+            return '#FFBE0B';
         }
         if (status == 0) {
-            return "#FBE1E4";
+            return '#E7574F';
         }
         if (status == 1) {
-            return "#FCECD3";
+            return '#FFBE0B';
         }
         if (status == 2) {
-            return "#EAF2EB";
+            return '#0EFB71';
         }
         return "#FFFFFF";
     }
@@ -123,7 +123,7 @@ class QuestionNavPanel extends Component {
             if (status == -1) {
                 return "#000000";
             }
-            return "#FFFFFF";
+            return "#000000";
         }
         return "#000000";
     }
