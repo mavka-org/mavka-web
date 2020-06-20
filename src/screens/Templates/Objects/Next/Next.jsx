@@ -127,6 +127,7 @@ class Next extends React.Component {
                     display: this.showSkip() ? "block" : "none"
                 }} onClick={()=>{
                         this.props.scroll();
+                        firebase.analytics().logEvent('skip question');
                         this.props.updateQuestion(this.props.number + 1);
                     }}>Пропустити</button>
                 </div>

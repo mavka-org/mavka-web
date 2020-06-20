@@ -212,7 +212,7 @@ export class Test extends React.Component{
         });
     }
 
-    updateQuestion = (x) => {
+    updateQuestion = (x, time) => {
         if(x <= this.state.n){
             this.setState({
                 active: x
@@ -224,6 +224,14 @@ export class Test extends React.Component{
                 loading: !this.state.loading
             })
             if(this.state.isPractice){
+                let cnt = Object.keys(this.state.answers).length;
+                if('Topics_to_review' in this.state.answers) {
+                    cnt -= 1;
+                }
+                if('status' in this.state.answers) {
+                    cnt -= 1;
+                }
+                firebase.analytics().logEvent('finish practice', {countOfAnsweredQuestions: cnt});
                 this.state.user.getIdToken().then((token) => {
                     return Services.checkFeedbackSurvey(token)
                 }).then((result) => {
@@ -241,6 +249,17 @@ export class Test extends React.Component{
                     }
                 })
             }else{
+                let cnt = Object.keys(this.state.answers).length;
+                if('Topics_to_review' in this.state.answers) {
+                    cnt -= 1;
+                }
+                if('status' in this.state.answers) {
+                    cnt -= 1;
+                }
+
+                console.log(time);
+                firebase.analytics().logEvent('finish simulation', {countOfAnsweredQuestions: cnt});
+
                 this.setState({
                     loading: !this.stateloading
                 })
@@ -423,7 +442,7 @@ export class Test extends React.Component{
                 const DynamicComponent = componentsMap[type];
 
                 if (this.state.active in this.state.answers) {
-                    firebase.analytics().logEvent('oldQuestion');
+                    firebase.analytics().logEvent('return to answered question', {value: this.state.checkedAnswers[this.state.active]});
                 }
                 else {
                     firebase.analytics().logEvent('newQuestion');
