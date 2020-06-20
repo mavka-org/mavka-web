@@ -75,6 +75,8 @@ class Open extends React.Component {
                                 hidden={hidden}
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
+                                isPractice={this.props.isPractice}
+                                isLastQuestion={this.props.number == this.props.active}
                                 isCorrectAnswer={data.checkCorrect(this.state.currentAnswer)}
                                 />
                         </div>

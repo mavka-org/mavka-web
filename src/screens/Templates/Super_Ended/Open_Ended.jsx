@@ -57,6 +57,7 @@ class Open_Ended extends React.Component {
                             answered={this.state.answered}
                             updateQuestion={this.props.updateQuestion}
                             number={this.state.active}
+                            isLastQuestion={this.props.number == this.props.active}
                             currentAnswer=" "
                             updateAnswers={this.props.updateAnswers}
                             isPractice={this.props.isPractice}

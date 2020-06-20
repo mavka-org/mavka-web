@@ -39,7 +39,8 @@ class Double_Input_Answer extends React.Component {
 
     render() {
         //console.log(this.state.currentAnswer + " " +  this.props.letter + " " + this.props.isCorrectAnswer);
-        //console.log(isUserAnswer);
+        console.log(this.props.isPractice);
+        console.log(this.props.answered);
         return (
 
             <div className={s.answer}>
@@ -69,7 +70,7 @@ class Double_Input_Answer extends React.Component {
                     <div dangerouslySetInnerHTML={{ __html: this.props.explanation }}></div>
                 </div>
 
-                <input className={s.inp} id={this.inputId} value={this.props.currentAnswer} onChange={() => {this.updateInput()}}></input>
+                <input disabled={this.props.isPractice && this.props.answered ? true : false} className={s.inp} id={this.inputId} value={this.props.currentAnswer} onChange={() => {this.updateInput()}}></input>
 
                 <div className={s.correct_answer} style={{
                     display: !this.props.hidden ? "none" : "block"
