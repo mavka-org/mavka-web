@@ -3,7 +3,7 @@ import s from './../../MainMenu.module.css';
 import g from './../../../Templates/Style.module.css';
 class Scores extends React.Component {
     render() {
-        return (
+        return (<div>
             <div className={s.scores_frame}>
                 <div className={s.score_frame}>
                     <div className={s.score}>
@@ -19,10 +19,13 @@ class Scores extends React.Component {
                         <div className={s.comment}>Тестовий бал з 64</div>
                     </div>
                 </div>
-                <div className={s.btn_wrap} onClick={()=>{
+                <div className={s.btn_wrap} onClick={() => {
                     this.props.click();
-                }}><button className={g.btn}>Переглянути помилки</button></div>
+                }}><button className={g.btn} style={{height: '50px'}}>Переглянути помилки</button></div>
             </div>
+
+        </div>
+
         );
     }
 }

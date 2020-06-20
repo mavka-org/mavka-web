@@ -1,12 +1,5 @@
 .page {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    padding: 55px 2px;
-    width: 945px;
-    left: calc(50% - 945px/2);
-    top: 0px;
-    overflow: hidden;
+    align-items: center;
 }
 
 /* header */
@@ -87,6 +80,7 @@
 .scores_frame {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .scores_frame>div {
@@ -95,6 +89,7 @@
 
 .score_frame {
     margin-top: 29px;
+    margin-bottom: 29px;
     display: flex;
     flex-direction: row;
     align-self: center;
@@ -105,7 +100,7 @@
     flex-direction: column;
     text-align: center;
     width: 174px;
-    height: 100px;
+    height: 100%;
     margin: 0px 7px;
 }
 
@@ -122,6 +117,13 @@
     color: gray;
     margin-top: 20px;
     font-size: 14px;
+}
+
+.topic_frame_menu {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 /* btns */
@@ -147,6 +149,7 @@
 
 .btn_wrap {
     width: 50%;
+    margin: auto;
     align-self: center;
 }
 
@@ -193,16 +196,6 @@
 
 /* video */
 
-.video_explanation_frame {
-    width: 550px;
-}
-
-.video {
-    width: 550px;
-    height: 330px;
-    background-color: black;
-}
-
 .wrap {
     display: flex;
     flex-direction: column;
@@ -218,14 +211,6 @@
 }
 
 /* skip */
-
-.skip {
-    margin-top: 30px;
-    width: 334px;
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-}
 
 /* adaptive */
 
@@ -252,33 +237,25 @@
 
 @media (max-width: 992px) {
     /* это будет показано при разрешении монитора до 930 пикселей */
-    .page {
-        display: flex;
-        flex-direction: column;
-        padding: 10px 0px;
-        position: absolute;
-        width: 95%;
-        height: 250%;
-        left: calc(50% - 95%/2);
-        top: 0px;
-        background-color: #FFFFFF;
-    }
+    
     .question_body {
         display: flex;
         flex-direction: column;
+        width: 95%;
         margin-top: 29px;
+        align-items: center;
     }
     .tests_body_left {
         display: flex;
         flex-direction: column;
-        width: 320px;
+        width: 95%;
         align-self: center;
     }
     .test_body_right {
         margin-left: 2%;
         display: flex;
         flex-direction: column;
-        width: 550px;
+        width: 90%;
         align-self: center;
     }
     .score_frame {
@@ -289,67 +266,60 @@
     }
     .skip {
         margin-top: 30px;
-        width: 40%;
+        width: 50%;
         display: flex;
         flex-direction: column;
         align-self: center;
     }
     .description {
-        width: 50%;
+        width: 100%;
         text-align: center;
         align-self: center;
         color: gray;
         margin-top: 20px;
-        width: 40%;
+        width: 95%;
         font-size: 14px;
         line-height: 18px;
     }
+    .btn_wrap {
+        width: 50%;
+        margin: auto;
+        align-self: center;
+    }
     .title {
-        margin-left: 100px;
-        margin-top: 30px;
+        margin-left: 10px;
+        
     }
-    .video_explanation_frame {
-        width: 100%;
-        height: 100%;
-    }
-    .video_explanation_frame>p {
-        margin-left: 100px;
-    }
-    .video {
-        width: 100%;
-        height: 350px;
-        background-color: black;
-        margin-bottom: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    
 }
+
+
+
+
+
 
 @media (max-width: 325px) {
     /* это будет показано при разрешении монитора до 930 пикселей */
-    .page {
+    
+    .question_body {
         display: flex;
         flex-direction: column;
-        padding: 10px 0px;
-        position: absolute;
         width: 95%;
-        height: 250%;
-        left: calc(50% - 95%/2);
-        top: 0px;
-        background-color: #FFFFFF;
+        margin-top: 29px;
+        align-items: center;
     }
     .tests_body_left {
         display: flex;
         flex-direction: column;
-        width: 280px;
+        width: 100%;
         align-self: center;
     }
     .test_body_right {
-        margin-left: 1%;
+        
         display: flex;
         flex-direction: column;
-        width: 550px;
+        width: 100%;
+        align-self: center;
     }
     .buttons_frame {
         display: flex;
@@ -357,7 +327,8 @@
         align-self: center;
     }
     .title {
-        margin-left: 130px;
+        display: flex;
+        
         margin-top: 30px;
     }
     .video_explanation_frame {
@@ -375,55 +346,93 @@
     }
 }
 
-@media only screen and (min-height: 750px) and (max-height: 823px) {
+
+@media only screen and (min-height: 1101px) and (max-height: 1400px) {
     .page {
         display: flex;
         flex-direction: column;
         padding: 10px 0px;
         position: absolute;
         width: 95%;
-        height: 220%;
+        height: 100%;
         left: calc(50% - 95%/2);
         top: 0px;
         background-color: #FFFFFF;
+        align-items: center;
     }
 }
-@media only screen and (min-height: 700px) and (max-height: 737px) {
+
+@media only screen and (min-height: 1020px) and (max-height: 1100px) {
     .page {
         display: flex;
         flex-direction: column;
         padding: 10px 0px;
         position: absolute;
         width: 95%;
-        height: 240%;
+        height: 100%;
         left: calc(50% - 95%/2);
         top: 0px;
         background-color: #FFFFFF;
+        align-items: center;
     }
 }
-@media only screen and (min-height: 520px) and (max-height: 569px) {
+
+@media only screen and (min-height: 750px) and (max-height: 850px) {
     .page {
         display: flex;
         flex-direction: column;
         padding: 10px 0px;
         position: absolute;
         width: 95%;
-        height: 300%;
+        height: 120vh;
         left: calc(50% - 95%/2);
         top: 0px;
         background-color: #FFFFFF;
+        align-items: center;
     }
 }
-@media only screen and (min-height: 1020px) and (max-height: 1025px) {
+
+@media only screen and (min-height: 700px) and (max-height: 749px) {
     .page {
         display: flex;
         flex-direction: column;
         padding: 10px 0px;
         position: absolute;
         width: 95%;
-        height: 200%;
+        height: 100%;
         left: calc(50% - 95%/2);
         top: 0px;
         background-color: #FFFFFF;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-height: 600px) and (max-height: 699px) {
+    .page {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0px;
+        position: absolute;
+        width: 95%;
+        height: 100%;
+        left: calc(50% - 95%/2);
+        top: 0px;
+        background-color: #FFFFFF;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-height: 520px) and (max-height: 599px) {
+    .page {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0px;
+        position: absolute;
+        width: 95%;
+        height: 100%;
+        left: calc(50% - 95%/2);
+        top: 0px;
+        background-color: #FFFFFF;
+        align-items: center;
     }
 }
