@@ -42,7 +42,7 @@ class SurveyDemographics extends React.Component {
             url += this.state.user.email;
             return (
                 <div style={{backgroundColor: '#f2f2f2'}}>
-                    <center><Link to={'/home'}><button className={s.btn_turn_back}>Вийти з опитування</button></Link></center>
+                    <center><Link to={'/home'}><button className={s.btn_turn_back}>Перейти на домашню сторінку</button></Link></center>
                     <iframe src={url} width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                     //<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScgZErcirQmzkPQFxLZG8OiQ-NriSpRdl4KVib99Q8dcXJ5nA/viewform?embedded=true" width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </div>
