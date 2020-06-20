@@ -10,9 +10,7 @@ import { HashRouter } from 'react-router-dom'
 Services.getTechnicalPauseStatus().then((pause) => {
     ReactDOM.render(
         <div>
-              {pause ? <TechnicalPause /> : (<HashRouter>
-                <App />
-              </HashRouter>)}
+              {pause ? <TechnicalPause /> : <App />}
         </div>,
       document.getElementById('root')
     );
