@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 import ScreensAbout from "./screens/About";
 import NotFound from "./screens/NotFound";
+import TechnicalPause from "./screens/TechnicalPause/TechnicalPause.jsx";
 
 import Login from "./screens//Login_Register_Menu/Login/Login"
 import Home from "./screens/Home";
@@ -31,8 +32,12 @@ export default () => (
             <Route exact path="/subject/:id" component={MainMenu} />
             <Route exact path="/subject/:id/:mode/:testId" component={Test} />
             <Route exact path={"/preview/:id"} component={TestView}/>
+<<<<<<< HEAD
+            <Route component={TechnicalPause}/>
+=======
             <Route exact path={"/404"} component={NotFound}/>
             <Route component={NotFound}/>
+>>>>>>> master
         </Switch>
     </Router>
 );
