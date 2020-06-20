@@ -7,12 +7,12 @@ import CheckAnswerIcon from '../../Icon/CheckAnswerIcon';
 class CoupleAnswer extends React.Component {
 
     getDiv() {
-        
+
         if(this.props.subanswer.length > 0) {
             if(this.props.hidden) {
                 return(
                 <div className={g.check}>
-                    <div className={g.answer_text}>{this.props.subanswer}</div>
+                    <div className={g.answer_text} dangerouslySetInnerHTML={{ __html: this.props.subanswer }}></div>
                 </div>)
             }
             else {
@@ -20,7 +20,7 @@ class CoupleAnswer extends React.Component {
                 <div>
                     <div className={g.check}>
                         <div className={g.letter} style={{ marginLeft: 30 }}><strong>{this.props.correctLetter}:</strong></div>
-                        <div className={g.answer_text}>{this.props.subanswer}</div>
+                        <div className={g.answer_text} dangerouslySetInnerHTML={{ __html: this.props.subanswer }}></div>
                     </div>
                     <div className={g.comment} dangerouslySetInnerHTML={{ __html: this.props.explanation }}></div>
                 </div>)
@@ -43,18 +43,18 @@ class CoupleAnswer extends React.Component {
 
                             <div className={g.symbol} style={{
                                 display: this.props.hidden ? "none" : "block",
-                                }}> <CheckAnswerIcon 
+                                }}> <CheckAnswerIcon
                                     isCorrectAnswer={true}
                                     isUserAnswer={this.props.isCorrectAnswer}
                                     /></div>
                             <div className={g.number}><strong>{this.props.number}:</strong></div>
-                            <div className={g.answer_text}>{this.props.subquestion}</div>
+                            <div className={g.answer_text} dangerouslySetInnerHTML={{ __html: this.props.subquestion }}></div>
                         </div>
                         {this.getDiv()}
-                        
+
                     </div>
                 </div>
-                
+
             </div>
         );
     }

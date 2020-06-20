@@ -119,7 +119,7 @@ class Header extends React.Component {
                             <div className={s.title}> <WavingHand /> <strong>&nbsp;Порада!</strong></div>
                             <div className={s.description}>Гортай сторінку вправо та вліво, щоб переключатися між сусідніми завданнями.</div>
                         </div>
-                        <div className={s.tip_1}>
+                        <div className={s.tip1}>
                             <div className={s.title}><strong>{this.props.subject}</strong></div>
                             <div className={s.description}>{this.props.year} {this.props.session} сесія</div>
                         </div>

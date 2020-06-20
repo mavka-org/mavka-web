@@ -159,6 +159,9 @@ export class Test extends React.Component{
                                     loading: false
                                 })
                             }else{
+                                current.setState({
+                                    loading: false
+                                })
                                 Services.changeTestStatusByID(token, current.state.testId, "вільна практика");
                             }
                         })

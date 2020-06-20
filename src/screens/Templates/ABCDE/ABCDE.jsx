@@ -54,6 +54,7 @@ class ABCDE extends Component {
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
         let isNextAllowed = this.validateCurrentAnswer()
+
         return (
             <div>
                 <div className={s.question_body}>
@@ -87,7 +88,7 @@ class ABCDE extends Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('А')}
-                                isPractice={this.state.isPractice}
+                                isPractice={this.props.isPractice}
                             />
                             <Answer
                                 answered={this.state.answered}
@@ -98,7 +99,7 @@ class ABCDE extends Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Б')}
-                                isPractice={this.state.isPractice}
+                                isPractice={this.props.isPractice}
                             />
                             <Answer
                                 answered={this.state.answered}
@@ -109,7 +110,7 @@ class ABCDE extends Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('В')}
-                                isPractice={this.state.isPractice}
+                                isPractice={this.props.isPractice}
                             />
                             <Answer
                                 answered={this.state.answered}
@@ -120,7 +121,7 @@ class ABCDE extends Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Г')}
-                                isPractice={this.state.isPractice}
+                                isPractice={this.props.isPractice}
                             />
                             <Answer
                                 answered={this.state.answered}
@@ -131,7 +132,7 @@ class ABCDE extends Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Д')}
-                                isPractice={this.state.isPractice}
+                                isPractice={this.props.isPractice}
                             />
                         </div>
                         <Next

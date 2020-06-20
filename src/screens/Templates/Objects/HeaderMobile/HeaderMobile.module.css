@@ -10,7 +10,7 @@
 
 .header{
     width: 100%;
-    height: 133px;
+    height: 100%;
     background-color: white;
     display: flex;
     font-size: 18px;
@@ -27,7 +27,7 @@
     margin-top: 15px;
 }
 .tip{
-    
+
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -36,8 +36,8 @@
     margin-top: 15px;
     background-color: #E8E8E8;
 }
-.tip_1{
-    
+.tip1{
+
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -136,4 +136,3 @@
     right: 45px;
     font-size: 60px;
 }
-
