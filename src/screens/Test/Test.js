@@ -24,6 +24,7 @@ import Geo_History_3_7 from '../Templates/Geo_History_3_7/Geo_History_3_7';
 import {animateScroll as scroll} from 'react-scroll'
 import Axios from 'axios';
 import NotFound from './../NotFound'
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
 const componentsMap = {
     ABCDE,
@@ -116,7 +117,8 @@ export class Test extends React.Component{
             answers: {},
             checkedAnswers: {},
             width: window.innerWidth,
-            statusFound: true
+            statusFound: true,
+            loading: true
         }
         this.updateScreen = this.updateScreen.bind(this);
         window.addEventListener("resize", this.updateScreen);
@@ -153,14 +155,18 @@ export class Test extends React.Component{
                                 }
                                 current.setState({
                                     answers: response.data,
-                                    checkedAnswers: checkedAnswers
+                                    checkedAnswers: checkedAnswers,
+                                    loading: false
                                 })
                             }else{
+                                current.setState({
+                                    loading: false
+                                })
                                 Services.changeTestStatusByID(token, current.state.testId, "вільна практика");
                             }
                         })
                     })
-                }         
+                }
             })
         })
 
@@ -227,14 +233,14 @@ export class Test extends React.Component{
                             }
                         }
                         console.log(this.state.user);
-                        console.log({ 
+                        console.log({
                             Test_id: this.state.testId,
                             User_id: this.state.user.uid,
                             UserAnswers: res
                         })
                         Axios.post(
                             'https://flask.mavka.org/api/post_score',
-                            { 
+                            {
                                 Test_id: this.state.testId,
                                 User_id: this.state.user.uid,
                                 UserAnswers: res
@@ -300,19 +306,21 @@ export class Test extends React.Component{
     }
 
     render() {
-       // console.log("Test.js");
-       // console.log(this.state.checkedAnswers);
-        if (this.state.user == 25) {
-            return (<div></div>);
-        }
+
         if(!this.state.statusFound){
-            return (NotFound);
+            return (<Redirect to="/404" />);
         }
         if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія'){
-            return (NotFound);
+            return (<Redirect to="/404" />);
         }
         if (this.state.mode != 'practice' && this.state.mode != 'simulation'){
-            return (NotFound);
+            return (<Redirect to="/404" />);
+        }
+        if(this.state.loading){
+            return (<LoadingScreen />);
+        }
+        if (this.state.user == 25) {
+            return (<LoadingScreen />);
         }
         if (this.state.user) {
             if (this.state.data.length > 0) {

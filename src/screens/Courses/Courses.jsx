@@ -15,7 +15,10 @@ import UK from './../Templates/Icon/UK';
 import Book from './../Templates/Icon/Book'
 import { Redirect } from 'react-router-dom';
 import AlertConfirm from './../AlertConfirm/AlertConfirm'
-import Footer from './Object/Footer/Footer';
+import Footer from '../Footer/Footer';
+import Loading from './../LoadingScreen'
+import LoadingScreen from './../LoadingScreen';
+
 class Courses extends React.Component {
     state = {
         user: 25,
@@ -75,7 +78,7 @@ class Courses extends React.Component {
         var pic8 = <France />
         var pic9 = <German />
         if (this.state.user == 25) {
-            return (<div></div>)
+            return (<LoadingScreen />);
         }
         if (this.state.user) {
             return (

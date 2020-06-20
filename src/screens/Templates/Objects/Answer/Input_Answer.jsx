@@ -62,7 +62,7 @@ class Input_Answer extends React.Component {
                     </div>
                 </div>
 
-                <input className={s.inp} id={this.inputId} value={this.props.currentAnswer} onChange={() => {this.updateInput()}}></input>
+                <input disabled={this.props.isPractice && this.props.answered ? true : false} className={s.inp} id={this.inputId} value={this.props.currentAnswer} onChange={() => {this.updateInput()}}></input>
 
                 <div className={s.correct_answer} style={{
                     display: !this.props.hidden ? "none" : "block"

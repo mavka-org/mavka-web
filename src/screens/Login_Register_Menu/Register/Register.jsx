@@ -3,6 +3,7 @@ import s from './../Login_Register.module.css';
 import g from '../../Templates/Style.module.css';
 import firebase from "../../../global"
 import { Redirect, Link } from 'react-router-dom';
+import LoadingScreen from '../../LoadingScreen/LoadingScreen';
 
 class Register extends React.Component {
     state = {
@@ -89,7 +90,7 @@ class Register extends React.Component {
     }
     render() {
         if(this.state.user == 25){
-            return(<div></div>)
+            return (<LoadingScreen />);
         }
         if(this.state.user){
             return(<Redirect to="/home"/>)

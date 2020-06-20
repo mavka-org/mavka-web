@@ -23,15 +23,7 @@ import NotFound from './../NotFound'
 
 
 import Strong from '../Templates/Icon/Strong/Strong';
-import HeaderMainMenu from "./Object/HeaderMainMenu/HeaderMainMenu";
-import LoadingScreen from '../LoadingScreen/LoadingScreen';
 class MainMenu extends React.Component {
-
-    updateScreen () {
-        this.setState({
-            width: window.innerWidth
-        })
-    }
 
     constructor(props) {
         super(props);
@@ -41,12 +33,8 @@ class MainMenu extends React.Component {
             subject: this.props.match.params.id,
             user: 25,
             tests: [],
-            active: 0,
-            confetti: this.props.location.state,
-            loading: true
+            active: 0
         }
-        this.updateScreen = this.updateScreen.bind(this);
-        window.addEventListener("resize", this.updateScreen);
         
     }
 
@@ -106,8 +94,7 @@ class MainMenu extends React.Component {
                 console.log(current.props.location.state);
                 current.setState({
                     tests: tests,
-                    active: SystemFunctions.mainMenuActiveElement(typeof current.props.location.state != 'undefined' ? current.props.location.state.testID : 'undefined', tests),
-                    loading: false
+                    active: SystemFunctions.mainMenuActiveElement(typeof current.props.location.state != 'undefined' ? current.props.location.state.testID : 'undefined', tests)
                 })
             });
         });
@@ -115,8 +102,7 @@ class MainMenu extends React.Component {
 
     updateSelectedTest = (num) => {
         this.setState({
-            active: num,
-            confetti: null
+            active: num
         })
     }
 
@@ -189,21 +175,17 @@ class MainMenu extends React.Component {
     render() {
         const pic1 = <Strong />
         const pic2 = <Clock />
-        
-        if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія'){
-            return (<Redirect to="/404" />);
-        }
-        if(this.state.loading){
-            return (<LoadingScreen />);
-        }
         if (this.state.user == 25) {
-            return (<LoadingScreen />);
+            return (<div></div>);
+        }
+        if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія'){
+            return (NotFound);
         }
         if (this.state.user) {
             return (
                 <div className={g.background}>
                     <div className={[s.page, g.page_].join(' ')} >
-                        {window.innerWidth > 992 ? (<div className={s.header}>
+                        <div className={s.header}>
                             <div className={s.question_title}>
                                 <strong>Тести з<br></br> {this.state.subjectName}</strong>
                             </div>
@@ -214,9 +196,7 @@ class MainMenu extends React.Component {
                                     </button>
                                 </Link>
                             </div>
-                        </div>) : (<HeaderMainMenu>
-                            <strong>Тести з<br></br> {this.state.subjectName}</strong>
-                        </HeaderMainMenu>)}
+                        </div>
                         <div className={s.question_body}>
                             <div className={s.tests_body_left}>
                                 <ZNO_component
@@ -228,7 +208,7 @@ class MainMenu extends React.Component {
 
                             {this.state.tests.length > 0 ? (<div className={s.test_body_right}>
                                 <div>
-                                    {this.state.tests[this.state.active].status == 'тест пройдений' && this.state.confetti && this.state.confetti.confetti ? (<Confetti />) : null}
+                                    {this.state.tests[this.state.active].status == 'тест пройдений' && this.props.location.state ? (<Confetti />) : null}
                                 </div>
 
                                 <div className={s.scores_frame}>
@@ -247,12 +227,11 @@ class MainMenu extends React.Component {
                                 />
                                 <div className={s.video_explanation_frame}>
                                     <p><strong><VideoCamera /> Відеопояснення</strong></p>
-                                    <div className={g.video}>
+                                    <div className={s.video}>
                                         <div className={g.video_text}>Незабаром...</div>
                                     </div>
                                 </div>
-                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} deleteTestInfo={this.deleteTestInfo}/>)}
-
+                                {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} click={this.deleteTestInfo} />)}
                             </div>) : null}
                         </div>
                     </div>

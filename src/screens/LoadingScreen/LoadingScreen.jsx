@@ -64,7 +64,7 @@ class LoadingScreen extends React.Component {
         return (
             <div className={s.page}>
                 <div className={s.loading}>
-                    <div><strong>мавка </strong>зно</div>
+                    <div className={s.logo}><strong>мавка </strong>зно</div>
                    <div style={{marginTop: '50px'}}><DynamicComponent /></div>
                 </div>
             </div>

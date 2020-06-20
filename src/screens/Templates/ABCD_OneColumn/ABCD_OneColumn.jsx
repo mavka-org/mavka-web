@@ -71,7 +71,7 @@ class ABCD_OneColumn extends React.Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('А')}
-                                isPractice={this.state.isPractice}
+                                isPractice={this.props.isPractice}
                             />
                             <Answer
                                 answered={this.state.answered}
@@ -82,7 +82,7 @@ class ABCD_OneColumn extends React.Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Б')}
-                                isPractice={this.state.isPractice}
+                                isPractice={this.props.isPractice}
                             />
                             <Answer
                                 answered={this.state.answered}
@@ -93,7 +93,7 @@ class ABCD_OneColumn extends React.Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('В')}
-                                isPractice={this.state.isPractice}
+                                isPractice={this.props.isPractice}
                             />
                             <Answer
                                 answered={this.state.answered}
@@ -104,7 +104,7 @@ class ABCD_OneColumn extends React.Component {
                                 updateCurrentAnswer={this.updateCurrentAnswer}
                                 currentAnswer={this.state.currentAnswer}
                                 isCorrectAnswer={data.checkCorrect('Г')}
-                                isPractice={this.state.isPractice}
+                                isPractice={this.props.isPractice}
                             />
                         </div>
                         <Next
