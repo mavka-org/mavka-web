@@ -6,7 +6,7 @@ import s from './Survey.module.css';
 import g from './../Templates/Style.module.css';
 
 
-class SurveyDemographics extends React.Component {
+class Typeform extends React.Component {
 
     state = {
         user: 25
@@ -16,17 +16,19 @@ class SurveyDemographics extends React.Component {
 
         this.getAuthStatus();
 
-        const popup1 = typeformEmbed.makePopup('https://laptiev.typeform.com/to/JpyKH0vn', {
+        const demographicsForm = typeformEmbed.makePopup('https://laptiev.typeform.com/to/JpyKH0vn', {
             mode: 'popup',
-            autoClose: 3000,
             hideHeaders: true,
             hideFooters: true,
             onSubmit: function() {
                     console.log('ONSUBMIT')
+            },
+            onClose: function() {
+                demographicsForm.open()
             }
         })
 
-        popup1.open()
+        demographicsForm.open()
 
     }
 
@@ -50,20 +52,15 @@ class SurveyDemographics extends React.Component {
         this.props.history.push(ref);
     }
 
-    test () {
-        console.log("TEST")
-    }
-
     render() {
-        document.getElementsByTagName('body')[0].setAttribute("style", "overflow-y: scroll;")
+        document.getElementsByTagName('body')[0].setAttribute("style", "overflow-y: hidden;")
         if(this.state.user == 25){
             return(<div></div>)
         }
         if(this.state.user){
             //firebase.analytics().logEvent('start demographics survey')
             return (
-                <div style={{backgroundColor: '#f2f2f2'}}>
-                    <center><Link to={'/home'}><button className={s.btn_turn_back}>Перейти на домашню сторінку</button></Link></center>
+                <div>
                 </div>
             );
         }
@@ -73,4 +70,4 @@ class SurveyDemographics extends React.Component {
     }
 }
 
-export default SurveyDemographics;
+export default Typeform;

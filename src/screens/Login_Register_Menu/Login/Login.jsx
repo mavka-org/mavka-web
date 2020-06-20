@@ -35,7 +35,6 @@ class Login extends React.Component {
     }
     async login(email, password) {
         //alert(email + " " + password)
-        firebase.analytics().logEvent('TEST user logged in');
         let current = this;
         await firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
             console.log(error);
@@ -66,7 +65,7 @@ class Login extends React.Component {
         });
 
         if(firebase.auth().currentUser){
-            firebase.analytics().logEvent('userLogin');
+            firebase.analytics().logEvent('login with email and password');
             this.props.history.push('/home')
         }
     }
@@ -111,6 +110,7 @@ class Login extends React.Component {
                             firebase.auth().signInWithPopup(provider).then(function(result) {
                              var token = result.credential.accessToken;
                              var user = result.user;
+                             firebase.analytics().logEvent('login with google');
                             }).catch(function(error){
                                 current.setState({
                                     googleComment: 'Електрона адреса вже використовується!'
@@ -129,6 +129,7 @@ class Login extends React.Component {
                             firebase.auth().signInWithPopup(provider).then(function(result) {
                                 var token = result.credential.accessToken;
                                 var user = result.user;
+                                firebase.analytics().logEvent('login with facebook');
                               }).catch(function(error) {
                                 current.setState({
                                     fbComment: 'Електрона адреса вже використовується!'

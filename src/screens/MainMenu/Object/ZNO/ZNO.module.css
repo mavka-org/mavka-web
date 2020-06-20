@@ -11,8 +11,7 @@
     align-self: center;
     margin-bottom: 7px;
     transition: 0.2s linear;
-    margin-left: 16px;
-    margin-top: 16px;
+    margin-top: 26px;
 }
 .zno_choose:focus {
     outline: 0;
