@@ -98,6 +98,7 @@
     border: 1px black solid;
     margin-top: 20px;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .next:hover {
