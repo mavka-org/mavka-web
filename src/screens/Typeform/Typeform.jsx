@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { ReactTypeformEmbed } from 'react-typeform-embed';
 import s from './Survey.module.css';
 import g from './../Templates/Style.module.css';
-
+import axios from 'axios'
 
 class SurveyDemographics extends React.Component {
     state = {
@@ -34,6 +34,9 @@ class SurveyDemographics extends React.Component {
     }
 
     test () {
+        //axios.get('https://api.typeform.com/forms/Xc7NMh/responses/').then((response) => {
+        //    console.log(response.data)
+        //})
         console.log("TEST")
     }
 
@@ -44,17 +47,16 @@ class SurveyDemographics extends React.Component {
         }
         if(this.state.user){
             firebase.analytics().logEvent('start demographics survey')
-            var url = "https://docs.google.com/forms/d/e/1FAIpQLScgZErcirQmzkPQFxLZG8OiQ-NriSpRdl4KVib99Q8dcXJ5nA/viewform?usp=pp_url&entry.1198759471=";
-            url += this.state.user.email;
-            return (
-                <div style={{backgroundColor: '#f2f2f2'}}>
-                    <center><Link to={'/home'}><button className={s.btn_turn_back}>Перейти на домашню сторінку</button></Link></center>
-                    <ReactTypeformEmbed
-                        url='https://developerplatform.typeform.com/to/Xc7NMh'
-                        onSubmit={this.test()}
-                        />
-                </div>
-            );
+            let url = 'https://api.typeform.com/forms/JpyKH0vn/responses';
+            axios.get(url, {
+                headers: {
+                    'Access-Control-Allow-Origin': "*",
+                    'Authorization': '6xXKW9jNFB6FLBYWaKJ6zJLndsYeXVSQEbfuPyxvjXY3'
+                }
+            }).then((res) => {
+                console.log(res.data);
+            });
+            return(<div></div>)
         }
         else {
             return(<Redirect to="/login"/>);
