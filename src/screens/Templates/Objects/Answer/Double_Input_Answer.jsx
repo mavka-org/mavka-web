@@ -32,7 +32,7 @@ class Double_Input_Answer extends React.Component {
 
     validateAnswer() {
         let input = document.getElementById(this.inputId);
-        let clean = input.value.replace(/[^0-9,]/g, "").replace(/(,.*?),(.*,)?/, "$1");
+        let clean = input.value.replace(/[^0-9,-]/g, "").replace(/(,.*?),(.*,)?/, "$1");
         // don't move cursor to end if no change
         if (clean !== input.value) input.value = clean;
     }

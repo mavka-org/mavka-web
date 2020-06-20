@@ -119,7 +119,8 @@ export class Test extends React.Component{
             width: window.innerWidth,
             statusFound: true,
             loading: true,
-            topicSimulation: []
+            topicSimulation: [],
+            redirect: false
         }
         this.updateScreen = this.updateScreen.bind(this);
         window.addEventListener("resize", this.updateScreen);
@@ -151,6 +152,14 @@ export class Test extends React.Component{
                             let checkedAnswers = {};
                             if(response.data != "not exist"){
                                 for(let tmp in response.data){
+                                    if(tmp == 'status'){
+                                        if(response.data[tmp] == 'Тест пройдений' && current.props.match.params.mode == 'simulation'){
+                                            console.log('lalalal');
+                                            current.setState({
+                                                redirect: true
+                                            })
+                                        }       
+                                    }
                                     if(tmp != "status" && tmp != "Test_results" && tmp!= "Topics_to_review")
                                         checkedAnswers[tmp] = current.state.data[Number(tmp) - 1].checkCorrect(response.data[tmp]);
                                 }
@@ -203,7 +212,7 @@ export class Test extends React.Component{
         });
     }
 
-    updateQuestion = (x) => {
+    updateQuestion = (x, time) => {
         if(x <= this.state.n){
             this.setState({
                 active: x
@@ -211,7 +220,18 @@ export class Test extends React.Component{
         }else{
             console.log("ПОСЛЕДНИЙ ВОПРОС")
             console.log(this.state.testId)
+            this.setState({
+                loading: !this.state.loading
+            })
             if(this.state.isPractice){
+                let cnt = Object.keys(this.state.answers).length;
+                if('Topics_to_review' in this.state.answers) {
+                    cnt -= 1;
+                }
+                if('status' in this.state.answers) {
+                    cnt -= 1;
+                }
+                firebase.analytics().logEvent('finish practice', {countOfAnsweredQuestions: cnt});
                 this.state.user.getIdToken().then((token) => {
                     return Services.checkFeedbackSurvey(token)
                 }).then((result) => {
@@ -229,6 +249,20 @@ export class Test extends React.Component{
                     }
                 })
             }else{
+                let cnt = Object.keys(this.state.answers).length;
+                if('Topics_to_review' in this.state.answers) {
+                    cnt -= 1;
+                }
+                if('status' in this.state.answers) {
+                    cnt -= 1;
+                }
+
+                console.log(time);
+                firebase.analytics().logEvent('finish simulation', {countOfAnsweredQuestions: cnt});
+
+                this.setState({
+                    loading: !this.stateloading
+                })
                 this.state.user.getIdToken().then((token) => {
                     for(let i = 1; i <= this.state.n; i++){
                         if(!(i in this.state.answers)){
@@ -256,7 +290,8 @@ export class Test extends React.Component{
                             {
                                 Test_id: this.state.testId,
                                 User_id: this.state.user.uid,
-                                UserAnswers: res
+                                UserAnswers: res,
+                                Subject: SystemFunctions.convertSubjectName(this.state.subject)
                             },
                             { headers: { 'Content-Type': 'application/json' } }
                         ).then((response) => {
@@ -375,6 +410,10 @@ export class Test extends React.Component{
         if (this.state.mode != 'practice' && this.state.mode != 'simulation'){
             return (<Redirect to="/404" />);
         }
+        if(this.state.redirect){
+            //this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.testId);
+            return(<Redirect to={'/subject/' + this.state.subject + '/practice/' + this.state.testId}/>)
+        }
         if(this.state.loading || this.state.user == 25){
             return (<LoadingScreen />);
         }
@@ -404,7 +443,7 @@ export class Test extends React.Component{
                 const DynamicComponent = componentsMap[type];
 
                 if (this.state.active in this.state.answers) {
-                    firebase.analytics().logEvent('oldQuestion');
+                    firebase.analytics().logEvent('return to answered question', {value: this.state.checkedAnswers[this.state.active]});
                 }
                 else {
                     firebase.analytics().logEvent('newQuestion');

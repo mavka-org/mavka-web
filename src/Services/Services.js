@@ -359,7 +359,7 @@ class Question {
                     score += 2;
                 }
                 if(answerToCheck[1] == this.double_open_answers[1]) {
-                    score += 2;    
+                    score += 2;
                 }
             }
 
@@ -514,6 +514,13 @@ class Services {
         return answer
     }
 
+    static async getTeamInfo () {
+        const firestore = firebase.firestore();
+        return await firestore.collection("team").doc("team-names").get().then(doc => {
+            return doc.get("Team");
+        });
+    }
+
     static async getReferenceById (id) {
         const firestore = firebase.firestore();
         return await firestore.collection("practices_id").doc(id).get().then(doc => {
@@ -540,6 +547,18 @@ class Services {
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/checkFeedbackSurvey',
             { 
                 token: token,
+            },
+            { headers: { 'Content-Type': 'text/plain' } }
+        )
+        console.log(response.data)
+        return response.data;
+    }
+
+    static async getReqForm (url) {
+        const response = await axios.post(
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/getReqForm',
+            { 
+                url: url,
             },
             { headers: { 'Content-Type': 'text/plain' } }
         )
@@ -588,7 +607,7 @@ class Services {
     static async deleteTestByID(token, testID){
         const response = await axios.post(
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/deleteCourseById',
-            { 
+            {
                 token: token,
                 id: testID,
             },
