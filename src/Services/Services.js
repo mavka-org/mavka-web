@@ -527,6 +527,13 @@ class Services {
             return doc.get("ref");
         });
     }
+
+    static async getReferenceById (id) {
+        const firestore = firebase.firestore();
+        return await firestore.collection("practices_id").doc(id).get().then(doc => {
+            return doc.get("ref");
+        });
+    }
     static getQuestionClass (json) {
         return new Question(json);
     }

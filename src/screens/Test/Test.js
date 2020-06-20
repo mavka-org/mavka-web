@@ -118,7 +118,8 @@ export class Test extends React.Component{
             checkedAnswers: {},
             width: window.innerWidth,
             statusFound: true,
-            loading: true
+            loading: true,
+            topicSimulation: []
         }
         this.updateScreen = this.updateScreen.bind(this);
         window.addEventListener("resize", this.updateScreen);
@@ -150,7 +151,7 @@ export class Test extends React.Component{
                             let checkedAnswers = {};
                             if(response.data != "not exist"){
                                 for(let tmp in response.data){
-                                    if(tmp != "status" && tmp != "Test_results")
+                                    if(tmp != "status" && tmp != "Test_results" && tmp!= "Topics_to_review")
                                         checkedAnswers[tmp] = current.state.data[Number(tmp) - 1].checkCorrect(response.data[tmp]);
                                 }
                                 current.setState({
@@ -247,14 +248,22 @@ export class Test extends React.Component{
                             },
                             { headers: { 'Content-Type': 'application/json' } }
                         ).then((response) => {
-                            console.log(response);
-                            Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => { // Dont touch this status
+                            Axios.post(
+                                'https://flask.mavka.org/api/post_topics',
+                                {
+                                    Test_id: this.state.testId,
+                                    User_id: this.state.user.uid,
+                                    UserTopics: this.state.topicSimulation
+                                },
+                                { headers: { 'Content-Type': 'application/json' } }
+                            ).then((response) => {
+                                Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => { // Dont touch this status
                                     this.props.history.push({
                                         pathname: '/subject/' + this.state.subject,
                                         state: { testID: this.state.testId, confetti: true }
                                     });
-                                }
-                            );
+                                });
+                            })
                         })
                     })
                 });
@@ -283,7 +292,7 @@ export class Test extends React.Component{
     }
 
     updateAnswers = (num, answer) => {
-        firebase.analytics().logEvent('check');
+        firebase.analytics().logEvent('press Check answer');
         const answers = this.state.answers;
         const checkedAnswers = this.state.checkedAnswers;
         answers[num] = answer;
@@ -292,12 +301,36 @@ export class Test extends React.Component{
             answers: answers,
             checkedAnswers: checkedAnswers
         })
+        
         if(this.state.isPractice) {
+            console.log(1);
+            if(this.state.data[num - 1].evaluate(this.state.answers[num])[1] == 0){
+                console.log(2);
+                let topics = [];
+                topics.push(this.state.data[Number(num) - 1].getTopic());
+                console.log(topics);
+                Axios.post(
+                    'https://flask.mavka.org/api/post_topics',
+                    {
+                        Test_id: this.state.testId,
+                        User_id: this.state.user.uid,
+                        UserTopics: topics
+                    },
+                    { headers: { 'Content-Type': 'application/json' } }
+                );
+            }
             this.state.user.getIdToken().then((token) => {
                 let obj = {};
                 obj[num] = answer;
                 Services.updateTestAnswers(token, this.state.testId, obj);
             })
+        }else{
+            if(this.state.data[num - 1].evaluate(this.state.answers[num])[1] == 0){
+                console.log(2);
+                let topics = [];
+                this.state.topicSimulation.push(this.state.data[Number(num) - 1].getTopic());
+                console.log(topics);
+            }
         }
     }
 
@@ -306,7 +339,9 @@ export class Test extends React.Component{
     }
 
     render() {
-
+        if(!this.state.user){
+            return (<Redirect to="/register" />);
+        }
         if(!this.state.statusFound){
             return (<Redirect to="/404" />);
         }
@@ -316,10 +351,7 @@ export class Test extends React.Component{
         if (this.state.mode != 'practice' && this.state.mode != 'simulation'){
             return (<Redirect to="/404" />);
         }
-        if(this.state.loading){
-            return (<LoadingScreen />);
-        }
-        if (this.state.user == 25) {
+        if(this.state.loading || this.state.user == 25){
             return (<LoadingScreen />);
         }
         if (this.state.user) {
@@ -389,7 +421,6 @@ export class Test extends React.Component{
             }
             return (<div></div>);
         }
-        return(<Redirect to="/register"/>);
     }
 }
 

@@ -14,7 +14,8 @@ export class Register extends React.Component{
 
     reg(email, password) {
         alert(email + " " + password)
-        firebase.analytics().logEvent('TEST user registered');
+        // EVENT DOESN'T REGISTER -- needs Kostya's superpowers
+        firebase.analytics().logEvent('registered');
         firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;

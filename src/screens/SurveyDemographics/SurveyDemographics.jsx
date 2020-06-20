@@ -37,6 +37,7 @@ class SurveyDemographics extends React.Component {
             return(<div></div>)
         }
         if(this.state.user){
+            firebase.analytics().logEvent('start demographics survey')
             var url = "https://docs.google.com/forms/d/e/1FAIpQLScgZErcirQmzkPQFxLZG8OiQ-NriSpRdl4KVib99Q8dcXJ5nA/viewform?usp=pp_url&entry.1198759471=";
             url += this.state.user.email;
             return (

@@ -86,7 +86,7 @@ class BioTriples extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[0]}
                             isCorrectAnswer={data.checkCorrectFromList("1", 1)}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                         <Answer 
                             index={0}
@@ -98,7 +98,7 @@ class BioTriples extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[0]}
                             isCorrectAnswer={data.checkCorrectFromList("2", 1)}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                         <Answer
                             index={0} 
@@ -110,7 +110,7 @@ class BioTriples extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[0]}
                             isCorrectAnswer={data.checkCorrectFromList("3", 1)}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                     </div>
                     <div className={s.answers}>
@@ -125,7 +125,7 @@ class BioTriples extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[1]}
                             isCorrectAnswer={data.checkCorrectFromList("1", 2)}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                         <Answer 
                             index={1}
@@ -137,7 +137,7 @@ class BioTriples extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[1]}
                             isCorrectAnswer={data.checkCorrectFromList("2", 2)}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                         <Answer
                             index={1} 
@@ -149,7 +149,7 @@ class BioTriples extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[1]}
                             isCorrectAnswer={data.checkCorrectFromList("3", 2)}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                     </div>
                     <div className={s.answers}>
@@ -164,7 +164,7 @@ class BioTriples extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[2]}
                             isCorrectAnswer={data.checkCorrectFromList("1", 3)}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                         <Answer 
                             index={2}
@@ -176,7 +176,7 @@ class BioTriples extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[2]}
                             isCorrectAnswer={data.checkCorrectFromList("2", 3)}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                         <Answer
                             index={2} 
@@ -188,7 +188,7 @@ class BioTriples extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer[2]}
                             isCorrectAnswer={data.checkCorrectFromList("3", 3)}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                     </div>
                 </div>

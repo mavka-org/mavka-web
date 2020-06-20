@@ -47,7 +47,7 @@ class MainMenu extends React.Component {
         }
         this.updateScreen = this.updateScreen.bind(this);
         window.addEventListener("resize", this.updateScreen);
-        
+
     }
 
     componentDidMount() {
@@ -122,30 +122,29 @@ class MainMenu extends React.Component {
 
     deleteTestInfo = (testID) => {
         this.scrollToTop();
+        this.setState({
+            loading: true
+        })
         this.state.user.getIdToken().then((token) => {
             Services.deleteTestByID(token, testID).then(() => {
                 this.updateUserState(this.state.user);
             });
         });
-        /*let tmp = this.state.tests;
-        tmp[this.state.active].status = 'тест не пройдений';
-        */
-
     }
 
     startPractice = () => {
-        firebase.analytics().logEvent('openPractise');
+        firebase.analytics().logEvent('start practice mode');
         Services.changeTestStatusByID(this.token, this.state.tests[this.state.active].id, "вільна практика");
         this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
     }
 
     openResults = () => {
-        firebase.analytics().logEvent('openResults');
+        firebase.analytics().logEvent('open simulation results');
         this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
     }
 
     startSimulation = () => {
-        firebase.analytics().logEvent('openSimulation');
+        firebase.analytics().logEvent('start simulation mode');
         this.props.history.push('/subject/' + this.state.subject + '/simulation/' + this.state.tests[this.state.active].id);
     }
 
@@ -189,14 +188,13 @@ class MainMenu extends React.Component {
     render() {
         const pic1 = <Strong />
         const pic2 = <Clock />
-        
+        if(!this.state.user){
+            return (<Redirect to="/register" />);
+        }
         if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія'){
             return (<Redirect to="/404" />);
         }
-        if(this.state.loading){
-            return (<LoadingScreen />);
-        }
-        if (this.state.user == 25) {
+        if(this.state.loading || this.state.user == 25){
             return (<LoadingScreen />);
         }
         if (this.state.user) {
@@ -247,8 +245,8 @@ class MainMenu extends React.Component {
                                 />
                                 <div className={s.video_explanation_frame}>
                                     <p><strong><VideoCamera /> Відеопояснення</strong></p>
-                                    <div className={g.video}>
-                                        <div className={g.video_text}>Незабаром...</div>
+                                    <div className={s.video}>
+                                        <div className={s.video_text}>Незабаром...</div>
                                     </div>
                                 </div>
                                 {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} deleteTestInfo={this.deleteTestInfo}/>)}
@@ -259,7 +257,6 @@ class MainMenu extends React.Component {
                 </div >
             )
         }
-        return (<Redirect to="/register" />);
     }
 }
 

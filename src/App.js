@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 import ScreensAbout from "./screens/About";
 import NotFound from "./screens/NotFound";
-import TechnicalPause from "./screens/TechnicalPause/TechnicalPause.jsx";
+// import TechnicalPause from "./screens/TechnicalPause/TechnicalPause.jsx";
 
 import Login from "./screens//Login_Register_Menu/Login/Login"
 import Home from "./screens/Home";

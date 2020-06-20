@@ -256,10 +256,10 @@
     .page {
         display: flex;
         flex-direction: column;
-        padding: 105px 0px;
+        padding: 10px 0px;
         position: absolute;
         width: 95%;
-        height: 180%;
+        height: 250%;
         left: calc(50% - 95%/2);
         top: 0px;
         background-color: #FFFFFF;
@@ -332,7 +332,7 @@
     .page {
         display: flex;
         flex-direction: column;
-        padding: 105px 0px;
+        padding: 10px 0px;
         position: absolute;
         width: 95%;
         height: 250%;
@@ -373,5 +373,58 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+}
+
+@media only screen and (min-height: 750px) and (max-height: 823px) {
+    .page {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0px;
+        position: absolute;
+        width: 95%;
+        height: 220%;
+        left: calc(50% - 95%/2);
+        top: 0px;
+        background-color: #FFFFFF;
+    }
+}
+@media only screen and (min-height: 700px) and (max-height: 737px) {
+    .page {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0px;
+        position: absolute;
+        width: 95%;
+        height: 240%;
+        left: calc(50% - 95%/2);
+        top: 0px;
+        background-color: #FFFFFF;
+    }
+}
+@media only screen and (min-height: 520px) and (max-height: 569px) {
+    .page {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0px;
+        position: absolute;
+        width: 95%;
+        height: 300%;
+        left: calc(50% - 95%/2);
+        top: 0px;
+        background-color: #FFFFFF;
+    }
+}
+@media only screen and (min-height: 1020px) and (max-height: 1025px) {
+    .page {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0px;
+        position: absolute;
+        width: 95%;
+        height: 200%;
+        left: calc(50% - 95%/2);
+        top: 0px;
+        background-color: #FFFFFF;
     }
 }
