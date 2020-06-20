@@ -122,15 +122,14 @@ class MainMenu extends React.Component {
 
     deleteTestInfo = (testID) => {
         this.scrollToTop();
+        this.setState({
+            loading: true
+        })
         this.state.user.getIdToken().then((token) => {
             Services.deleteTestByID(token, testID).then(() => {
                 this.updateUserState(this.state.user);
             });
         });
-        /*let tmp = this.state.tests;
-        tmp[this.state.active].status = 'тест не пройдений';
-        */
-
     }
 
     startPractice = () => {

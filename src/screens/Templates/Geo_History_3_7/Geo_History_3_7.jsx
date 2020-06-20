@@ -101,7 +101,7 @@ class Geo_History_3_7 extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer}
                             isCorrectAnswer={data.checkCorrect("1")}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                         <Answer 
                             answered={this.state.answered}
@@ -112,7 +112,7 @@ class Geo_History_3_7 extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer}
                             isCorrectAnswer={data.checkCorrect("2")}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                         <Answer 
                             answered={this.state.answered}
@@ -123,7 +123,7 @@ class Geo_History_3_7 extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer}
                             isCorrectAnswer={data.checkCorrect("3")}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                         <Answer 
                             answered={this.state.answered}
@@ -134,7 +134,7 @@ class Geo_History_3_7 extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer}
                             isCorrectAnswer={data.checkCorrect("4")}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                     </div>
                     <div className={s.answers}>
@@ -147,7 +147,7 @@ class Geo_History_3_7 extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer}
                             isCorrectAnswer={data.checkCorrect("5")}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                         <Answer 
                             answered={this.state.answered}
@@ -158,7 +158,7 @@ class Geo_History_3_7 extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer}
                             isCorrectAnswer={data.checkCorrect("6")}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                         <Answer 
                             answered={this.state.answered}
@@ -169,7 +169,7 @@ class Geo_History_3_7 extends React.Component {
                             updateCurrentAnswer={this.updateCurrentAnswer}
                             currentAnswer={this.state.currentAnswer}
                             isCorrectAnswer={data.checkCorrect("7")}
-                            isPractice={this.state.isPractice}
+                            isPractice={this.props.isPractice}
                         />
                     </div>
                 </div>
