@@ -5,10 +5,10 @@ class Topic extends React.Component {
 
     getTopicsList() {
         let topics = this.props.topics;
-        if(this.props.status == 'тест не пройдений'){
+        if (this.props.status == 'тест не пройдений') {
             return <div>Пройдіть практику або симуляцію для того, щоб отримати рекомендації</div>
-        } 
-        if(topics == null || typeof topics == 'undefined' || topics.length == 0) {
+        }
+        if (topics == null || typeof topics == 'undefined' || topics.length == 0) {
             return <div>Жодних рекомендацій поки що немає</div>
         }
 
@@ -27,7 +27,9 @@ class Topic extends React.Component {
                 display: this.props.hidden ? "none" : "block"
             }}>
                 <p><strong><PointDown /> Теми для повторення:</strong></p>
-                {this.getTopicsList()}
+                <div className={g.list}>
+                    {this.getTopicsList()}
+                </div>
             </div>
         );
     }
