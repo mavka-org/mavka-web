@@ -163,7 +163,7 @@ export class Test extends React.Component{
                             }
                         })
                     })
-                }         
+                }
             })
         })
 
@@ -230,14 +230,14 @@ export class Test extends React.Component{
                             }
                         }
                         console.log(this.state.user);
-                        console.log({ 
+                        console.log({
                             Test_id: this.state.testId,
                             User_id: this.state.user.uid,
                             UserAnswers: res
                         })
                         Axios.post(
                             'https://flask.mavka.org/api/post_score',
-                            { 
+                            {
                                 Test_id: this.state.testId,
                                 User_id: this.state.user.uid,
                                 UserAnswers: res
@@ -280,7 +280,7 @@ export class Test extends React.Component{
     }
 
     updateAnswers = (num, answer) => {
-        firebase.analytics().logEvent('check');
+        firebase.analytics().logEvent('press Check answer');
         const answers = this.state.answers;
         const checkedAnswers = this.state.checkedAnswers;
         answers[num] = answer;
@@ -303,7 +303,7 @@ export class Test extends React.Component{
     }
 
     render() {
-        
+
         if(!this.state.statusFound){
             return (<Redirect to="/404" />);
         }

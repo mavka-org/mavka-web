@@ -47,7 +47,7 @@ class MainMenu extends React.Component {
         }
         this.updateScreen = this.updateScreen.bind(this);
         window.addEventListener("resize", this.updateScreen);
-        
+
     }
 
     componentDidMount() {
@@ -134,18 +134,18 @@ class MainMenu extends React.Component {
     }
 
     startPractice = () => {
-        firebase.analytics().logEvent('openPractise');
+        firebase.analytics().logEvent('start practice mode');
         Services.changeTestStatusByID(this.token, this.state.tests[this.state.active].id, "вільна практика");
         this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
     }
 
     openResults = () => {
-        firebase.analytics().logEvent('openResults');
+        firebase.analytics().logEvent('open simulation results');
         this.props.history.push('/subject/' + this.state.subject + '/practice/' + this.state.tests[this.state.active].id);
     }
 
     startSimulation = () => {
-        firebase.analytics().logEvent('openSimulation');
+        firebase.analytics().logEvent('start simulation mode');
         this.props.history.push('/subject/' + this.state.subject + '/simulation/' + this.state.tests[this.state.active].id);
     }
 
@@ -189,7 +189,7 @@ class MainMenu extends React.Component {
     render() {
         const pic1 = <Strong />
         const pic2 = <Clock />
-        
+
         if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія'){
             return (<Redirect to="/404" />);
         }

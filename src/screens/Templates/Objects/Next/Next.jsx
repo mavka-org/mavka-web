@@ -22,7 +22,7 @@ class Next extends React.Component {
             }
         }else{
             if(this.props.currentAnswer) {
-                firebase.analytics().logEvent('next');
+                firebase.analytics().logEvent('press Next question');
                 this.props.scroll();
                 this.props.updateAnswers(this.props.number, this.props.currentAnswer);
                 this.props.updateQuestion(this.props.number + 1);
