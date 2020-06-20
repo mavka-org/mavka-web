@@ -188,14 +188,13 @@ class MainMenu extends React.Component {
     render() {
         const pic1 = <Strong />
         const pic2 = <Clock />
-
+        if(!this.state.user){
+            return (<Redirect to="/register" />);
+        }
         if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія'){
             return (<Redirect to="/404" />);
         }
-        if(this.state.loading){
-            return (<LoadingScreen />);
-        }
-        if (this.state.user == 25) {
+        if(this.state.loading || this.state.user == 25){
             return (<LoadingScreen />);
         }
         if (this.state.user) {
@@ -258,7 +257,6 @@ class MainMenu extends React.Component {
                 </div >
             )
         }
-        return (<Redirect to="/register" />);
     }
 }
 

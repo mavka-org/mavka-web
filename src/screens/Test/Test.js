@@ -339,7 +339,9 @@ export class Test extends React.Component{
     }
 
     render() {
-
+        if(!this.state.user){
+            return (<Redirect to="/register" />);
+        }
         if(!this.state.statusFound){
             return (<Redirect to="/404" />);
         }
@@ -349,10 +351,7 @@ export class Test extends React.Component{
         if (this.state.mode != 'practice' && this.state.mode != 'simulation'){
             return (<Redirect to="/404" />);
         }
-        if(this.state.loading){
-            return (<LoadingScreen />);
-        }
-        if (this.state.user == 25) {
+        if(this.state.loading || this.state.user == 25){
             return (<LoadingScreen />);
         }
         if (this.state.user) {
@@ -422,7 +421,6 @@ export class Test extends React.Component{
             }
             return (<div></div>);
         }
-        return(<Redirect to="/register"/>);
     }
 }
 
