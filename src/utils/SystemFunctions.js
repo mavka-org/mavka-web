@@ -20,6 +20,17 @@ class SystemFunctions{
         return subjectString;
     }
 
+    static convertSubjectName(subject){
+        if(subject == "Українська мова і література")
+            return 'ULL';
+        if(subject == "Історія України")
+            return 'UHistory';
+        if(subject == "Математика")
+            return 'Math';
+        if(subject == "Біологія")
+            return 'Biology';
+    }
+
     static stringsEqual(str1, str2){
         return (str1.localeCompare(str2) == 0);
     }

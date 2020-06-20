@@ -12,12 +12,16 @@ class Answer extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
+        document.getElementById("FAKE1").click();
         if (this.props != prevProps) {
             this.setState({
                 letter: this.props.letter,
                 subquestion: this.props.subquestion
             })
         }
+    }
+    componentDidMount() {
+        document.getElementById("FAKE1").click();
     }
 
     render() {

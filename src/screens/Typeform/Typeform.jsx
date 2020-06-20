@@ -4,7 +4,8 @@ import { Link, Redirect } from 'react-router-dom';
 import * as typeformEmbed from '@typeform/embed'
 import s from './Survey.module.css';
 import g from './../Templates/Style.module.css';
-
+import axios from 'axios'
+import Services from '../../Services/Services';
 
 class Typeform extends React.Component {
 
@@ -52,17 +53,34 @@ class Typeform extends React.Component {
         this.props.history.push(ref);
     }
 
+<<<<<<< HEAD
+=======
+    test () {
+        //axios.get('https://api.typeform.com/forms/Xc7NMh/responses/').then((response) => {
+        //    console.log(response.data)
+        //})
+        console.log("TEST")
+    }
+
+>>>>>>> master
     render() {
         document.getElementsByTagName('body')[0].setAttribute("style", "overflow-y: hidden;")
         if(this.state.user == 25){
             return(<div></div>)
         }
         if(this.state.user){
+<<<<<<< HEAD
             //firebase.analytics().logEvent('start demographics survey')
             return (
                 <div>
                 </div>
             );
+=======
+            firebase.analytics().logEvent('start demographics survey')
+            let url = 'https://api.typeform.com/forms/JpyKH0vn/responses?page_size=1'
+            Services.getReqForm(url);
+            return(<div></div>)
+>>>>>>> master
         }
         else {
             return(<Redirect to="/login"/>);

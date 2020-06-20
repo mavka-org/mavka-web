@@ -21,7 +21,7 @@ class Scores extends React.Component {
                 </div>
                 <div className={s.btn_wrap} onClick={() => {
                     this.props.click();
-                }}><button className={g.btn} style={{height: '50px'}}>Переглянути помилки</button></div>
+                }}><button className={g.btn}>Переглянути помилки</button></div>
             </div>
 
         </div>

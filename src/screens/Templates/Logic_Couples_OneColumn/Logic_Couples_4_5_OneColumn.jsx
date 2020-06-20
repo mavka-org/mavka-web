@@ -217,7 +217,7 @@ class Logic_Couples_4_5 extends React.Component {
                     
                     </div>
                     <div className={s.answers_frame}>
-                        <p className={s.choose}><strong>Обери одну відповідь</strong></p>
+                        <p className={s.choose}><strong>Встанови відповідність:</strong></p>
                         <div className={s.answers}>
                             {this.buildQA(1)}
                             {this.buildQA(2)}
