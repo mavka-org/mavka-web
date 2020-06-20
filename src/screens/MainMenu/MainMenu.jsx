@@ -21,7 +21,6 @@ import {bounce} from 'react-animations'
 import Radium, {StyleRoot} from 'radium';
 import NotFound from './../NotFound'
 
-
 import Strong from '../Templates/Icon/Strong/Strong';
 import HeaderMainMenu from "./Object/HeaderMainMenu/HeaderMainMenu";
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
@@ -43,7 +42,8 @@ class MainMenu extends React.Component {
             tests: [],
             active: 0,
             confetti: this.props.location.state,
-            loading: true
+            loading: true,
+            clicked: false
         }
         this.updateScreen = this.updateScreen.bind(this);
         window.addEventListener("resize", this.updateScreen);
@@ -122,6 +122,7 @@ class MainMenu extends React.Component {
     }
 
     deleteTestInfo = (testID) => {
+        firebase.analytics().logEvent('erase progress');
         this.scrollToTop();
         this.setState({
             loading: true
@@ -156,6 +157,14 @@ class MainMenu extends React.Component {
         } else return this.startPractice;
     }
 
+    alert() {
+        if (this.state.tests[this.state.active].status == 'тест не пройдений') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     onClickSimulation() {
         if (this.state.tests[this.state.active].status == 'тест не пройдений') {
             return this.startSimulation;
@@ -178,6 +187,7 @@ class MainMenu extends React.Component {
 
     scrollToBottom = () => {
         scroll.scrollToBottom();
+        return null;
     }
 
     scrollToTop = () => {
@@ -208,7 +218,7 @@ class MainMenu extends React.Component {
                             </div>
                             <div className={s.exit}>
                                 <Link to={'/home'}>
-                                    <button className={s.end}>
+                                    <button className={s.end} onClick={()=>{firebase.analytics().logEvent('return to home');}}>
                                         Назад до предметів
                                     </button>
                                 </Link>
@@ -238,7 +248,7 @@ class MainMenu extends React.Component {
                                 </div>
                                 <div className={s.buttons_frame}>
                                     <Button stl={this.btnPracticeStyle()} click={this.onClickPractice()} icon={pic1} title={'Практикуватися'} comment={'Проходь завдання та вчися на поясненнях'} />
-                                    <Button stl={this.btnSimulationStyle()} click={this.onClickSimulation()} icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
+                                    <Button alert={this.alert()} stl={this.btnSimulationStyle()} click={this.onClickSimulation()} icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
                                 </div>
                                 <div className={s.description}>Ти також можеш роздрукувати цей тест тут та автоматично перевірити розв’язання з нашим мобільним додатком (незабаром)</div>
                                 <TopicWithNum
