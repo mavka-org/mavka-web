@@ -31,7 +31,7 @@ class Progres extends React.Component {
         return (
             <div className={s.skip}>
                 {this.customConfirm()}
-                <button className={g.btn} onClick={()=>{
+                <button className={g.btn}  onClick={()=>{
                     this.setState({
                         clicked: true
                     })

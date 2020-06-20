@@ -16,9 +16,9 @@ import Confetti from '../../UI/Confetti/Confetti';
 import Scores from './Object/Scores/Scores';
 import Progres from './Object/Progres/Progres';
 import Button from './Object/Button/Button';
-import {animateScroll as scroll} from 'react-scroll'
-import {bounce} from 'react-animations'
-import Radium, {StyleRoot} from 'radium';
+import { animateScroll as scroll } from 'react-scroll'
+import { bounce } from 'react-animations'
+import Radium, { StyleRoot } from 'radium';
 import NotFound from './../NotFound'
 
 
@@ -27,7 +27,7 @@ import HeaderMainMenu from "./Object/HeaderMainMenu/HeaderMainMenu";
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 class MainMenu extends React.Component {
 
-    updateScreen () {
+    updateScreen() {
         this.setState({
             width: window.innerWidth
         })
@@ -70,7 +70,7 @@ class MainMenu extends React.Component {
         });
 
         let current = this;
-        if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія'){
+        if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія') {
             return (NotFound);
         }
         let token = resp.getIdToken().then(function (token) {
@@ -118,13 +118,13 @@ class MainMenu extends React.Component {
     }
 
     updateSelectedTest = (num) => {
-        if(window.innerWidth > 992){
+        if (window.innerWidth > 992) {
             this.setState({
                 active: num,
                 confetti: null
             })
         }
-        else{
+        else {
             this.setState({
                 active: num,
                 confetti: null,
@@ -132,7 +132,7 @@ class MainMenu extends React.Component {
             })
         }
     }
-    
+
     changeMobileMainMenu = () => {
         this.setState({
             selectedMainMenu: !this.state.selectedMainMenu
@@ -211,19 +211,20 @@ class MainMenu extends React.Component {
     render() {
         const pic1 = <Strong />
         const pic2 = <Clock />
-        if(!this.state.user){
+        if (!this.state.user) {
             return (<Redirect to="/register" />);
         }
-        if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія'){
+        if (this.state.subject != 'Математика' && this.state.subject != 'Українська мова і література' && this.state.subject != 'Історія України' && this.state.subject != 'Біологія') {
             return (<Redirect to="/404" />);
         }
-        if(this.state.loading || this.state.user == 25){
+        if (this.state.loading || this.state.user == 25) {
             return (<LoadingScreen />);
         }
         if (this.state.user) {
-            if(window.innerWidth > 992){
+            if (window.innerWidth > 992) {
                 return (
                     <div className={g.background}>
+                        <meta name="viewport" content="height=device-height"></meta>
                         <div className={[s.page, g.page_].join(' ')} >
                             <div className={s.header}>
                                 <div className={s.question_title}>
@@ -245,12 +246,12 @@ class MainMenu extends React.Component {
                                         active={this.state.active}
                                     />
                                 </div>
-    
+
                                 {this.state.tests.length > 0 ? (<div className={s.test_body_right}>
                                     <div>
                                         {this.state.tests[this.state.active].status == 'тест пройдений' && this.state.confetti && this.state.confetti.confetti ? (<Confetti />) : null}
                                     </div>
-    
+
                                     <div className={s.scores_frame}>
                                         <div className={s.title}>
                                             <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
@@ -265,22 +266,18 @@ class MainMenu extends React.Component {
                                     <TopicWithNum
                                         topics={this.state.tests[this.state.active].Topics_to_review}
                                         status={this.state.tests[this.state.active].status}
-                                        //hidden={!(this.state.tests[this.state.active].status == 'тест пройдений' || this.state.tests[this.state.active].status == 'вільна практика')}
+                                    //hidden={!(this.state.tests[this.state.active].status == 'тест пройдений' || this.state.tests[this.state.active].status == 'вільна практика')}
                                     />
-                                    <div className={s.video_explanation_frame}>
-                                        <p><strong><VideoCamera /> Відеопояснення</strong></p>
-                                        <div className={s.video}>
-                                            <div className={s.video_text}>Незабаром...</div>
-                                        </div>
-                                    </div>
-                                    {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} deleteTestInfo={this.deleteTestInfo}/>)}
-    
+
+
+                                    {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} deleteTestInfo={this.deleteTestInfo} />)}
+
                                 </div>) : null}
                             </div>
                         </div>
                     </div >
                 )
-            }else{
+            } else {
                 return (
                     <div className={g.background}>
                         <div className={[s.page, g.page_].join(' ')} >
@@ -301,7 +298,7 @@ class MainMenu extends React.Component {
                                     <div>
                                         {this.state.tests[this.state.active].status == 'тест пройдений' && this.state.confetti && this.state.confetti.confetti ? (<Confetti />) : null}
                                     </div>
-    
+
                                     <div className={s.scores_frame}>
                                         <div className={s.title}>
                                             <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
@@ -313,26 +310,25 @@ class MainMenu extends React.Component {
                                         <Button stl={this.btnSimulationStyle()} click={this.onClickSimulation()} icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
                                     </div>
                                     <div className={s.description}>Ти також можеш роздрукувати цей тест тут та автоматично перевірити розв’язання з нашим мобільним додатком (незабаром)</div>
-                                    <TopicWithNum
-                                        topics={this.state.tests[this.state.active].Topics_to_review}
-                                        status={this.state.tests[this.state.active].status}
+                                    <div className={s.topic_frame_menu}>
+                                        <TopicWithNum
+                                            topics={this.state.tests[this.state.active].Topics_to_review}
+                                            status={this.state.tests[this.state.active].status}
                                         //hidden={!(this.state.tests[this.state.active].status == 'тест пройдений' || this.state.tests[this.state.active].status == 'вільна практика')}
-                                    />
-                                    <div className={s.video_explanation_frame}>
-                                        <p><strong><VideoCamera /> Відеопояснення</strong></p>
-                                        <div className={s.video}>
-                                            <div className={s.video_text}>Незабаром...</div>
-                                        </div>
+                                        />
                                     </div>
-                                    {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} deleteTestInfo={this.deleteTestInfo}/>)}
-    
+
+
+
+                                    {this.state.tests[this.state.active].status == 'тест не пройдений' ? "" : (<Progres testID={this.state.tests[this.state.active].id} deleteTestInfo={this.deleteTestInfo} />)}
+
                                 </div>) : null}
                             </div>
                         </div>
                     </div >
                 )
             }
-           
+
         }
     }
 }

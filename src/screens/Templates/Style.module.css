@@ -153,13 +153,31 @@
 /* topic */
 
 .topic_frame {
-    margin-bottom: 30px;
+    
+}
+
+.topic_frame > div {
+   
+}
+.topic_frame > p {
+    
 }
 
 .comment_frame {
-    margin-bottom: 30px;
+    
 }
-
+.list{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    
+}
+.list > div{
+    width: 100%;
+    word-wrap: normal;
+    margin: 10px 0px;
+    
+}
 .video {
     width: 459px;
     height: 275.4px;
@@ -219,18 +237,21 @@
     padding: 10px;
 }
 
-.variant_anwer > label {
+.variant_anwer>label {
     width: "15px";
     height: "15px";
     border-radius: "15px";
     border: "1px solid black";
 }
-.back{
-    color:black;
+
+.back {
+    color: black;
 }
-.back:focus{
+
+.back:focus {
     outline: 0;
 }
+
 /* mediaquery */
 
 @media (max-width: 992px) {
