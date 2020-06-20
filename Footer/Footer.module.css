@@ -1,0 +1,56 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+    line-height: 25px;
+    
+}
+.info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.title{
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+.names_frame{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.names{
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.info_mavka{
+    width: 250px;
+}
+.names_object {
+    width: 250px
+}
+
+@media (max-width: 663px) {
+    .info{
+        display: flex;
+        flex-direction: column;
+        margin: 15px 0px;
+        align-items: center;
+        text-align: center;
+    }
+    .names{
+        margin: 20px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+    }
+    .title{
+        align-items: center;
+        text-align: center;
+    }
+}
