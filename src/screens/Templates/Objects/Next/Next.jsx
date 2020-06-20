@@ -116,6 +116,9 @@ class Next extends React.Component {
         }
     }
     render() {
+        console.log(this.props.isPractice)
+        console.log(this.props.answered)
+        console.log(this.props.isLastQuestion)
         return (
             <div className={g.result_frame}>
                 {this.getResult()}

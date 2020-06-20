@@ -50,9 +50,7 @@ class Answer extends React.Component {
                     isUserAnswer = true;
             }
         }else isUserAnswer = !(this.props.letter.localeCompare(this.state.currentAnswer));
-        console.log("ISPRACTICE")
-        console.log(this.props.isPractice);
-        console.log(this.props.answered)
+
         //this.props.isCorrectAnswer ? (g.answer + (this.check() ? (" " + g.answer_answered) : "")) : (g.btn_inactive + (isUserAnswer ? (" " + g.answer_answered) : ""))
         return (
             <div onClick={()=>{

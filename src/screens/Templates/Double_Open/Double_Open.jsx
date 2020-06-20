@@ -81,6 +81,7 @@ class Double_Open extends React.Component {
                             correctAnswer={data.getDoubleOpenAnswers()[0]}
                             hidden={hidden}
                             updateCurrentAnswer={this.updateCurrentAnswer}
+                            isPractice={this.props.isPractice}
                             currentAnswer={this.state.currentAnswer[0]}
                             isCorrectAnswer={data.checkCorrectFromList(this.state.currentAnswer[0], 0)}
                             />
@@ -93,6 +94,7 @@ class Double_Open extends React.Component {
                             correctAnswer={data.getDoubleOpenAnswers()[1]}
                             hidden={hidden}
                             updateCurrentAnswer={this.updateCurrentAnswer}
+                            isPractice={this.props.isPractice}
                             currentAnswer={this.state.currentAnswer[1]}
                             isCorrectAnswer={data.checkCorrectFromList(this.state.currentAnswer[1], 1)}
                             />
