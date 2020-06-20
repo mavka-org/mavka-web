@@ -224,6 +224,7 @@ export class Test extends React.Component{
                     else {
                         this.props.history.push({
                             pathname: '/surveyfeedback',
+                            state: {testID: this.state.testId, subject: this.state.subject}
                         });
                     }
                 })
@@ -281,6 +282,7 @@ export class Test extends React.Component{
                                         else {
                                             this.props.history.push({
                                                 pathname: '/surveyfeedback',
+                                                state: {testID: this.state.testId, subject: this.state.subject}
                                             });
                                         }
                                     })

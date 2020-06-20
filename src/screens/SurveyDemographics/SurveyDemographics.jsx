@@ -32,7 +32,7 @@ class SurveyDemographics extends React.Component {
     }
 
     render() {
-        document.getElementsByTagName('body')[0].setAttribute("style", "overflow-y: hidden;")
+        document.getElementsByTagName('body')[0].setAttribute("style", "overflow-y: scroll;")
         if(this.state.user == 25){
             return(<div></div>)
         }
