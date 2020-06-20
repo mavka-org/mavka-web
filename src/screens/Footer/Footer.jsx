@@ -29,7 +29,7 @@ class Footer extends React.Component {
 
     write_all_names() {
         let names = this.state.names;
-        console.log(names)
+        //console.log(names)
         let n = 6
         let lists = []
         let tempGroup = []
@@ -44,8 +44,8 @@ class Footer extends React.Component {
         lists.push(tempGroup)
         lists.shift() // delte empty first slot
 
-        console.log("HERE")
-        console.log(lists)
+        //console.log("HERE")
+        //console.log(lists)
 
         // CAN'T RETURN ALL OF THEM:
 
