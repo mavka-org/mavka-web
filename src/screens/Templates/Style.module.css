@@ -225,7 +225,12 @@
     border-radius: "15px";
     border: "1px solid black";
 }
-
+.back{
+    color:black;
+}
+.back:focus{
+    outline: 0;
+}
 /* mediaquery */
 
 @media (max-width: 992px) {

@@ -1,7 +1,7 @@
 
 .header{
     padding-bottom: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     width: 100%;
     height: 100%;
     background-color: white;
@@ -18,6 +18,12 @@
     padding: 0px 15px;
     align-items: baseline;
     margin-top: 15px;
+
+    font-size:18px;
+    
+}
+.nav{
+    font-size:18px;
 }
 .timer{
     display: flex;
@@ -29,9 +35,16 @@
     margin-bottom: 10px;
 }
 
-
 @media (max-width: 992px) {
     /* это будет показано при разрешении монитора до 930 пикселей */
+    .header{
+        width: 100%;
+        height: 40px;
+        display: flex;
+        font-size: 16px;
+        line-height: 20px;
+        flex-direction: column;
+    }
     .page {
         display: flex;
         flex-direction: column;
@@ -41,17 +54,6 @@
         left: calc(50% - 95%/2);
         top: 0px;
         font-size: 16px;
-    }
-}
-@media (max-width: 992px) {
-    /* это будет показано при разрешении монитора до 930 пикселей */
-    .header{
-        width: 100%;
-        height: 200px;
-        display: flex;
-        font-size: 16px;
-        line-height: 20px;
-        flex-direction: column;
     }
 }
 
