@@ -32,12 +32,9 @@ export default () => (
             <Route exact path="/subject/:id" component={MainMenu} />
             <Route exact path="/subject/:id/:mode/:testId" component={Test} />
             <Route exact path={"/preview/:id"} component={TestView}/>
-<<<<<<< HEAD
-            <Route component={TechnicalPause}/>
-=======
             <Route exact path={"/404"} component={NotFound}/>
             <Route component={NotFound}/>
->>>>>>> master
+
         </Switch>
     </Router>
 );

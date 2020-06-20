@@ -1,5 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
 import s from './NotFound.module.css'
 const NotFound = () => {
     return (
@@ -10,15 +9,6 @@ const NotFound = () => {
             </div>
         </div>
     )
-=======
-import s from './NotFound.module.css';
-class NotFound extends React.Component {
-    render() {
-        console.log(1);
-        return ( 
-            <div></div>
-        );
-    }
->>>>>>> master
+
 }
 export default NotFound;
