@@ -24,6 +24,9 @@
 .name{
     
 }
+.names_object {
+    width: 33%
+}
 
 @media (max-width: 663px) {
     .info{

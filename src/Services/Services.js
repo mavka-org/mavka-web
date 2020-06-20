@@ -575,5 +575,12 @@ class Services {
             { headers: { 'Content-Type': 'text/plain' } }
         )
     }
+
+    static async getTeamInfo () {
+        const firestore = firebase.firestore();
+        return await firestore.collection("team").doc("team-names").get().then(doc => {
+            return doc.get("Team");
+        });
+    }
 }
 export default Services;
