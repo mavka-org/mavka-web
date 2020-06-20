@@ -77,6 +77,9 @@ class Courses extends React.Component {
         var pic7 = <UK />
         var pic8 = <France />
         var pic9 = <German />
+        if(!this.state.user){
+            return (<Redirect to="/register" />);
+        }
         if (this.state.user == 25) {
             return (<LoadingScreen />);
         }
@@ -124,9 +127,6 @@ class Courses extends React.Component {
                     </div>
                 </div>
             );
-        }
-        else {
-            return (<Redirect to="/login" />);
         }
     }
 }
