@@ -44,7 +44,7 @@ class Courses extends React.Component {
     }
 
     navigate = (ref) => {
-        firebase.analytics().logEvent('choose subject', { subject: ref });
+        firebase.analytics().logEvent('choose subject', { subject: ref.substring(9) });
         this.props.history.push(ref);
     }
 
@@ -55,6 +55,7 @@ class Courses extends React.Component {
     }
 
     signOut = () => {
+        firebase.analytics().logEvent('sign out');
         firebase.auth().signOut();
     }
 

@@ -1,10 +1,12 @@
 import React from 'react';
 import firebase from './../../global'
 import { Link, Redirect } from 'react-router-dom';
+import { ReactTypeformEmbed } from 'react-typeform-embed';
 import s from './Survey.module.css';
 import g from './../Templates/Style.module.css';
 
-class SurveyFeedback extends React.Component {
+
+class SurveyDemographics extends React.Component {
     state = {
         user: 25
     }
@@ -31,22 +33,26 @@ class SurveyFeedback extends React.Component {
         this.props.history.push(ref);
     }
 
+    test () {
+        console.log("TEST")
+    }
+
     render() {
         document.getElementsByTagName('body')[0].setAttribute("style", "overflow-y: scroll;")
         if(this.state.user == 25){
             return(<div></div>)
         }
         if(this.state.user){
-            firebase.analytics().logEvent('start feedback survey')
-            var url = "https://docs.google.com/forms/d/e/1FAIpQLSczD7jdjTArSGJbTM0TfecCkati2G94aSSLU_ybgE_a5JcFmQ/viewform?usp=pp_url&entry.1412116077=";
+            firebase.analytics().logEvent('start demographics survey')
+            var url = "https://docs.google.com/forms/d/e/1FAIpQLScgZErcirQmzkPQFxLZG8OiQ-NriSpRdl4KVib99Q8dcXJ5nA/viewform?usp=pp_url&entry.1198759471=";
             url += this.state.user.email;
             return (
                 <div style={{backgroundColor: '#f2f2f2'}}>
-                    <center><button className={s.btn_turn_back} onClick={()=>{this.props.history.push({
-                            pathname: this.props.location.state ? '/subject/' + this.props.location.state.subject : 'home',
-                            state: { testID: this.props.location.state ? this.props.location.state.testID : ''}
-                        });}}>Вийти з опитування</button></center>
-                    <iframe src={url} width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                    <center><Link to={'/home'}><button className={s.btn_turn_back}>Перейти на домашню сторінку</button></Link></center>
+                    <ReactTypeformEmbed
+                        url='https://developerplatform.typeform.com/to/Xc7NMh'
+                        onSubmit={this.test()}
+                        />
                 </div>
             );
         }
@@ -56,4 +62,4 @@ class SurveyFeedback extends React.Component {
     }
 }
 
-export default SurveyFeedback;
+export default SurveyDemographics;

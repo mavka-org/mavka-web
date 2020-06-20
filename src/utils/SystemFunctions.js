@@ -24,14 +24,14 @@ class SystemFunctions{
         return (str1.localeCompare(str2) == 0);
     }
 
-    static mainMenuActiveElement(active, tests){
+    static mainMenuActiveElement(active, tests, current){
         console.log(active);
         console.log(tests);
         for(let i in tests){
             if(tests[i].id == active)
                 return i;
         }
-        return 0;
+        return current;
     }
 }
 export default SystemFunctions;
