@@ -38,6 +38,7 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
+    flex-direction: row;
 }
 
 .icon {
@@ -119,6 +120,7 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    align-items: center;
     text-align: center;
     width: 130px;
     height: 38.5px;
@@ -134,6 +136,7 @@
     vertical-align: middle;
     font-family: Gilroy;
     font-size: 18px;
+    font-weight: bold;
     line-height: 22px;
 }
 
@@ -198,4 +201,5 @@
         -ms-flex-item-align: center;
             align-self: center;
     }
+}
 }

@@ -91,7 +91,7 @@ class Courses extends React.Component {
         var pic8 = <France />
         var pic9 = <German />
         if (!this.state.user) {
-            return (<Redirect to="/register" />);
+            return (<Redirect to="/login" />);
         }
         if (this.state.user == 25) {
             return (<LoadingScreen />);

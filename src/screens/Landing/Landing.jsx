@@ -6,6 +6,7 @@ import Light from './../Templates/Icon/Light'
 import { Link, Redirect } from 'react-router-dom';
 import firebase from '../../global'
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
+import Footer from '../Footer/Footer';
 class Landing extends React.Component {
     state = {
         user: 25,
@@ -49,6 +50,13 @@ class Landing extends React.Component {
                         <div className={s.icon_row}><div className={s.icon}><Strong /></div><div className={s.desc_2}>Практикуйся на минулих тестах</div></div>
                         <div className={s.icon_row}><div className={s.icon}><Light /></div><div className={s.desc_2}>Вчися на покрокових поясненнях</div></div>
                         <div className={s.icon_row}><div className={s.icon}><Clock /></div><div className={s.desc_2}>Проходь симуляції та отримуй бали</div></div>
+                    </div>
+                </div>
+
+                <div style={{width: '80%', margin: 'auto'}}>
+                    <div style={{ width: '100%', marginTop: '90px', marginBottom: '10px', color: 'Gray' }}><hr></hr></div>
+                    <div className={s.footer}>
+                        <Footer />
                     </div>
                 </div>
             </div>

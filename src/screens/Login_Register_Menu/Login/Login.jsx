@@ -61,7 +61,7 @@ class Login extends React.Component {
                     changedPassword: true,
                     changedEmail: false
                 })
-            }     
+            }
         });
 
         if(firebase.auth().currentUser){
@@ -97,6 +97,7 @@ class Login extends React.Component {
         return (
             <div className={g.background}>
                 <div className={s.window}>
+                    <a href="/" className={s.logo}><strong>мавка</strong> зно</a>
                     <div className={s.header}>
                         <strong>Вхід</strong>
                     </div>
@@ -116,8 +117,8 @@ class Login extends React.Component {
                                     googleComment: 'Електрона адреса вже використовується!'
                                 })
                             });
-                        }}>Увійти з Google</button>
-                        <div style={{color:'red'}}>
+                        }}><span style={{fontWeight: "bolder"}}>G</span>&nbsp; Увійти з Google</button>
+                        <div className={s.errMsg} style={{color:'red'}}>
                             {this.state.googleComment}
                         </div>
                         <button className={s.btn} onClick={()=>{
@@ -135,8 +136,8 @@ class Login extends React.Component {
                                     fbComment: 'Електрона адреса вже використовується!'
                                 })
                               });
-                        }}>Увійти з Facebook</button>
-                        <div style={{color:'red'}}>
+                        }}><span style={{fontWeight: "bolder"}}>f</span>&nbsp; Увійти з Facebook</button>
+                        <div className={s.errMsg} style={{color:'red'}}>
                             {this.state.fbComment}
                         </div>
                         <div className={s.info}>
@@ -147,7 +148,7 @@ class Login extends React.Component {
                                 border: (this.state.emailComment && !this.state.changedEmail) ? "1px red solid" : ""
                             }}></input></div>
                         </div>
-                        <div style={{color:'red'}}>
+                        <div className={s.errMsg} style={{color:'red'}}>
                             {this.state.emailComment}
                         </div>
                         <div className={s.info}>
@@ -158,7 +159,7 @@ class Login extends React.Component {
                                 border: (this.state.passwordComment && !this.state.changedPassword) ? "1px red solid" : ""
                             }}></input></div>
                         </div>
-                        <div style={{color:'red'}}>
+                        <div className={s.errMsg} style={{color:'red'}}>
                             {this.state.passwordComment}
                         </div>
                         <button className={s.btn} onClick={async()=>{
@@ -167,7 +168,7 @@ class Login extends React.Component {
                         <Link to='/register'>
                             <div className={s.account}>Зареєструватися</div>
                         </Link>
-                        
+
                     </div>
                 </div>
             </div>

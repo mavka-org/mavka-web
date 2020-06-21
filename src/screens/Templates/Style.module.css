@@ -21,6 +21,18 @@
     font-weight: bold;
     font-style: italic;
 }
+@font-face {
+    font-family: Gilroy;
+    src: url("https://raw.githubusercontent.com/mavka-org/mavka-web/master/src/fonts/Gilroy-Bold.woff");
+    font-weight: bolder;
+}
+
+@font-face {
+    font-family: Gilroy;
+    src: url("https://raw.githubusercontent.com/mavka-org/mavka-web/master/src/fonts/Gilroy-BoldItalic.wofff");
+    font-weight: bolder;
+    font-style: italic;
+}
 
 .page_ {
     background-color: #FFFFFF;
@@ -199,6 +211,21 @@
 .list {
     display: -webkit-box;
     display: -ms-flexbox;
+.topic_frame {
+
+}
+
+.topic_frame > div {
+
+}
+.topic_frame > p {
+
+}
+
+.comment_frame {
+
+}
+.list{
     display: flex;
     width: 100%;
     -webkit-box-orient: vertical;
