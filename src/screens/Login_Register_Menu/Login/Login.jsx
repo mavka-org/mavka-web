@@ -113,6 +113,7 @@ class Login extends React.Component {
                              var user = result.user;
                              firebase.analytics().logEvent('login with google');
                             }).catch(function(error){
+                                console.log(error);
                                 current.setState({
                                     googleComment: 'Електрона адреса вже використовується!'
                                 })
@@ -132,6 +133,7 @@ class Login extends React.Component {
                                 var user = result.user;
                                 firebase.analytics().logEvent('login with facebook');
                               }).catch(function(error) {
+                                console.log(error);
                                 current.setState({
                                     fbComment: 'Електрона адреса вже використовується!'
                                 })

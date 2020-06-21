@@ -117,6 +117,7 @@ class Register extends React.Component {
                                 firebase.analytics().logEvent('register with google');
                                 this.props.history.push('/surveydemographics')
                             }).catch(function(error){
+                                console.log(error);
                                 current.setState({
                                     googleComment: 'Електрона адреса вже використовується!'
                                 })
@@ -138,6 +139,7 @@ class Register extends React.Component {
                                 firebase.analytics().logEvent('register with facebook');
                                 this.props.history.push('/surveydemographics')
                             }).catch(function(error) {
+                                console.log(error);
                                 current.setState({
                                     fbComment: 'Електрона адреса вже використовується!'
                                 })
