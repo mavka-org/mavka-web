@@ -174,6 +174,7 @@ class Register extends React.Component {
                         <Link to='/login'>
                             <div className={s.account}>Вже маєш акаунт?</div>
                         </Link>
+                        <div className={s.agreement}>Реєструючись, Ви погоджуютесь з умовами обробки персональних даних, та умовами користування платформою "Мавка"</div>
                     </div>
                 </div>
             </div>
