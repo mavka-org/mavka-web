@@ -41,10 +41,10 @@
     opacity: 0.8;
     cursor: pointer;
 }
-.links > a{
+.links a{
     color: black;
 }
-.links:focused{
+.links a:focused{
     color: black;
 }
 .links:hover{
