@@ -5,6 +5,12 @@ import g from './../../Objects/Answer/Couple_Answer.module.css';
 import { FiTrash } from 'react-icons/fi';
 import CheckAnswerIcon from '../../Icon/CheckAnswerIcon';
 class CoupleAnswer extends React.Component {
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        document.getElementById("FAKE1").click();
+    }
+    componentDidMount() {
+        document.getElementById("FAKE1").click();
+    }
 
     getDiv() {
 

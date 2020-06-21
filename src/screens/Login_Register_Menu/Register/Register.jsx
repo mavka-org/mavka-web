@@ -36,7 +36,6 @@ class Register extends React.Component {
     }
     async register(email, password) {
         //alert(email + " " + password)
-        firebase.analytics().logEvent('TEST user logged in');
         let current = this;
         await firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
             console.log(error);
@@ -67,8 +66,7 @@ class Register extends React.Component {
         });
 
         if(firebase.auth().currentUser){
-            //console.log('aa')
-            firebase.analytics().logEvent('userLogin');
+            firebase.analytics().logEvent('register with email and password');
             this.props.history.push('/surveydemographics')
         }
     }
@@ -115,6 +113,7 @@ class Register extends React.Component {
                              var token = result.credential.accessToken;
                              var user = result.user;
                             }).then(() => {
+                                firebase.analytics().logEvent('register with google');
                                 this.props.history.push('/surveydemographics')
                             }).catch(function(error){
                                 current.setState({
@@ -135,6 +134,7 @@ class Register extends React.Component {
                                 var token = result.credential.accessToken;
                                 var user = result.user;
                               }).then(() => {
+                                firebase.analytics().logEvent('register with facebook');
                                 this.props.history.push('/surveydemographics')
                             }).catch(function(error) {
                                 current.setState({

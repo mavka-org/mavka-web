@@ -21,7 +21,6 @@ import { bounce } from 'react-animations'
 import Radium, { StyleRoot } from 'radium';
 import NotFound from './../NotFound'
 
-
 import Strong from '../Templates/Icon/Strong/Strong';
 import HeaderMainMenu from "./Object/HeaderMainMenu/HeaderMainMenu";
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
@@ -109,7 +108,7 @@ class MainMenu extends React.Component {
                 console.log(current.props.location.state);
                 current.setState({
                     tests: tests,
-                    active: SystemFunctions.mainMenuActiveElement(typeof current.props.location.state != 'undefined' ? current.props.location.state.testID : 'undefined', tests),
+                    active: SystemFunctions.mainMenuActiveElement(typeof current.state.confetti != 'undefined' ? current.state.confetti.testID : 'undefined', tests, current.state.active),
                     loading: false,
                     selectedMainMenu: typeof current.props.location.state != 'undefined' ? true : false
                 })
@@ -140,10 +139,15 @@ class MainMenu extends React.Component {
     }
 
     deleteTestInfo = (testID) => {
+        firebase.analytics().logEvent('erase progress');
         this.scrollToTop();
+        //let tmp = this.state.confetti;
+        //tmp.testID = this.state.tests[this.state.active].testID;
         this.setState({
             loading: true,
-            selectedMainMenu: false
+            selectedMainMenu: false,
+            confetti: undefined,
+            active: this.state.active
         })
         this.state.user.getIdToken().then((token) => {
             Services.deleteTestByID(token, testID).then(() => {
@@ -175,6 +179,14 @@ class MainMenu extends React.Component {
         } else return this.startPractice;
     }
 
+    alert() {
+        if (this.state.tests[this.state.active].status == 'тест не пройдений') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     onClickSimulation() {
         if (this.state.tests[this.state.active].status == 'тест не пройдений') {
             return this.startSimulation;
@@ -197,6 +209,7 @@ class MainMenu extends React.Component {
 
     scrollToBottom = () => {
         scroll.scrollToBottom();
+        return null;
     }
 
     scrollToTop = () => {
@@ -232,10 +245,10 @@ class MainMenu extends React.Component {
                                 </div>
                                 <div className={s.exit}>
                                     <Link to={'/home'}>
-                                        <button className={s.end}>
-                                            Назад до предметів
-                                        </button>
-                                    </Link>
+                                    <button className={s.end} onClick={()=>{firebase.analytics().logEvent('return to home');}}>
+                                        Назад до предметів
+                                    </button>
+                                </Link>
                                 </div>
                             </div>
                             <div className={s.question_body}>
@@ -260,7 +273,7 @@ class MainMenu extends React.Component {
                                     </div>
                                     <div className={s.buttons_frame}>
                                         <Button stl={this.btnPracticeStyle()} click={this.onClickPractice()} icon={pic1} title={'Практикуватися'} comment={'Проходь завдання та вчися на поясненнях'} />
-                                        <Button stl={this.btnSimulationStyle()} click={this.onClickSimulation()} icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
+                                        <Button alert={this.alert()} stl={this.btnSimulationStyle()} click={this.onClickSimulation()} icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
                                     </div>
                                     <div className={s.description}>Ти також можеш роздрукувати цей тест тут та автоматично перевірити розв’язання з нашим мобільним додатком (незабаром)</div>
                                     <TopicWithNum
@@ -307,7 +320,7 @@ class MainMenu extends React.Component {
                                     </div>
                                     <div className={s.buttons_frame}>
                                         <Button stl={this.btnPracticeStyle()} click={this.onClickPractice()} icon={pic1} title={'Практикуватися'} comment={'Проходь завдання та вчися на поясненнях'} />
-                                        <Button stl={this.btnSimulationStyle()} click={this.onClickSimulation()} icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
+                                        <Button alert={this.alert()} stl={this.btnSimulationStyle()} click={this.onClickSimulation()} icon={pic2} title={'Симулювати ЗНО'} comment={'Перевір знання в умовах тесту'} />
                                     </div>
                                     <div className={s.description}>Ти також можеш роздрукувати цей тест тут та автоматично перевірити розв’язання з нашим мобільним додатком (незабаром)</div>
                                     <div className={s.topic_frame_menu}>

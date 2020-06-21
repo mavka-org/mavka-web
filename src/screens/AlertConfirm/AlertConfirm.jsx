@@ -27,10 +27,10 @@ class AlertConfirm extends React.Component {
                         <button className={s.btn_end} onClick={() => {
                             this.props.click(...this.props.args);
                             this.props.cancel();
-                        }}>Так</button>
+                        }}>{this.props.text1 ? this.props.text1 : "Так"}</button>
                         <button className={s.btn_turn_back} onClick={() => {
                             this.props.cancel();
-                        }}>Ні</button>
+                        }}>{this.props.text2 ? this.props.text2 : "Ні"}</button>
                     </div>
                 </div>
             </div>

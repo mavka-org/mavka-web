@@ -77,7 +77,7 @@ class Next extends React.Component {
                 else {
                     return (
                         <div>
-                            <div className={g.result}><strong>Похибка, не здавайся!<RaisedFist /></strong></div>
+                            <div className={g.result}><strong>Помилка, не здавайся!<RaisedFist /></strong></div>
                             <div className={g.stats}>Отримано {this.bals(this.props.scores[this.props.number - 1][0])} із {this.props.scores[this.props.number - 1][2]} </div>
                         </div>
                     );
@@ -127,6 +127,7 @@ class Next extends React.Component {
                     display: this.showSkip() ? "block" : "none"
                 }} onClick={()=>{
                         this.props.scroll();
+                        firebase.analytics().logEvent('skip question');
                         this.props.updateQuestion(this.props.number + 1);
                     }}>Пропустити</button>
                 </div>
