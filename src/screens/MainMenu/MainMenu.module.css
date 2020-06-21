@@ -15,6 +15,10 @@
     font-size: 36px;
     line-height: 44px;
 }
+.question_title_mobile {
+    width: 100%;
+    margin-bottom: 100px;
+}
 
 .exit {
     width: 210px;

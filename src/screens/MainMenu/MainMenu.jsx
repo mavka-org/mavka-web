@@ -300,7 +300,7 @@ class MainMenu extends React.Component {
                                     </div>
 
                                     <div className={s.scores_frame}>
-                                        <div className={s.title}>
+                                        <div className={s.question_title_mobile}>
                                             <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
                                         </div>
                                         {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores numCorrect={this.state.tests[this.state.active].numCorrect} score12={this.state.tests[this.state.active].score12} score200={this.state.tests[this.state.active].score200} click={this.openResults} />) : ""}
