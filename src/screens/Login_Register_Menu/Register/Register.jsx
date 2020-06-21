@@ -122,7 +122,7 @@ class Register extends React.Component {
                                 })
                             });
                         }}><span style={{fontWeight: "bolder"}}>G</span>&nbsp; Увійти з Google</button>
-                        <div style={{color:'red'}}>
+                        <div className={s.errMsg} style={{color:'red'}}>
                             {this.state.googleComment}
                         </div>
                         <button className={s.btn} onClick={()=>{
@@ -143,7 +143,7 @@ class Register extends React.Component {
                                 })
                               });
                         }}><span style={{fontWeight: "bolder"}}>f</span>&nbsp; Увійти з Facebook</button>
-                        <div style={{color:'red'}}>
+                        <div className={s.errMsg} style={{color:'red'}}>
                             {this.state.fbComment}
                         </div>
                         <div className={s.info}>
@@ -154,7 +154,7 @@ class Register extends React.Component {
                                 border: (this.state.emailComment && !this.state.changedEmail) ? "1px red solid" : ""
                             }}></input></div>
                         </div>
-                        <div style={{color:'red'}}>
+                        <div className={s.errMsg} style={{color:'red'}}>
                             {this.state.emailComment}
                         </div>
                         <div className={s.info}>
@@ -165,7 +165,7 @@ class Register extends React.Component {
                                 border: (this.state.passwordComment && !this.state.changedPassword) ? "1px red solid" : ""
                             }}></input></div>
                         </div>
-                        <div style={{color:'red'}}>
+                        <div className={s.errMsg} style={{color:'red'}}>
                             {this.state.passwordComment}
                         </div>
                         <button className={s.btn} onClick={async()=>{
