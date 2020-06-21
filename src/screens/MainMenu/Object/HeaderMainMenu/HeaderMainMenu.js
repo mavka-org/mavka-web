@@ -15,7 +15,7 @@ class HeaderMainMenu extends React.Component {
                             {this.props.selectedMainMenu ? ('Назад до тестів') : ('Назад до предметів')}
                         </div>
                 </div>
-                <div style={{marginLeft:'25px',marginTop:'25px', width: '95%'}}>{this.props.children}</div>
+                <div style={{marginLeft:'25px',marginTop:'25px', width: '100%', fontSize:'20px', lineHeight:'25px'}}>{this.props.children}</div>
             </div>
         );
     }
