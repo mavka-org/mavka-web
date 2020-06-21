@@ -89,13 +89,6 @@ class Register extends React.Component {
         }
     }
     render() {
-        firebase.auth().getRedirectResult().then(function(result) {
-            return(<Redirect to="/home"/>)
-      }).catch(function(error) {
-            current.setState({
-                googleComment: 'Електрона адреса вже використовується!'
-            })
-      });
         if(this.state.user == 25){
             return (<LoadingScreen />);
         }
