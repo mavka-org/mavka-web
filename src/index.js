@@ -6,7 +6,7 @@ import Markdown from "./Markdown";
 import "./index.css"
 import Services from './Services/Services';
 import TechnicalPause from './screens/TechnicalPause/TechnicalPause'
-
+import { HashRouter } from 'react-router-dom'
 Services.getTechnicalPauseStatus().then((pause) => {
     ReactDOM.render(
         <div>

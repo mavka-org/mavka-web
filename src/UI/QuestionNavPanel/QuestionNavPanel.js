@@ -271,6 +271,7 @@ class QuestionNavPanel extends Component {
                                     className={"dropdown"}
                                     style={{
                                         zIndex: 100,
+
                                         display: left.length > 0 ? "block" : "none"
                                     }}
                                 >

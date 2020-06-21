@@ -44,7 +44,7 @@ class Header extends React.Component {
         }
     }
 
-    convertTime (time) {
+    convertTime(time) {
         time = Math.max(time, 0);
         return Math.floor(time / 60) + ":" + (time % 60);
     }
@@ -94,20 +94,20 @@ class Header extends React.Component {
                         <div className={s.nav_panel}>
                             <div className={s.nav} onClick={this.openNav}>Усі завдання</div>
                             {this.props.isPractice ? (
-                                    <div className={g.icon_header}><div style={{marginBottom:'10px'}}><Strong /></div> <strong>&nbsp;Практика</strong></div>
-                                ) :
+                                <div className={g.icon_header}><div style={{ marginBottom: '10px' }}><Strong /></div> <strong>&nbsp;Практика</strong></div>
+                            ) :
                                 (
-                                    <b className={s.timer}><Clock/><div style={{width: "15px"}}>&nbsp;{this.convertTime(Math.floor(this.state.durationTime - (this.state.time - this.state.timeOfStart) / 1000.0))}</div></b>
+                                    <b className={s.timer}><Clock /><div style={{ width: "15px" }}>&nbsp;{this.convertTime(Math.floor(this.state.durationTime - (this.state.time - this.state.timeOfStart) / 1000.0))}</div></b>
                                 )
                             }
                             {this.props.isPractice ?
                                 (
-                                    <div style={{cursor: "pointer"}} onClick={() => {
+                                    <div style={{ cursor: "pointer" }} onClick={() => {
                                         this.props.updateQuestion(10000);
                                     }}>Завершити</div>
                                 ) :
                                 (
-                                    <div style={{cursor: "pointer"}} onClick={() => {
+                                    <div style={{ cursor: "pointer" }} onClick={() => {
                                         this.setState({
                                             clicked: true
                                         })
@@ -140,10 +140,10 @@ class Header extends React.Component {
                     <div className={g.question_header}>
                         <div className={g.title_bar}>
                             {this.props.isPractice ? (
-                                    <div className={g.icon_header}><div><Strong />&nbsp;</div><strong>&nbsp;Практика</strong></div>
-                                ) :
+                                <div className={g.icon_header}><div><Strong />&nbsp;</div><strong>&nbsp;Практика</strong></div>
+                            ) :
                                 (
-                                    <b><div className={g.icon_header}><Clock/>&nbsp;<div style={{width: "15px"}}>{this.convertTime(Math.floor(this.state.durationTime - (this.state.time - this.state.timeOfStart) / 1000.0))}</div></div></b>
+                                    <b><div className={g.icon_header}><Clock />&nbsp;<div style={{ width: "15px" }}>{this.convertTime(Math.floor(this.state.durationTime - (this.state.time - this.state.timeOfStart) / 1000.0))}</div></div></b>
                                 )
                             }
                             <p><strong>{this.props.subject}</strong> {this.props.year} {this.props.session} сесія</p>
@@ -154,11 +154,11 @@ class Header extends React.Component {
                                     }}>Завершити</button>
                                 ) :
                                 (
-                                <button className={g.end} onClick={() => {
-                                this.setState({
-                                    clicked: true
-                                })
-                            }}>Завершити</button>)
+                                    <button className={g.end} onClick={() => {
+                                        this.setState({
+                                            clicked: true
+                                        })
+                                    }}>Завершити</button>)
                             }
                         </div>
                     </div>
