@@ -24,7 +24,7 @@ class Alert extends React.Component {
             }}>
                 <div className={s.alert}>
                     <div className={s.alert_text}><strong>{this.state.time > 0 ? (<div>Час ще не вийшов!</div>) : (<div>Час вийшов!</div>)} </strong></div>
-                    <div className={s.alert_description}>Ви впевенені, що бажаєте завершити симуляцію достроково?  </div>
+                    <div className={s.alert_description}>Ви впевнені, що бажаєте завершити симуляцію достроково?  </div>
                     <div className={s.btn_wrapper}>
                         {this.state.time > 0 ? (<button className={s.btn_turn_back} onClick={this.props.cancel}>Повернутися до тесту</button>) : null}
                         <button className={s.btn_end} onClick={() => {
