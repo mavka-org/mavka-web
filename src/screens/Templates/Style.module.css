@@ -39,6 +39,9 @@
     font-family: Gilroy;
     font-size: 18px;
     line-height: 25px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 }
 
@@ -49,17 +52,33 @@
 }
 
 .icon_header {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-align: baseline;
+    -ms-flex-align: baseline;
     align-items: baseline;
 }
 
 .title_bar {
     font-size: 22px;
     line-height: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-align: baseline;
+    -ms-flex-align: baseline;
     align-items: baseline;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
 }
 
@@ -68,6 +87,7 @@
     height: 38.5px;
     background: #FFFFFF;
     border: 1px solid #000000;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border-radius: 10px;
     margin: 0px 0px;
@@ -75,6 +95,8 @@
     font-size: 18px;
     line-height: 25px;
     font-weight: bold;
+    -webkit-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
     transition: 0.2s ease-in-out;
 }
 
@@ -109,8 +131,15 @@
 }
 
 .wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     vertical-align: middle;
 }
@@ -125,15 +154,20 @@
     font-family: Gilroy;
     font-size: 18px;
     line-height: 25px;
+    -webkit-transition: 0.2s ease-out;
+    -o-transition: 0.2s ease-out;
     transition: 0.2s ease-out;
     border: none;
+    -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.28);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.28);
+    -ms-flex-item-align: start;
     align-self: flex-start;
     margin-bottom: 14px;
 }
 
 .btn:hover {
     opacity: 0.9;
+    -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.56);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.56);
     cursor: pointer;
 }
@@ -150,6 +184,8 @@
     text-decoration: underline;
     background-color: #FFFFFF;
     border: none;
+    -webkit-transition: 0.2s ease-in;
+    -o-transition: 0.2s ease-in;
     transition: 0.2s ease-in;
 }
 
@@ -164,6 +200,17 @@
 
 /* topic */
 
+.topic_frame {}
+
+.topic_frame>div {}
+
+.topic_frame>p {}
+
+.comment_frame {}
+
+.list {
+    display: -webkit-box;
+    display: -ms-flexbox;
 .topic_frame {
 
 }
@@ -181,22 +228,31 @@
 .list{
     display: flex;
     width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
-
 }
-.list > div{
+
+.list>div {
     width: 100%;
     word-wrap: normal;
     margin: 10px 0px;
-
 }
+
 .video {
     width: 459px;
     height: 275.4px;
     background-color: black;
     margin-bottom: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 
@@ -239,12 +295,18 @@
 
 .inactiveNextButton:hover {
     opacity: 0.4;
+    -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.28);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.28);
     cursor: default;
 }
 
 .variant_anwer {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
     padding: 10px;
 }
@@ -281,6 +343,7 @@
         height: 80%;
         background: #FFFFFF;
         border: 1px solid #000000;
+        -webkit-box-sizing: border-box;
         box-sizing: border-box;
         border-radius: 10px;
         margin: 0px 0px;
@@ -288,6 +351,8 @@
         font-size: 14px;
         line-height: 18px;
         font-weight: bold;
+        -webkit-transition: 0.2s ease-in-out;
+        -o-transition: 0.2s ease-in-out;
         transition: 0.2s ease-in-out;
     }
 }
