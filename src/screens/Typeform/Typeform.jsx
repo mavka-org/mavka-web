@@ -9,21 +9,52 @@ import Services from '../../Services/Services';
 
 class Typeform extends React.Component {
 
+
+
     state = {
         user: 25
+    }
+
+    getAnswersFromData(data) {
+        let items = data['items'][0]
+        let answersDict = items['answers']
+
+        let answers = []
+
+        for (let x of answersDict) {
+            answers.push(x['text'])
+        }
+
+        return answers
+    }
+
+    async demographicsOnSubmit() {
+        let url = 'https://api.typeform.com/forms/JpyKH0vn/responses?page_size=1'
+
+        // while loop until uid == user uid
+
+        let data = await Services.getReqForm(url)
+        let answers = this.getAnswersFromData(data)
+        console.log(answers)
+
+        // end
+
+        //
     }
 
     componentDidMount() {
 
         this.getAuthStatus();
 
-        const demographicsForm = typeformEmbed.makePopup('https://laptiev.typeform.com/to/JpyKH0vn', {
+        let demographicsOnSubmit = () => {
+            this.demographicsOnSubmit();
+        }
+
+        const demographicsForm = typeformEmbed.makePopup('https://laptiev.typeform.com/to/JpyKH0vn?uid=12345', {
             mode: 'popup',
             hideHeaders: true,
             hideFooters: true,
-            onSubmit: function() {
-                    console.log('ONSUBMIT')
-            },
+            onSubmit: demographicsOnSubmit,
             onClose: function() {
                 demographicsForm.open()
             }
@@ -53,34 +84,17 @@ class Typeform extends React.Component {
         this.props.history.push(ref);
     }
 
-<<<<<<< HEAD
-=======
-    test () {
-        //axios.get('https://api.typeform.com/forms/Xc7NMh/responses/').then((response) => {
-        //    console.log(response.data)
-        //})
-        console.log("TEST")
-    }
-
->>>>>>> master
     render() {
         document.getElementsByTagName('body')[0].setAttribute("style", "overflow-y: hidden;")
         if(this.state.user == 25){
             return(<div></div>)
         }
         if(this.state.user){
-<<<<<<< HEAD
             //firebase.analytics().logEvent('start demographics survey')
             return (
                 <div>
                 </div>
             );
-=======
-            firebase.analytics().logEvent('start demographics survey')
-            let url = 'https://api.typeform.com/forms/JpyKH0vn/responses?page_size=1'
-            Services.getReqForm(url);
-            return(<div></div>)
->>>>>>> master
         }
         else {
             return(<Redirect to="/login"/>);
