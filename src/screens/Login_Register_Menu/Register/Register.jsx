@@ -62,7 +62,7 @@ class Register extends React.Component {
                     changedPassword: true,
                     changedEmail: false
                 })
-            } 
+            }
         });
 
         if(firebase.auth().currentUser){
@@ -86,7 +86,7 @@ class Register extends React.Component {
                 googleComment: '',
                 fbComment: ''
             })
-        }  
+        }
     }
     render() {
         if(this.state.user == 25){
@@ -99,6 +99,7 @@ class Register extends React.Component {
         return (
             <div className={g.background}>
                 <div className={s.window}>
+                    <a href="/" className={s.logo}><strong>мавка</strong> зно</a>
                     <div className={s.header}>
                         <strong>Реєстрація</strong>
                     </div>
@@ -120,7 +121,7 @@ class Register extends React.Component {
                                     googleComment: 'Електрона адреса вже використовується!'
                                 })
                             });
-                        }}>Увійти з Google</button>
+                        }}><span style={{fontWeight: "bolder"}}>G</span>&nbsp; Увійти з Google</button>
                         <div style={{color:'red'}}>
                             {this.state.googleComment}
                         </div>
@@ -141,7 +142,7 @@ class Register extends React.Component {
                                     fbComment: 'Електрона адреса вже використовується!'
                                 })
                               });
-                        }}>Увійти з Facebook</button>
+                        }}><span style={{fontWeight: "bolder"}}>f</span>&nbsp; Увійти з Facebook</button>
                         <div style={{color:'red'}}>
                             {this.state.fbComment}
                         </div>
@@ -172,7 +173,7 @@ class Register extends React.Component {
                         }}>Зареєструватися з Email</button>
                         <Link to='/login'>
                             <div className={s.account}>Вже маєш акаунт?</div>
-                        </Link>  
+                        </Link>
                     </div>
                 </div>
             </div>

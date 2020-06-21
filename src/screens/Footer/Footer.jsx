@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Footer.module.css';
 import Services from '../../Services'
+import Heart from '../Templates/Icon/Heart'
 
 class Footer extends React.Component {
     state = {
@@ -74,25 +75,27 @@ class Footer extends React.Component {
             <div className={s.footer}>
                 <div className={s.info}>
                     <div className={s.info_mavka}>
-                        <div className={s.title}><strong>мавка</strong></div>
-                        <div>Інноваційна неприбуткова освітня онлайн платформа з контеном, що дійсно підходить учням 21го сторіччя. Створюється з любов'ю<br></br><br></br>
+                        <div className={s.logo}><strong>мавка</strong></div>
+                        <div className={s.description}>Інноваційна неприбуткова освітня онлайн платформа з контеном, що дійсно підходить учням 21го сторіччя. Створюється з любов'ю <Heart /><br></br><br></br>
 
                             ©ГО «Мавка», 2020. При використанні матеріалів сайту, зворотнє посилання обов'язкове. Використані тестові завдання належать Українському центру якості освіти.</div>
                     </div>
-                   
+
                         <div className={s.info_mavka}>
                             <div className={s.title}><strong>Посилання</strong></div>
-                            <div>Про мавку</div>
-                            
+                            <div className={s.links}><a href="http://mavka.org" target="_blank">Про мавку</a></div>
+
                         </div>
-                   
-                    
+
+
                         <div className={s.info_mavka}>
                             <div className={s.title}><strong>Зв'язок</strong></div>
-                            <div>мавка @Телеграм</div>
-                            <div>hello@mavka.org</div>
+                            <div className={s.links}><a href="http://mavka.org" target="_blank">Допомога по користуванню</a></div>
+                            <div className={s.links}><a href="mailto:hello@mavka.org" target="_blank">Електронна адреса</a></div>
+                            <div className={s.links}><a href="https://t.me/mavkazno" target="_blank">Телеграм</a></div>
+                            <div className={s.links}><a href="https://www.instagram.com/mavka.zno/" target="_blank">Інстаграм</a></div>
                         </div>
-                    
+
                 </div>
                 <div className={s.names_frame}>
                     <div className={s.title}><strong>Люди за мавкою</strong></div>

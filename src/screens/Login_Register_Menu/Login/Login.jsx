@@ -61,7 +61,7 @@ class Login extends React.Component {
                     changedPassword: true,
                     changedEmail: false
                 })
-            }     
+            }
         });
 
         if(firebase.auth().currentUser){
@@ -97,6 +97,7 @@ class Login extends React.Component {
         return (
             <div className={g.background}>
                 <div className={s.window}>
+                    <a href="/" className={s.logo}><strong>мавка</strong> зно</a>
                     <div className={s.header}>
                         <strong>Вхід</strong>
                     </div>
@@ -116,7 +117,7 @@ class Login extends React.Component {
                                     googleComment: 'Електрона адреса вже використовується!'
                                 })
                             });
-                        }}>Увійти з Google</button>
+                        }}><span style={{fontWeight: "bolder"}}>G</span>&nbsp; Увійти з Google</button>
                         <div style={{color:'red'}}>
                             {this.state.googleComment}
                         </div>
@@ -135,7 +136,7 @@ class Login extends React.Component {
                                     fbComment: 'Електрона адреса вже використовується!'
                                 })
                               });
-                        }}>Увійти з Facebook</button>
+                        }}><span style={{fontWeight: "bolder"}}>f</span>&nbsp; Увійти з Facebook</button>
                         <div style={{color:'red'}}>
                             {this.state.fbComment}
                         </div>
@@ -167,7 +168,7 @@ class Login extends React.Component {
                         <Link to='/register'>
                             <div className={s.account}>Зареєструватися</div>
                         </Link>
-                        
+
                     </div>
                 </div>
             </div>
