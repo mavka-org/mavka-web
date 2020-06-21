@@ -6,7 +6,7 @@
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 30px;
-    
+
 }
 .logo{
     font-size: 25px;
@@ -20,7 +20,7 @@
 .question_header {
     display: flex;
     flex-direction: row;
-    
+
 }
 .icon{
     width: 100%;
@@ -40,7 +40,7 @@
 }
 .sub_title_icon{
     display: inline-block;
-    
+
 }
 
 .description {
@@ -69,7 +69,7 @@
     flex-direction: row;
 }
 .end {
-    
+
     align-items: center;
     text-align: center;
     width: 130px;
@@ -83,6 +83,7 @@
     vertical-align: middle;
     font-family: Gilroy;
     font-size: 18px;
+    font-weight: bold;
     line-height: 22px;
 }
 
@@ -130,6 +131,5 @@
         justify-content: space-around;
         align-self: center;
     }
-    
-}
 
+}

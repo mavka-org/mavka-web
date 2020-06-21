@@ -29,19 +29,33 @@
     height: 100%;
 }
 .window {
-    
+
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 282px;
     height: 500px;
     margin: auto;
     font-family: Gilroy;
-    margin-top: 100px;
+    margin-top: 30px;
+}
+
+.logo {
+    color: black;
+    font-size: 18px;
+    align-self: center;
+    margin-bottom: 30px;
+}
+.logo:focused {
+    color: black;
 }
 
 .header {
     font-size: 36px;
     align-self: center;
+}
+
+.errMsg {
+    text-align: center;
 }
 
 .btns {
@@ -62,6 +76,7 @@
     line-height: 25px;
     transition: 0.3s ease-out;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .btn_google:focus {
@@ -99,6 +114,7 @@
     font-size: 20px;
     line-height: 25px;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .btn:focus {
@@ -123,7 +139,7 @@
     font-size: 18px;
     padding: 8px 16px;
     line-height: 22px;
-    
+
 }
 .inp_wrapper>input:focus {
     outline:0;
