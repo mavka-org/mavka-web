@@ -1,5 +1,10 @@
 .page {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     padding-top: 105px;
     margin-bottom: 105px;
@@ -12,7 +17,12 @@
 }
 
 .question_body {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     padding: 0px;
     position: static;
@@ -24,32 +34,56 @@
 /* answer */
 
 .answers_frame {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     padding: 0px;
     width: 100%;
+    -ms-flex-item-align: start;
     align-self: flex-start;
 }
 
 .answers {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     padding: 10px 0px;
+    -ms-flex-item-align: start;
     align-self: flex-start;
     margin-bottom: 7px;
     margin-left: 20px;
     width: 95%;
 }
-.wrap{
+
+.wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: 31%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     vertical-align: middle;
 }
+
 @media (max-width: 992px) {
     /* это будет показано при разрешении монитора до 930 пикселей */
     .page {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
         padding: 105px 0px;
         position: absolute;
@@ -63,7 +97,12 @@
 
 @media (min-width: 993px) {
     .page {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
         padding: 105px 0px;
         position: absolute;

@@ -1,5 +1,10 @@
 .page {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     padding: 105px 0px;
     position: absolute;
@@ -11,7 +16,12 @@
 /* body */
 
 .question_body {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
     padding: 0px;
     width: 945px;
@@ -22,7 +32,12 @@
 /* qustion_form */
 
 .question_form {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     width: 46%;
     margin-top: 20px;
@@ -39,19 +54,30 @@
 /* answer frame */
 
 .answers_frame {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     padding: 0px;
+    -ms-flex-item-align: start;
     align-self: flex-start;
     width: 48%;
     margin-left: 5%;
 }
 
 .wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     vertical-align: middle;
-    width:62%;
+    width: 62%;
 }
 
 .pass {

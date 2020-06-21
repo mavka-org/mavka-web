@@ -6,7 +6,12 @@
 /* main */
 
 .page {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     padding: 105px 0px;
     position: absolute;
@@ -18,7 +23,12 @@
 }
 
 .question_body {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
     padding: 0px;
     position: static;
@@ -28,7 +38,12 @@
 }
 
 .wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     vertical-align: middle;
     width: 66%;
@@ -37,26 +52,45 @@
 /* answer */
 
 .answers_frame {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     padding: 0px;
+    -ms-flex-item-align: start;
     align-self: flex-start;
 }
 
 .answers {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     padding: 10px 0px;
+    -ms-flex-item-align: start;
     align-self: flex-start;
     margin-bottom: 7px;
     margin-left: 20px;
 }
-.answer_wrap{
+
+.answer_wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
-    width:33%;
+    width: 33%;
     margin: 0px 10px;
 }
+
 /* table */
 
 .marker {
@@ -73,8 +107,15 @@
 }
 
 .marker_and_text {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-align: baseline;
+    -ms-flex-align: baseline;
     align-items: baseline;
 }
 
@@ -87,10 +128,11 @@
 .select_answer {
     display: table;
     border-collapse: separate;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border-spacing: 2px;
     border-color: grey;
-    border-spacing: 8px 8px; 
+    border-spacing: 8px 8px;
 }
 
 .select_answer label {
@@ -100,6 +142,8 @@
     line-height: 27px;
     background: #efefef;
     vertical-align: middle;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
