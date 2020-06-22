@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import ButtonQNav from "../ButtonQNav";
 import "./navigation.css";
 import g from './../../screens/Templates/Style.module.css';
@@ -13,11 +13,11 @@ class QuestionNavPanel extends Component {
         });
     }
 
-    componentDidUpdate (prevProps) {
+    componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
             let getStatus = (i) => (this.props.answers[i]);
             let buttons = [...this.state.buttons];
-            for(let i = 0; i < buttons.length; i++) {
+            for (let i = 0; i < buttons.length; i++) {
                 buttons[i].status = getStatus(i);
             }
             buttons[prevProps.active - 1].active = false;
@@ -31,7 +31,7 @@ class QuestionNavPanel extends Component {
     }
 
 
-    constructor (props) { // сейчас это просто количество вопросов в тесте. Когда функции будут готовы все пропишу
+    constructor(props) { // сейчас это просто количество вопросов в тесте. Когда функции будут готовы все пропишу
         super(props);
         let list = props.list;
 
@@ -130,7 +130,7 @@ class QuestionNavPanel extends Component {
         return "#000000";
     }
 
-    reformat (code) {
+    reformat(code) {
         let new_code = [];
         for (let i = 0; i < code.length; i += 3) {
             let r = Math.min(code.length - 1, i + 2);
@@ -173,14 +173,14 @@ class QuestionNavPanel extends Component {
                             height: "15px",
                             borderRadius: "15px",
                             border: "2px solid black",
-                            marginLeft:'15px',
+                            marginLeft: '15px',
                             marginRight: '15px',
                             backgroundColor: !allButtons[i].active ? this.backColor1(allButtons[i].status) : "black"
                         }}></div></label>
                         <div id={i} onClick={() => {
                             this.props.updateQuestion(i + 1);
                             this.closeNav();
-                        }} style={{cursor: "pointer"}}>
+                        }} style={{ cursor: "pointer" }}>
                             Завдання {i + 1}
                         </div>
                     </div>
@@ -205,7 +205,7 @@ class QuestionNavPanel extends Component {
         }
 
         let middle = allButtons.map((button, index) => {
-            if (l - 1  > index || r - 1 < index) return null;
+            if (l - 1 > index || r - 1 < index) return null;
             return this.htmlButton(button, index, true);
         });
 
@@ -248,6 +248,7 @@ class QuestionNavPanel extends Component {
                         font-size: 14px;
                         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
                         border-width: 1px;
+                        opacity:1;
                         background-color: white;
                         width:` + this.getWidth(2.2) + `px;
                         height:` + this.getHeight(3) + `px;
@@ -264,14 +265,15 @@ class QuestionNavPanel extends Component {
                     }}
                 />
                 <div>
-                    <div style={{opacity: left.length > 0 ? 1 : 0.4}}>
+                    <div style={{ opacity: left.length > 0 ? 1 : 0.4 }}>
                         <ul>
-                            <li style={styles}><a href={"#"}><LeftArrow/></a>
+                            <li style={styles}><a href={"#"}><LeftArrow /></a>
                                 <ul
                                     className={"dropdown"}
                                     style={{
                                         zIndex: 100,
-
+                                        opacity: 1,
+                                        backgroundColor: 'white',
                                         display: left.length > 0 ? "block" : "none"
                                     }}
                                 >
@@ -279,29 +281,31 @@ class QuestionNavPanel extends Component {
                                 </ul>
                             </li>
                         </ul>
-                    </div>
-                </div>
-                {middle}
-                <div  style={{
-                    marginLeft: this.getWidth(0.22)
-                }}>
-                    <div >
-                        <ul>
-                            <li style={styles}><a href={"#"} ><RightArrow/></a>
-                                <ul
-                                    className={"dropdown"}
-                                    style={{
-                                        zIndex: 100,
-                                        display: right.length > 0 ? "block" : "none"
-                                    }}
-                                >
-                                    {this.reformat(right)}
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
+                { middle }
+        <div style={{
+            marginLeft: this.getWidth(0.22)
+        }}>
+            <div >
+                <ul>
+                    <li style={styles}><a href={"#"} ><RightArrow /></a>
+                        <ul
+                            className={"dropdown"}
+                            style={{
+                                zIndex: 100,
+                                opacity: 1,
+                                backgroundColor:'white',
+                                display: right.length > 0 ? "block" : "none",
+                            }}
+                        >
+                            {this.reformat(right)}
+                        </ul>
+                    </li>
+                </ul>
+        </div>
+        </div >
+            </div >
         );
     }
 }

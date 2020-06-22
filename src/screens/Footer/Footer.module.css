@@ -21,7 +21,7 @@
 }
 .description{
     margin: 10px 0px;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 20px;
 }
 .names_frame{
@@ -39,7 +39,6 @@
 }
 .links{
     margin: 10px 0px;
-    opacity: 0.8;
     cursor: pointer;
 }
 .links a{
