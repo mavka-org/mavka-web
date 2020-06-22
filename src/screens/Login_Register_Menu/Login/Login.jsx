@@ -30,8 +30,8 @@ class Login extends React.Component {
 
     customAlert(text) {
         console.log(this.state.clicked)
-        if(this.state.clicked) {
-            return <AlertConfirm showOne={true} text2={'Ок'} text={text} cancel={this.cancel} args={[]}/>
+        if (this.state.clicked) {
+            return <AlertConfirm showOne={true} text2={'Ок'} text={text} cancel={this.cancel} args={[]} />
         }
         else {
             return null;
@@ -58,9 +58,9 @@ class Login extends React.Component {
     async login(email, password) {
         //alert(email + " " + password)
         let current = this;
-        await firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+        await firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
             console.log(error);
-            if(error.code == "auth/wrong-password"){
+            if (error.code == "auth/wrong-password") {
                 current.setState({
                     passwordComment: "Неправильний пароль!",
                     emailComment: "",
@@ -68,7 +68,7 @@ class Login extends React.Component {
                     changedEmail: true
                 })
             }
-            if(error.code == "auth/invalid-email"){
+            if (error.code == "auth/invalid-email") {
                 current.setState({
                     emailComment: "Неправильний формат електронної адреси!",
                     passwordComment: "",
@@ -76,7 +76,7 @@ class Login extends React.Component {
                     changedEmail: false
                 })
             }
-            if(error.code == "auth/user-not-found"){
+            if (error.code == "auth/user-not-found") {
                 current.setState({
                     emailComment: "Не існує користувача з даною електронною адресою!",
                     passwordComment: "",
@@ -86,13 +86,13 @@ class Login extends React.Component {
             }
         });
 
-        if(firebase.auth().currentUser){
+        if (firebase.auth().currentUser) {
             firebase.analytics().logEvent('login with email and password');
             this.props.history.push('/home')
         }
     }
 
-    trueChangedEmail(){
+    trueChangedEmail() {
         this.setState({
             changedEmail: true,
             googleComment: '',
@@ -100,7 +100,7 @@ class Login extends React.Component {
         })
     }
 
-    trueChangedPassword(){
+    trueChangedPassword() {
         this.setState({
             changedPassword: true,
             googleComment: '',
@@ -109,119 +109,122 @@ class Login extends React.Component {
     }
 
     render() {
-        if(this.state.user == 25){
+        if (this.state.user == 25) {
             return (<LoadingScreen />)
         }
-        if(this.state.user){
-            return(<Redirect to="/home"/>)
+        if (this.state.user) {
+            return (<Redirect to="/home" />)
         }
         let current = this;
         return (
             <div>
                 {this.customAlert(this.state.alertText)}
                 <div className={g.background}>
-                <div className={s.window}>
-                    <a href="/" className={s.logo}><strong>мавка</strong> зно</a>
-                    <div className={s.header}>
-                        <strong>Вхід</strong>
-                    </div>
-                    <div className={s.btns}>
-                        <button className={s.btn_google} onClick={()=>{
-                            current.setState({
-                                googleComment: '',
-                                fbComment: ''
-                            })
-                            let provider = new firebase.auth.GoogleAuthProvider();
-                            //firebase.auth().signInWithRedirect(provider);
-                            firebase.auth().signInWithPopup(provider).then(function(result) {
-                             var token = result.credential.accessToken;
-                             var user = result.user;
-                             firebase.analytics().logEvent('login with google');
-                             Services.setDemographicsSurvey(user, 'true').then(() => {
-                                 window.location.href = '/home';
-                             });
-                            }).catch(function(error){
-                                console.log(error);
-                                current.setState({
-                                    googleComment: 'Електрона адреса вже використовується!'
-                                })
-                            });
-                        }}><span style={{fontWeight: "bolder"}}>G</span>&nbsp; Увійти з Google</button>
-                        <div className={s.errMsg} style={{color:'red'}}>
-                            {this.state.googleComment}
+                    <div className={s.window}>
+                        <a href="/" className={s.logo}><strong>мавка</strong> зно</a>
+                        <div className={s.header}>
+                            <strong>Вхід</strong>
                         </div>
-                        <button className={s.btn} onClick={()=>{
-                            current.setState({
-                                googleComment: '',
-                                fbComment: ''
-                            })
-                            var provider = new firebase.auth.FacebookAuthProvider();
-                            firebase.auth().signInWithPopup(provider).then(function(result) {
-                                var token = result.credential.accessToken;
-                                var user = result.user;
-                                firebase.analytics().logEvent('login with facebook');
-                                Services.setDemographicsSurvey(user, 'true').then(() => {
-                                    window.location.href = '/home';
+                        <div className={s.btns}>
+                            <button className={s.btn_google} onClick={() => {
+                                current.setState({
+                                    googleComment: '',
+                                    fbComment: ''
+                                })
+                                let provider = new firebase.auth.GoogleAuthProvider();
+                                //firebase.auth().signInWithRedirect(provider);
+                                firebase.auth().signInWithPopup(provider).then(function (result) {
+                                    var token = result.credential.accessToken;
+                                    var user = result.user;
+                                    firebase.analytics().logEvent('login with google');
+                                    Services.setDemographicsSurvey(user, 'true').then(() => {
+                                        window.location.href = '/home';
+                                    });
+                                }).catch(function (error) {
+                                    console.log(error);
+                                    current.setState({
+                                        googleComment: 'Електрона адреса вже використовується!'
+                                    })
                                 });
-                              }).catch(function(error) {
-                                console.log(error);
+                            }}><span style={{ fontWeight: "bolder" }}>G</span>&nbsp; Увійти з Google</button>
+                            <div className={s.errMsg} style={{ color: 'red' }}>
+                                {this.state.googleComment}
+                            </div>
+                            <button className={s.btn} onClick={() => {
                                 current.setState({
-                                    fbComment: 'Електрона адреса вже використовується!'
+                                    googleComment: '',
+                                    fbComment: ''
                                 })
-                              });
-                        }}><span style={{fontWeight: "bolder"}}>f</span>&nbsp; Увійти з Facebook</button>
-                        <div className={s.errMsg} style={{color:'red'}}>
-                            {this.state.fbComment}
-                        </div>
-                        <div className={s.info}>
-                            <div className={s.title}>EMAIL</div>
-                            <div className={s.inp_wrapper}><div className={s.icon}></div><input onChange={()=>{
-                                this.trueChangedEmail();
-                            }} id='email' style={{
-                                border: (this.state.emailComment && !this.state.changedEmail) ? "1px red solid" : ""
-                            }}></input></div>
-                        </div>
-                        <div className={s.errMsg} style={{color:'red'}}>
-                            {this.state.emailComment}
-                        </div>
-                        <div className={s.info}>
-                            <div className={s.title}>ПАРОЛЬ</div>
-                            <div className={s.inp_wrapper}><div className={s.icon}></div><input onChange={()=>{
-                                this.trueChangedPassword();
-                            }} id='password' type="password" style={{
-                                border: (this.state.passwordComment && !this.state.changedPassword) ? "1px red solid" : ""
-                            }}></input></div>
-                        </div>
-                        <div className={s.errMsg} style={{color:'red'}}>
-                            {this.state.passwordComment}
-                        </div>
-                        <div className={s.account} onClick={()=>{
-                            this.setState({
-                                clicked: true
-                            })
-                            var auth = firebase.auth();
-                            var emailAddress = document.getElementById('email').value;
-                            auth.sendPasswordResetEmail(emailAddress).then(function() {
-                                current.setState({
-                                    clicked: true,
-                                    alertText: 'Посилання для зміни пароля знаходиться на електроній адресі ' + emailAddress
-                                })
-                            }).catch(function(error) {
-                                current.setState({
-                                    clicked: true,
-                                    alertText: 'Email некоректний!'
-                                })                            });
-                        }}>Забув пароль?</div>
-                        <button className={s.btn} onClick={async()=>{
-                            await this.login(document.getElementById('email').value, document.getElementById('password').value);
-                        }}>Увійти з Email</button>
-                        <Link to='/register'>
-                            <div className={s.account}>Зареєструватися</div>
-                        </Link>
+                                var provider = new firebase.auth.FacebookAuthProvider();
+                                firebase.auth().signInWithPopup(provider).then(function (result) {
+                                    var token = result.credential.accessToken;
+                                    var user = result.user;
+                                    firebase.analytics().logEvent('login with facebook');
+                                    Services.setDemographicsSurvey(user, 'true').then(() => {
+                                        window.location.href = '/home';
+                                    });
+                                }).catch(function (error) {
+                                    console.log(error);
+                                    current.setState({
+                                        fbComment: 'Електрона адреса вже використовується!'
+                                    })
+                                });
+                            }}><span style={{ fontWeight: "bolder" }}>f</span>&nbsp; Увійти з Facebook</button>
+                            <div className={s.errMsg} style={{ color: 'red' }}>
+                                {this.state.fbComment}
+                            </div>
+                            <div className={s.info}>
+                                <div className={s.title}>EMAIL</div>
+                                <div className={s.inp_wrapper}><div className={s.icon}></div><input onChange={() => {
+                                    this.trueChangedEmail();
+                                }} id='email' style={{
+                                    border: (this.state.emailComment && !this.state.changedEmail) ? "1px red solid" : ""
+                                }}></input></div>
+                            </div>
+                            <div className={s.errMsg} style={{ color: 'red' }}>
+                                {this.state.emailComment}
+                            </div>
+                            <div className={s.info}>
+                                <div className={s.password_wrapper}>
+                                    <div className={s.title}>ПАРОЛЬ</div>
+                                    <div className={s.account} onClick={() => {
+                                        this.setState({
+                                            clicked: true
+                                        })
+                                        var auth = firebase.auth();
+                                        var emailAddress = document.getElementById('email').value;
+                                        auth.sendPasswordResetEmail(emailAddress).then(function () {
+                                            current.setState({
+                                                clicked: true,
+                                                alertText: 'Посилання для зміни пароля знаходиться на електроній адресі ' + emailAddress
+                                            })
+                                        }).catch(function (error) {
+                                            current.setState({
+                                                clicked: true,
+                                                alertText: 'Email некоректний!'
+                                            })
+                                        });
+                                    }}>Забув пароль?</div>
+                                </div>
+                                <div className={s.inp_wrapper}><div className={s.icon}></div><input onChange={() => {
+                                    this.trueChangedPassword();
+                                }} id='password' type="password" style={{
+                                    border: (this.state.passwordComment && !this.state.changedPassword) ? "1px red solid" : ""
+                                }}></input></div>
+                            </div>
+                            <div className={s.errMsg} style={{ color: 'red' }}>
+                                {this.state.passwordComment}
+                            </div>
+                            <button className={s.btn} onClick={async () => {
+                                await this.login(document.getElementById('email').value, document.getElementById('password').value);
+                            }}>Увійти з Email</button>
+                            <Link to='/register'>
+                                <div className={s.account}>Зареєструватися</div>
+                            </Link>
 
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         )
     }
