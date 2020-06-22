@@ -111,22 +111,19 @@ class Register extends React.Component {
                                 fbComment: ''
                             })
                             let provider = new firebase.auth.GoogleAuthProvider();
-                            firebase.auth().signInWithRedirect(provider).then(() => {
-                                Services.setDemographicsSurvey(this.state.user, 'true');
-                                this.props.history.push('/typeform')
-                            });
-                            /*firebase.auth().signInWithPopup(provider).then(function(result) {
+                            firebase.auth().signInWithPopup(provider).then(function(result) {           
                              var token = result.credential.accessToken;
                              var user = result.user;
                             }).then(() => {
                                 firebase.analytics().logEvent('register with google');
-                                this.props.history.push('/surveydemographics')
+                                Services.setDemographicsSurvey(this.state.user, 'true');
+                                this.props.history.push('/typeform')
                             }).catch(function(error){
                                 console.log(error);
                                 current.setState({
                                     googleComment: 'Електрона адреса вже використовується!'
                                 })
-                            });*/
+                            });
                         }}><span style={{fontWeight: "bolder"}}>G</span>&nbsp; Увійти з Google</button>
                         <div className={s.errMsg} style={{color:'red'}}>
                             {this.state.googleComment}
