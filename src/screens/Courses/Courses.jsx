@@ -97,7 +97,7 @@ class Courses extends React.Component {
             return (<LoadingScreen />);
         }
         if (this.state.user) {
-            if (window.innerWidth <= 633) {
+            if (window.innerWidth <= 992) {
                 return (
                     <div className={g.background}>
                         {this.customConfirm()}
@@ -108,12 +108,12 @@ class Courses extends React.Component {
                                     this.setState({
                                         clicked: true
                                     })
-                                }}><strong>Вихід</strong></div>
+                                }}>Вихід</div>
 
                             </div>
                             <div className={s.header}>
 
-                                <div className={s.title}><div className={s.sub_title}>Останній ривок до ЗНО разом з <div className={s.sub_title_icon}>мавкою <Fire /></div> </div></div>
+                                <div className={s.title}><div className={s.sub_title}>Останній ривок до ЗНО<br></br> разом з <div className={s.sub_title_icon}>мавкою <Fire /></div> </div></div>
                                 <div className={s.description}>Практикуйся, вчися на поясненнях та проходь симуляції екзамену. Обери предмет:</div>
                             </div>
                             <div className={s.courses_wrapper}>
@@ -144,7 +144,7 @@ class Courses extends React.Component {
 
                                 <div className={s.header}>
 
-                                    <div className={s.title}><div className={s.sub_title}>Останній ривок до ЗНО разом з <div className={s.sub_title_icon}>мавкою <Fire /></div> </div></div>
+                                    <div className={s.title}><div className={s.sub_title}>Останній ривок до ЗНО<br></br> разом з <div className={s.sub_title_icon}>мавкою <Fire /></div> </div></div>
                                     <div className={s.description}>Практикуйся, вчися на поясненнях та проходь симуляції екзамену. Обери предмет:</div>
                                 </div>
 

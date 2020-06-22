@@ -1,5 +1,5 @@
 .header_mobile {
-    width: 100%;
+    width: 90%;
     background-color: white;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -12,6 +12,10 @@
     -ms-flex-pack: justify;
     justify-content: space-between;
     margin-bottom: 30px;
+    padding: 0px 15px;
+    margin-top: 15px;
+    font-size: 25px;
+    line-height: 25px;
 }
 
 .logo {
