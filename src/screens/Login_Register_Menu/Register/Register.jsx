@@ -68,7 +68,7 @@ class Register extends React.Component {
         if(firebase.auth().currentUser){
             firebase.analytics().logEvent('register with email and password');
             Services.setDemographicsSurvey(this.state.user, 'true');
-            this.props.history.push('/typeform')
+            this.props.history.push('/home')
         }
     }
     trueChangedEmail(){
@@ -111,13 +111,13 @@ class Register extends React.Component {
                                 fbComment: ''
                             })
                             let provider = new firebase.auth.GoogleAuthProvider();
-                            firebase.auth().signInWithPopup(provider).then(function(result) {           
+                            firebase.auth().signInWithPopup(provider).then(function(result) {
                              var token = result.credential.accessToken;
                              var user = result.user;
                             }).then(() => {
                                 firebase.analytics().logEvent('register with google');
                                 Services.setDemographicsSurvey(this.state.user, 'true');
-                                this.props.history.push('/typeform')
+                                this.props.history.push('/home')
                             }).catch(function(error){
                                 console.log(error);
                                 current.setState({
@@ -140,7 +140,7 @@ class Register extends React.Component {
                               }).then(() => {
                                 firebase.analytics().logEvent('register with facebook');
                                 Services.setDemographicsSurvey(this.state.user, 'true');
-                                this.props.history.push('/typeform')
+                                this.props.history.push('/home')
                             }).catch(function(error) {
                                 console.log(error);
                                 current.setState({
@@ -179,6 +179,7 @@ class Register extends React.Component {
                         <Link to='/login'>
                             <div className={s.account}>Вже маєш акаунт?</div>
                         </Link>
+                        <div className={s.agreement}>Реєструючись, Ви погоджуютесь з умовами обробки персональних даних, та умовами користування платформою "Мавка"</div>
                     </div>
                 </div>
             </div>

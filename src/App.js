@@ -11,7 +11,6 @@ import Test from "./screens/Test";
 import TestView from "./screens/ContentMakers/TestView";
 import MainMenu from "./screens/MainMenu";
 import Courses from "./screens/Courses"
-import Typeform from "./screens/Typeform"
 import SurveyDemographics from "./screens/SurveyDemographics"
 import SurveyFeedback from "./screens/SurveyFeedback"
 import SurveyOpenEnded from "./screens/SurveyOpenEnded"
@@ -27,7 +26,6 @@ export default () => (
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
             <Route path="/home" component={Courses}/>
-            <Route path="/surveydemographics" component={SurveyDemographics}/>
             <Route path="/surveyfeedback" component={SurveyFeedback}/>
             <Route path="/surveyopenended" component={SurveyOpenEnded}/>
             <Route path={"/loading"} component={LoadingScreen}/>
@@ -35,7 +33,6 @@ export default () => (
             <Route exact path="/subject/:id/:mode/:testId" component={Test} />
             <Route exact path={"/preview/:id"} component={TestView}/>
             <Route exact path={"/404"} component={NotFound}/>
-            <Route path="/typeform" component={Typeform}/>
             <Route path="*" component={NotFound} />
 
         </Switch>

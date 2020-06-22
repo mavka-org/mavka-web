@@ -25,6 +25,7 @@ import {animateScroll as scroll} from 'react-scroll'
 import Axios from 'axios';
 import NotFound from './../NotFound'
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
+import SurveyFeedback from '../SurveyFeedback'
 
 const componentsMap = {
     ABCDE,
@@ -158,7 +159,7 @@ export class Test extends React.Component{
                                             current.setState({
                                                 redirect: true
                                             })
-                                        }       
+                                        }
                                     }
                                     if(tmp != "status" && tmp != "Test_results" && tmp!= "Topics_to_review")
                                         checkedAnswers[tmp] = current.state.data[Number(tmp) - 1].checkCorrect(response.data[tmp]);
@@ -244,9 +245,10 @@ export class Test extends React.Component{
                         }
                         else {
                             this.props.history.push({
-                                pathname: '/surveyfeedback',
-                                state: {testID: this.state.testId, subject: this.state.subject}
+                                pathname: '/subject/' + this.state.subject,
+                                state: { testID: this.state.testId }
                             });
+                            new SurveyFeedback(this).open()
                         }
                     })
                 }
@@ -325,9 +327,10 @@ export class Test extends React.Component{
                                             }
                                             else {
                                                 this.props.history.push({
-                                                    pathname: '/surveyfeedback',
-                                                    state: {testID: this.state.testId, subject: this.state.subject}
+                                                    pathname: '/subject/' + this.state.subject,
+                                                    state: { testID: this.state.testId }
                                                 });
+                                                new SurveyFeedback(this).open()
                                             }
                                         })
                                     }
@@ -376,7 +379,7 @@ export class Test extends React.Component{
             answers: answers,
             checkedAnswers: checkedAnswers
         })
-        
+
         if(this.state.isPractice) {
             console.log(1);
             if(this.state.data[num - 1].evaluate(this.state.answers[num])[1] == 0){

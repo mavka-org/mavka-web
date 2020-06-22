@@ -8,14 +8,14 @@ import Services from './Services/Services';
 import TechnicalPause from './screens/TechnicalPause/TechnicalPause'
 import { HashRouter } from 'react-router-dom'
 import firebase from './global'
-import Typeform from './screens/Typeform/Typeform';
+import SurveyDemographics from './screens/SurveyDemographics/SurveyDemographics';
 
 function getScreen(values) {
     if(values[0]) {
       return <TechnicalPause/>
     }
     if(values[1] == 'true') {
-      return <Typeform/>
+      return <SurveyDemographics/>
     }
     return <App />
 }
@@ -29,7 +29,7 @@ firebase.auth().onAuthStateChanged((user) => {
           {getScreen(values)}
       </div>,
       document.getElementById('root')
-    );  
+    );
   })
 })
 
@@ -40,6 +40,6 @@ Promise.all([Services.getTechnicalPauseStatus(), Services.getDemographicsSurvey(
     </div>,
     document.getElementById('root')
   );
-})  
+})
 
 serviceWorker.unregister();

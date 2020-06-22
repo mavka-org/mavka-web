@@ -1,15 +1,121 @@
 import React from 'react';
 import firebase from './../../global'
 import { Link, Redirect } from 'react-router-dom';
+import * as typeformEmbed from '@typeform/embed'
 import s from './Survey.module.css';
 import g from './../Templates/Style.module.css';
+import axios from 'axios'
+import Services from '../../Services/Services';
 
 class SurveyDemographics extends React.Component {
+
     state = {
         user: 25
     }
 
-    componentDidMount = () => this.getAuthStatus();
+    getAnswersFromData(data) {
+        let items = data['items'][0]
+        let answers = items['answers']
+
+        return answers
+    }
+
+    getHiddenFromData(data) {
+        let items = data['items'][0]
+        let hidden = items['hidden']
+
+        return hidden
+    }
+
+    async demographicsOnSubmit() {
+        let url = 'https://api.typeform.com/forms/BnKWPReN/responses?page_size=1'
+        let uid = this.state.user.uid
+
+        let data = await Services.getReqForm(url)
+        let requested_uid = this.getHiddenFromData(data)['uid']
+
+        // wait until you get the valid user's response
+        while (requested_uid != uid) {
+            data = await Services.getReqForm(url)
+            requested_uid = this.getHiddenFromData(data)['uid']
+        }
+
+        let answers = this.getAnswersFromData(data)
+
+        this.initiateUserProperties(answers)
+
+        window.location.href = '/home';
+    }
+
+
+    initiateUserProperties (answers) {
+
+        // entryProduct --> мавка зно чи мавка?
+        firebase.analytics().setUserProperties({entryProduct: 'mavka zno'});
+
+        // occupationType --> Що тебе описує?
+        let occupationTypeDict = {
+                "UI8Oz6L9C2wr" : "11thgrader",
+        		"wYemcfOvwoqj" : "10thgrader",
+        		"URsZrQJZmmuF" : "educator",
+        		"other" : answers[0]['choice']['other']
+        }
+        let occupationType = occupationTypeDict[answers[0]['choice']['id']]
+        firebase.analytics().setUserProperties({occupationType: occupationType});
+        console.log(occupationType)
+
+        if (occupationType != 'educator') {
+
+            // statedAqSource --> Звідки ти знаєш про Мавку?, може бути кілька відповідей
+            let statedAqSourceDict = {
+              "Qn7ipi5N1Mi1" : "instaAds",
+              "9Pt2UYrKMvBT" : "socialMedia",
+              "PoNu7KrOcbZ1" : "mavkaStaff",
+              "3f8jVs07pexq" : "friends",
+              "bsFAhhjzVV79" : "teachers",
+              "other" : answers[1]['choices']['other']
+            }
+            let statedAqSource = ""
+            for (let source of answers[1]['choices']['ids']) {
+            	statedAqSource = statedAqSource + statedAqSourceDict[source] + " "
+            }
+            console.log(statedAqSource)
+            firebase.analytics().setUserProperties({statedAqSource: statedAqSource});
+
+
+            // hadTutor --> Ти готуєшся до ЗНО хоча б з одним репетитором?, boolean
+            let hadZNOTutor = answers[2]['boolean']
+            console.log(hadZNOTutor)
+            firebase.analytics().setUserProperties({hadZNOTutor: hadZNOTutor});
+
+
+            // schoolLocation --> Де ти навчаєшся?
+            let schoolLocationDict = {
+              "TPvZyomgZKYA" : "stateCity",
+              "mMBLseQiBZY5" : "city",
+              "BMxp3gpIBU0V" : "village",
+              "other" : answers[3]['choice']['other']
+            }
+            let schoolLocation = schoolLocationDict[answers[3]['choice']['id']]
+            console.log(schoolLocation)
+            firebase.analytics().setUserProperties({schoolLocation: schoolLocation});
+
+
+            // schoolPerformance --> Які оцінки ти зазвичай отримуєш?
+            let schoolPerformance = answers[4]['choice']['label']
+            console.log(schoolPerformance)
+            firebase.analytics().setUserProperties({schoolPerformance: schoolPerformance});
+
+        }
+    }
+
+
+    componentDidMount() {
+
+        this.getAuthStatus();
+
+    }
+
 
     // Get firebase auth status.
     getAuthStatus = () => {
@@ -27,25 +133,35 @@ class SurveyDemographics extends React.Component {
         })
     }
 
-    navigate = (ref) => {
-        this.props.history.push(ref);
-    }
 
     render() {
-        document.getElementsByTagName('body')[0].setAttribute("style", "overflow-y: scroll;")
+        let uid = this.state.user.uid
+
+        let demographicsOnSubmit = () => {
+            Services.setDemographicsSurvey(this.state.user, 'false').then(() => {this.demographicsOnSubmit()})
+        }
+
+        if (uid) {
+            const demographicsForm = typeformEmbed.makePopup('https://mavkaorg.typeform.com/to/BnKWPReN?uid=' + uid, {
+                mode: 'popup',
+                hideHeaders: true,
+                hideFooters: true,
+                onSubmit: demographicsOnSubmit,
+                onClose: function() {
+                    demographicsForm.open()
+                }
+            })
+
+            demographicsForm.open()
+        }
+
         if(this.state.user == 25){
             return(<div></div>)
         }
         if(this.state.user){
             firebase.analytics().logEvent('start demographics survey')
-            var url = "https://docs.google.com/forms/d/e/1FAIpQLScgZErcirQmzkPQFxLZG8OiQ-NriSpRdl4KVib99Q8dcXJ5nA/viewform?usp=pp_url&entry.1198759471=";
-            console.log(this.state.user)
-            url += this.state.user.email;
             return (
-                <div style={{backgroundColor: '#f2f2f2'}}>
-                    <center><Link to={'/home'}><button className={s.btn_turn_back}>Перейти на домашню сторінку</button></Link></center>
-                    <iframe src={url} width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-                    //<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScgZErcirQmzkPQFxLZG8OiQ-NriSpRdl4KVib99Q8dcXJ5nA/viewform?embedded=true" width="100%" height={window.innerHeight} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                <div>
                 </div>
             );
         }
