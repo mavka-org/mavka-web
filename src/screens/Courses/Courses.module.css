@@ -3,6 +3,8 @@
     background-color: white;
     display: -webkit-box;
     display: -ms-flexbox;
+    display: -moz-box;
+    display: -webkit-flex;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -26,6 +28,8 @@
 .header {
     display: -webkit-box;
     display: -ms-flexbox;
+    display: -moz-box;
+    display: -webkit-flex;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -37,6 +41,8 @@
 .question_header {
     display: -webkit-box;
     display: -ms-flexbox;
+    display: -moz-box;
+    display: -webkit-flex;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -51,7 +57,7 @@
 }
 
 .title {
-    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
     display: -ms-inline-flexbox;
     display: inline-flex;
     -webkit-box-orient: horizontal;
@@ -66,6 +72,7 @@
 
 .sub_title {
     display: inline-block;
+    display: -moz-inline-stack;
     -webkit-box-align: baseline;
     -ms-flex-align: baseline;
     align-items: baseline;
@@ -73,6 +80,7 @@
 
 .sub_title_icon {
     display: inline-block;
+    display: -moz-inline-stack;
 }
 
 .description {
@@ -85,6 +93,8 @@
 .courses_wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
+    display: -moz-box;
+    display: -webkit-flex;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -100,6 +110,8 @@
     width: 210px;
     display: -webkit-box;
     display: -ms-flexbox;
+    display: -moz-box;
+    display: -webkit-flex;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -113,6 +125,8 @@
 .wrap {
     display: -webkit-box;
     display: -ms-flexbox;
+    display: -moz-box;
+    display: -webkit-flex;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -159,6 +173,8 @@
     .page {
         display: -webkit-box;
         display: -ms-flexbox;
+        display: -moz-box;
+        display: -webkit-flex;
         display: flex;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -178,6 +194,8 @@
     .page {
         display: -webkit-box;
         display: -ms-flexbox;
+        display: -moz-box;
+        display: -webkit-flex;
         display: flex;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -195,6 +213,8 @@
     .courses_wrapper {
         display: -webkit-box;
         display: -ms-flexbox;
+        display: -moz-box;
+        display: -webkit-flex;
         display: flex;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
