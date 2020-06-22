@@ -1,5 +1,6 @@
 .footer{
     display: flex;
+    font-size: 18px;
     flex-direction: column;
     line-height: 25px;
 
