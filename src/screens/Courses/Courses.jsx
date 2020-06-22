@@ -11,6 +11,7 @@ import DNA from './../Templates/Icon/DNA';
 import Earth from './../Templates/Icon/Earth';
 import German from './../Templates/Icon/German';
 import France from './../Templates/Icon/France';
+import Sunflower from './../Templates/Icon/Sunflower';
 import UK from './../Templates/Icon/UK';
 import Book from './../Templates/Icon/Book'
 import { Redirect } from 'react-router-dom';
@@ -18,7 +19,6 @@ import AlertConfirm from './../AlertConfirm/AlertConfirm'
 import Footer from '../Footer/Footer';
 import Loading from './../LoadingScreen'
 import LoadingScreen from './../LoadingScreen';
-
 class Courses extends React.Component {
 
 
@@ -81,7 +81,7 @@ class Courses extends React.Component {
 
     render() {
         window.addEventListener("resize", this.updateScreen)
-        var pic1 = <Book />
+        var pic1 = <Sunflower />
         var pic2 = <Moai />
         var pic3 = <Swords />
         var pic4 = <DNA />
