@@ -14,8 +14,10 @@ class Register extends React.Component {
         changedEmail: true,
         changedPassword: true,
         googleComment: '',
-        fbComment: '',
+        fbComment: ''
     }
+
+    
 
     componentDidMount = () => this.getAuthStatus();
 
@@ -64,12 +66,6 @@ class Register extends React.Component {
                 })
             }
         });
-
-        if(firebase.auth().currentUser){
-            firebase.analytics().logEvent('register with email and password');
-            Services.setDemographicsSurvey(this.state.user, 'true');
-            this.props.history.push('/home')
-        }
     }
     trueChangedEmail(){
         this.setState({
@@ -94,7 +90,9 @@ class Register extends React.Component {
             return (<LoadingScreen />);
         }
         if(this.state.user) {
-            return(<Redirect to="/home"/>)
+            firebase.analytics().logEvent('register with email and password');
+            Services.setDemographicsSurvey(this.state.user, 'true');
+            this.props.history.push('/home')
         }
         let current = this;
         return (
