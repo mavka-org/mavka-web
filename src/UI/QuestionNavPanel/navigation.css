@@ -15,6 +15,8 @@ li {
     float: left;
     position: relative;
     text-decoration: none;
+    -webkit-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
     transition-duration: 0.5s;
 }
 
@@ -33,12 +35,15 @@ ul li ul {
     visibility: hidden;
     opacity: 0;
     min-width: 108px;
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
     display: none;
 }
 
-ul li:hover > ul,
-ul li:focus-within > ul, /* this is the line we add */
+ul li:hover>ul, ul li:focus-within>ul,
+/* this is the line we add */
+
 ul li ul:hover {
     visibility: visible;
     opacity: 1;

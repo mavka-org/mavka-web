@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "@typeform/embed": "^0.21.4",
+    "autoprefixer": "^9.8.2",
     "axios": "^0.19.2",
     "firebase": "^7.14.6",
     "html-to-react": "^1.4.3",
@@ -35,7 +36,8 @@
     "react-typeform-embed": "^0.2.1",
     "react-use": "^15.2.5",
     "remark-math": "^2.0.1",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "typeform": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -20,8 +20,8 @@ class Scores extends React.Component {
                     </div>
                 </div>
                 <div className={s.btn_wrap} onClick={() => {
-                    this.props.click();
-                }}><button className={g.btn}>Переглянути помилки</button></div>
+                        this.props.click();
+                    }}><button className={g.btn}>Переглянути помилки</button></div>
             </div>
 
         </div>

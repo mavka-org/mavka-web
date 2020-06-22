@@ -4,7 +4,7 @@ import g from '../../Templates/Style.module.css';
 import firebase from "../../../global"
 import { Redirect, Link } from 'react-router-dom';
 import LoadingScreen from '../../LoadingScreen/LoadingScreen';
-
+import Services from '../../../Services/Services';
 
 class Register extends React.Component {
     state = {
@@ -67,7 +67,8 @@ class Register extends React.Component {
 
         if(firebase.auth().currentUser){
             firebase.analytics().logEvent('register with email and password');
-            this.props.history.push('/surveydemographics')
+            Services.setDemographicsSurvey(this.state.user, 'true');
+            this.props.history.push('/home')
         }
     }
     trueChangedEmail(){
@@ -115,8 +116,10 @@ class Register extends React.Component {
                              var user = result.user;
                             }).then(() => {
                                 firebase.analytics().logEvent('register with google');
-                                this.props.history.push('/surveydemographics')
+                                Services.setDemographicsSurvey(this.state.user, 'true');
+                                this.props.history.push('/home')
                             }).catch(function(error){
+                                console.log(error);
                                 current.setState({
                                     googleComment: 'Електрона адреса вже використовується!'
                                 })
@@ -136,8 +139,10 @@ class Register extends React.Component {
                                 var user = result.user;
                               }).then(() => {
                                 firebase.analytics().logEvent('register with facebook');
-                                this.props.history.push('/surveydemographics')
+                                Services.setDemographicsSurvey(this.state.user, 'true');
+                                this.props.history.push('/home')
                             }).catch(function(error) {
+                                console.log(error);
                                 current.setState({
                                     fbComment: 'Електрона адреса вже використовується!'
                                 })
