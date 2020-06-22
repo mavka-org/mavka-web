@@ -110,8 +110,8 @@ class Register extends React.Component {
                                 fbComment: ''
                             })
                             let provider = new firebase.auth.GoogleAuthProvider();
-                            firebase.auth().signInWithRedirect(provider);
-                            /*firebase.auth().signInWithPopup(provider).then(function(result) {
+                            //firebase.auth().signInWithRedirect(provider);
+                            firebase.auth().signInWithPopup(provider).then(function(result) {
                              var token = result.credential.accessToken;
                              var user = result.user;
                             }).then(() => {
@@ -122,7 +122,7 @@ class Register extends React.Component {
                                 current.setState({
                                     googleComment: 'Електрона адреса вже використовується!'
                                 })
-                            });*/
+                            });
                         }}><span style={{fontWeight: "bolder"}}>G</span>&nbsp; Увійти з Google</button>
                         <div className={s.errMsg} style={{color:'red'}}>
                             {this.state.googleComment}
