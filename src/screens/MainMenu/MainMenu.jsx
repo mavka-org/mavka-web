@@ -95,7 +95,7 @@ class MainMenu extends React.Component {
                             status: T[year][t].status.toLowerCase(),
                             id: T[year][t].id,
                             ref: T[year][t].ref,
-                            score200: T[year][t].score200,
+                            score200: (T[year][t].score200 == 'Н.С.') ? '-' : T[year][t].score200,
                             score12: T[year][t].score12,
                             numCorrect: T[year][t].numCorrect,
                             Topics_to_review: T[year][t].Topics_to_review
