@@ -141,9 +141,7 @@ class Courses extends React.Component {
                         {this.customConfirm()}
                         <div className={[s.page, g.page_].join(' ')}>
                             <div className={s.question_header}>
-
                                 <div className={s.header}>
-
                                     <div className={s.title}><div className={s.sub_title}>Останній ривок до ЗНО<br></br> разом з <div className={s.sub_title_icon}>мавкою <Fire /></div> </div></div>
                                     <div className={s.description}>Практикуйся, вчися на поясненнях та проходь симуляції екзамену. Обери предмет:</div>
                                 </div>
@@ -168,7 +166,6 @@ class Courses extends React.Component {
                                 <Course hover={false} course={'Англійська мова'} pic={pic7} style={{ opacity: 0.4, cursor: 'default' }} />
                                 <Course hover={false} course={'Французька мова'} pic={pic8} style={{ opacity: 0.4, cursor: 'default' }} />
                                 <Course hover={false} course={'Німецька мова'} pic={pic9} style={{ opacity: 0.4, cursor: 'default' }} />
-
                             </div>
                             <div style={{ width: '100%', marginTop: '90px', marginBottom: '10px', color: 'Gray' }}><hr></hr></div>
                             <div className={s.footer}>
