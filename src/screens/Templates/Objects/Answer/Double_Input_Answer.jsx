@@ -37,6 +37,15 @@ class Double_Input_Answer extends React.Component {
         if (clean !== input.value) input.value = clean;
     }
 
+    setBorder(){
+        if(this.state.answered){
+            if(this.props.isCorrectAnswer)
+                return "1px #0EFB71 solid";
+            return "1px red solid";
+        }
+        return "1px solid #7c7c7c";
+    }
+
     render() {
         //console.log(this.state.currentAnswer + " " +  this.props.letter + " " + this.props.isCorrectAnswer);
         console.log(this.props.isPractice);
@@ -70,7 +79,9 @@ class Double_Input_Answer extends React.Component {
                     <div dangerouslySetInnerHTML={{ __html: this.props.explanation }}></div>
                 </div>
 
-                <input disabled={this.props.isPractice && this.props.answered ? true : false} className={s.inp} id={this.inputId} value={this.props.currentAnswer} onChange={() => {this.updateInput()}}></input>
+                <input style={{
+                        border: this.setBorder()
+                    }} disabled={this.props.isPractice && this.props.answered ? true : false} className={s.inp} id={this.inputId} value={this.props.currentAnswer} onChange={() => {this.updateInput()}}></input>
 
                 <div className={s.correct_answer} style={{
                     display: !this.props.hidden ? "none" : "block"

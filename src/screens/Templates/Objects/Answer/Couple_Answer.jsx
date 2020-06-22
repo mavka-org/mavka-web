@@ -37,11 +37,22 @@ class CoupleAnswer extends React.Component {
         }
     }
 
+    setBorder(){
+        if(this.props.hidden){
+            if(this.props.subanswer.length > 0)
+                return "1px black solid";
+            return ""
+        }else{
+            if(this.props.isCorrectAnswer)
+                return "1px #0EFB71 solid";
+            return "1px red solid";       
+        }
+    }
+
     render() {
         return (
             <div className={g.answer_withouthover} style={{
-                border: (!this.props.hidden && this.props.isCorrectAnswer || this.props.hidden && this.props.subanswer.length > 0) ? "1px black solid" : "",
-                opacity: (!this.props.hidden && !this.props.isCorrectAnswer) ? "70%" : "100%"
+                border: this.setBorder(),
                 }}>
                 <div className={g.answer_text_frame}>
                     <div className={g.letter_choice}>
