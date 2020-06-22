@@ -312,8 +312,8 @@ export class Test extends React.Component{
                                 },
                                 { headers: { 'Content-Type': 'application/json' } }
                             ).then((response) => {
-                                if(cnt >= 15) {
-                                    Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => { // Dont touch this status
+                                Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => { // Dont touch this status
+                                    if(cnt >= 15) {
                                         this.state.user.getIdToken().then((token) => {
                                             return Services.checkFeedbackSurvey(token)
                                         }).then((result) => {
@@ -330,14 +330,14 @@ export class Test extends React.Component{
                                                 });
                                             }
                                         })
-                                    });
-                                }
-                                else {
-                                    this.props.history.push({
-                                        pathname: '/subject/' + this.state.subject,
-                                        state: { testID: this.state.testId }
-                                    });
-                                }
+                                    }
+                                    else {
+                                        this.props.history.push({
+                                            pathname: '/subject/' + this.state.subject,
+                                            state: { testID: this.state.testId }
+                                        });
+                                    }
+                                });
                             })
                         })
                     })
