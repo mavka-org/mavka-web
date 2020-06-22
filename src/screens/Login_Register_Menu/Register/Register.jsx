@@ -17,7 +17,7 @@ class Register extends React.Component {
         fbComment: ''
     }
 
-    
+
 
     componentDidMount = () => this.getAuthStatus();
 
@@ -91,8 +91,9 @@ class Register extends React.Component {
         }
         if(this.state.user) {
             firebase.analytics().logEvent('register with email and password');
-            Services.setDemographicsSurvey(this.state.user, 'true');
-            this.props.history.push('/home')
+            Services.setDemographicsSurvey(this.state.user, 'true').then(() => {
+                window.location.href = '/home';
+            });
         }
         let current = this;
         return (
@@ -112,10 +113,12 @@ class Register extends React.Component {
                             firebase.auth().signInWithPopup(provider).then(function(result) {
                              var token = result.credential.accessToken;
                              var user = result.user;
-                            }).then(() => {
+                             return user;
+                         }).then((user) => {
                                 firebase.analytics().logEvent('register with google');
-                                Services.setDemographicsSurvey(this.state.user, 'true');
-                                this.props.history.push('/home')
+                                Services.setDemographicsSurvey(user, 'true').then(() => {
+                                    window.location.href = '/home';
+                                });
                             }).catch(function(error){
                                 console.log(error);
                                 current.setState({
@@ -135,10 +138,13 @@ class Register extends React.Component {
                             firebase.auth().signInWithPopup(provider).then(function(result) {
                                 var token = result.credential.accessToken;
                                 var user = result.user;
-                              }).then(() => {
+                                return user;
+                            }).then((user) => {
                                 firebase.analytics().logEvent('register with facebook');
-                                Services.setDemographicsSurvey(this.state.user, 'true');
-                                this.props.history.push('/home')
+                                Services.setDemographicsSurvey(user, 'true').then(() => {
+                                    window.location.href = '/home';
+                                });
+
                             }).catch(function(error) {
                                 console.log(error);
                                 current.setState({

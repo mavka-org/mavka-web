@@ -136,7 +136,6 @@ class SurveyDemographics extends React.Component {
 
     render() {
         let uid = this.state.user.uid
-
         let demographicsOnSubmit = () => {
             Services.setDemographicsSurvey(this.state.user, 'false').then(() => {this.demographicsOnSubmit()})
         }
@@ -147,8 +146,13 @@ class SurveyDemographics extends React.Component {
                 hideHeaders: true,
                 hideFooters: true,
                 onSubmit: demographicsOnSubmit,
-                onClose: function() {
-                    demographicsForm.open()
+                onClose: async function() {
+                    const firestore = firebase.firestore();
+                    await firestore.collection("users").doc(uid).get().then(doc => {
+                        if(doc.get("demographicsSurvey") == "true") {
+                            demographicsForm.open()
+                        }
+                    });
                 }
             })
 

@@ -5,6 +5,7 @@ import firebase from "../../../global"
 import { Redirect, Link } from 'react-router-dom';
 import LoadingScreen from '../../LoadingScreen/LoadingScreen';
 import AlertConfirm from '../../AlertConfirm/AlertConfirm';
+import Services from '../../../Services/Services';
 
 class Login extends React.Component {
     state = {
@@ -136,6 +137,9 @@ class Login extends React.Component {
                              var token = result.credential.accessToken;
                              var user = result.user;
                              firebase.analytics().logEvent('login with google');
+                             Services.setDemographicsSurvey(user, 'true').then(() => {
+                                 window.location.href = '/home';
+                             });
                             }).catch(function(error){
                                 console.log(error);
                                 current.setState({
@@ -156,6 +160,9 @@ class Login extends React.Component {
                                 var token = result.credential.accessToken;
                                 var user = result.user;
                                 firebase.analytics().logEvent('login with facebook');
+                                Services.setDemographicsSurvey(user, 'true').then(() => {
+                                    window.location.href = '/home';
+                                });
                               }).catch(function(error) {
                                 console.log(error);
                                 current.setState({
@@ -193,7 +200,7 @@ class Login extends React.Component {
                                 clicked: true
                             })
                             var auth = firebase.auth();
-                            var emailAddress = document.getElementById('email').value;           
+                            var emailAddress = document.getElementById('email').value;
                             auth.sendPasswordResetEmail(emailAddress).then(function() {
                                 current.setState({
                                     clicked: true,

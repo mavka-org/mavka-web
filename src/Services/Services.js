@@ -546,7 +546,7 @@ class Services {
     static async checkFeedbackSurvey (token) {
         const response = await axios.post(
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/checkFeedbackSurvey',
-            { 
+            {
                 token: token,
             },
             { headers: { 'Content-Type': 'text/plain' } }
@@ -558,7 +558,7 @@ class Services {
     static async getReqForm (url) {
         const response = await axios.post(
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/getReqForm',
-            { 
+            {
                 url: url,
             },
             { headers: { 'Content-Type': 'text/plain' } }
@@ -583,9 +583,21 @@ class Services {
     static async setDemographicsSurvey(user, val) {
         console.log(user);
         if(user != null && typeof user.uid != 'undefined') {
+            const firestore = firebase.firestore();
+            let flag = 0;
+            await firestore.collection("users").doc(user.uid).get().then(doc => {
+                if(doc.get("demographicsSurvey") == "false") {
+                    flag = 1
+                }
+            });
+
+            if (flag == 1){
+                return;
+            }
+
             return await axios.post(
                 'https://europe-west3-mavka-c5c01.cloudfunctions.net/setDemographicsSurvey',
-                { 
+                {
                     uid: user.uid,
                     val: val
                 },
