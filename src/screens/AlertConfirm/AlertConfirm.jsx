@@ -24,7 +24,9 @@ class AlertConfirm extends React.Component {
                 <div className={s.alert}>
                     <div className={s.alert_description}>{this.props.text}</div>
                     <div className={s.btn_wrapper}>
-                        <button className={s.btn_end} onClick={() => {
+                        <button className={s.btn_end} style={{
+                                    display: this.props.showOne ? "none" : "block"
+                                }} onClick={() => {
                             this.props.click(...this.props.args);
                             this.props.cancel();
                         }}>{this.props.text1 ? this.props.text1 : "Так"}</button>

@@ -4,6 +4,7 @@ import g from '../../Templates/Style.module.css';
 import firebase from "../../../global"
 import { Redirect, Link } from 'react-router-dom';
 import LoadingScreen from '../../LoadingScreen/LoadingScreen';
+import AlertConfirm from '../../AlertConfirm/AlertConfirm';
 
 class Login extends React.Component {
     state = {
@@ -13,7 +14,27 @@ class Login extends React.Component {
         changedEmail: true,
         changedPassword: true,
         googleComment: '',
-        fbComment: ''
+        fbComment: '',
+        clicked: false,
+        alertText: ''
+    }
+
+    cancel = () => {
+        //console.log('asdsa');
+        this.setState({
+            clicked: false
+        })
+        //console.log('fs')
+    }
+
+    customAlert(text) {
+        console.log(this.state.clicked)
+        if(this.state.clicked) {
+            return <AlertConfirm showOne={true} text2={'Ок'} text={text} cancel={this.cancel} args={[]}/>
+        }
+        else {
+            return null;
+        }
     }
 
     componentDidMount = () => this.getAuthStatus();
@@ -95,7 +116,9 @@ class Login extends React.Component {
         }
         let current = this;
         return (
-            <div className={g.background}>
+            <div>
+                {this.customAlert(this.state.alertText)}
+                <div className={g.background}>
                 <div className={s.window}>
                     <a href="/" className={s.logo}><strong>мавка</strong> зно</a>
                     <div className={s.header}>
@@ -165,6 +188,23 @@ class Login extends React.Component {
                         <div className={s.errMsg} style={{color:'red'}}>
                             {this.state.passwordComment}
                         </div>
+                        <div className={s.account} onClick={()=>{
+                            this.setState({
+                                clicked: true
+                            })
+                            var auth = firebase.auth();
+                            var emailAddress = document.getElementById('email').value;           
+                            auth.sendPasswordResetEmail(emailAddress).then(function() {
+                                current.setState({
+                                    clicked: true,
+                                    alertText: 'Посилання для зміни пароля знаходиться на електроній адресі ' + emailAddress
+                                })
+                            }).catch(function(error) {
+                                current.setState({
+                                    clicked: true,
+                                    alertText: 'Email некоректний!'
+                                })                            });
+                        }}>Забув пароль?</div>
                         <button className={s.btn} onClick={async()=>{
                             await this.login(document.getElementById('email').value, document.getElementById('password').value);
                         }}>Увійти з Email</button>
@@ -174,6 +214,7 @@ class Login extends React.Component {
 
                     </div>
                 </div>
+            </div>
             </div>
         )
     }
