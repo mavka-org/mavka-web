@@ -4,7 +4,7 @@ import g from '../../Templates/Style.module.css';
 import firebase from "../../../global"
 import { Redirect, Link } from 'react-router-dom';
 import LoadingScreen from '../../LoadingScreen/LoadingScreen';
-
+import Services from '../../../Services/Services';
 
 class Register extends React.Component {
     state = {
@@ -67,7 +67,8 @@ class Register extends React.Component {
 
         if(firebase.auth().currentUser){
             firebase.analytics().logEvent('register with email and password');
-            this.props.history.push('/surveydemographics')
+            Services.setDemographicsSurvey(this.state.user, 'true');
+            this.props.history.push('/typeform')
         }
     }
     trueChangedEmail(){
@@ -110,7 +111,10 @@ class Register extends React.Component {
                                 fbComment: ''
                             })
                             let provider = new firebase.auth.GoogleAuthProvider();
-                            firebase.auth().signInWithRedirect(provider);
+                            firebase.auth().signInWithRedirect(provider).then(() => {
+                                Services.setDemographicsSurvey(this.state.user, 'true');
+                                this.props.history.push('/typeform')
+                            });
                             /*firebase.auth().signInWithPopup(provider).then(function(result) {
                              var token = result.credential.accessToken;
                              var user = result.user;
@@ -138,7 +142,8 @@ class Register extends React.Component {
                                 var user = result.user;
                               }).then(() => {
                                 firebase.analytics().logEvent('register with facebook');
-                                this.props.history.push('/surveydemographics')
+                                Services.setDemographicsSurvey(this.state.user, 'true');
+                                this.props.history.push('/typeform')
                             }).catch(function(error) {
                                 console.log(error);
                                 current.setState({
