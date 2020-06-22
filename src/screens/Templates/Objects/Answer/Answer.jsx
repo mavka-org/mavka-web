@@ -41,6 +41,19 @@ class Answer extends React.Component {
         }
     }
 
+    setBorder(isUserAnswer){
+        if(isUserAnswer && this.props.answered){
+            if(this.props.isCorrectAnswer)
+                return "1px #0EFB71 solid";
+            return "1px red solid";
+        }else{
+            if(isUserAnswer)
+                return "1px black solid";
+            return "";
+        }
+        
+    }
+
     render() {
         //console.log(this.state.currentAnswer + " " +  this.props.letter + " " + this.props.isCorrectAnswer);
         let isUserAnswer = false;
@@ -57,8 +70,8 @@ class Answer extends React.Component {
                 if(!this.state.answered || !this.props.isPractice)
                     this.props.updateCurrentAnswer(this.props.letter, this.props.index);
             }}className={this.state.answered && this.props.isPractice ? (g.answer_withouthover) : (g.answer)} style={{
-                border: (isUserAnswer) ? "1px black solid" : "",
-                opacity: (this.props.hidden && !this.props.isCorrectAnswer) ? "50%" : "100%",
+                border: this.setBorder(isUserAnswer),
+                opacity: (this.props.hidden && !this.props.isCorrectAnswer && !isUserAnswer) ? "50%" : "100%",
             }}>
                 <div className={g.answer_text_frame}>
                     <div className={g.letter_choice}>
