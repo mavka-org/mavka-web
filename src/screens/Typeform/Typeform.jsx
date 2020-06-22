@@ -9,8 +9,6 @@ import Services from '../../Services/Services';
 
 class Typeform extends React.Component {
 
-
-
     state = {
         user: 25
     }
@@ -48,6 +46,9 @@ class Typeform extends React.Component {
 
         let demographicsOnSubmit = () => {
             this.demographicsOnSubmit();
+            Services.setDemographicsSurvey(this.state.user, 'false').then(()=>{
+                this.navigate('/home');
+            })
         }
 
         const demographicsForm = typeformEmbed.makePopup('https://laptiev.typeform.com/to/JpyKH0vn?uid=12345', {

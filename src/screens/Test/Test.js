@@ -232,22 +232,30 @@ export class Test extends React.Component{
                     cnt -= 1;
                 }
                 firebase.analytics().logEvent('finish practice', {countOfAnsweredQuestions: cnt});
-                this.state.user.getIdToken().then((token) => {
-                    return Services.checkFeedbackSurvey(token)
-                }).then((result) => {
-                    if(result.toString() == 'done') {
-                        this.props.history.push({
-                            pathname: '/subject/' + this.state.subject,
-                            state: { testID: this.state.testId }
-                        });
-                    }
-                    else {
-                        this.props.history.push({
-                            pathname: '/surveyfeedback',
-                            state: {testID: this.state.testId, subject: this.state.subject}
-                        });
-                    }
-                })
+                if(cnt >= 15) {
+                    this.state.user.getIdToken().then((token) => {
+                        return Services.checkFeedbackSurvey(token)
+                    }).then((result) => {
+                        if(result.toString() == 'done') {
+                            this.props.history.push({
+                                pathname: '/subject/' + this.state.subject,
+                                state: { testID: this.state.testId }
+                            });
+                        }
+                        else {
+                            this.props.history.push({
+                                pathname: '/surveyfeedback',
+                                state: {testID: this.state.testId, subject: this.state.subject}
+                            });
+                        }
+                    })
+                }
+                else {
+                    this.props.history.push({
+                        pathname: '/subject/' + this.state.subject,
+                        state: { testID: this.state.testId }
+                    });
+                }
             }else{
                 let cnt = Object.keys(this.state.answers).length;
                 if('Topics_to_review' in this.state.answers) {
@@ -305,22 +313,30 @@ export class Test extends React.Component{
                                 { headers: { 'Content-Type': 'application/json' } }
                             ).then((response) => {
                                 Services.changeTestStatusByID(token, this.state.testId, "Тест пройдений").then(() => { // Dont touch this status
-                                    this.state.user.getIdToken().then((token) => {
-                                        return Services.checkFeedbackSurvey(token)
-                                    }).then((result) => {
-                                        if(result.toString() == 'done') {
-                                            this.props.history.push({
-                                                pathname: '/subject/' + this.state.subject,
-                                                state: { testID: this.state.testId }
-                                            });
-                                        }
-                                        else {
-                                            this.props.history.push({
-                                                pathname: '/surveyfeedback',
-                                                state: {testID: this.state.testId, subject: this.state.subject}
-                                            });
-                                        }
-                                    })
+                                    if(cnt >= 15) {
+                                        this.state.user.getIdToken().then((token) => {
+                                            return Services.checkFeedbackSurvey(token)
+                                        }).then((result) => {
+                                            if(result.toString() == 'done') {
+                                                this.props.history.push({
+                                                    pathname: '/subject/' + this.state.subject,
+                                                    state: { testID: this.state.testId }
+                                                });
+                                            }
+                                            else {
+                                                this.props.history.push({
+                                                    pathname: '/surveyfeedback',
+                                                    state: {testID: this.state.testId, subject: this.state.subject}
+                                                });
+                                            }
+                                        })
+                                    }
+                                    else {
+                                        this.props.history.push({
+                                            pathname: '/subject/' + this.state.subject,
+                                            state: { testID: this.state.testId }
+                                        });
+                                    }
                                 });
                             })
                         })

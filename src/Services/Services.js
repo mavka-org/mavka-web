@@ -3,6 +3,7 @@ import firebase from "../global"
 import React from "react";
 import Markdown from "markdown-to-jsx";
 import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
+import { type } from "jquery";
 
 class Question {
     constructor(json){
@@ -564,6 +565,36 @@ class Services {
         )
         console.log(response.data)
         return response.data;
+    }
+
+    static async getDemographicsSurvey(user) {
+        console.log(user);
+        if(user != null) {
+            const firestore = firebase.firestore();
+            return await firestore.collection("users").doc(user.uid).get().then(doc => {
+                return doc.get("demographicsSurvey");
+            });
+        }
+        else {
+            return 'false';
+        }
+    }
+
+    static async setDemographicsSurvey(user, val) {
+        console.log(user);
+        if(user != null && typeof user.uid != 'undefined') {
+            return await axios.post(
+                'https://europe-west3-mavka-c5c01.cloudfunctions.net/setDemographicsSurvey',
+                { 
+                    uid: user.uid,
+                    val: val
+                },
+                { headers: { 'Content-Type': 'text/plain' } }
+            )
+        }
+        else {
+            return 'false';
+        }
     }
 
     static getQuestionClass (json) {
