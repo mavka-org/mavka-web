@@ -14,6 +14,7 @@ class ZNO extends React.Component {
         return (
             <div className={s.zno_choose + (this.props.num == this.props.active ? " " + s.active : "")} onClick={() => {this.props.updateSelectedTest(this.props.num)}}>
                 <div className={s.wrapper}>
+                
                     <div className={s.description}><b>{this.props.testInfo.name1}</b> &nbsp; {this.props.testInfo.name2}</div>
                     <div className={s.results}>
                         {this.showStatus()}
