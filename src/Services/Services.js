@@ -343,23 +343,25 @@ class Question {
             res.push(4);
         }
         else if(this.getType() == "Open") {
-            if(answerToCheck == this.open_answer) {
-                res.push(2);
-                res.push(2);
-            }
-            else {
-                res.push(0);
-                res.push(0);
+            if(answerToCheck != null && answerToCheck != undefined) {
+                if(this.areEqualStrNumbers(answerToCheck, this.open_answer)) {
+                    res.push(2);
+                    res.push(2);
+                }
+                else {
+                    res.push(0);
+                    res.push(0);
+                }
             }
             res.push(2);
         }
         else if(this.getType() == "Double_Open" || this.getType() == "Double_Open_OneColumn") {
             let score = 0;
             if(answerToCheck != null && answerToCheck != undefined) {
-                if(answerToCheck[0] == this.double_open_answers[0]) {
+                if(this.areEqualStrNumbers(answerToCheck[0], this.double_open_answers[0])) {
                     score += 2;
                 }
-                if(answerToCheck[1] == this.double_open_answers[1]) {
+                if(this.areEqualStrNumbers(answerToCheck[1], this.double_open_answers[1])) {
                     score += 2;
                 }
             }
@@ -449,22 +451,24 @@ class Question {
             }
         }
         else if(this.getType() == "Open") {
-            if(answerToCheck == this.open_answer) {
-                res.push(true);
-            }
-            else {
-                res.push(false);
-            }
-        }
-        else if(this.getType() == "Double_Open" || this.getType() == "Double_Open_OneColumn") {
             if(answerToCheck != null && answerToCheck != undefined) {
-                if(answerToCheck[0] == this.double_open_answers[0]) {
+                if(this.areEqualStrNumbers(answerToCheck, this.open_answer)) {
                     res.push(true);
                 }
                 else {
                     res.push(false);
                 }
-                if(answerToCheck[1] == this.double_open_answers[1]) {
+            }
+        }
+        else if(this.getType() == "Double_Open" || this.getType() == "Double_Open_OneColumn") {
+            if(answerToCheck != null && answerToCheck != undefined) {
+                if(this.areEqualStrNumbers(answerToCheck[0], this.double_open_answers[0])) {
+                    res.push(true);
+                }
+                else {
+                    res.push(false);
+                }
+                if(this.areEqualStrNumbers(answerToCheck[1], this.double_open_answers[1])) {
                     res.push(true);
                 }
                 else {
