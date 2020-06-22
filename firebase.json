@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "target": "mavka",
     "public": "build",
     "ignore": [
       "firebase.json",
