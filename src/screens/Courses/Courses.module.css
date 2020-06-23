@@ -1,10 +1,11 @@
 .header_mobile {
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-appearance: none;
     width: 90%;
     background-color: white;
     display: -webkit-box;
     display: -ms-flexbox;
-    display: -moz-box;
-    display: -webkit-flex;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -28,8 +29,6 @@
 .header {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: -moz-box;
-    display: -webkit-flex;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -41,8 +40,6 @@
 .question_header {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: -moz-box;
-    display: -webkit-flex;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -57,8 +54,8 @@
 }
 
 .title {
-    display: -webkit-inline-flex;
     display: -ms-inline-flexbox;
+    display: -webkit-inline-box;
     display: inline-flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -88,13 +85,12 @@
     margin-bottom: 49px;
 }
 
+
 /* courses */
 
 .courses_wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: -moz-box;
-    display: -webkit-flex;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -104,15 +100,12 @@
     justify-content: space-around;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    
 }
 
 .exit {
     width: 210px;
     display: -webkit-box;
     display: -ms-flexbox;
-    display: -moz-box;
-    display: -webkit-flex;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -126,8 +119,6 @@
 .wrap {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: -moz-box;
-    display: -webkit-flex;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -170,12 +161,9 @@
 }
 
 @media (max-width: 992px) {
-    /* это будет показано при разрешении монитора до 930 пикселей */
     .page {
         display: -webkit-box;
         display: -ms-flexbox;
-        display: -moz-box;
-        display: -webkit-flex;
         display: flex;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -183,7 +171,9 @@
         flex-direction: column;
         padding: 10px 0px;
         position: absolute;
-        
+        -moz-appearance: none;
+        appearance: none;
+        -webkit-appearance: none;
         height: 220%;
         left: calc(50% - 95%/2);
         top: 0px;
@@ -195,8 +185,6 @@
     .page {
         display: -webkit-box;
         display: -ms-flexbox;
-        display: -moz-box;
-        display: -webkit-flex;
         display: flex;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -207,6 +195,9 @@
         width: 950px;
         left: calc(50% - 950px/2);
         top: 0px;
+        -moz-appearance: none;
+        appearance: none;
+        -webkit-appearance: none;
     }
 }
 
@@ -214,8 +205,6 @@
     .courses_wrapper {
         display: -webkit-box;
         display: -ms-flexbox;
-        display: -moz-box;
-        display: -webkit-flex;
         display: flex;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -225,6 +214,8 @@
         justify-content: space-around;
         -ms-flex-item-align: center;
         align-self: center;
-        
+        -moz-appearance: none;
+        appearance: none;
+        -webkit-appearance: none;
     }
 }
