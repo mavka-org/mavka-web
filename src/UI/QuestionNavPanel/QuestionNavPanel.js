@@ -167,8 +167,8 @@ class QuestionNavPanel extends Component {
             let code = [];
             for (let i = 0; i < this.state.n; i++) {
                 code.push(
-                    <div className={g.variant_anwer}>
-                        <label htmlFor={i}><div style={{
+                    <div className={g.variant_anwer} id={"228"}>
+                        <label htmlFor={i} id={"228"}><div id={"228"} style={{
                             width: "15px",
                             height: "15px",
                             borderRadius: "15px",
