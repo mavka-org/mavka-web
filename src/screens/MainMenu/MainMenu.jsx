@@ -262,7 +262,7 @@ class MainMenu extends React.Component {
 
                                 {this.state.tests.length > 0 ? (<div className={s.test_body_right}>
                                     <div>
-                                        {this.state.tests[this.state.active].status == 'тест пройдений' && this.state.confetti && this.state.confetti.confetti ? (<Confetti />) : null}
+                                        {this.state.tests[this.state.active].status == 'тест пройдений' && this.state.confetti && this.state.confetti.testID ? (<Confetti />) : null}
                                     </div>
 
                                     <div className={s.scores_frame}>
@@ -309,7 +309,7 @@ class MainMenu extends React.Component {
                                 </div>
                                 {(this.state.tests.length > 0 && this.state.selectedMainMenu) ? (<div className={s.test_body_right}>
                                     <div>
-                                        {this.state.tests[this.state.active].status == 'тест пройдений' && this.state.confetti && this.state.confetti.confetti ? (<Confetti />) : null}
+                                        {this.state.tests[this.state.active].status == 'тест пройдений' && this.state.confetti && this.state.confetti.testID ? (<Confetti />) : null}
                                     </div>
 
                                     <div className={s.scores_frame}>

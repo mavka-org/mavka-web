@@ -38,7 +38,7 @@ class Input_Answer extends React.Component {
     }
 
     setBorder(){
-        if(this.state.answered){
+        if(this.props.hidden){
             if(this.props.isCorrectAnswer)
                 return "1px #0EFB71 solid";
             return "1px red solid";

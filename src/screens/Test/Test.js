@@ -237,7 +237,7 @@ export class Test extends React.Component{
                     this.state.user.getIdToken().then((token) => {
                         return Services.checkFeedbackSurvey(token)
                     }).then((result) => {
-                        if(result.toString() == 'done') {
+                        if(result.toString() != '2') {
                             this.props.history.push({
                                 pathname: '/subject/' + this.state.subject,
                                 state: { testID: this.state.testId }
@@ -319,7 +319,7 @@ export class Test extends React.Component{
                                         this.state.user.getIdToken().then((token) => {
                                             return Services.checkFeedbackSurvey(token)
                                         }).then((result) => {
-                                            if(result.toString() == 'done') {
+                                            if(result.toString() != '2') {
                                                 this.props.history.push({
                                                     pathname: '/subject/' + this.state.subject,
                                                     state: { testID: this.state.testId }

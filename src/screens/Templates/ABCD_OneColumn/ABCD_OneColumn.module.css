@@ -31,6 +31,7 @@
     background-color: #FFFFFF;
 }
 
+
 /* answer */
 
 .answers_frame {
@@ -42,7 +43,7 @@
     -ms-flex-direction: column;
     flex-direction: column;
     padding: 0px;
-    width: 100%;
+    width: 95%;
     -ms-flex-item-align: start;
     align-self: flex-start;
 }
