@@ -157,13 +157,13 @@ class Courses extends React.Component {
                                 </div>
                             </div>
                             <div className={s.courses_wrapper} style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', flexWrap: 'wrap' }}>
+                                {/*<div style={{width:'25px',height:'25px',backgroundColor:'red'}}></div>
                                 <div style={{width:'25px',height:'25px',backgroundColor:'red'}}></div>
                                 <div style={{width:'25px',height:'25px',backgroundColor:'red'}}></div>
                                 <div style={{width:'25px',height:'25px',backgroundColor:'red'}}></div>
                                 <div style={{width:'25px',height:'25px',backgroundColor:'red'}}></div>
-                                <div style={{width:'25px',height:'25px',backgroundColor:'red'}}></div>
-                                <div style={{width:'25px',height:'25px',backgroundColor:'red'}}></div>
-                                {/* <Course hover={true} course={'Українська мова і література'} pic={pic1} navigate={this.navigate} />
+                                <div style={{width:'25px',height:'25px',backgroundColor:'red'}}></div>*/}
+                                <Course hover={true} course={'Українська мова і література'} pic={pic1} navigate={this.navigate} />
                                 <Course hover={true} course={'Математика'} pic={pic2} navigate={this.navigate} />
                                 <Course hover={true} course={'Історія України'} pic={pic3} navigate={this.navigate} />
                                 <Course hover={true} course={'Біологія'} pic={pic4} navigate={this.navigate} />
@@ -171,7 +171,7 @@ class Courses extends React.Component {
                                 <Course hover={false} course={'Географія'} pic={pic6} style={{ opacity: 0.4, cursor: 'default' }} />
                                 <Course hover={false} course={'Англійська мова'} pic={pic7} style={{ opacity: 0.4, cursor: 'default' }} />
                                 <Course hover={false} course={'Французька мова'} pic={pic8} style={{ opacity: 0.4, cursor: 'default' }} />
-                                <Course hover={false} course={'Німецька мова'} pic={pic9} style={{ opacity: 0.4, cursor: 'default' }} /> */}
+                                <Course hover={false} course={'Німецька мова'} pic={pic9} style={{ opacity: 0.4, cursor: 'default' }} />
                             </div>
                             <div style={{ width: '100%', marginTop: '90px', marginBottom: '10px', color: 'Gray' }}><hr></hr></div>
                             <div className={s.footer}>
