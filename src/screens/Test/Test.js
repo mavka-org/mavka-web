@@ -95,6 +95,17 @@ export class Test extends React.Component{
         this.yDown = null;
     };
 
+    checkIfNeedToClose (event) {
+        if (event.toElement.id != "228" && event.toElement.id != "all") {
+            let nav = document.getElementById("myNav");
+            if (nav) {
+                if (nav.style.width != "0%") {
+                    nav.style.width = "0%";
+                }
+            }
+        }
+    }
+
     updateScreen () {
         this.setState({
             width: window.innerWidth
@@ -183,6 +194,7 @@ export class Test extends React.Component{
 
         document.addEventListener('touchstart', this.handleTouchStart, false);
         document.addEventListener('touchmove', this.handleTouchMove, false);
+        window.addEventListener('click', this.checkIfNeedToClose);
 
 
     }
@@ -233,7 +245,7 @@ export class Test extends React.Component{
                     cnt -= 1;
                 }
                 firebase.analytics().logEvent('finish practice', {countOfAnsweredQuestions: cnt});
-                if(cnt >= 15) {
+                if (cnt >= 15) {
                     this.state.user.getIdToken().then((token) => {
                         return Services.checkFeedbackSurvey(token)
                     }).then((result) => {

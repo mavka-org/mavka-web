@@ -70,7 +70,7 @@ class Header extends React.Component {
         if (window.innerWidth <= 992) {
             return (
                 <div>
-                    <div id="myNav" className={s.overlay}>
+                    <div id={"myNav"} className={s.overlay}>
                         <a href={"javascript:void(0)"} className={s.closebtn} onClick={this.closeNav}>&times;</a>
                         <div className={s.overlayContent}>
                             <QuestionNavPanel
@@ -92,7 +92,7 @@ class Header extends React.Component {
                     />) : null}
                     <div className={s.header}>
                         <div className={s.nav_panel}>
-                            <div className={s.nav} onClick={this.openNav}>Усі завдання</div>
+                            <div className={s.nav} onClick={this.openNav} id={"all"}>Усі завдання</div>
                             {this.props.isPractice ? (
                                 <div className={g.icon_header}><div style={{ marginBottom: '10px' }}><Strong /></div> <strong>&nbsp;Практика</strong></div>
                             ) :

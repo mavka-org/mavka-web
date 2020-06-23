@@ -123,7 +123,7 @@ class Next extends React.Component {
                 <button className={this.props.isNextAllowed ? (g.btn) : (g.btn + ' ' + g.inactiveNextButton)} onClick={() => {
                     this.submitQuestion();
                 }}>{this.buttonName()}</button>
-                <button class={g.pass} style={{
+                <button className={g.pass} style={{
                     display: this.showSkip() ? "block" : "none"
                 }} onClick={()=>{
                         this.props.scroll();
