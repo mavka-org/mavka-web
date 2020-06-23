@@ -6,7 +6,7 @@ import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
 import { type } from "jquery";
 
 class Question {
-    constructor(json){
+    constructor(json) {
         this.number = json["Номер"];
         this.type = json["Format"];
         this.year = json["Рік"];
@@ -24,9 +24,11 @@ class Question {
         this.match_explanations = [json["Пояснення 1"], json["Пояснення 2"], json["Пояснення 3"], json["Пояснення 4"]];
         this.match_4letters = [json["Частинка А"], json["Частинка Б"], json["Частинка В"], json["Частинка Г"]];
         this.match_5letters = [json["Частинка А"], json["Частинка Б"], json["Частинка В"],
-            json["Частинка Г"], json["Частинка Д"]];
+            json["Частинка Г"], json["Частинка Д"]
+        ];
         this.match_answers = [json["Правильна відповідь 1"], json["Правильна відповідь 2"],
-            json["Правильна відповідь 3"], json["Правильна відповідь 4"]];
+            json["Правильна відповідь 3"], json["Правильна відповідь 4"]
+        ];
         this.double_open_subquestion = [json["Завдання 1"], json["Завдання 2"]];
         this.double_open_answers = [json["Відповідь 1"], json["Відповідь 2"]];
         this.double_open_explanations = [json["Пояснення 1"], json["Пояснення 2"]];
@@ -74,107 +76,108 @@ class Question {
         var tmpArr = ["Відповідь А", "Відповідь Б", "Відповідь В",
             "Відповідь Г", "Відповідь Д", "Відповідь Е", "Відповідь A",
             "Відповідь B", "Відповідь C", "Відповідь D", "Відповідь E",
-            "Відповідь G", "Відповідь F", "Відповідь H"];
+            "Відповідь G", "Відповідь F", "Відповідь H"
+        ];
         var currArr = [];
-        for(let i = 0; i < tmpArr.length; i++){
-            if(json[tmpArr[i]] != null){
+        for (let i = 0; i < tmpArr.length; i++) {
+            if (json[tmpArr[i]] != null) {
                 currArr.push(json[tmpArr[i]]);
             }
             tmpArr[i] = tmpArr[i].replace("Відповідь", "Пояснення");
         }
         this.questions = currArr;
         currArr = [];
-        for(let i = 0; i < tmpArr.length; i++){
-            if(json[tmpArr[i]] != null){
+        for (let i = 0; i < tmpArr.length; i++) {
+            if (json[tmpArr[i]] != null) {
                 currArr.push(json[tmpArr[i]]);
             }
         }
         this.explanations = currArr;
     }
-    get(){
+    get() {
         return this.explanations;
     }
-    getNumber () {
+    getNumber() {
         return this.number;
     }
-    getType(){
+    getType() {
         return this.type;
     }
-    getYear(){
+    getYear() {
         return this.year;
     }
-    getSubject(){
+    getSubject() {
         return this.subject;
     }
-    getTopic(){
+    getTopic() {
         return this.topic;
     }
-    getQuestion(){
+    getQuestion() {
         return this.question;
     }
-    getAnswer(){
+    getAnswer() {
         return this.answer;
     }
-    getComment(){
+    getComment() {
         return this.comment;
     }
     getQuestions() {
         // array of strings
         return this.questions;
     }
-    getExplanations(){
+    getExplanations() {
         // array of strings
         return this.explanations;
     }
-    getSession () {
+    getSession() {
         return this.session;
     }
-    getMatchSubquestions () {
+    getMatchSubquestions() {
         return this.match_subquestions;
     }
-    getMatchExplanations () {
+    getMatchExplanations() {
         return this.match_explanations;
     }
-    getMatch4Options () {
+    getMatch4Options() {
         return this.match_4letters;
     }
-    getMatch5Options () {
+    getMatch5Options() {
         return this.match_5letters;
     }
-    getMatchCorrectAnswers () {
+    getMatchCorrectAnswers() {
         return this.match_answers;
     }
-    getDoubleOpenSubquestion () {
+    getDoubleOpenSubquestion() {
         return this.double_open_subquestion;
     }
-    getDoubleOpenAnswers () {
+    getDoubleOpenAnswers() {
         return this.double_open_answers;
     }
-    getDoubleOpenExplanations () {
+    getDoubleOpenExplanations() {
         return this.double_open_explanations;
     }
-    getOpenAnswer () {
+    getOpenAnswer() {
         return this.open_answer; //THIS SHOULDN'T EXIST (change to normal getAnswer())
     }
-    getOpenEndedSample () {
+    getOpenEndedSample() {
         return this.open_ended_sample;
     }
     getIsDoubleColumn() {
         return this.isDoubleColumn;
     }
-    getHistory37Questions(){
+    getHistory37Questions() {
         return this.history_3_7_answers;
     }
-    getHistory37Explanations(){
+    getHistory37Explanations() {
         return this.history_3_7_explanations;
     }
-    getHistory37Answers(){
+    getHistory37Answers() {
         return this.history_3_7_right_answers;
     }
-    getBio3_question(){
+    getBio3_question() {
         return this.bio3_question;
     }
-    getBio3_firstquestion(){
+    getBio3_firstquestion() {
         let tmp = {
             question: this.bio3_firstquestion,
             firstAnswer: this.bio3_firstquestion_firstanswer,
@@ -187,7 +190,7 @@ class Question {
         };
         return tmp;
     }
-    getBio3_secondquestion(){
+    getBio3_secondquestion() {
         let tmp = {
             question: this.bio3_secondquestion,
             firstAnswer: this.bio3_secondquestion_firstanswer,
@@ -200,7 +203,7 @@ class Question {
         };
         return tmp;
     }
-    getBio3_thirdquestion(){
+    getBio3_thirdquestion() {
         let tmp = {
             question: this.bio3_thirdquestion,
             firstAnswer: this.bio3_thirdquestion_firstanswer,
@@ -212,7 +215,7 @@ class Question {
             answer: this.bio3_thirdquestion_answer
         };
         return tmp;
-      }
+    }
 
     areEqualStrNumbers(str1, str2) {
         let num1 = parseFloat(str1.replace(',', '.'))
@@ -221,7 +224,7 @@ class Question {
         return num1 == num2
     }
 
-    checkCorrect (answerToCheck) {
+    checkCorrect(answerToCheck) {
         if (answerToCheck == null) return false;
 
         if (this.getType() == "ABCDE" || this.getType() == "ABCD") {
@@ -231,154 +234,138 @@ class Question {
             return this.areEqualStrNumbers(answerToCheck, this.open_answer);
         }
         if (this.getType() == "Geo_History_3_7") {
-              for (let i of this.getHistory37Answers()) {
-                  if (answerToCheck == i)
-                     return true;
-              }
-             return false;
-       }
+            for (let i of this.getHistory37Answers()) {
+                if (answerToCheck == i)
+                    return true;
+            }
+            return false;
+        }
     }
 
-    checkCorrectFromList (answerToCheck, index) {
-        if(this.getType() == "Double_Open"){
+    checkCorrectFromList(answerToCheck, index) {
+        if (this.getType() == "Double_Open") {
             return this.areEqualStrNumbers(answerToCheck, this.double_open_answers[index]);
         }
-        if(this.getType() == "Bio_Triples"){
-            if(index == 1){
+        if (this.getType() == "Bio_Triples") {
+            if (index == 1) {
                 return answerToCheck == this.bio3_firstquestion_answer;
             }
-            if(index == 2){
+            if (index == 2) {
                 return answerToCheck == this.bio3_secondquestion_answer;
             }
-            if(index == 3){
+            if (index == 3) {
                 return answerToCheck == this.bio3_thirdquestion_answer;
             }
         }
     }
 
-    evaluate (answerToCheck) {
+    evaluate(answerToCheck) {
         //console.log(answerToCheck + " " + this.answer);
         //console.log((this.answer == 'А'))
         let res = [];
-        if(this.getType() == "ABCDE" || this.getType() == "ABCD" || this.getType() == "ABCDE_OneColumn" || this.getType() == "ABCD_OneColumn"){
-            if(answerToCheck == this.answer) {
+        if (this.getType() == "ABCDE" || this.getType() == "ABCD" || this.getType() == "ABCDE_OneColumn" || this.getType() == "ABCD_OneColumn") {
+            if (answerToCheck == this.answer) {
                 //alert("HERE 1");
                 res.push(1);
                 res.push(2);
-            }
-            else {
+            } else {
                 //alert("HERE 2");
                 res.push(0);
                 res.push(0);
             }
             res.push(1);
-        }
-        else if(this.getType() == "Bio_Triples" || this.getType() == 'Bio_Triples_OneColumn') {
+        } else if (this.getType() == "Bio_Triples" || this.getType() == 'Bio_Triples_OneColumn') {
             let score = 0;
-            if(answerToCheck != null && answerToCheck != undefined) {
-                if(answerToCheck[0] == this.bio3_firstquestion_answer) {
+            if (answerToCheck != null && answerToCheck != undefined) {
+                if (answerToCheck[0] == this.bio3_firstquestion_answer) {
                     ++score;
                 }
-                if(answerToCheck[1] == this.bio3_secondquestion_answer) {
+                if (answerToCheck[1] == this.bio3_secondquestion_answer) {
                     ++score;
                 }
-                if(answerToCheck[2] == this.bio3_thirdquestion_answer) {
+                if (answerToCheck[2] == this.bio3_thirdquestion_answer) {
                     ++score;
                 }
             }
             res.push(score);
-            if(score == 0) {
+            if (score == 0) {
                 res.push(0);
-            }
-            else if(score == 3) {
+            } else if (score == 3) {
                 res.push(2);
-            }
-            else {
+            } else {
                 res.push(1);
             }
             res.push(3);
-        }
-        else if(this.getType() == "Geo_History_3_7" || this.getType() == 'Geo_History_3_7_OneColumn') {
+        } else if (this.getType() == "Geo_History_3_7" || this.getType() == 'Geo_History_3_7_OneColumn') {
             let score = 0;
-            if(answerToCheck != null && answerToCheck != undefined) {
-                for(let i = 0; i < 3; ++i) {
-                    for(let j = 0; j < 3; ++j) {
-                        if(answerToCheck[i] == this.history_3_7_right_answers[j]) {
+            if (answerToCheck != null && answerToCheck != undefined) {
+                for (let i = 0; i < 3; ++i) {
+                    for (let j = 0; j < 3; ++j) {
+                        if (answerToCheck[i] == this.history_3_7_right_answers[j]) {
                             ++score;
                         }
                     }
                 }
             }
             res.push(score);
-            if(score == 0) {
+            if (score == 0) {
                 res.push(0);
-            }
-            else if(score == 3) {
+            } else if (score == 3) {
                 res.push(2);
-            }
-            else {
+            } else {
                 res.push(1);
             }
             res.push(3);
-        }
-        else if(this.getType() == "Logic_Couples_4_4" || this.getType() == "Logic_Couples_4_5" || this.getType() == "Logic_Couples_4_4_OneColumn" || this.getType() == "Logic_Couples_4_5_OneColumn") {
+        } else if (this.getType() == "Logic_Couples_4_4" || this.getType() == "Logic_Couples_4_5" || this.getType() == "Logic_Couples_4_4_OneColumn" || this.getType() == "Logic_Couples_4_5_OneColumn") {
             let score = 0;
-            if(answerToCheck != null && answerToCheck != undefined) {
-                for(let i = 0; i < 4; ++i) {
-                    if(answerToCheck[i] == this.match_answers[i]) {
+            if (answerToCheck != null && answerToCheck != undefined) {
+                for (let i = 0; i < 4; ++i) {
+                    if (answerToCheck[i] == this.match_answers[i]) {
                         ++score;
                     }
                 }
             }
             res.push(score);
-            if(score == 0) {
+            if (score == 0) {
                 res.push(0);
-            }
-            else if(score == 4) {
+            } else if (score == 4) {
                 res.push(2);
-            }
-            else {
+            } else {
                 res.push(1);
             }
             res.push(4);
-        }
-        else if(this.getType() == "Open") {
-            if(answerToCheck != null && answerToCheck != undefined) {
-                if(this.areEqualStrNumbers(answerToCheck, this.open_answer)) {
+        } else if (this.getType() == "Open") {
+            if (answerToCheck != null && answerToCheck != undefined) {
+                if (this.areEqualStrNumbers(answerToCheck, this.open_answer)) {
                     res.push(2);
                     res.push(2);
-                }
-                else {
+                } else {
                     res.push(0);
                     res.push(0);
                 }
             }
             res.push(2);
-        }
-        else if(this.getType() == "Double_Open" || this.getType() == "Double_Open_OneColumn") {
+        } else if (this.getType() == "Double_Open" || this.getType() == "Double_Open_OneColumn") {
             let score = 0;
-            if(answerToCheck != null && answerToCheck != undefined) {
-                if(this.areEqualStrNumbers(answerToCheck[0], this.double_open_answers[0])) {
+            if (answerToCheck[0] != null && answerToCheck[0] != undefined && answerToCheck[1] != null && answerToCheck[1] != undefined) {
+                if (this.areEqualStrNumbers(answerToCheck[0], this.double_open_answers[0])) {
                     score += 2;
                 }
-                if(this.areEqualStrNumbers(answerToCheck[1], this.double_open_answers[1])) {
+                if (this.areEqualStrNumbers(answerToCheck[1], this.double_open_answers[1])) {
                     score += 2;
                 }
             }
 
             res.push(score);
-            if(score == 0) {
+            if (score == 0) {
                 res.push(0);
-            }
-            else if(score == 4) {
+            } else if (score == 4) {
                 res.push(2);
-            }
-            else {
+            } else {
                 res.push(1);
             }
             res.push(4);
-        }
-        else if(this.getType() == "Open_Ended") {
+        } else if (this.getType() == "Open_Ended") {
             res.push(0);
             res.push(2);
             res.push(0);
@@ -388,95 +375,81 @@ class Question {
 
 
 
-    evaluate2 (answerToCheck) {
+    evaluate2(answerToCheck) {
         //alert(answerToCheck + " " + this.answer);
         let res = [];
-        if(this.getType() == "ABCDE" || this.getType() == "ABCD" || this.getType() == "ABCDE_OneColumn" || this.getType() == "ABCD_OneColumn"){
-            if(answerToCheck == this.answer) {
+        if (this.getType() == "ABCDE" || this.getType() == "ABCD" || this.getType() == "ABCDE_OneColumn" || this.getType() == "ABCD_OneColumn") {
+            if (answerToCheck == this.answer) {
                 res = true;
-            }
-            else {
+            } else {
                 res = false;
             }
-        }
-        else if(this.getType() == "Bio_Triples" || this.getType() == 'Bio_Triples_OneColumn') {
-            if(answerToCheck != null && answerToCheck != undefined) {
-                if(answerToCheck[0] == this.bio3_firstquestion_answer) {
+        } else if (this.getType() == "Bio_Triples" || this.getType() == 'Bio_Triples_OneColumn') {
+            if (answerToCheck != null && answerToCheck != undefined) {
+                if (answerToCheck[0] == this.bio3_firstquestion_answer) {
                     res.push(true);
-                }
-                else {
+                } else {
                     res.push(false);
                 }
-                if(answerToCheck[1] == this.bio3_secondquestion_answer) {
+                if (answerToCheck[1] == this.bio3_secondquestion_answer) {
                     res.push(true);
-                }
-                else {
+                } else {
                     res.push(false);
                 }
-                if(answerToCheck[2] == this.bio3_thirdquestion_answer) {
+                if (answerToCheck[2] == this.bio3_thirdquestion_answer) {
                     res.push(true);
-                }
-                else {
+                } else {
                     res.push(false);
                 }
             }
-        }
-        else if(this.getType() == "Geo_History_3_7" || this.getType() == 'Geo_History_3_7_OneColumn') {
-            if(answerToCheck != null && answerToCheck != undefined) {
-                for(let i = 0; i < 3; ++i) {
+        } else if (this.getType() == "Geo_History_3_7" || this.getType() == 'Geo_History_3_7_OneColumn') {
+            if (answerToCheck != null && answerToCheck != undefined) {
+                for (let i = 0; i < 3; ++i) {
                     let ok = 0;
-                    for(let j = 0; j < 3; ++j) {
-                        if(answerToCheck[i] == this.history_3_7_right_answers[j]) {
+                    for (let j = 0; j < 3; ++j) {
+                        if (answerToCheck[i] == this.history_3_7_right_answers[j]) {
                             res.push(true);
                             ok = 1;
                         }
                     }
-                    if(ok == 0) {
+                    if (ok == 0) {
                         res.push(false);
                     }
                 }
             }
-        }
-        else if(this.getType() == "Logic_Couples_4_4" || this.getType() == "Logic_Couples_4_5" || this.getType() == "Logic_Couples_4_4_OneColumn" || this.getType() == "Logic_Couples_4_5_OneColumn") {
+        } else if (this.getType() == "Logic_Couples_4_4" || this.getType() == "Logic_Couples_4_5" || this.getType() == "Logic_Couples_4_4_OneColumn" || this.getType() == "Logic_Couples_4_5_OneColumn") {
             let score = 0;
-            if(answerToCheck != null && answerToCheck != undefined) {
-                for(let i = 0; i < 4; ++i) {
-                    if(answerToCheck[i] == this.match_answers[i]) {
+            if (answerToCheck != null && answerToCheck != undefined) {
+                for (let i = 0; i < 4; ++i) {
+                    if (answerToCheck[i] == this.match_answers[i]) {
                         res.push(true);
-                    }
-                    else {
+                    } else {
                         res.push(false);
                     }
                 }
             }
-        }
-        else if(this.getType() == "Open") {
-            if(answerToCheck != null && answerToCheck != undefined) {
-                if(this.areEqualStrNumbers(answerToCheck, this.open_answer)) {
+        } else if (this.getType() == "Open") {
+            if (answerToCheck != null && answerToCheck != undefined) {
+                if (this.areEqualStrNumbers(answerToCheck, this.open_answer)) {
                     res.push(true);
-                }
-                else {
+                } else {
                     res.push(false);
                 }
             }
-        }
-        else if(this.getType() == "Double_Open" || this.getType() == "Double_Open_OneColumn") {
-            if(answerToCheck != null && answerToCheck != undefined) {
-                if(this.areEqualStrNumbers(answerToCheck[0], this.double_open_answers[0])) {
+        } else if (this.getType() == "Double_Open" || this.getType() == "Double_Open_OneColumn") {
+            if (answerToCheck[0] != null && answerToCheck[0] != undefined && answerToCheck[1] != null && answerToCheck[1] != undefined) {
+                if (this.areEqualStrNumbers(answerToCheck[0], this.double_open_answers[0])) {
                     res.push(true);
-                }
-                else {
+                } else {
                     res.push(false);
                 }
-                if(this.areEqualStrNumbers(answerToCheck[1], this.double_open_answers[1])) {
+                if (this.areEqualStrNumbers(answerToCheck[1], this.double_open_answers[1])) {
                     res.push(true);
-                }
-                else {
+                } else {
                     res.push(false);
                 }
             }
-        }
-        else if(this.getType() == "Open_Ended") {
+        } else if (this.getType() == "Open_Ended") {
             res = null
         }
         return res;
@@ -487,16 +460,16 @@ class Question {
 class Services {
     constructor() {}
 
-    static async getData (ref){
+    static async getData(ref) {
         var storage = firebase.storage();
         var listRef = storage.refFromURL(ref);
         const list1 = await listRef.listAll().then(function(res) {
-            var list = [];
-            res.items.forEach(function(itemRef) {
-                list.push(itemRef.getDownloadURL())
-            });
-            return list
-        })
+                var list = [];
+                res.items.forEach(function(itemRef) {
+                    list.push(itemRef.getDownloadURL())
+                });
+                return list
+            })
             .catch(function(error) {
                 console.log(error)
             });
@@ -504,11 +477,9 @@ class Services {
         var list2 = [];
         results1.forEach(url => {
             list2.push(axios.post(
-                'https://europe-west3-mavka-c5c01.cloudfunctions.net/getReq',
-                {
+                'https://europe-west3-mavka-c5c01.cloudfunctions.net/getReq', {
                     url: url
-                },
-                { headers: { 'Content-Type': 'text/plain' } }
+                }, { headers: { 'Content-Type': 'text/plain' } }
             ))
         })
         const results2 = await Promise.all(list2);
@@ -519,27 +490,27 @@ class Services {
         return answer
     }
 
-    static async getTeamInfo () {
+    static async getTeamInfo() {
         const firestore = firebase.firestore();
         return await firestore.collection("team").doc("team-names").get().then(doc => {
             return doc.get("Team");
         });
     }
 
-    static async getReferenceById (id) {
+    static async getReferenceById(id) {
         const firestore = firebase.firestore();
         return await firestore.collection("practices_id").doc(id).get().then(doc => {
             return doc.get("ref");
         });
     }
 
-    static async getReferenceById (id) {
+    static async getReferenceById(id) {
         const firestore = firebase.firestore();
         return await firestore.collection("practices_id").doc(id).get().then(doc => {
             return doc.get("ref");
         });
     }
-    static async getTechnicalPauseStatus(){
+    static async getTechnicalPauseStatus() {
         const firestore = firebase.firestore();
         return await firestore.collection("services").doc('technicalPause').get().then(doc => {
             return doc.get("pause");
@@ -547,25 +518,21 @@ class Services {
     }
 
 
-    static async checkFeedbackSurvey (token) {
+    static async checkFeedbackSurvey(token) {
         const response = await axios.post(
-            'https://europe-west3-mavka-c5c01.cloudfunctions.net/checkFeedbackSurvey',
-            {
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/checkFeedbackSurvey', {
                 token: token,
-            },
-            { headers: { 'Content-Type': 'text/plain' } }
+            }, { headers: { 'Content-Type': 'text/plain' } }
         )
         console.log(response.data)
         return response.data;
     }
 
-    static async getReqForm (url) {
+    static async getReqForm(url) {
         const response = await axios.post(
-            'https://europe-west3-mavka-c5c01.cloudfunctions.net/getReqForm',
-            {
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/getReqForm', {
                 url: url,
-            },
-            { headers: { 'Content-Type': 'text/plain' } }
+            }, { headers: { 'Content-Type': 'text/plain' } }
         )
         console.log(response.data)
         return response.data;
@@ -573,96 +540,84 @@ class Services {
 
     static async getDemographicsSurvey(user) {
         console.log(user);
-        if(user != null) {
+        if (user != null) {
             const firestore = firebase.firestore();
             return await firestore.collection("users").doc(user.uid).get().then(doc => {
                 return doc.get("demographicsSurvey");
             });
-        }
-        else {
+        } else {
             return 'false';
         }
     }
 
     static async setDemographicsSurvey(user, val) {
         console.log(user);
-        if(user != null && typeof user.uid != 'undefined') {
+        if (user != null && typeof user.uid != 'undefined') {
             const firestore = firebase.firestore();
             let flag = 0;
             await firestore.collection("users").doc(user.uid).get().then(doc => {
-                if(doc.get("demographicsSurvey") == "false") {
+                if (doc.get("demographicsSurvey") == "false") {
                     flag = 1
                 }
             });
 
-            if (flag == 1){
+            if (flag == 1) {
                 return;
             }
 
             return await axios.post(
-                'https://europe-west3-mavka-c5c01.cloudfunctions.net/setDemographicsSurvey',
-                {
+                'https://europe-west3-mavka-c5c01.cloudfunctions.net/setDemographicsSurvey', {
                     uid: user.uid,
                     val: val
-                },
-                { headers: { 'Content-Type': 'text/plain' } }
+                }, { headers: { 'Content-Type': 'text/plain' } }
             )
-        }
-        else {
+        } else {
             return 'false';
         }
     }
 
-    static getQuestionClass (json) {
+    static getQuestionClass(json) {
         return new Question(json);
     }
-    static async updateTestAnswers(token, testID, answers){
+    static async updateTestAnswers(token, testID, answers) {
         const response = await axios.post(
-            'https://europe-west3-mavka-c5c01.cloudfunctions.net/updCourseAnswers',
-            {
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/updCourseAnswers', {
                 token: token,
                 courseID: testID,
                 answers: answers
-            },
-            { headers: { 'Content-Type': 'text/plain' } }
+            }, { headers: { 'Content-Type': 'text/plain' } }
         )
     }
-    static async getTestAnswers(token, testID){
+    static async getTestAnswers(token, testID) {
         const response = await axios.post(
-            'https://europe-west3-mavka-c5c01.cloudfunctions.net/getTestAnswers',
-            {
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/getTestAnswers', {
                 token: token,
                 courseID: testID
-            },
-            { headers: { 'Content-Type': 'text/plain' } }
+            }, { headers: { 'Content-Type': 'text/plain' } }
         )
         return response;
     }
 
-    static async changeTestStatusByID(token, testID, status){
+    static async changeTestStatusByID(token, testID, status) {
         const response = await axios.post(
-            'https://europe-west3-mavka-c5c01.cloudfunctions.net/changeStatusById',
-            {
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/changeStatusById', {
                 token: token,
                 id: testID,
                 status: status
-            },
-            { headers: { 'Content-Type': 'text/plain' } }
+            }, { headers: { 'Content-Type': 'text/plain' } }
         )
     }
 
-    static async deleteTestByID(token, testID){
+    static async deleteTestByID(token, testID) {
         const response = await axios.post(
-            'https://europe-west3-mavka-c5c01.cloudfunctions.net/deleteCourseById',
-            {
+            'https://europe-west3-mavka-c5c01.cloudfunctions.net/deleteCourseById', {
                 token: token,
                 id: testID,
-            },
-            { headers: { 'Content-Type': 'text/plain' } }
+            }, { headers: { 'Content-Type': 'text/plain' } }
         )
     }
 
-    static async getTeamInfo () {
+    static async getTeamInfo() {
         const firestore = firebase.firestore();
         return await firestore.collection("team").doc("team-names").get().then(doc => {
             return doc.get("Team");
