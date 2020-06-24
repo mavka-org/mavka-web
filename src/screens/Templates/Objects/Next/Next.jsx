@@ -5,6 +5,9 @@ import RaisedFist from './../../Icon/RaisedFist';
 import Like from './../../Icon/Like';
 import firebase from "../../../../global";
 import Strong from "../../Icon/Strong";
+import Tools from './../../Icon/Tools';
+import reportProblemTypeform from '../../../reportProblemTypeform'
+
 class Next extends React.Component {
     submitQuestion() {
         if(this.props.isPractice){
@@ -123,6 +126,7 @@ class Next extends React.Component {
                 <button className={this.props.isNextAllowed ? (g.btn) : (g.btn + ' ' + g.inactiveNextButton)} onClick={() => {
                     this.submitQuestion();
                 }}>{this.buttonName()}</button>
+
                 <button className={g.pass} style={{
                     display: this.showSkip() ? "block" : "none"
                 }} onClick={()=>{
@@ -130,6 +134,10 @@ class Next extends React.Component {
                         firebase.analytics().logEvent('skip question');
                         this.props.updateQuestion(this.props.number + 1);
                     }}>Пропустити</button>
+
+                <button className={g.pass} style={{textDecoration: 'none'}} onClick={()=>{
+                        new reportProblemTypeform(this, this.props.questionInfo)
+                    }}><div className={g.report}><div style={{width: "20px"}}><Tools />&nbsp;</div>&nbsp; Розповісти про проблему</div></button>
                 </div>
             </div>
         );

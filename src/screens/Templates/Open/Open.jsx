@@ -91,6 +91,7 @@ class Open extends React.Component {
                             currentAnswer={this.state.currentAnswer}
                             updateAnswers={this.props.updateAnswers}
                             isPractice={this.props.isPractice}
+                            questionInfo={[data.getNumber(), data.getSubject(), data.getYear(), data.getSession()]}
                         />
 
                         <Topic

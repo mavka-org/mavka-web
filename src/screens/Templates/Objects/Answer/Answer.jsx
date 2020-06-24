@@ -42,10 +42,12 @@ class Answer extends React.Component {
     }
 
     setBorder(isUserAnswer){
-        if(isUserAnswer && this.props.hidden){
+        if(this.props.hidden){
             if(this.props.isCorrectAnswer)
                 return "1px #0EFB71 solid";
-            return "1px red solid";
+            if(isUserAnswer)
+                return "1px red solid";
+            return "";
         }else{
             if(isUserAnswer)
                 return "1px black solid";

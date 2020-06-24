@@ -150,7 +150,7 @@ class Login extends React.Component {
                             <div className={s.errMsg} style={{ color: 'red' }}>
                                 {this.state.googleComment}
                             </div>
-                            <button className={s.btn} onClick={() => {
+                            {/*<button className={s.btn} onClick={() => {
                                 current.setState({
                                     googleComment: '',
                                     fbComment: ''
@@ -172,7 +172,7 @@ class Login extends React.Component {
                             }}><span style={{ fontWeight: "bolder" }}>f</span>&nbsp; Увійти з Facebook</button>
                             <div className={s.errMsg} style={{ color: 'red' }}>
                                 {this.state.fbComment}
-                            </div>
+                        </div>*/}
                             <div className={s.info}>
                                 <div className={s.title}>EMAIL</div>
                                 <div className={s.inp_wrapper}><div className={s.icon}></div><input onChange={() => {

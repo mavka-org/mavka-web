@@ -42,7 +42,7 @@ class Geo_History_3_7 extends React.Component {
         let ans = [];
         for(let i = 0; i < curAnswer.length; i++) {
             if(curAnswer[i] == answer) {
-                
+
             }
             else {
                 ans.push(curAnswer[i]);
@@ -85,14 +85,14 @@ class Geo_History_3_7 extends React.Component {
         let hidden = this.state.answered && this.props.isPractice;
         return (
             <div>
-                <Question 
+                <Question
                     question={data.getQuestion()}
                     active={this.state.active}
                 />
                 <div style={{marginBottom:20}}><strong>Обери ТРИ відповіді:</strong></div>
                 <div className={s.question_body}>
                     <div className={s.answers}>
-                        <Answer 
+                        <Answer
                             answered={this.state.answered}
                             letter={"1"}
                             question={data.getHistory37Questions()[0]}
@@ -103,7 +103,7 @@ class Geo_History_3_7 extends React.Component {
                             isCorrectAnswer={data.checkCorrect("1")}
                             isPractice={this.props.isPractice}
                         />
-                        <Answer 
+                        <Answer
                             answered={this.state.answered}
                             letter={"2"}
                             question={data.getHistory37Questions()[1]}
@@ -114,7 +114,7 @@ class Geo_History_3_7 extends React.Component {
                             isCorrectAnswer={data.checkCorrect("2")}
                             isPractice={this.props.isPractice}
                         />
-                        <Answer 
+                        <Answer
                             answered={this.state.answered}
                             letter={"3"}
                             question={data.getHistory37Questions()[2]}
@@ -125,7 +125,7 @@ class Geo_History_3_7 extends React.Component {
                             isCorrectAnswer={data.checkCorrect("3")}
                             isPractice={this.props.isPractice}
                         />
-                        <Answer 
+                        <Answer
                             answered={this.state.answered}
                             letter={"4"}
                             question={data.getHistory37Questions()[3]}
@@ -138,7 +138,7 @@ class Geo_History_3_7 extends React.Component {
                         />
                     </div>
                     <div className={s.answers}>
-                        <Answer 
+                        <Answer
                             answered={this.state.answered}
                             letter={"5"}
                             question={data.getHistory37Questions()[4]}
@@ -149,7 +149,7 @@ class Geo_History_3_7 extends React.Component {
                             isCorrectAnswer={data.checkCorrect("5")}
                             isPractice={this.props.isPractice}
                         />
-                        <Answer 
+                        <Answer
                             answered={this.state.answered}
                             letter={"6"}
                             question={data.getHistory37Questions()[5]}
@@ -160,7 +160,7 @@ class Geo_History_3_7 extends React.Component {
                             isCorrectAnswer={data.checkCorrect("6")}
                             isPractice={this.props.isPractice}
                         />
-                        <Answer 
+                        <Answer
                             answered={this.state.answered}
                             letter={"7"}
                             question={data.getHistory37Questions()[6]}
@@ -184,16 +184,17 @@ class Geo_History_3_7 extends React.Component {
                     isNextAllowed={this.nextValidation()}
                     scroll={this.props.scroll}
                     isLastQuestion={this.props.number == this.props.active}
+                    questionInfo={[data.getNumber(), data.getSubject(), data.getYear(), data.getSession()]}
                 />
-                <Topic 
+                <Topic
                     topic={data.getTopic()}
                     hidden={hidden}
                 />
-                <Comment 
+                <Comment
                     comment={data.getComment()}
                     hidden={hidden}
                 />
-                <Video 
+                <Video
                     hidden={hidden}
                 />
             </div>

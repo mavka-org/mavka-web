@@ -189,6 +189,22 @@
     transition: 0.2s ease-in;
 }
 
+.report {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: baseline;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+    font-size: 14px;
+    margin-top: 10px;
+    text-decoration: none !important;
+}
+
 .pass:focus {
     outline: 0;
 }

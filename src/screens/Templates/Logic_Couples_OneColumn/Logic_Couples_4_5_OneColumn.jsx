@@ -90,7 +90,7 @@ class Logic_Couples_4_5 extends React.Component {
             for(let i = 0; i < 5; ++i) {
                 used[i] = 0;
             }
-    
+
             for(let i = 0; i < 4; ++i) {
                 let column;
                 if(this.state.currentAnswer != null && this.state.currentAnswer.length > i) {
@@ -214,7 +214,7 @@ class Logic_Couples_4_5 extends React.Component {
                             question={data.getQuestion()}
                             active={this.state.active}
                             />
-                    
+
                     </div>
                     <div className={s.answers_frame}>
                         <p className={s.choose}><strong>Встанови відповідність:</strong></p>
@@ -381,6 +381,7 @@ class Logic_Couples_4_5 extends React.Component {
                                 isPractice={this.props.isPractice}
                                 scroll={this.props.scroll}
                                 isLastQuestion={this.props.number == this.props.active}
+                                questionInfo={[data.getNumber(), data.getSubject(), data.getYear(), data.getSession()]}
                             />
                             <Topic
                                 topic={data.getTopic()}
