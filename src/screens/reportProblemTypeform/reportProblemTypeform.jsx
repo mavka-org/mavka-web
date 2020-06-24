@@ -5,24 +5,24 @@ import s from './Survey.module.css';
 import g from './../Templates/Style.module.css';
 import * as typeformEmbed from '@typeform/embed'
 
-class SurveyFeedback {
+class reportProblemTypeform {
 
-    constructor(react) {
-        this.react = react
-
-        let uid = this.react.state.user.uid
+    constructor(q_details) {
 
         let onSubmit = () => {
             this.onSubmit();
         }
 
-        this.feedbackForm = typeformEmbed.makePopup('https://mavkaorg.typeform.com/to/aGYIhiFY?uid=' + uid, {
+        this.reportTypeform = typeformEmbed.makePopup('https://mavkaorg.typeform.com/to/uxLMhLEe' +
+            '?q_number=' + q_details[0] + '?q_subject=' + q_details[1] + '?q_year=' + q_details[2] + '?q_session=' + q_details[3], {
             mode: 'popup',
             hideHeaders: true,
             hideFooters: true,
             onSubmit: onSubmit,
             onClose: onSubmit
         })
+
+        this.reportTypeform.open()
 
     }
 
@@ -31,13 +31,13 @@ class SurveyFeedback {
     }
 
     close () {
-        this.feedbackForm.close()
+        this.reportTypeform.close()
     }
 
     open () {
-        this.feedbackForm.open()
+        this.reportTypeform.open()
     }
 
 }
 
-export default SurveyFeedback;
+export default reportProblemTypeform;

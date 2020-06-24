@@ -68,7 +68,7 @@ class BioTriples extends React.Component {
         //console.log(data.getBio3_secondquestion());
         return (
             <div>
-                <Question 
+                <Question
                     question={data.getBio3_question()}
                     active={this.state.active}
                 />
@@ -88,7 +88,7 @@ class BioTriples extends React.Component {
                             isCorrectAnswer={data.checkCorrectFromList("1", 1)}
                             isPractice={this.props.isPractice}
                         />
-                        <Answer 
+                        <Answer
                             index={0}
                             answered={this.state.answered}
                             letter={"2"}
@@ -101,7 +101,7 @@ class BioTriples extends React.Component {
                             isPractice={this.props.isPractice}
                         />
                         <Answer
-                            index={0} 
+                            index={0}
                             answered={this.state.answered}
                             letter={"3"}
                             question={data.getBio3_firstquestion().thirdAnswer}
@@ -127,7 +127,7 @@ class BioTriples extends React.Component {
                             isCorrectAnswer={data.checkCorrectFromList("1", 2)}
                             isPractice={this.props.isPractice}
                         />
-                        <Answer 
+                        <Answer
                             index={1}
                             answered={this.state.answered}
                             letter={"2"}
@@ -140,7 +140,7 @@ class BioTriples extends React.Component {
                             isPractice={this.props.isPractice}
                         />
                         <Answer
-                            index={1} 
+                            index={1}
                             answered={this.state.answered}
                             letter={"3"}
                             question={data.getBio3_secondquestion().thirdAnswer}
@@ -166,7 +166,7 @@ class BioTriples extends React.Component {
                             isCorrectAnswer={data.checkCorrectFromList("1", 3)}
                             isPractice={this.props.isPractice}
                         />
-                        <Answer 
+                        <Answer
                             index={2}
                             answered={this.state.answered}
                             letter={"2"}
@@ -179,7 +179,7 @@ class BioTriples extends React.Component {
                             isPractice={this.props.isPractice}
                         />
                         <Answer
-                            index={2} 
+                            index={2}
                             answered={this.state.answered}
                             letter={"3"}
                             question={data.getBio3_thirdquestion().thirdAnswer}
@@ -192,7 +192,7 @@ class BioTriples extends React.Component {
                         />
                     </div>
                 </div>
-                <Next 
+                <Next
                     scores={this.props.scores}
                     answered={this.state.answered}
                     updateQuestion={this.props.updateQuestion}
@@ -203,16 +203,17 @@ class BioTriples extends React.Component {
                     isNextAllowed={isNextAllowed}
                     scroll={this.props.scroll}
                     isLastQuestion={this.props.number == this.props.active}
+                    questionInfo={[data.getNumber(), data.getSubject(), data.getYear(), data.getSession()]}
                 />
-                <Topic 
+                <Topic
                     topic={data.getTopic()}
                     hidden={hidden}
                 />
-                <Comment 
+                <Comment
                     comment={data.getComment()}
                     hidden={hidden}
                 />
-                <Video 
+                <Video
                     hidden={hidden}
                 />
             </div>

@@ -232,7 +232,7 @@ class Logic_Couples_4_4 extends Component {
                                                 <th>Б</th>
                                                 <th>В</th>
                                                 <th>Г</th>
-                                                
+
                                             </tr>
                                             <tr>
                                                 <th class={s.r}>1</th>
@@ -364,6 +364,7 @@ class Logic_Couples_4_4 extends Component {
                                     isPractice={this.props.isPractice}
                                     scroll={this.props.scroll}
                                     isLastQuestion={this.props.number == this.props.active}
+                                    questionInfo={[data.getNumber(), data.getSubject(), data.getYear(), data.getSession()]}
                                 />
                             </div>
 

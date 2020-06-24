@@ -389,6 +389,7 @@ class Logic_Couples_4_5 extends Component {
                                     isPractice={this.props.isPractice}
                                     scroll={this.props.scroll}
                                     isLastQuestion={this.props.number == this.props.active}
+                                    questionInfo={[data.getNumber(), data.getSubject(), data.getYear(), data.getSession()]}
                                 />
                             </div>
 

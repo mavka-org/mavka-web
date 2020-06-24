@@ -132,6 +132,7 @@ class ABCDE_OneColumn extends React.Component {
                             isPractice={this.props.isPractice}
                             scroll={this.props.scroll}
                             isLastQuestion={this.props.number == this.props.active}
+                            questionInfo={[data.getNumber(), data.getSubject(), data.getYear(), data.getSession()]}
                         />
                         <Topic
                             topic={data.getTopic()}
