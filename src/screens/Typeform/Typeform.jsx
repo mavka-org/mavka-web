@@ -39,7 +39,7 @@ class Typeform extends React.Component {
     }
 
     onSubmit () {
-        window.location.href = '/home';
+        //window.location.href = '/home';
     }
 
     onClose () {
