@@ -85,17 +85,18 @@ class Footer extends React.Component {
                             <div className={s.title}><strong>Посилання</strong></div>
                             <div className={s.links}><a href="http://mavka.org" target="_blank">Про мавку</a></div>
                             <div className={s.links}><a href="https://testportal.gov.ua" target="_blank">УЦОЯО</a></div>
-
+                            <div className={s.links}><a href="https://t.me/mavkazno" target="_blank">Телеграм</a></div>
+                            <div className={s.links}><a href="https://www.instagram.com/mavka.zno/" target="_blank">Інстаграм</a></div>
                         </div>
 
 
                         <div className={s.info_mavka}>
                             <div className={s.title}><strong>Зв'язок</strong></div>
+                            <div className={s.links}><a href="/typeform/c4zd7QPG">Повідомити про проблему</a></div>
                             <div className={s.links}><a href="/typeform/RiJmVdHA">Опитування для вчителів</a></div>
                             <div className={s.links}><a href="/typeform/pkeoQU44">Опитування для учнів</a></div>
                             <div className={s.links}><a href="mailto:hello@mavka.org" target="_blank">Електронна адреса</a></div>
-                            <div className={s.links}><a href="https://t.me/mavkazno" target="_blank">Телеграм</a></div>
-                            <div className={s.links}><a href="https://www.instagram.com/mavka.zno/" target="_blank">Інстаграм</a></div>
+                            
                         </div>
 
                 </div>

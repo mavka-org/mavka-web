@@ -373,3 +373,13 @@
         transition: 0.2s ease-in-out;
     }
 }
+
+.links {
+    margin: 10px 0px;
+    cursor: pointer;
+}
+
+
+.links:hover {
+    opacity: 1;
+}
