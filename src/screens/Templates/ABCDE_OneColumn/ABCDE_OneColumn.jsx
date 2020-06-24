@@ -20,12 +20,12 @@ class ABCDE_OneColumn extends React.Component {
             answered: props.answered,
             currentAnswer: null
         }
-        console.log(props.data);
+        //console.log(props.data);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
-            console.log('sos' + this.props.answered)
+            //console.log('sos' + this.props.answered)
             this.setState({
                 checkedAnswers: this.props.checkedAnswers,
                 number: this.props.number,
@@ -53,7 +53,7 @@ class ABCDE_OneColumn extends React.Component {
         let hidden = this.state.answered && this.props.isPractice;
         let isNextAllowed = this.validateCurrentAnswer()
 
-        console.log(isNextAllowed)
+        //console.log(isNextAllowed)
 
         return (
             <div>

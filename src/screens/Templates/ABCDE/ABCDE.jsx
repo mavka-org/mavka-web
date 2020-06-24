@@ -22,7 +22,7 @@ class ABCDE extends Component {
             answered: props.answered,
             currentAnswer: props.currentAnswer
         }
-        console.log(props.data);
+        //console.log(props.data);
     }
 
     componentDidUpdate(prevProps) {

@@ -36,8 +36,8 @@ class SystemFunctions{
     }
 
     static mainMenuActiveElement(active, tests, current){
-        console.log(active);
-        console.log(tests);
+        //console.log(active);
+        //console.log(tests);
         for(let i in tests){
             if(tests[i].id == active)
                 return i;

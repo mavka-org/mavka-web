@@ -29,7 +29,7 @@ class Login extends React.Component {
     }
 
     customAlert(text) {
-        console.log(this.state.clicked)
+        //console.log(this.state.clicked)
         if (this.state.clicked) {
             return <AlertConfirm showOne={true} text2={'Ок'} text={text} cancel={this.cancel} args={[]} />
         }

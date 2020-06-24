@@ -76,7 +76,7 @@ export class TestView extends React.Component {
         fetch(url)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                //console.log(result);
                 if(result['error']){
                     this.setState({
                         error: result['error']
@@ -91,7 +91,7 @@ export class TestView extends React.Component {
             })
             .catch(e => console.log(e));
 
-            console.log(this.state.data)
+            //console.log(this.state.data)
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -106,7 +106,7 @@ export class TestView extends React.Component {
         fetch(id)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                //console.log(result);
                 let ans = [];
                 let cnt = 0;
                 for (let x in result) {
@@ -151,7 +151,7 @@ export class TestView extends React.Component {
     }
 
     render() {
-        console.log(this.state.data)
+        //console.log(this.state.data)
 
         if(this.state.error){
             return (
@@ -176,7 +176,7 @@ export class TestView extends React.Component {
                     type += "_OneColumn";
                 }
                 const DynamicComponent = componentsMap[type];
-                console.log(data)
+                //console.log(data)
                 return (
                     <div className={g.background}>
                         <div className={[s.page, g.page_].join(' ')}>

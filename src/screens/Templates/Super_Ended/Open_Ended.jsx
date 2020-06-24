@@ -23,7 +23,7 @@ class Open_Ended extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
-            console.log('sos' + this.props.answered)
+            //console.log('sos' + this.props.answered)
             this.setState({
                 number: this.props.number,
                 data: this.props.data,
@@ -34,12 +34,12 @@ class Open_Ended extends React.Component {
     }
 
     render() {
-        console.log(this.state.data.evaluate(this.state.currentAnswer))
+        //console.log(this.state.data.evaluate(this.state.currentAnswer))
 
         const data = this.state.data;
         let hidden = this.state.answered;
 
-        console.log(data)
+        //console.log(data)
 
         return (
             <div>

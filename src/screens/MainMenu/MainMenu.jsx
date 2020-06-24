@@ -86,7 +86,7 @@ class MainMenu extends React.Component {
             response.then(function (value) {
                 let tests = []
                 let T = value.data;
-                console.log(value.data)
+                //console.log(value.data)
                 for (let year in T) {
                     for (let t in T[year]) {
                         tests.push({
@@ -103,9 +103,9 @@ class MainMenu extends React.Component {
                     }
                 }
                 tests.sort((a, b) => (a.name1 < b.name1) ? 1 : -1)
-                console.log(tests);
+                //console.log(tests);
                 //let myProps = Object.keys(current.props.location.state);
-                console.log(current.props.location.state);
+                //console.log(current.props.location.state);
                 current.setState({
                     tests: tests,
                     active: SystemFunctions.mainMenuActiveElement(typeof current.state.confetti != 'undefined' ? current.state.confetti.testID : 'undefined', tests, current.state.active),
@@ -269,7 +269,7 @@ class MainMenu extends React.Component {
                                         <div className={s.title}>
                                             <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
                                         </div>
-                                        {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores numCorrect={this.state.tests[this.state.active].numCorrect} score12={this.state.tests[this.state.active].score12} score200={this.state.tests[this.state.active].score200} click={this.openResults} />) : ""}
+                                        {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores subject={this.state.subject} numCorrect={this.state.tests[this.state.active].numCorrect} score12={this.state.tests[this.state.active].score12} score200={this.state.tests[this.state.active].score200} click={this.openResults} />) : ""}
                                     </div>
                                     <div className={s.buttons_frame}>
                                         <Button stl={this.btnPracticeStyle()} click={this.onClickPractice()} icon={pic1} title={'Практикуватися'} comment={'Проходь одне питання за раз та вчися на поясненнях'} />
@@ -316,7 +316,7 @@ class MainMenu extends React.Component {
                                         <div className={s.question_title_mobile}>
                                             <strong>{this.state.tests[this.state.active].name1 + " " + this.state.tests[this.state.active].name2}</strong>
                                         </div>
-                                        {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores numCorrect={this.state.tests[this.state.active].numCorrect} score12={this.state.tests[this.state.active].score12} score200={this.state.tests[this.state.active].score200} click={this.openResults} />) : ""}
+                                        {this.state.tests[this.state.active].status == 'тест пройдений' ? (<Scores subject={this.state.subject} totalCount={this.state.tests[this.state.active].totalCount} numCorrect={this.state.tests[this.state.active].numCorrect} score12={this.state.tests[this.state.active].score12} score200={this.state.tests[this.state.active].score200} click={this.openResults} />) : ""}
                                     </div>
                                     <div className={s.buttons_frame}>
                                         <Button stl={this.btnPracticeStyle()} click={this.onClickPractice()} icon={pic1} title={'Практикуватися'} comment={'Проходь одне питання за раз та вчися на поясненнях'} />

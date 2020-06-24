@@ -40,7 +40,7 @@ class List extends Component {
                     pushed={null}/>
             </Link>
         ))
-        console.log(code);
+        //console.log(code);
         return (
             <div>
                 {code}

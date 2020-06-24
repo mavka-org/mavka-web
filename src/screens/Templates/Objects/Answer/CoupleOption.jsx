@@ -25,7 +25,7 @@ class Answer extends React.Component {
     }
 
     render() {
-        console.log(this.state.currentAnswer + " " +  this.props.letter);
+        //console.log(this.state.currentAnswer + " " +  this.props.letter);
         return (
             <div className={g.answer_withouthover}>
                 <div className={g.answer_text_frame}>

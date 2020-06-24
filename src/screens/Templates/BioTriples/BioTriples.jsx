@@ -20,7 +20,7 @@ class BioTriples extends React.Component {
             answered: props.answered,
             currentAnswer: props.currentAnswer
         }
-        console.log(props.data);
+        //console.log(props.data);
     }
 
     componentDidUpdate(prevProps) {
@@ -53,7 +53,7 @@ class BioTriples extends React.Component {
     }
 
     render() {
-        console.log(this.state.data.evaluate(this.state.currentAnswer))
+        //console.log(this.state.data.evaluate(this.state.currentAnswer))
 
         if(typeof this.state.currentAnswer == "undefined"){
             this.setState({
@@ -65,7 +65,7 @@ class BioTriples extends React.Component {
         let isNextAllowed = this.nextValidation(this.state.currentAnswer);
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
-        console.log(data.getBio3_secondquestion());
+        //console.log(data.getBio3_secondquestion());
         return (
             <div>
                 <Question 

@@ -62,7 +62,7 @@ class SurveyDemographics extends React.Component {
         }
         let occupationType = occupationTypeDict[answers[0]['choice']['id']]
         firebase.analytics().setUserProperties({occupationType: occupationType});
-        console.log(occupationType)
+        //console.log(occupationType)
 
         if (occupationType != 'educator') {
 
@@ -79,13 +79,13 @@ class SurveyDemographics extends React.Component {
             for (let source of answers[1]['choices']['ids']) {
             	statedAqSource = statedAqSource + statedAqSourceDict[source] + " "
             }
-            console.log(statedAqSource)
+            //console.log(statedAqSource)
             firebase.analytics().setUserProperties({statedAqSource: statedAqSource});
 
 
             // hadTutor --> Ти готуєшся до ЗНО хоча б з одним репетитором?, boolean
             let hadZNOTutor = answers[2]['boolean']
-            console.log(hadZNOTutor)
+            //console.log(hadZNOTutor)
             firebase.analytics().setUserProperties({hadZNOTutor: hadZNOTutor});
 
 
@@ -97,13 +97,13 @@ class SurveyDemographics extends React.Component {
               "other" : answers[3]['choice']['other']
             }
             let schoolLocation = schoolLocationDict[answers[3]['choice']['id']]
-            console.log(schoolLocation)
+            //console.log(schoolLocation)
             firebase.analytics().setUserProperties({schoolLocation: schoolLocation});
 
 
             // schoolPerformance --> Які оцінки ти зазвичай отримуєш?
             let schoolPerformance = answers[4]['choice']['label']
-            console.log(schoolPerformance)
+            //console.log(schoolPerformance)
             firebase.analytics().setUserProperties({schoolPerformance: schoolPerformance});
 
         }

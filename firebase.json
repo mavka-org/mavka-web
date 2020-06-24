@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "zno",
     "public": "build",
     "ignore": [
       "firebase.json",

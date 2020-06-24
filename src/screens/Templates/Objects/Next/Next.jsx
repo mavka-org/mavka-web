@@ -17,7 +17,7 @@ class Next extends React.Component {
                     this.props.updateAnswers(this.props.number, this.props.currentAnswer);
                 }
                 else {
-                    console.log("выбери ответ");
+                    //console.log("выбери ответ");
                 }
             }
         }else{
@@ -28,7 +28,7 @@ class Next extends React.Component {
                 this.props.updateQuestion(this.props.number + 1);
             }
             else {
-                console.log("выбери ответ");
+                //console.log("выбери ответ");
             }
         }
     }

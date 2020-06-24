@@ -534,7 +534,7 @@ class Services {
                 token: token,
             }, { headers: { 'Content-Type': 'text/plain' } }
         )
-        console.log(response.data)
+        //console.log(response.data)
         return response.data;
     }
 
@@ -544,12 +544,12 @@ class Services {
                 url: url,
             }, { headers: { 'Content-Type': 'text/plain' } }
         )
-        console.log(response.data)
+        //console.log(response.data)
         return response.data;
     }
 
     static async getDemographicsSurvey(user) {
-        console.log(user);
+        //console.log(user);
         if (user != null) {
             const firestore = firebase.firestore();
             return await firestore.collection("users").doc(user.uid).get().then(doc => {
@@ -561,7 +561,7 @@ class Services {
     }
 
     static async setDemographicsSurvey(user, val) {
-        console.log(user);
+        //console.log(user);
         if (user != null && typeof user.uid != 'undefined') {
             const firestore = firebase.firestore();
             let flag = 0;

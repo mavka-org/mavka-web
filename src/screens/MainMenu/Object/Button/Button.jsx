@@ -20,7 +20,7 @@ class Button extends React.Component {
     }
 
     customConfirm() {
-        console.log(this.state.clicked)
+        //console.log(this.state.clicked)
         if(this.state.clicked) {
             return <AlertConfirm text1={'Розпочати'} text2={'Назад'} text={'В тебе 180 хвилин, щоб завершити тест'} cancel={this.cancel} click={this.props.click} args={[]}/>
         }

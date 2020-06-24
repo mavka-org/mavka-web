@@ -139,7 +139,7 @@ export class Test extends React.Component{
 
         let current = this;
         Services.getReferenceById(this.state.testId).then(function (ref) {
-            console.log(ref);
+            //console.log(ref);
             if(typeof ref == 'undefined'){
                 current.setState({
                     statusFound: false
@@ -150,7 +150,7 @@ export class Test extends React.Component{
                 let status = [];
                 for (let i = 0; i < myData.length; i++) status.push(false);
                 myData.sort((a, b) => a.getNumber() - b.getNumber());
-                console.log(myData);
+                //console.log(myData);
                 current.setState({
                     data: myData,
                     answered: status,
@@ -159,14 +159,14 @@ export class Test extends React.Component{
                 if(current.state.user != null){
                     current.state.user.getIdToken().then((token)=>{
                         Services.getTestAnswers(token, current.state.testId).then(function (response){
-                            console.log("Test.js");
-                            console.log(response.data);
+                            //console.log("Test.js");
+                            //console.log(response.data);
                             let checkedAnswers = {};
                             if(response.data != "not exist"){
                                 for(let tmp in response.data){
                                     if(tmp == 'status'){
                                         if(response.data[tmp] == 'Тест пройдений' && current.props.match.params.mode == 'simulation'){
-                                            console.log('lalalal');
+                                            //console.log('lalalal');
                                             current.setState({
                                                 redirect: true
                                             })
@@ -231,8 +231,8 @@ export class Test extends React.Component{
                 active: x
             });
         }else{
-            console.log("ПОСЛЕДНИЙ ВОПРОС")
-            console.log(this.state.testId)
+            //console.log("ПОСЛЕДНИЙ ВОПРОС")
+            //console.log(this.state.testId)
             this.setState({
                 loading: !this.state.loading
             })
@@ -279,7 +279,7 @@ export class Test extends React.Component{
                     cnt -= 1;
                 }
 
-                console.log(time);
+                //console.log(time);
                 firebase.analytics().logEvent('finish simulation', {countOfAnsweredQuestions: cnt});
 
                 this.setState({
@@ -301,12 +301,12 @@ export class Test extends React.Component{
                                 }
                             }
                         }
-                        console.log(this.state.user);
-                        console.log({
+                        //console.log(this.state.user);
+                        /*console.log({
                             Test_id: this.state.testId,
                             User_id: this.state.user.uid,
                             UserAnswers: res
-                        })
+                        })*/
                         Axios.post(
                             'https://flask.mavka.org/api/post_score',
                             {
@@ -393,12 +393,12 @@ export class Test extends React.Component{
         })
 
         if(this.state.isPractice) {
-            console.log(1);
+            //console.log(1);
             if(this.state.data[num - 1].evaluate(this.state.answers[num])[1] == 0){
-                console.log(2);
+                //console.log(2);
                 let topics = [];
                 topics.push(this.state.data[Number(num) - 1].getTopic());
-                console.log(topics);
+                //console.log(topics);
                 Axios.post(
                     'https://flask.mavka.org/api/post_topics',
                     {
@@ -416,10 +416,10 @@ export class Test extends React.Component{
             })
         }else{
             if(this.state.data[num - 1].evaluate(this.state.answers[num])[1] == 0){
-                console.log(2);
+                //console.log(2);
                 let topics = [];
                 this.state.topicSimulation.push(this.state.data[Number(num) - 1].getTopic());
-                console.log(topics);
+                //console.log(topics);
             }
         }
     }

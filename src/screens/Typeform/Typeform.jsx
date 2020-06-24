@@ -48,7 +48,6 @@ class Typeform extends React.Component {
 
 
     render() {
-        let uid = this.state.user.uid
         let survey_id = this.survey_id
 
         let onSubmit = () => {
@@ -59,8 +58,8 @@ class Typeform extends React.Component {
             this.onClose()
         }
 
-        if (uid) {
-            this.form = typeformEmbed.makePopup('https://mavkaorg.typeform.com/to/' + survey_id + '?uid=' + uid, {
+        if (this.state.user) {
+            this.form = typeformEmbed.makePopup('https://mavkaorg.typeform.com/to/' + survey_id + '?uid=' + this.state.user.uid, {
                 mode: 'popup',
                 hideHeaders: true,
                 hideFooters: true,

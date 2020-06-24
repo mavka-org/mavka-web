@@ -23,13 +23,13 @@ class Logic_Couples_4_4 extends Component {
             answered: props.answered,
             currentAnswer: props.currentAnswer
         }
-        console.log(this.props.data);
+        //console.log(this.props.data);
     }
 
     componentDidUpdate(prevProps) {
         document.getElementById('FAKE').click();
         if (this.props != prevProps) {
-            console.log('sos' + this.props.answered)
+            //console.log('sos' + this.props.answered)
             this.setState({
                 number: this.props.number,
                 data: this.props.data,
@@ -100,11 +100,11 @@ class Logic_Couples_4_4 extends Component {
                     column = '';
                 }
                 if (column != '') {
-                    console.log(column);
-                    console.log(column.charCodeAt(0))
-                    console.log('А'.charCodeAt(0))
+                    //console.log(column);
+                    //console.log(column.charCodeAt(0))
+                    //console.log('А'.charCodeAt(0))
                     let j = column.charCodeAt(0) - 'А'.charCodeAt(0);
-                    console.log(j);
+                    //console.log(j);
                     result.push(couples[i][j])
                     used[j] = 1;
                 }
@@ -199,10 +199,10 @@ class Logic_Couples_4_4 extends Component {
     }
 
     render() {
-        console.log(this.state.data.evaluate(this.state.currentAnswer))
+        //console.log(this.state.data.evaluate(this.state.currentAnswer))
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;
-        console.log(this.state.currentAnswer)
+        //console.log(this.state.currentAnswer)
 
         return (
             <div>

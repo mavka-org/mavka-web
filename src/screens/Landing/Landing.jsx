@@ -41,7 +41,7 @@ class Landing extends React.Component {
             <div className={s.page}>
                 <div className={s.wrapper}>
                     <div className={s.frame_1}>
-                        <div className={s.title}><strong>мавка </strong>&nbsp; зно<div className={s.beta}>альфа</div></div>
+                        <div className={s.title}><strong>мавка </strong>&nbsp; зно<div className={s.beta}>бета</div></div>
                         <div className={s.big_title}>Готуйся до зно <br></br>по-новому </div>
                         <div className={s.desc}>Абсолютно безкоштовна платформа,<br></br> створена звичайними українцями <br></br> для українців, з любов’ю</div>
                         <Link to='/register'><div className={s.next} onClick={()=>{firebase.analytics().logEvent('press Join');}}>Розпочати</div></Link>

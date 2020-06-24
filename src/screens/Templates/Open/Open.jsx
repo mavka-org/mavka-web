@@ -47,7 +47,7 @@ class Open extends React.Component {
     }
 
     render() {
-        console.log(this.state.data.evaluate(this.state.currentAnswer))
+        //console.log(this.state.data.evaluate(this.state.currentAnswer))
         if(typeof this.state.currentAnswer == "undefined"){
             this.setState({
                 currentAnswer: ""

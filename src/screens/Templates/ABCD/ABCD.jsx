@@ -22,12 +22,12 @@ class ABCD extends Component {
             answered: props.answered,
             currentAnswer: props.currentAnswer
         }
-        console.log(props.data);
+        //console.log(props.data);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props != prevProps) {
-            console.log('sos' + this.props.answered)
+            //console.log('sos' + this.props.answered)
             this.setState({
                 checkedAnswers: this.props.checkedAnswers,
                 number: this.props.number,

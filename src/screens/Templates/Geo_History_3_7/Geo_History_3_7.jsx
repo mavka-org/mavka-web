@@ -71,7 +71,7 @@ class Geo_History_3_7 extends React.Component {
     }
 
     render() {
-        console.log(this.state.data.evaluate(this.state.currentAnswer))
+        //console.log(this.state.data.evaluate(this.state.currentAnswer))
 
         if(typeof this.state.currentAnswer == "undefined"){
             this.setState({
@@ -79,7 +79,7 @@ class Geo_History_3_7 extends React.Component {
             })
             return(<div></div>)
         }
-        console.log(this.state.currentAnswer);
+        //console.log(this.state.currentAnswer);
         let isNextAllowed = this.nextValidation(this.state.currentAnswer);
         const data = this.state.data;
         let hidden = this.state.answered && this.props.isPractice;

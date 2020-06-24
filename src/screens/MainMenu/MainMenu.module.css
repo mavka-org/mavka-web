@@ -411,7 +411,7 @@
         -ms-flex-direction: column;
         flex-direction: column;
         width: 90%;
-        margin-top: 30px;
+        margin-top: 60px;
     }
     .question_body {
         display: flex;

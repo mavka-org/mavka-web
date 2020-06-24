@@ -48,8 +48,8 @@ class Double_Input_Answer extends React.Component {
 
     render() {
         //console.log(this.state.currentAnswer + " " +  this.props.letter + " " + this.props.isCorrectAnswer);
-        console.log(this.props.isPractice);
-        console.log(this.props.answered);
+        //console.log(this.props.isPractice);
+        //console.log(this.props.answered);
         return (
 
             <div className={s.answer}>
