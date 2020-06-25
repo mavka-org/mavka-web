@@ -76,7 +76,7 @@ class Footer extends React.Component {
                 <div className={s.info}>
                     <div className={s.info_mavka}>
                         <div className={s.logo}><strong>мавка</strong></div>
-                        <div className={s.description}>Інноваційна неприбуткова освітня онлайн платформа з контеном, що дійсно підходить учням 21го сторіччя. Створюється з любов'ю <Heart /><br></br><br></br>
+                        <div className={s.description}>Інноваційна неприбуткова освітня онлайн платформа з контентом, що дійсно підходить учням 21го сторіччя. Створюється з любов'ю <Heart /><br></br><br></br>
 
                             ©ГО «Мавка», 2020. При використанні матеріалів сайту, зворотнє посилання обов'язкове. Використані тестові завдання належать Українському центру оцінювання якості освіти.</div>
                     </div>
@@ -96,7 +96,7 @@ class Footer extends React.Component {
                             <div className={s.links}><a href="/typeform/RiJmVdHA">Опитування для вчителів</a></div>
                             <div className={s.links}><a href="/typeform/pkeoQU44">Опитування для учнів</a></div>
                             <div className={s.links}><a href="mailto:hello@mavka.org" target="_blank">Електронна адреса</a></div>
-                            
+
                         </div>
 
                 </div>
