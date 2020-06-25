@@ -5,9 +5,14 @@ import s from './ZNO.module.css';
 
 
 class ZNO extends React.Component {
+    scoreDPA(){
+        if(this.props.testInfo.score12 == 0)
+            return 1;
+        return this.props.testInfo.score12;
+    }
     showStatus(){
         if(this.props.testInfo.status == 'тест пройдений')
-            return 'ЗНО ' + this.props.testInfo.score200 + ' ДПА ' + this.props.testInfo.score12;
+            return 'ЗНО ' + this.props.testInfo.score200 + ' ДПА ' + this.scoreDPA();
         return this.props.testInfo.status;
     }
     render() {
