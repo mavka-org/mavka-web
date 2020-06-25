@@ -14,7 +14,7 @@ class reportProblemTypeform {
         }
 
         this.reportTypeform = typeformEmbed.makePopup('https://mavkaorg.typeform.com/to/uxLMhLEe' +
-            '?q_number=' + q_details[0] + '?q_subject=' + q_details[1] + '?q_year=' + q_details[2] + '?q_session=' + q_details[3], {
+            '#q_number=' + q_details[0] + '&q_subject=' + q_details[1] + '&q_year=' + q_details[2] + '&q_session=' + q_details[3], {
             mode: 'popup',
             hideHeaders: true,
             hideFooters: true,

@@ -136,7 +136,7 @@ class Next extends React.Component {
                     }}>Пропустити</button>
 
                 <button className={g.pass} style={{textDecoration: 'none'}} onClick={()=>{
-                        new reportProblemTypeform(this, this.props.questionInfo)
+                        new reportProblemTypeform(this.props.questionInfo)
                     }}><div className={g.report}><div style={{width: "20px"}}><Tools />&nbsp;</div>&nbsp; Розповісти про проблему</div></button>
                 </div>
             </div>
