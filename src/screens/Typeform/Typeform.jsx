@@ -58,7 +58,7 @@ class Typeform extends React.Component {
             this.onClose()
         }
 
-        if (this.state.user) {
+        if (this.state.user && this.state.user != 25) {
             this.form = typeformEmbed.makePopup('https://mavkaorg.typeform.com/to/' + survey_id + '?uid=' + this.state.user.uid, {
                 mode: 'popup',
                 hideHeaders: true,
