@@ -183,7 +183,7 @@ class Register extends React.Component {
                         <Link to='/login'>
                             <div className={s.account}>Вже маєш акаунт?</div>
                         </Link>
-                        <div className={s.agreement}>Реєструючись, Ви погоджуютесь з умовами обробки персональних даних, та умовами користування платформою "Мавка"</div>
+                        <div className={s.agreement}>Реєструючись, Ви погоджуютесь з <a href="https://www.notion.so/mavkaorg/bf574fef03bf4ad9a78df3b9389d0ec3" target="_blank">умовами обробки персональних даних та умовами користування платформою "Мавка"</a></div>
                     </div>
                 </div>
             </div>
