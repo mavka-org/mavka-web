@@ -23,7 +23,7 @@ class Double_Open extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
         if (this.props != prevProps) {
             this.setState({
                 checkedAnswers: this.props.checkedAnswers,
@@ -31,7 +31,7 @@ class Double_Open extends React.Component {
                 data: this.props.data,
                 active: this.props.active,
                 answered: this.props.answered,
-                currentAnswer: this.props.currentAnswer
+                currentAnswer: prevState.currentAnswer
             })
         }
     }

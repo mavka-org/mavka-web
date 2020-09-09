@@ -112,7 +112,6 @@ class Courses extends React.Component {
 
                             </div>
                             <div className={s.header}>
-
                                 <div className={s.title}><div className={s.sub_title}>Останній ривок до ЗНО<br></br> разом з <div className={s.sub_title_icon}>мавкою <Fire /></div> </div></div>
                                 <div className={s.description}>Практикуйся, вчися на поясненнях та проходь симуляції екзамену. Обери предмет:</div>
                             </div>

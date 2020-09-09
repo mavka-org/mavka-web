@@ -27,7 +27,7 @@ class Logic_Couples_4_4_OneColumn extends React.Component {
         //console.log(this.props.data);
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
         document.getElementById('FAKE').click();
         if (this.props != prevProps) {
             //console.log('sos' + this.props.answered)
@@ -36,7 +36,7 @@ class Logic_Couples_4_4_OneColumn extends React.Component {
                 data: this.props.data,
                 active: this.props.active,
                 answered: this.props.answered,
-                currentAnswer: this.props.currentAnswer
+                currentAnswer: prevState.currentAnswer
             })
         }
     }

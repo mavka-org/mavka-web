@@ -23,7 +23,7 @@ class ABCD_OneColumn extends React.Component {
         //console.log(props.data);
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
         if (this.props != prevProps) {
             //console.log('sos' + this.props.answered)
             this.setState({
@@ -32,7 +32,7 @@ class ABCD_OneColumn extends React.Component {
                 data: this.props.data,
                 active: this.props.active,
                 answered: this.props.answered,
-                currentAnswer: this.props.currentAnswer
+                currentAnswer: prevState.currentAnswer
             })
         }
     }

@@ -3,6 +3,7 @@ import CheckAnswerIcon from '../../Icon/CheckAnswerIcon';
 import s from './../../Objects/Answer/Input_Answer.module.css';
 class Input_Answer extends React.Component {
 
+    
     constructor(props) {
         super(props);
         this.inputId = this.props.number == null ? 'userInput' : 'userInput' + this.props.number
@@ -14,7 +15,7 @@ class Input_Answer extends React.Component {
 
     componentDidUpdate(prevProps) {
         document.getElementById("FAKE1").click();
-        document.getElementById(this.inputId).value = this.props.currentAnswer
+        //document.getElementById(this.inputId).value = this.props.currentAnswer
 
         if (this.props != prevProps) {
             this.setState({
@@ -26,8 +27,8 @@ class Input_Answer extends React.Component {
 
     updateInput() {
         this.validateAnswer()
-        let input = document.getElementById(this.inputId);
-        this.props.updateCurrentAnswer(input.value, this.props.number-1);
+        //let input = document.getElementById(this.inputId);
+        //this.props.updateCurrentAnswer(input.value, this.props.number-1);
     }
 
     validateAnswer() {
@@ -49,8 +50,8 @@ class Input_Answer extends React.Component {
     render() {
         //console.log(this.state.currentAnswer + " " +  this.props.letter + " " + this.props.isCorrectAnswer);
         //console.log(isUserAnswer);
+        //alert('changed');
         return (
-
             <div className={s.answer}>
                 <div className={s.variant}>
                     <div className={s.number}>
@@ -71,7 +72,7 @@ class Input_Answer extends React.Component {
                     </div>
                     <input style={{
                         border: this.setBorder()
-                    }} disabled={this.props.isPractice && this.props.answered ? true : false} className={s.inp} id={this.inputId} value={this.props.currentAnswer} onChange={() => {this.updateInput()}}></input>
+                    }} disabled={this.props.isPractice && this.props.answered ? true : false} className={s.inp} id={this.inputId} value={this.props.currentAnswer} onChange={this.updateInput}></input>
                 </div>
 
 
