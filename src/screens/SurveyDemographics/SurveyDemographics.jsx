@@ -152,11 +152,25 @@ class SurveyDemographics extends React.Component {
                         if(doc.get("demographicsSurvey") == "true") {
                             demographicsForm.open()
                         }
+                        else {
+                            document.getElementById("forma").remove();
+                        }
                     });
-                }
+                },
             })
 
-            demographicsForm.open()
+            demographicsForm.open();
+            var div = document.createElement("div");
+            div.id = "forma";
+            div.style.zIndex = 100000;
+            div.style.right = "0px";
+            div.style.top = "0px";
+            div.style.width = "100px";
+            div.style.height = "100px";
+            div.style.position = "fixed";
+            div.style.backgroundColor = "white";
+            div.style.opacity = 0;
+            document.body.appendChild(div);
         }
 
         if(this.state.user == 25){
