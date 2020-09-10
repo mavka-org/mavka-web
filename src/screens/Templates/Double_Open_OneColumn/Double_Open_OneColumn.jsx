@@ -31,7 +31,7 @@ class Double_Open_OneColumn extends React.Component {
                 data: this.props.data,
                 active: this.props.active,
                 answered: this.props.answered,
-                currentAnswer: prevState.currentAnswer
+                currentAnswer: this.props.active == prevProps.active ? prevState.currentAnswer : this.props.currentAnswer
             })
         }
     }

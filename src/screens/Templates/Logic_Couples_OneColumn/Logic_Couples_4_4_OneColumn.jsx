@@ -36,7 +36,7 @@ class Logic_Couples_4_4_OneColumn extends React.Component {
                 data: this.props.data,
                 active: this.props.active,
                 answered: this.props.answered,
-                currentAnswer: prevState.currentAnswer
+                currentAnswer: this.props.active == prevProps.active ? prevState.currentAnswer : this.props.currentAnswer
             })
         }
     }

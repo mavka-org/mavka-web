@@ -22,18 +22,17 @@ class ABCDE extends Component {
             answered: props.answered,
             currentAnswer: props.currentAnswer
         }
-        //console.log(props.data);
+        console.log(props.currentAnswer);
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (this.props != prevProps) {
-            //console.log('sos' + this.props.answered)
             this.setState({
                 number: this.props.number,
                 data: this.props.data,
                 active: this.props.active,
                 answered: this.props.answered,
-                currentAnswer: prevState.currentAnswer
+                currentAnswer: this.props.active == prevProps.active ? prevState.currentAnswer : this.props.currentAnswer
             })
         }
     }
