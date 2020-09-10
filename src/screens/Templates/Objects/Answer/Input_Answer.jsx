@@ -27,8 +27,8 @@ class Input_Answer extends React.Component {
 
     updateInput() {
         this.validateAnswer()
-        //let input = document.getElementById(this.inputId);
-        //this.props.updateCurrentAnswer(input.value, this.props.number-1);
+        let input = document.getElementById(this.inputId);
+        this.props.updateCurrentAnswer(input.value, this.props.number-1);
     }
 
     validateAnswer() {
@@ -72,7 +72,7 @@ class Input_Answer extends React.Component {
                     </div>
                     <input style={{
                         border: this.setBorder()
-                    }} disabled={this.props.isPractice && this.props.answered ? true : false} className={s.inp} id={this.inputId} value={this.props.currentAnswer} onChange={this.updateInput}></input>
+                    }} disabled={this.props.isPractice && this.props.answered ? true : false} className={s.inp} id={this.inputId} value={this.props.currentAnswer} onChange={() => {this.updateInput()}}></input>
                 </div>
 
 
