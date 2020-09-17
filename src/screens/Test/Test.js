@@ -76,12 +76,14 @@ export class Test extends React.Component{
         var yDiff = this.yDown - yUp;
 
         if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-            if ( xDiff > 0 ) {
-                this.updateQuestion(Math.min(this.state.active + 1, this.state.n));
-                /* left swipe */
-            } else {
-                this.updateQuestion(Math.max(1, this.state.active - 1));
-                /* right swipe */
+            if (Math.abs(xDiff) > 12.0) { /// 12.0 is constant for scrolling
+                if (xDiff > 0) {
+                    this.updateQuestion(Math.min(this.state.active + 1, this.state.n));
+                    /* left swipe */
+                } else {
+                    this.updateQuestion(Math.max(1, this.state.active - 1));
+                    /* right swipe */
+                }
             }
         } else {
             if ( yDiff > 0 ) {
