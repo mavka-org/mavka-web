@@ -76,7 +76,7 @@ export class Test extends React.Component{
         var yDiff = this.yDown - yUp;
 
         if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-            if (Math.abs(xDiff) > 12.0) { /// 12.0 is constant for scrolling
+            if (Math.abs(xDiff) > 8.4) { /// it is constant for scrolling
                 if (xDiff > 0) {
                     this.updateQuestion(Math.min(this.state.active + 1, this.state.n));
                     /* left swipe */
