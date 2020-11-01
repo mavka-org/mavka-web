@@ -14,9 +14,6 @@ function getScreen(values) {
     if(values[0]) {
       return <TechnicalPause/>
     }
-    if(values[1] == 'true') {
-      return <SurveyDemographics/>
-    }
     return <App />
 }
 
