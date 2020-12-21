@@ -489,7 +489,7 @@ class Services {
             list2.push(axios.post(
                 'https://europe-west3-mavka-c5c01.cloudfunctions.net/getReq', {
                     url: url
-                }, { headers: { 'Content-Type': 'text/plain' } }
+            }, { headers: { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' } }
             ))
         })
         const results2 = await Promise.all(list2);
@@ -532,7 +532,7 @@ class Services {
         const response = await axios.post(
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/checkFeedbackSurvey', {
                 token: token,
-            }, { headers: { 'Content-Type': 'text/plain' } }
+        }, { headers: { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' } }
         )
         //console.log(response.data)
         return response.data;
@@ -542,7 +542,7 @@ class Services {
         const response = await axios.post(
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/getReqForm', {
                 url: url,
-            }, { headers: { 'Content-Type': 'text/plain' } }
+        }, { headers: { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' } }
         )
         //console.log(response.data)
         return response.data;
@@ -579,7 +579,7 @@ class Services {
                 'https://europe-west3-mavka-c5c01.cloudfunctions.net/setDemographicsSurvey', {
                     uid: user.uid,
                     val: val
-                }, { headers: { 'Content-Type': 'text/plain' } }
+            }, { headers: { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' } }
             )
         } else {
             return 'false';
@@ -595,7 +595,7 @@ class Services {
                 token: token,
                 courseID: testID,
                 answers: answers
-            }, { headers: { 'Content-Type': 'text/plain' } }
+        }, { headers: { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' } }
         )
     }
     static async getTestAnswers(token, testID) {
@@ -603,7 +603,7 @@ class Services {
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/getTestAnswers', {
                 token: token,
                 courseID: testID
-            }, { headers: { 'Content-Type': 'text/plain' } }
+        }, { headers: { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' } }
         )
         return response;
     }
@@ -614,7 +614,7 @@ class Services {
                 token: token,
                 id: testID,
                 status: status
-            }, { headers: { 'Content-Type': 'text/plain' } }
+        }, { headers: { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' } }
         )
     }
 
@@ -623,7 +623,7 @@ class Services {
             'https://europe-west3-mavka-c5c01.cloudfunctions.net/deleteCourseById', {
                 token: token,
                 id: testID,
-            }, { headers: { 'Content-Type': 'text/plain' } }
+        }, { headers: { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' } }
         )
     }
 
